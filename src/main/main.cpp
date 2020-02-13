@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <DisplayObject.h>
+#include "../engine/DisplayObject.h"
 #include <iostream>
 #include "MyGame.h"
 

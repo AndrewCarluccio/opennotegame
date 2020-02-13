@@ -69,12 +69,12 @@ void Scene::loadScene(string sceneFilePath) {
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
+						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "DisplayObjectContainer") {
-					DisplayObjectContainer* the_obj = new DisplayObject(node_id, path_to_texture);
+					DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -102,12 +102,12 @@ void Scene::loadScene(string sceneFilePath) {
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
+						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "Sprite") {
-					Sprite* the_obj = new DisplayObject(node_id, path_to_texture);
+					Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -135,12 +135,13 @@ void Scene::loadScene(string sceneFilePath) {
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
+						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "AnimatedSprite") {
-					AnimatedSprite* the_obj = new DisplayObject(node_id, path_to_texture);
+					AnimatedSprite* the_obj = new AnimatedSprite(node_id);
+					//somehow associate texture
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -168,7 +169,7 @@ void Scene::loadScene(string sceneFilePath) {
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
+						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 						parent->addChild(the_obj);
 					}
 			}

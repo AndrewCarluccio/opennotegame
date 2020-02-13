@@ -2,6 +2,8 @@
 #define SCENE_H
 
 #include "DisplayObjectContainer.h"
+#include "DisplayObject.h"
+#include "AnimatedSprite.h"
 #include "Sprite.h"
 #include <string>
 #include <vector>

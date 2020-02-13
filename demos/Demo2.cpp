@@ -1,8 +1,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "Sprite.h"
-#include "MyGame.h"
+#include "../src/engine/DisplayObject.h"
+#include "../src/main/MyGame.h"
 
 using namespace std;
 
