@@ -18,10 +18,10 @@ Scene::Scene() {
 	root->addChild(midground);
 	root->addChild(foreground);
 
-	parent_ids.push_back("0000");
-	parent_ids.push_back("0001");
-	parent_ids.push_back("0002");
-	parent_ids.push_back("0003");
+	parent_ids.push_back("Root");
+	parent_ids.push_back("Background");
+	parent_ids.push_back("Midground");
+	parent_ids.push_back("Foreground");
 
 }
 
@@ -42,157 +42,156 @@ void Scene::loadScene(string sceneFilePath) {
 	d.ParseStream(json);
    	assert(d.IsArray()); 
 
-		for(int i = 0; i < d.Size(); i++){
-			//TODO: Populate these fileds from the JSON package
+	for(int i = 0; i < d.Size(); i++){
+		//TODO: Populate these fileds from the JSON package
 
-			
-			string node_id = d[i]["node_id"].GetString();
-			string parent_id = d[i]["parent_id"].GetString(); //ID 0000 is root, ID 0001 is background, 0002 is midground, 0003 is foreground
-			string type_id = d[i]["type_id"].GetString();
-			int loc_x = d[i]["locationX"].GetInt();
-			int loc_y = d[i]["locataionY"].GetInt();
-			int scale_x = d[i]["scaleX"].GetInt();
-			int scale_y = d[i]["scaleY"].GetInt();
-			int rotation = d[i]["rotation"].GetInt();
-			int alpha = d[i]["alpha"].GetInt();
-			string path_to_texture = d[i]["sprite_file_path"].GetString();
+		
+		string node_id = d[i]["node_id"].GetString();
+		string parent_id = d[i]["parent_id"].GetString();
+		string type_id = d[i]["type_id"].GetString();
+		int loc_x = d[i]["locationX"].GetInt();
+		int loc_y = d[i]["locataionY"].GetInt();
+		int scale_x = d[i]["scaleX"].GetInt();
+		int scale_y = d[i]["scaleY"].GetInt();
+		int rotation = d[i]["rotation"].GetInt();
+		int alpha = d[i]["alpha"].GetInt();
+		string path_to_texture = d[i]["sprite_file_path"].GetString();
 
-			if ((std::find(parent_ids.begin(), parent_ids.end(), parent_id)) != parent_ids.end()) {
-				if (type_id == "DisplayObject") {
+		if ((std::find(parent_ids.begin(), parent_ids.end(), parent_id)) != parent_ids.end()) {
+			if (type_id == "DisplayObject") {
 
-					DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+				DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
 
-					the_obj->position.x = loc_x;
-					the_obj->position.y = loc_y;
-					the_obj->scaleX = scale_x;
-					the_obj->scaleY = scale_y;
-					the_obj->rotation = rotation;
-					the_obj->alpha = alpha;
+				the_obj->position.x = loc_x;
+				the_obj->position.y = loc_y;
+				the_obj->scaleX = scale_x;
+				the_obj->scaleY = scale_y;
+				the_obj->rotation = rotation;
+				the_obj->alpha = alpha;
 
 
-					if (parent_id == "Root") {
-						//add to root
-						root->addChild(the_obj);
-					}
-					else if (parent_id == "Background") {
-						//add to bg
-						background->addChild(the_obj);
-					}
-					else if (parent_id == "Midground") {
-						//add to mg
-						midground->addChild(the_obj);
-					}
-					else if (parent_id == "Foreground") {
-						//add to fg
-						foreground->addChild(the_obj);
-					}
-					else {
-						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
-						parent->addChild(the_obj);
-					}
+				if (parent_id == "Root") {
+					//add to root
+					root->addChild(the_obj);
 				}
-				else if (type_id == "DisplayObjectContainer") {
-					DisplayObjectContainer* the_obj = new DisplayObject(node_id, path_to_texture);
-
-					the_obj->position.x = loc_x;
-					the_obj->position.y = loc_y;
-					the_obj->scaleX = scale_x;
-					the_obj->scaleY = scale_y;
-					the_obj->rotation = rotation;
-					the_obj->alpha = alpha;
-
-
-					if (parent_id == "Root") {
-						//add to root
-						root->addChild(the_obj);
-					}
-					else if (parent_id == "Background") {
-						//add to bg
-						background->addChild(the_obj);
-					}
-					else if (parent_id == "Midground") {
-						//add to mg
-						midground->addChild(the_obj);
-					}
-					else if (parent_id == "Foreground") {
-						//add to fg
-						foreground->addChild(the_obj);
-					}
-					else {
-						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
-						parent->addChild(the_obj);
-					}
+				else if (parent_id == "Background") {
+					//add to bg
+					background->addChild(the_obj);
 				}
-				else if (type_id == "Sprite") {
-					Sprite* the_obj = new DisplayObject(node_id, path_to_texture);
-
-					the_obj->position.x = loc_x;
-					the_obj->position.y = loc_y;
-					the_obj->scaleX = scale_x;
-					the_obj->scaleY = scale_y;
-					the_obj->rotation = rotation;
-					the_obj->alpha = alpha;
-
-
-					if (parent_id == "Root") {
-						//add to root
-						root->addChild(the_obj);
-					}
-					else if (parent_id == "Background") {
-						//add to bg
-						background->addChild(the_obj);
-					}
-					else if (parent_id == "Midground") {
-						//add to mg
-						midground->addChild(the_obj);
-					}
-					else if (parent_id == "Foreground") {
-						//add to fg
-						foreground->addChild(the_obj);
-					}
-					else {
-						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
-						parent->addChild(the_obj);
-					}
+				else if (parent_id == "Midground") {
+					//add to mg
+					midground->addChild(the_obj);
 				}
-				else if (type_id == "AnimatedSprite") {
-					AnimatedSprite* the_obj = new DisplayObject(node_id, path_to_texture);
+				else if (parent_id == "Foreground") {
+					//add to fg
+					foreground->addChild(the_obj);
+				}
+				else {
+					//search display tree for parent
+					DisplayObjectContainer* parent = root->getChild(parent_id);
+					parent->addChild(the_obj);
+				}
+			}
+			else if (type_id == "DisplayObjectContainer") {
+				DisplayObjectContainer* the_obj = new DisplayObject(node_id, path_to_texture);
 
-					the_obj->position.x = loc_x;
-					the_obj->position.y = loc_y;
-					the_obj->scaleX = scale_x;
-					the_obj->scaleY = scale_y;
-					the_obj->rotation = rotation;
-					the_obj->alpha = alpha;
+				the_obj->position.x = loc_x;
+				the_obj->position.y = loc_y;
+				the_obj->scaleX = scale_x;
+				the_obj->scaleY = scale_y;
+				the_obj->rotation = rotation;
+				the_obj->alpha = alpha;
 
 
-					if (parent_id == "Root") {
-						//add to root
-						root->addChild(the_obj);
-					}
-					else if (parent_id == "Background") {
-						//add to bg
-						background->addChild(the_obj);
-					}
-					else if (parent_id == "Midground") {
-						//add to mg
-						midground->addChild(the_obj);
-					}
-					else if (parent_id == "Foreground") {
-						//add to fg
-						foreground->addChild(the_obj);
-					}
-					else {
-						//search display tree for parent
-						DisplayObjectContainer* parent = root->getChild(parent_id);
-						parent->addChild(the_obj);
-					}
+				if (parent_id == "Root") {
+					//add to root
+					root->addChild(the_obj);
+				}
+				else if (parent_id == "Background") {
+					//add to bg
+					background->addChild(the_obj);
+				}
+				else if (parent_id == "Midground") {
+					//add to mg
+					midground->addChild(the_obj);
+				}
+				else if (parent_id == "Foreground") {
+					//add to fg
+					foreground->addChild(the_obj);
+				}
+				else {
+					//search display tree for parent
+					DisplayObjectContainer* parent = root->getChild(parent_id);
+					parent->addChild(the_obj);
+				}
+			}
+			else if (type_id == "Sprite") {
+				Sprite* the_obj = new DisplayObject(node_id, path_to_texture);
+
+				the_obj->position.x = loc_x;
+				the_obj->position.y = loc_y;
+				the_obj->scaleX = scale_x;
+				the_obj->scaleY = scale_y;
+				the_obj->rotation = rotation;
+				the_obj->alpha = alpha;
+
+
+				if (parent_id == "Root") {
+					//add to root
+					root->addChild(the_obj);
+				}
+				else if (parent_id == "Background") {
+					//add to bg
+					background->addChild(the_obj);
+				}
+				else if (parent_id == "Midground") {
+					//add to mg
+					midground->addChild(the_obj);
+				}
+				else if (parent_id == "Foreground") {
+					//add to fg
+					foreground->addChild(the_obj);
+				}
+				else {
+					//search display tree for parent
+					DisplayObjectContainer* parent = root->getChild(parent_id);
+					parent->addChild(the_obj);
+				}
+			}
+			else if (type_id == "AnimatedSprite") {
+				AnimatedSprite* the_obj = new DisplayObject(node_id, path_to_texture);
+
+				the_obj->position.x = loc_x;
+				the_obj->position.y = loc_y;
+				the_obj->scaleX = scale_x;
+				the_obj->scaleY = scale_y;
+				the_obj->rotation = rotation;
+				the_obj->alpha = alpha;
+
+
+				if (parent_id == "Root") {
+					//add to root
+					root->addChild(the_obj);
+				}
+				else if (parent_id == "Background") {
+					//add to bg
+					background->addChild(the_obj);
+				}
+				else if (parent_id == "Midground") {
+					//add to mg
+					midground->addChild(the_obj);
+				}
+				else if (parent_id == "Foreground") {
+					//add to fg
+					foreground->addChild(the_obj);
+				}
+				else {
+					//search display tree for parent
+					DisplayObjectContainer* parent = root->getChild(parent_id);
+					parent->addChild(the_obj);
+				}
 			}
 		}
-
 	}
 }
 
