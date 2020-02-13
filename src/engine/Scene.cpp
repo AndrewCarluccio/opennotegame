@@ -1,5 +1,13 @@
 #include "Scene.h"
 
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+#include "rapidjson/filereadstream.h"
+#include <iostream>
+
+using namespace rapidjson;
+
 Scene::Scene() {
 	root = new DisplayObjectContainer();
 	foreground = new DisplayObjectContainer();
@@ -25,18 +33,29 @@ void Scene::loadScene(string sceneFilePath) {
 
 	FOR NOW I AM ASSUMING PARENTS ALWAYS LISTED BEFORE CHILDREN!
 	*/
-		for (/*JSON TYPE*/ string json_package : the_list) {
+	FILE* fp = fopen(sceneFilePath, "r");
+	// const char* json = f.read();
+	char readBuffer[65536];
+	FileReadStream json(fp, readBuffer, sizeof(readBuffer));
+	
+	Document d;
+	d.ParseStream(json);
+   	assert(d.IsArray()); 
+
+		for(int i = 0; i < d.Size(); i++){
 			//TODO: Populate these fileds from the JSON package
-			string node_id = "";
-			string parent_id = ""; //ID 0000 is root, ID 0001 is background, 0002 is midground, 0003 is foreground
-			string type_id = "";
-			int loc_x = 0;
-			int loc_y = 0;
-			int scale_x = 0;
-			int scale_y = 0;
-			int rotation = 0;
-			int alpha = 0;
-			string path_to_texture = "";
+
+			
+			string node_id = d[i]["node_id"].GetString();
+			string parent_id = d[i]["parent_id"].GetString(); //ID 0000 is root, ID 0001 is background, 0002 is midground, 0003 is foreground
+			string type_id = d[i]["type_id"].GetString();
+			int loc_x = d[i]["locationX"].GetInt();
+			int loc_y = d[i]["locataionY"].GetInt();
+			int scale_x = d[i]["scaleX"].GetInt();
+			int scale_y = d[i]["scaleY"].GetInt();
+			int rotation = d[i]["rotation"].GetInt();
+			int alpha = d[i]["alpha"].GetInt();
+			string path_to_texture = d[i]["sprite_file_path"].GetString();
 
 			if ((std::find(parent_ids.begin(), parent_ids.end(), parent_id)) != parent_ids.end()) {
 				if (type_id == "DisplayObject") {
@@ -51,30 +70,30 @@ void Scene::loadScene(string sceneFilePath) {
 					the_obj->alpha = alpha;
 
 
-					if (parent_id == "0000") {
+					if (parent_id == "Root") {
 						//add to root
 						root->addChild(the_obj);
 					}
-					else if (parent_id == "0001") {
+					else if (parent_id == "Background") {
 						//add to bg
 						background->addChild(the_obj);
 					}
-					else if (parent_id == "0002") {
+					else if (parent_id == "Midground") {
 						//add to mg
 						midground->addChild(the_obj);
 					}
-					else if (parent_id == "0003") {
+					else if (parent_id == "Foreground") {
 						//add to fg
 						foreground->addChild(the_obj);
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
+						DisplayObjectContainer* parent = root->getChild(parent_id);
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "DisplayObjectContainer") {
-					DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+					DisplayObjectContainer* the_obj = new DisplayObject(node_id, path_to_texture);
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -84,30 +103,30 @@ void Scene::loadScene(string sceneFilePath) {
 					the_obj->alpha = alpha;
 
 
-					if (parent_id == "0000") {
+					if (parent_id == "Root") {
 						//add to root
 						root->addChild(the_obj);
 					}
-					else if (parent_id == "0001") {
+					else if (parent_id == "Background") {
 						//add to bg
 						background->addChild(the_obj);
 					}
-					else if (parent_id == "0002") {
+					else if (parent_id == "Midground") {
 						//add to mg
 						midground->addChild(the_obj);
 					}
-					else if (parent_id == "0003") {
+					else if (parent_id == "Foreground") {
 						//add to fg
 						foreground->addChild(the_obj);
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
+						DisplayObjectContainer* parent = root->getChild(parent_id);
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "Sprite") {
-					Sprite* the_obj = new Sprite(node_id, path_to_texture);
+					Sprite* the_obj = new DisplayObject(node_id, path_to_texture);
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -117,31 +136,30 @@ void Scene::loadScene(string sceneFilePath) {
 					the_obj->alpha = alpha;
 
 
-					if (parent_id == "0000") {
+					if (parent_id == "Root") {
 						//add to root
 						root->addChild(the_obj);
 					}
-					else if (parent_id == "0001") {
+					else if (parent_id == "Background") {
 						//add to bg
 						background->addChild(the_obj);
 					}
-					else if (parent_id == "0002") {
+					else if (parent_id == "Midground") {
 						//add to mg
 						midground->addChild(the_obj);
 					}
-					else if (parent_id == "0003") {
+					else if (parent_id == "Foreground") {
 						//add to fg
 						foreground->addChild(the_obj);
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
+						DisplayObjectContainer* parent = root->getChild(parent_id);
 						parent->addChild(the_obj);
 					}
 				}
 				else if (type_id == "AnimatedSprite") {
-					AnimatedSprite* the_obj = new AnimatedSprite(node_id);
-					//somehow associate texture
+					AnimatedSprite* the_obj = new DisplayObject(node_id, path_to_texture);
 
 					the_obj->position.x = loc_x;
 					the_obj->position.y = loc_y;
@@ -151,25 +169,25 @@ void Scene::loadScene(string sceneFilePath) {
 					the_obj->alpha = alpha;
 
 
-					if (parent_id == "0000") {
+					if (parent_id == "Root") {
 						//add to root
 						root->addChild(the_obj);
 					}
-					else if (parent_id == "0001") {
+					else if (parent_id == "Background") {
 						//add to bg
 						background->addChild(the_obj);
 					}
-					else if (parent_id == "0002") {
+					else if (parent_id == "Midground") {
 						//add to mg
 						midground->addChild(the_obj);
 					}
-					else if (parent_id == "0003") {
+					else if (parent_id == "Foreground") {
 						//add to fg
 						foreground->addChild(the_obj);
 					}
 					else {
 						//search display tree for parent
-						DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
+						DisplayObjectContainer* parent = root->getChild(parent_id);
 						parent->addChild(the_obj);
 					}
 			}
