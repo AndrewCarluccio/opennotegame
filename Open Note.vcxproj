@@ -105,6 +105,7 @@
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
+    <ClCompile Include="src\engine\Scene.cpp" />
     <ClCompile Include="src\engine\Sprite.cpp" />
     <ClCompile Include="src\main\main.cpp" />
     <ClCompile Include="src\main\MyGame.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
     <ClInclude Include="src\engine\Game.h" />
+    <ClInclude Include="src\engine\Scene.h" />
     <ClInclude Include="src\engine\Sprite.h" />
     <ClInclude Include="src\main\MyGame.h" />
   </ItemGroup>
