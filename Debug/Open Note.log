@@ -1,29 +1,8 @@
-﻿  AffineTransform.cpp
-A:\Documents\GitHub\opennotegame\src\engine\AffineTransform.cpp(50,57): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
-  AnimatedSprite.cpp
-A:\Documents\GitHub\opennotegame\src\engine\AffineTransform.cpp(51,57): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
-  DisplayObject.cpp
-  DisplayObjectContainer.cpp
-A:\Documents\GitHub\opennotegame\src\engine\AnimatedSprite.cpp(46,23): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(22,23): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(33,23): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(42,23): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(52,15): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(76,23): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(87,23): warning C4018:  '<': signed/unsigned mismatch
-  Game.cpp
-A:\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.cpp(97,23): warning C4018:  '<': signed/unsigned mismatch
-  Scene.cpp
-A:\Documents\GitHub\opennotegame\src\engine\Game.cpp(53,19): warning C4244:  'initializing': conversion from 'double' to 'int', possible loss of data
-A:\Documents\GitHub\opennotegame\src\engine\Scene.cpp(45,19): warning C4018:  '<': signed/unsigned mismatch
-A:\Documents\GitHub\opennotegame\src\engine\Scene.cpp(36,1): warning C4996:  'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Sprite.cpp
+﻿  Scene.cpp
+C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(100,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(101,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(151,1): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): message : see declaration of 'fopen'
   main.cpp
-  MyGame.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): message :  see declaration of 'fopen'
-A:\Documents\GitHub\opennotegame\src\main\MyGame.cpp(71,33): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
-A:\Documents\GitHub\opennotegame\src\main\MyGame.cpp(72,33): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
-A:\Documents\GitHub\opennotegame\src\main\MyGame.cpp(79,33): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
   Generating Code...
-A:\Documents\GitHub\opennotegame\src\main\MyGame.cpp(80,33): warning C4244:  '=': conversion from 'double' to 'int', possible loss of data
-  Open Note.vcxproj -> A:\Documents\GitHub\opennotegame\Debug\Open Note.exe
+  Open Note.vcxproj -> C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\Debug\Open Note.exe

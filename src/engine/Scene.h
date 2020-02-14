@@ -22,9 +22,7 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 
-	DisplayObjectContainer* foreground;
-	DisplayObjectContainer* midground;
-	DisplayObjectContainer* background;
+
 
 	DisplayObjectContainer* root;
 

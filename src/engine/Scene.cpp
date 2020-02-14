@@ -6,17 +6,15 @@
 #include "../plugins/rapidjson/filereadstream.h"
 #include <iostream>
 
+#include <queue>
+#include <Windows.h>
+
 using namespace rapidjson;
 
 Scene::Scene() {
 	root = new DisplayObjectContainer();
-	foreground = new DisplayObjectContainer();
-	midground = new DisplayObjectContainer();
-	background = new DisplayObjectContainer();
 
-	root->addChild(background);
-	root->addChild(midground);
-	root->addChild(foreground);
+
 
 	parent_ids.push_back("Root");
 	parent_ids.push_back("Background");
@@ -25,175 +23,159 @@ Scene::Scene() {
 
 }
 
-void Scene::loadScene(string sceneFilePath) {
-	/*
-	PARSE THE JSON HERE
-	
-	For now, I made two lists of strings, you need to change them to whatever JSON wrapper you are going to use
+DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
+	string node_id = displayObjectInfo["node_id"].GetString();
+    string type_id = displayObjectInfo["type_id"].GetString();
+    int loc_x = displayObjectInfo["locationX"].GetInt();
+    int loc_y = displayObjectInfo["locationY"].GetInt();
+    float scale_x = displayObjectInfo["scaleX"].GetFloat();
+    float scale_y = displayObjectInfo["scaleY"].GetFloat();
+    int rotation = displayObjectInfo["rotation"].GetInt();
+    int alpha = displayObjectInfo["alpha"].GetInt();
+    string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
 
-	FOR NOW I AM ASSUMING PARENTS ALWAYS LISTED BEFORE CHILDREN!
-	*/
+	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	
+	return the_obj;
+
+}
+
+DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectContainerInfo) {
+	string node_id = displayObjectContainerInfo["node_id"].GetString();
+    string type_id = displayObjectContainerInfo["type_id"].GetString();
+    int loc_x = displayObjectContainerInfo["locationX"].GetInt();
+    int loc_y = displayObjectContainerInfo["locationY"].GetInt();
+	float scale_x = displayObjectContainerInfo["scaleX"].GetFloat();
+	float scale_y = displayObjectContainerInfo["scaleY"].GetFloat();
+    int rotation = displayObjectContainerInfo["rotation"].GetInt();
+    int alpha = displayObjectContainerInfo["alpha"].GetInt();
+    string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
+
+	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	
+	return the_obj;
+
+}
+
+Sprite* createSprite(const Value& spriteInfo) {
+	string node_id = spriteInfo["node_id"].GetString();
+    string type_id = spriteInfo["type_id"].GetString();
+    int loc_x = spriteInfo["locationX"].GetInt();
+    int loc_y = spriteInfo["locationY"].GetInt();
+	float scale_x = spriteInfo["scaleX"].GetFloat();
+	float scale_y = spriteInfo["scaleY"].GetFloat();
+    int rotation = spriteInfo["rotation"].GetInt();
+    int alpha = spriteInfo["alpha"].GetInt();
+    string path_to_texture = spriteInfo["sprite_file_path"].GetString();
+	
+	Sprite* the_obj = new Sprite(node_id, path_to_texture);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	
+	return the_obj;
+}
+
+AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
+	string node_id = animatedSpriteInfo["node_id"].GetString();
+    string type_id = animatedSpriteInfo["type_id"].GetString();
+    int loc_x = animatedSpriteInfo["locationX"].GetInt();
+    int loc_y = animatedSpriteInfo["locationY"].GetInt();
+	float scale_x = animatedSpriteInfo["scaleX"].GetInt();
+	float scale_y = animatedSpriteInfo["scaleY"].GetInt();
+    int rotation = animatedSpriteInfo["rotation"].GetInt();
+    int alpha = animatedSpriteInfo["alpha"].GetInt();
+	
+	
+	AnimatedSprite* the_obj = new AnimatedSprite(node_id);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	
+	return the_obj;
+}
+
+
+// Recursion happens here
+void createObject(const Value& attribute, DisplayObjectContainer* node) {
+
+    string type_id = attribute["type_id"].GetString();
+    
+    const rapidjson::Value& children = attribute["children"];
+	// iterates throught the child nodes
+    for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
+        const rapidjson::Value& child = *itr;
+        assert(child.IsObject());
+		DisplayObject* newChild;
+		if (type_id == "DisplayObject") {
+			newChild = (createDisplayObject(child));
+		}
+		else if(type_id == "DisplayObjectContainer") {
+			newChild = createDisplayObjectContainer(child);
+		}
+		else if(type_id == "Sprite") {
+			newChild = createSprite(child);
+		}
+		else if(type_id == "AnimatedSprite") {
+			newChild = createAnimatedSprite(child);
+		}
+        node->addChild(newChild);
+		createObject(child, static_cast<DisplayObjectContainer*>(newChild));
+		
+    }
+    
+}
+
+void Scene::loadScene(string sceneFilePath) {
+	//sceneFilePath = "example_Kenny.json";
 	FILE* fp = fopen(sceneFilePath.c_str(), "r");
-	// const char* json = f.read();
 	char readBuffer[65536];
 	FileReadStream json(fp, readBuffer, sizeof(readBuffer));
-	
 	Document d;
 	d.ParseStream(json);
-   	assert(d.IsArray()); 
+    // cout << "IS OBJECT" << d.IsObject();
+	root = createDisplayObjectContainer(d);
+    createObject(d, root);
 
-	for(int i = 0; i < d.Size(); i++){
-		//TODO: Populate these fileds from the JSON package
+	queue<DisplayObject*> objQueue;
+	objQueue.push(root);
 
-		
-		string node_id = d[i]["node_id"].GetString();
-		string parent_id = d[i]["parent_id"].GetString();
-		string type_id = d[i]["type_id"].GetString();
-		int loc_x = d[i]["locationX"].GetInt();
-		int loc_y = d[i]["locataionY"].GetInt();
-		int scale_x = d[i]["scaleX"].GetInt();
-		int scale_y = d[i]["scaleY"].GetInt();
-		int rotation = d[i]["rotation"].GetInt();
-		int alpha = d[i]["alpha"].GetInt();
-		string path_to_texture = d[i]["sprite_file_path"].GetString();
+	OutputDebugString("Printing Tree\n");
+	while (!objQueue.empty()) {
+		DisplayObject* obj = objQueue.front();
+		objQueue.pop();
 
-		if ((std::find(parent_ids.begin(), parent_ids.end(), parent_id)) != parent_ids.end()) {
-			if (type_id == "DisplayObject") {
-
-				DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
-
-				the_obj->position.x = loc_x;
-				the_obj->position.y = loc_y;
-				the_obj->scaleX = scale_x;
-				the_obj->scaleY = scale_y;
-				the_obj->rotation = rotation;
-				the_obj->alpha = alpha;
-
-
-				if (parent_id == "Root") {
-					//add to root
-					root->addChild(the_obj);
-				}
-				else if (parent_id == "Background") {
-					//add to bg
-					background->addChild(the_obj);
-				}
-				else if (parent_id == "Midground") {
-					//add to mg
-					midground->addChild(the_obj);
-				}
-				else if (parent_id == "Foreground") {
-					//add to fg
-					foreground->addChild(the_obj);
-				}
-				else {
-					//search display tree for parent
-					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
-					parent->addChild(the_obj);
-				}
+		OutputDebugString((obj->id + ": ").c_str());
+		DisplayObjectContainer* container = static_cast<DisplayObjectContainer*>(obj);
+		if (container != NULL) {
+			for (DisplayObject* child : container->children) {
+				objQueue.push(child);
+				OutputDebugString(child->id.c_str());
 			}
-			else if (type_id == "DisplayObjectContainer") {
-				DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
-
-				the_obj->position.x = loc_x;
-				the_obj->position.y = loc_y;
-				the_obj->scaleX = scale_x;
-				the_obj->scaleY = scale_y;
-				the_obj->rotation = rotation;
-				the_obj->alpha = alpha;
-
-
-				if (parent_id == "Root") {
-					//add to root
-					root->addChild(the_obj);
-				}
-				else if (parent_id == "Background") {
-					//add to bg
-					background->addChild(the_obj);
-				}
-				else if (parent_id == "Midground") {
-					//add to mg
-					midground->addChild(the_obj);
-				}
-				else if (parent_id == "Foreground") {
-					//add to fg
-					foreground->addChild(the_obj);
-				}
-				else {
-					//search display tree for parent
-					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
-					parent->addChild(the_obj);
-				}
-			}
-			else if (type_id == "Sprite") {
-				Sprite* the_obj = new Sprite(node_id, path_to_texture);
-
-				the_obj->position.x = loc_x;
-				the_obj->position.y = loc_y;
-				the_obj->scaleX = scale_x;
-				the_obj->scaleY = scale_y;
-				the_obj->rotation = rotation;
-				the_obj->alpha = alpha;
-
-
-				if (parent_id == "Root") {
-					//add to root
-					root->addChild(the_obj);
-				}
-				else if (parent_id == "Background") {
-					//add to bg
-					background->addChild(the_obj);
-				}
-				else if (parent_id == "Midground") {
-					//add to mg
-					midground->addChild(the_obj);
-				}
-				else if (parent_id == "Foreground") {
-					//add to fg
-					foreground->addChild(the_obj);
-				}
-				else {
-					//search display tree for parent
-					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
-					parent->addChild(the_obj);
-				}
-			}
-			else if (type_id == "AnimatedSprite") {
-				AnimatedSprite* the_obj = new AnimatedSprite(node_id);
-				//TODO --> add animations
-
-				the_obj->position.x = loc_x;
-				the_obj->position.y = loc_y;
-				the_obj->scaleX = scale_x;
-				the_obj->scaleY = scale_y;
-				the_obj->rotation = rotation;
-				the_obj->alpha = alpha;
-
-
-				if (parent_id == "Root") {
-					//add to root
-					root->addChild(the_obj);
-				}
-				else if (parent_id == "Background") {
-					//add to bg
-					background->addChild(the_obj);
-				}
-				else if (parent_id == "Midground") {
-					//add to mg
-					midground->addChild(the_obj);
-				}
-				else if (parent_id == "Foreground") {
-					//add to fg
-					foreground->addChild(the_obj);
-				}
-				else {
-					//search display tree for parent
-					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
-					parent->addChild(the_obj);
-				}
-			}
+			OutputDebugString("\n");
 		}
 	}
+
 }
 
 void Scene::update(set<SDL_Scancode> pressedKeys) {
@@ -202,9 +184,11 @@ void Scene::update(set<SDL_Scancode> pressedKeys) {
 	//foreground->update(pressedKeys);
 
 	DisplayObjectContainer::update(pressedKeys);
+	root->update(pressedKeys);
 }
 
 void Scene::draw(AffineTransform& at) {
 	DisplayObjectContainer::draw(at);
+	root->draw(at);
 }
 

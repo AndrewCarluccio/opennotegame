@@ -1,0 +1,13 @@
+SCENE 1
+Background: Skyscraper is at 0,0 and scaleX = 4.1545 and scaleY = 4.1490
+Midground: Clock Tower is at 903,7 and scaleX = 1.22 and scaleY = 1.22
+Foreground: Car is at 25,766 and scaleX = 1 and scaleY = 1
+
+
+
+SCENE 2
+Background: Wormhole is at 0,356 and scaleX = 2.2959 and scaleY = 2.2964
+Midground: DS9 is at 360,118 and scaleX = .6044 and scaleY = .6038
+Foreground: Defiant is at 642, 611 and scaleX = 0.4345 and scaleY = 0.4345
+
+
