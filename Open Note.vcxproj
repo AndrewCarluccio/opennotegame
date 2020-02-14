@@ -98,8 +98,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="demos\Demo1.cpp" />
-    <ClCompile Include="demos\Demo2.cpp" />
     <ClCompile Include="src\engine\AffineTransform.cpp" />
     <ClCompile Include="src\engine\AnimatedSprite.cpp" />
     <ClCompile Include="src\engine\DisplayObject.cpp" />

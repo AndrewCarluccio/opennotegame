@@ -1,8 +1,4 @@
-﻿  Demo1.cpp
-C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.h(7,10): fatal error C1083: Cannot open include file: 'Game.h': No such file or directory
-  Demo2.cpp
-C:\Users\akclu\Documents\GitHub\opennotegame\demos\Demo2.cpp(4,10): fatal error C1083: Cannot open include file: 'Sprite.h': No such file or directory
-  AffineTransform.cpp
+﻿  AffineTransform.cpp
 C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\AffineTransform.cpp(50,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\AffineTransform.cpp(51,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   AnimatedSprite.cpp
@@ -19,34 +15,13 @@ C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\DisplayObjectContainer.c
   Game.cpp
 C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Game.cpp(53,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Scene.cpp
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(72,65): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'DisplayObjectContainer *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(72,38): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(77,83): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'DisplayObjectContainer *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(77,38): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(105,65): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'DisplayObjectContainer *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(105,38): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(110,67): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'Sprite *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(110,22): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(138,65): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'DisplayObjectContainer *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(138,38): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(143,6): error C2065: 'AnimatedSprite': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(143,22): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(145,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(146,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(147,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(148,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(149,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(150,6): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(155,22): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(159,28): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(163,27): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(167,28): error C2065: 'the_obj': undeclared identifier
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(171,65): error C2440: 'initializing': cannot convert from 'DisplayObject *' to 'DisplayObjectContainer *'
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(171,38): message : Cast from base to derived requires dynamic_cast or static_cast
-C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(172,24): error C2065: 'the_obj': undeclared identifier
   Sprite.cpp
   main.cpp
-C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.h(7,10): fatal error C1083: Cannot open include file: 'Game.h': No such file or directory
   MyGame.cpp
-C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.cpp(4,10): fatal error C1083: Cannot open include file: '../src/engine/DisplayObject.h': No such file or directory
+C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.cpp(71,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.cpp(72,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.cpp(79,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\main\MyGame.cpp(80,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Generating Code...
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\akclu\Documents\GitHub\opennotegame\Debug\Open Note.exe : fatal error LNK1120: 1 unresolved externals
