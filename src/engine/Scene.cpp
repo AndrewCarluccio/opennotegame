@@ -1,9 +1,9 @@
 #include "Scene.h"
 
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
-#include "rapidjson/filereadstream.h"
+#include "../plugins/rapidjson/document.h"
+#include "../plugins/rapidjson/writer.h"
+#include "../plugins/rapidjson/stringbuffer.h"
+#include "../plugins/rapidjson/filereadstream.h"
 #include <iostream>
 
 using namespace rapidjson;
@@ -33,7 +33,7 @@ void Scene::loadScene(string sceneFilePath) {
 
 	FOR NOW I AM ASSUMING PARENTS ALWAYS LISTED BEFORE CHILDREN!
 	*/
-	FILE* fp = fopen(sceneFilePath, "r");
+	FILE* fp = fopen(sceneFilePath.c_str(), "r");
 	// const char* json = f.read();
 	char readBuffer[65536];
 	FileReadStream json(fp, readBuffer, sizeof(readBuffer));
@@ -88,12 +88,12 @@ void Scene::loadScene(string sceneFilePath) {
 				}
 				else {
 					//search display tree for parent
-					DisplayObjectContainer* parent = root->getChild(parent_id);
+					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 					parent->addChild(the_obj);
 				}
 			}
 			else if (type_id == "DisplayObjectContainer") {
-				DisplayObjectContainer* the_obj = new DisplayObject(node_id, path_to_texture);
+				DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
 
 				the_obj->position.x = loc_x;
 				the_obj->position.y = loc_y;
@@ -121,12 +121,12 @@ void Scene::loadScene(string sceneFilePath) {
 				}
 				else {
 					//search display tree for parent
-					DisplayObjectContainer* parent = root->getChild(parent_id);
+					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 					parent->addChild(the_obj);
 				}
 			}
 			else if (type_id == "Sprite") {
-				Sprite* the_obj = new DisplayObject(node_id, path_to_texture);
+				Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
 				the_obj->position.x = loc_x;
 				the_obj->position.y = loc_y;
@@ -154,12 +154,13 @@ void Scene::loadScene(string sceneFilePath) {
 				}
 				else {
 					//search display tree for parent
-					DisplayObjectContainer* parent = root->getChild(parent_id);
+					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 					parent->addChild(the_obj);
 				}
 			}
 			else if (type_id == "AnimatedSprite") {
-				AnimatedSprite* the_obj = new DisplayObject(node_id, path_to_texture);
+				AnimatedSprite* the_obj = new AnimatedSprite(node_id);
+				//TODO --> add animations
 
 				the_obj->position.x = loc_x;
 				the_obj->position.y = loc_y;
@@ -187,7 +188,7 @@ void Scene::loadScene(string sceneFilePath) {
 				}
 				else {
 					//search display tree for parent
-					DisplayObjectContainer* parent = root->getChild(parent_id);
+					DisplayObjectContainer* parent = static_cast<DisplayObjectContainer*>(root->getChild(parent_id));
 					parent->addChild(the_obj);
 				}
 			}
