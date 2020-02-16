@@ -1,8 +1,4 @@
 ﻿  Scene.cpp
-C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(100,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(101,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\src\engine\Scene.cpp(151,1): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\Scene.cpp(151,1): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(208): message : see declaration of 'fopen'
-  main.cpp
-  Generating Code...
-  Open Note.vcxproj -> C:\Users\akclu\Documents\OPEN NOTE BACKUP\test 4\opennotegame\Debug\Open Note.exe
+  Open Note.vcxproj -> C:\Users\akclu\Documents\GitHub\opennotegame\Debug\Open Note.exe

@@ -7,13 +7,16 @@
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
-	instance = this;
+	//instance = this;
 
 	scene1 = new Scene();
 	scene1->loadScene("./resources/Scenes/room_one.json");
 
 	scene2 = new Scene();
 	scene2->loadScene("./resources/Scenes/room_two.json");
+
+	//this->addChild(scene1);
+	activeScene = scene1;
 }
 
 MyGame::~MyGame() {
@@ -39,5 +42,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
+	SDL_RenderClear(Game::renderer);
 	activeScene->draw(at);
+	SDL_RenderPresent(Game::renderer);
 }

@@ -97,8 +97,8 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
     string type_id = animatedSpriteInfo["type_id"].GetString();
     int loc_x = animatedSpriteInfo["locationX"].GetInt();
     int loc_y = animatedSpriteInfo["locationY"].GetInt();
-	float scale_x = animatedSpriteInfo["scaleX"].GetInt();
-	float scale_y = animatedSpriteInfo["scaleY"].GetInt();
+	float scale_x = animatedSpriteInfo["scaleX"].GetFloat();
+	float scale_y = animatedSpriteInfo["scaleY"].GetFloat();
     int rotation = animatedSpriteInfo["rotation"].GetInt();
     int alpha = animatedSpriteInfo["alpha"].GetInt();
 	
