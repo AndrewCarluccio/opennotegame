@@ -21,15 +21,15 @@
             "sprite_file_path": "",
             "children" : [
                 {
-                    "node_id": "Skyscraper",
+                    "node_id": "Bajoran Wormhole",
                     "type_id": "Sprite",
                     "locationX": 0,
                     "locationY": 0,
-                    "scaleX": 4.1545,
-                    "scaleY": 4.1490,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
                     "rotation": 0,
                     "alpha": 255,
-                    "sprite_file_path": "./resources/Scenes/room_one/skyscraepers.png",
+                    "sprite_file_path": "./resources/Scenes/room_two/wormhole.png",
                     "children": [
                     ]
                 }
@@ -47,15 +47,15 @@
             "sprite_file_path": "",
             "children": [
                 {
-                    "node_id": "Clock Tower",
+                    "node_id": "Deep Space Nine",
                     "type_id": "Sprite",
                     "locationX": 903,
-                    "locationY": 7,
-                    "scaleX": 1.22,
-                    "scaleY": 1.22,
+                    "locationY": 600,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
                     "rotation": 0,
                     "alpha": 255,
-                    "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
+                    "sprite_file_path": "./resources/Scenes/room_two/ds9.png",
                     "children": [
                     ]
                 }
@@ -73,15 +73,15 @@
             "sprite_file_path": "",
             "children": [
                 {
-                    "node_id": "Car",
+                    "node_id": "USS Defiant",
                     "type_id": "Sprite",
                     "locationX": 25,
                     "locationY": 766,
-                    "scaleX": 1,
-                    "scaleY": 1,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
                     "rotation": 0,
                     "alpha": 255,
-                    "sprite_file_path": "./resources/Scenes/room_one/car.png",
+                    "sprite_file_path": "./resources/Scenes/room_two/defiant.png",
                     "children": [
                     ]
                 }

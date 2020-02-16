@@ -74,11 +74,11 @@
             "children": [
                 {
                     "node_id": "Car",
-                    "type_id": "DisplayObjectContainer",
+                    "type_id": "Sprite",
                     "locationX": 25,
                     "locationY": 766,
-                    "scaleX": 1,
-                    "scaleY": 1,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
                     "rotation": 0,
                     "alpha": 255,
                     "sprite_file_path": "./resources/Scenes/room_one/car.png",

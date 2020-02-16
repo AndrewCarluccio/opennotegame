@@ -120,12 +120,29 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
 
     string type_id = attribute["type_id"].GetString();
+
+	DisplayObject* newChild;
+	if (type_id == "DisplayObject") {
+		newChild = (createDisplayObject(attribute));
+	}
+	else if (type_id == "DisplayObjectContainer") {
+		newChild = createDisplayObjectContainer(attribute);
+	}
+	else if (type_id == "Sprite") {
+		newChild = createSprite(attribute);
+	}
+	else if (type_id == "AnimatedSprite") {
+		newChild = createAnimatedSprite(attribute);
+	}
+
+	node->addChild(newChild);
     
     const rapidjson::Value& children = attribute["children"];
 	// iterates throught the child nodes
     for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
         const rapidjson::Value& child = *itr;
         assert(child.IsObject());
+		/*
 		DisplayObject* newChild;
 		if (type_id == "DisplayObject") {
 			newChild = (createDisplayObject(child));
@@ -140,6 +157,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 			newChild = createAnimatedSprite(child);
 		}
         node->addChild(newChild);
+		*/
 		createObject(child, static_cast<DisplayObjectContainer*>(newChild));
 		
     }
