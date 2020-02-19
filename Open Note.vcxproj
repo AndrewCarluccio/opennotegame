@@ -118,10 +118,12 @@
   <ItemGroup>
     <ClCompile Include="src\engine\AffineTransform.cpp" />
     <ClCompile Include="src\engine\AnimatedSprite.cpp" />
+    <ClCompile Include="src\engine\Camera.cpp" />
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
     <ClCompile Include="src\engine\Scene.cpp" />
+    <ClCompile Include="src\engine\Sound.cpp" />
     <ClCompile Include="src\engine\Sprite.cpp" />
     <ClCompile Include="src\main\main.cpp" />
     <ClCompile Include="src\main\MyGame.cpp" />
@@ -129,10 +131,12 @@
   <ItemGroup>
     <ClInclude Include="src\engine\AffineTransform.h" />
     <ClInclude Include="src\engine\AnimatedSprite.h" />
+    <ClInclude Include="src\engine\Camera.h" />
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
     <ClInclude Include="src\engine\Game.h" />
     <ClInclude Include="src\engine\Scene.h" />
+    <ClInclude Include="src\engine\Sound.h" />
     <ClInclude Include="src\engine\Sprite.h" />
     <ClInclude Include="src\main\MyGame.h" />
   </ItemGroup>

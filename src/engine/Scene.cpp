@@ -142,24 +142,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
     for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
         const rapidjson::Value& child = *itr;
         assert(child.IsObject());
-		/*
-		DisplayObject* newChild;
-		if (type_id == "DisplayObject") {
-			newChild = (createDisplayObject(child));
-		}
-		else if(type_id == "DisplayObjectContainer") {
-			newChild = createDisplayObjectContainer(child);
-		}
-		else if(type_id == "Sprite") {
-			newChild = createSprite(child);
-		}
-		else if(type_id == "AnimatedSprite") {
-			newChild = createAnimatedSprite(child);
-		}
-        node->addChild(newChild);
-		*/
 		createObject(child, static_cast<DisplayObjectContainer*>(newChild));
-		
     }
     
 }

@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <set>
 #include "AffineTransform.h"
+#include "Camera.h"
 #include <string>
 #include <fstream>
 
@@ -29,6 +30,7 @@ public:
 	
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
+	virtual void draw(AffineTransform& at, Camera* cam);
 
 	void loadTexture(string filepath);
 	void loadRGBTexture(int red, int green, int blue);
