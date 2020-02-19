@@ -193,3 +193,8 @@ void Scene::draw(AffineTransform& at) {
 	root->draw(at);
 }
 
+void Scene::draw(AffineTransform& at, Camera* cam) {
+	DisplayObjectContainer::draw(at, cam);
+	root->draw(at, cam);
+}
+

@@ -17,6 +17,10 @@ public:
 	void applyCamera(AffineTransform& at);
 	void undoCamera(AffineTransform& at);
 
+	//Will return true if either x or y is changed, or both
+	bool moveCameraBy(int dx, int dy);
+	bool moveCameraTo(int xpos, int ypos);
+
 private:
 
 	
