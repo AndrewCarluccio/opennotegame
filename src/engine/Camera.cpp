@@ -5,11 +5,11 @@ Camera::Camera() {
 }
 
 void Camera::applyCamera(AffineTransform& at){
-	at.translate(-x,-y);
+	at.translate(x,y);
 }
 
 void Camera::undoCamera(AffineTransform& at) {
-	at.translate(x, y);
+	at.translate(-x, -y);
 }
 
 

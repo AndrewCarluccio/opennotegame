@@ -8,6 +8,7 @@
 #include "../engine/Sprite.h"
 #include "../engine/AnimatedSprite.h"
 #include "../engine/Scene.h"
+#include "../engine/Camera.h"
 
 
 using namespace std;
@@ -20,9 +21,12 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
+	//virtual void draw(AffineTransform& at, Camera* cam);
 
 	Scene* scene1;
 	Scene* scene2;
+
+	Camera* cam;
 
 private:
 	Scene* activeScene;

@@ -23,5 +23,5 @@ void Sprite::draw(AffineTransform &at) {
 }
 
 void Sprite::draw(AffineTransform& at, Camera* cam) {
-    DisplayObjectContainer::draw(at, Camera* cam);
+    DisplayObjectContainer::draw(at, cam);
 }

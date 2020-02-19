@@ -88,3 +88,9 @@ void Game::update(set<SDL_Scancode> pressedKeys) {
 }
 void Game::draw(AffineTransform& at) {
 }
+
+/*
+void Game::draw(AffineTransform& at, Camera* cam) {
+
+}
+*/

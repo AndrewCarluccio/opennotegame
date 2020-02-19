@@ -92,9 +92,10 @@ void DisplayObject::draw(AffineTransform &at){
 
 
 void DisplayObject::draw(AffineTransform& at, Camera* cam) {
+	cam->applyCamera(at);
 	applyTransformations(at);
 
-	cam->applyCamera(at);
+	//cam->applyCamera(at);
 
 	if (curTexture != NULL && visible) {
 		SDL_Point origin = at.transformPoint(0, 0);
@@ -119,9 +120,10 @@ void DisplayObject::draw(AffineTransform& at, Camera* cam) {
 		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
 	}
 
-	cam->undoCamera(at);
+	//cam->undoCamera(at);
 
 	reverseTransformations(at);
+	cam->undoCamera(at);
 }
 
 
