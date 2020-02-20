@@ -10,14 +10,19 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	scene1 = new Scene();
 	scene1->loadScene("./resources/Scenes/room_one.json");
+	//SDL_Point orig;
+	//orig.x = scene1->width / 2.0;
+	//orig.y = scene1->height / 2.0;
+	//scene1->pivot = orig;
 
 	scene2 = new Scene();
 	scene2->loadScene("./resources/Scenes/room_two.json");
+	//scene2->pivot = orig;
 
 	//this->addChild(scene1);
 	activeScene = scene1;
 
-	cam = new Camera();
+	cam = new Camera(600,500);
 }
 
 MyGame::~MyGame() {
@@ -29,16 +34,22 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 		show1 = !show1;
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		cam->y++;
+		cam->moveCameraBy(0, 1);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		cam->x--;
+		cam->moveCameraBy(1, 0);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		cam->y--;
+		cam->moveCameraBy(0, -1);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		cam->x++;
+		cam->moveCameraBy(-1, 0);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
+		cam->zoom+=0.1;
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
+		cam->zoom-=0.1;
 	}
 	else if (show1) {
 		activeScene = scene1;

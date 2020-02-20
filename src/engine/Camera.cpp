@@ -4,11 +4,22 @@ Camera::Camera() {
 
 }
 
+Camera::Camera(int xpos, int ypos) {
+	x = xpos;
+	y = ypos;
+
+	viewportHeight += y;
+	viewportWidth += x;
+}
+
 void Camera::applyCamera(AffineTransform& at){
+	
 	at.translate(x,y);
+	at.scale(zoom, zoom);
 }
 
 void Camera::undoCamera(AffineTransform& at) {
+	at.scale(1.0 / zoom, 1.0 / zoom);
 	at.translate(-x, -y);
 }
 

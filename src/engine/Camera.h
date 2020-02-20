@@ -7,12 +7,15 @@ class Camera{
 
 public:
 	Camera();
+	Camera(int xpos, int ypos);
 	~Camera();
 
 	int x = 0;
 	int y = 0;
 	int viewportWidth = 500;
 	int viewportHeight = 500;
+
+	double zoom = 1.0;
 
 	void applyCamera(AffineTransform& at);
 	void undoCamera(AffineTransform& at);
