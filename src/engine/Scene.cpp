@@ -7,7 +7,6 @@
 #include <iostream>
 
 #include <queue>
-#include <Windows.h>
 
 using namespace rapidjson;
 
@@ -161,19 +160,19 @@ void Scene::loadScene(string sceneFilePath) {
 	queue<DisplayObject*> objQueue;
 	objQueue.push(root);
 
-	OutputDebugString("Printing Tree\n");
+	std::cout << "Printing Tree" << std::endl;
 	while (!objQueue.empty()) {
 		DisplayObject* obj = objQueue.front();
 		objQueue.pop();
 
-		OutputDebugString((obj->id + ": ").c_str());
+		std::cout <<  (obj->id + ": ").c_str();
 		DisplayObjectContainer* container = static_cast<DisplayObjectContainer*>(obj);
 		if (container != NULL) {
 			for (DisplayObject* child : container->children) {
 				objQueue.push(child);
-				OutputDebugString(child->id.c_str());
+				std::cout << child->id.c_str();
 			}
-			OutputDebugString("\n");
+			std::cout << std::endl;
 		}
 	}
 
