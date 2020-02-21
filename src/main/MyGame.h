@@ -23,8 +23,8 @@ public:
 	virtual void draw(AffineTransform &at);
 	//virtual void draw(AffineTransform& at, Camera* cam);
 
-	Scene* scene1;
-	Scene* scene2;
+	Scene* scene;
+	DisplayObject* car;
 
 	Camera* cam;
 

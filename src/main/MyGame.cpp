@@ -8,19 +8,12 @@ using namespace std;
 MyGame::MyGame() : Game(1200, 1000) {
 	//instance = this;
 
-	scene1 = new Scene();
-	scene1->loadScene("./resources/Scenes/room_one.json");
-	//SDL_Point orig;
-	//orig.x = scene1->width / 2.0;
-	//orig.y = scene1->height / 2.0;
-	//scene1->pivot = orig;
+	scene = new Scene();
+	scene->loadScene("./resources/Scenes/camera_demo.json");
 
-	scene2 = new Scene();
-	scene2->loadScene("./resources/Scenes/room_two.json");
-	//scene2->pivot = orig;
+	car = scene->getChild("Car");
 
-	//this->addChild(scene1);
-	activeScene = scene1;
+	activeScene = scene;
 
 	cam = new Camera(600,500);
 }
@@ -30,33 +23,30 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		show1 = !show1;
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		if (car->position.y > 5) {
+			car->position.y -= 5;
+			cam->moveCameraBy(0, 5);
+		}
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		cam->moveCameraBy(0, 1);
+	else if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		car->position.x -= 5;
+		cam->moveCameraBy(5, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		cam->moveCameraBy(1, 0);
+	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+		car->position.y += 5;
+		cam->moveCameraBy(0, -5);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		cam->moveCameraBy(0, -1);
+	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		car->position.x += 5;
+		cam->moveCameraBy(-5, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		cam->moveCameraBy(-1, 0);
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
-		cam->zoom+=0.1;
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
-		cam->zoom-=0.1;
-	}
-	else if (show1) {
-		activeScene = scene1;
+
+	if (car->position.y < 200) {
+		cam->zoom = 2;
 	}
 	else {
-		//do the stuff to load scene 2
-		activeScene = scene2;
+		cam->zoom = 1;
 	}
 	
 	Game::update(pressedKeys);

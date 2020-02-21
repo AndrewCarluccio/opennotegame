@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include <Windows.h>
+
 using namespace std;
 
 
@@ -74,10 +76,14 @@ DisplayObject* DisplayObjectContainer::getChild(int index) {
 
 DisplayObject* DisplayObjectContainer::getChild(string id) {
     for (int i = 0; i < children.size(); i++) {
-        if (children[i]->id == id) {
+        if (children[i]->id.compare(id) == 0) {
             return children[i];
         }
-        // check recursively?
+        DisplayObjectContainer* child = static_cast<DisplayObjectContainer*>(children[i]);
+        DisplayObject* foundChild = child->getChild(id);
+        if (foundChild != NULL) {
+            return foundChild;
+        }
     }
     return NULL;
 }

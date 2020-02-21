@@ -19,11 +19,11 @@ public:
 	/* Load scene from a file */
 	void loadScene(string sceneFilePath);
 
+	virtual DisplayObject* getChild(string id);
+
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	virtual void draw(AffineTransform& at, Camera* cam);
-
-
 
 	DisplayObjectContainer* root;
 
