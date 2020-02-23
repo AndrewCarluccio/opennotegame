@@ -54,7 +54,12 @@ void DisplayObject::loadRGBTexture(int red, int green, int blue){
 }
 
 void DisplayObject::setTexture(SDL_Texture* t){
-	this->curTexture = t;
+	
+	this->curTexture = t;	
+	if (curTexture != NULL) {
+		SDL_QueryTexture(this->curTexture, NULL, NULL, &width, &height);
+	}
+	
 }
 
 void DisplayObject::update(set<SDL_Scancode> pressedKeys){

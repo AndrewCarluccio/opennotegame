@@ -5,11 +5,11 @@ Camera::Camera() {
 }
 
 Camera::Camera(int xpos, int ypos) {
-	x = xpos;
-	y = ypos;
+	x = xpos / 2;
+	y = ypos / 2;
 
-	viewportHeight += y;
-	viewportWidth += x;
+	viewportHeight = ypos;
+	viewportWidth = xpos;
 }
 
 void Camera::applyCamera(AffineTransform& at){
@@ -39,6 +39,7 @@ bool Camera::moveCameraBy(int dx, int dy) {
 
 bool Camera::moveCameraTo(int xpos, int ypos) {
 	bool ret = false;
+	/*
 	if (xpos < viewportWidth) {
 		x = xpos;
 		ret = true;
@@ -47,5 +48,8 @@ bool Camera::moveCameraTo(int xpos, int ypos) {
 		y = ypos;
 		ret = true;
 	}
+	*/
+	x = xpos;
+	y = ypos;
 	return ret;
 }

@@ -12,8 +12,8 @@ public:
 
 	int x = 0;
 	int y = 0;
-	int viewportWidth = 500;
-	int viewportHeight = 500;
+	int viewportWidth = 1200;
+	int viewportHeight = 1000;
 
 	double zoom = 1.0;
 

@@ -14,11 +14,11 @@
       "type_id": "DisplayObjectContainer",
       "locationX": 0,
       "locationY": 0,
-      "scaleX": 1,
-      "scaleY": 1,
+      "scaleX": 1.0,
+      "scaleY": 1.0,
       "rotation": 0,
       "alpha": 255,
-      "sprite_file_path": "",
+      "sprite_file_path": "./resources/Scenes/camera_demo/background.png",
       "children": []
     },
     {
@@ -31,34 +31,7 @@
       "rotation": 0,
       "alpha": 255,
       "sprite_file_path": "",
-      "children": [
-        {
-          "node_id": "Clock Tower",
-          "type_id": "Sprite",
-          "locationX": 0,
-          "locationY": 0,
-          "scaleX": 25.0,
-          "scaleY": 50.0,
-          "rotation": 0,
-          "alpha": 255,
-          "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
-          "children": [
-          ]
-        },
-        {
-          "node_id": "Clock Tower",
-          "type_id": "Sprite",
-          "locationX": 903,
-          "locationY": 2100,
-          "scaleX": 20.0,
-          "scaleY": 30.0,
-          "rotation": 1.57,
-          "alpha": 255,
-          "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
-          "children": [
-          ]
-        }
-      ]
+      "children": []
     },
     {
       "node_id": "Foreground",
@@ -72,15 +45,15 @@
       "sprite_file_path": "",
       "children": [
         {
-          "node_id": "Car",
+          "node_id": "Girl",
           "type_id": "Sprite",
-          "locationX": 300,
-          "locationY": 100,
-          "scaleX": 2.0,
-          "scaleY": 1.5,
+          "locationX": 0,
+          "locationY": 0,
+          "scaleX": 0.1,
+          "scaleY": 0.1,
           "rotation": 0,
           "alpha": 255,
-          "sprite_file_path": "./resources/Scenes/room_one/car.png",
+          "sprite_file_path": "./resources/Scenes/camera_demo/Idle_1.png",
           "children": [
           ]
         }
