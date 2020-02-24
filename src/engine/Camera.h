@@ -7,13 +7,14 @@ class Camera{
 
 public:
 	Camera();
-	Camera(int xpos, int ypos);
+	Camera::Camera(int orig_x, int orig_y, int left, int right, int up, int down);
 	~Camera();
 
 	int x = 0;
 	int y = 0;
-	int viewportWidth = 1200;
-	int viewportHeight = 1000;
+	//int viewportWidth = 1200;
+	//int viewportHeight = 1000;
+	int maxX, maxY, minX, minY;
 
 	double zoom = 1.0;
 
@@ -23,6 +24,8 @@ public:
 	//Will return true if either x or y is changed, or both
 	bool moveCameraBy(int dx, int dy);
 	bool moveCameraTo(int xpos, int ypos);
+
+	bool setZoom(double z);
 
 private:
 

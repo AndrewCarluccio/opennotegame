@@ -15,7 +15,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	activeScene = scene;
 
-	cam = new Camera(1200,1000);
+	cam = new Camera(305*4,475*4,0,0,0,2730);
 
 	//cam->moveCameraTo(1250, 2000);
 
@@ -23,11 +23,13 @@ MyGame::MyGame() : Game(1200, 1000) {
 	orig.x = -150;
 	orig.y = -400;
 
-	//cam->moveCameraTo(1200, 500+1300);
+	//cam->moveCameraTo(1200,0);
 
 	car->position = orig;
 
-	cam->zoom = 1;
+	//cam->zoom = 4;
+
+	cam->setZoom(1);
 
 }
 
@@ -44,26 +46,26 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 		}
 		*/
 		car->position.y -= 1;
-		cam->moveCameraBy(0, 4);
+		cam->moveCameraBy(0, 1);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
 		car->position.x -= 1;
-		cam->moveCameraBy(4, 0);
+		cam->moveCameraBy(1, 0);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
 		car->position.y += 1;
-		cam->moveCameraBy(0, -4);
+		cam->moveCameraBy(0, -1);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		car->position.x += 1;
-		cam->moveCameraBy(-4, 0);
+		cam->moveCameraBy(-1, 0);
 	}
 
-	if (car->position.y < 200) {
-		//cam->zoom = 1;
+	if (car->position.y > 200 && car->position.x > 150 && car->position.x < 400 && car->position.y < 400) {
+		cam->setZoom(6);
 	}
 	else {
-		//cam->zoom = 2;
+		cam->setZoom(4);
 	}
 	
 	Game::update(pressedKeys);

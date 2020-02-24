@@ -10,6 +10,7 @@
 #include <Windows.h>
 
 using namespace rapidjson;
+using namespace std;
 
 Scene::Scene() {
 	root = new DisplayObjectContainer();
