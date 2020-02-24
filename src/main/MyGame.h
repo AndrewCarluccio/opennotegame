@@ -28,6 +28,8 @@ public:
 
 	Camera* cam;
 
+	bool goUp = false;
+
 private:
 	Scene* activeScene;
 	bool show1 = true;

@@ -69,3 +69,10 @@ bool Camera::setZoom(double z) {
 
 	return true;
 }
+
+void Camera::setBounds(int l, int r, int u, int d) {
+	minX = x - l;
+	maxY = y - u;
+	maxX = x + r;
+	minY = y - d;
+}

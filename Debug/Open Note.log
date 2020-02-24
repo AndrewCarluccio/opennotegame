@@ -1,6 +1,2 @@
-﻿  Camera.cpp
-A:\Documents\GitHub\opennotegame\src\engine\Camera.cpp(33,15): warning C4244:  '+=': conversion from 'double' to 'int', possible loss of data
-  MyGame.cpp
-  Generating Code...
-A:\Documents\GitHub\opennotegame\src\engine\Camera.cpp(37,15): warning C4244:  '+=': conversion from 'double' to 'int', possible loss of data
-  Open Note.vcxproj -> A:\Documents\GitHub\opennotegame\Debug\Open Note.exe
+﻿  MyGame.cpp
+  Open Note.vcxproj -> C:\Users\akclu\Documents\GitHub\opennotegame\Debug\Open Note.exe

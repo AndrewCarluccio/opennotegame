@@ -62,10 +62,17 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 
 	if (car->position.y > 200 && car->position.x > 150 && car->position.x < 400 && car->position.y < 400) {
-		cam->setZoom(6);
+		cam->setZoom(4.1);
 	}
 	else {
 		cam->setZoom(4);
+	}
+
+	if (car->position.y > 250 && car->position.y < 800) {
+		cam->setBounds(10, 0, 0, 0);
+	}
+	else {
+		cam->setBounds(0, 0, 0, 2730);
 	}
 	
 	Game::update(pressedKeys);

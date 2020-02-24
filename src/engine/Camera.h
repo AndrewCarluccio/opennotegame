@@ -27,6 +27,8 @@ public:
 
 	bool setZoom(double z);
 
+	void setBounds(int l, int r, int u, int d);
+
 private:
 
 	
