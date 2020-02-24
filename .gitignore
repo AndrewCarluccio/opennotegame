@@ -1,3 +1,36 @@
-.DS_Store
-.vs/Open Note/v16/ipch/AutoPCH/20ad8691394f9196/SCENE.ipch
-.vs/Open Note/v16/ipch/AutoPCH/85bde60d5f24fd16/SCENE.ipch
+# Directories
+/bin
+# Style output
+*.orig
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app

@@ -1,2 +1,2 @@
-# opennotegame
-Open Note Game for UVA CS4730
+# orion
+SDL2 C++ Game Engine / Dev Tool

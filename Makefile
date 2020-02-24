@@ -1,4 +1,4 @@
-TARGET_EXEC ?= myGame
+TARGET_EXEC ?= orion
 
 BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src

@@ -1,8 +1,12 @@
+/** Demos **/
+
+/** end of Demos **/
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "../engine/DisplayObject.h"
 #include <iostream>
-#include "MyGame.h"
+#include "open_note.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
