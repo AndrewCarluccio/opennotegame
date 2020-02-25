@@ -31,6 +31,10 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	cam->setZoom(1);
 
+	sfx = new Sound();
+	sfx->playMusic();
+
+
 }
 
 MyGame::~MyGame() {
@@ -69,7 +73,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 
 	if (car->position.y > 250 && car->position.y < 800) {
-		cam->setBounds(10, 0, 0, 0);
+		if (goUp) {
+			cam->setBounds(2000, 0, 0, 0);
+			goUp = false;
+		}
 	}
 	else {
 		cam->setBounds(0, 0, 0, 2730);

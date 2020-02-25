@@ -9,6 +9,7 @@
 #include "../engine/AnimatedSprite.h"
 #include "../engine/Scene.h"
 #include "../engine/Camera.h"
+#include "../engine/Sound.h"
 
 
 using namespace std;
@@ -28,7 +29,9 @@ public:
 
 	Camera* cam;
 
-	bool goUp = false;
+	Sound* sfx;
+
+	bool goUp = true;
 
 private:
 	Scene* activeScene;
