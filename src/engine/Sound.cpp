@@ -1,4 +1,4 @@
-#include "sound.h"
+#include "Sound.h"
 
 Mix_Music* backgroundMusic = NULL;
 Mix_Chunk* coinSFX = NULL;
