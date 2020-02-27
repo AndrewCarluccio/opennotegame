@@ -24,8 +24,14 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	virtual void draw(AffineTransform& at, Camera* cam);
+	virtual void draw(AffineTransform& at, Camera* cam, bool paralax);
 
 	DisplayObjectContainer* root;
+
+	DisplayObjectContainer* foreground;
+	DisplayObjectContainer* midground;
+	DisplayObjectContainer* background;
+
 
 private:
 	//TODO --> change this from vector type string to vector type JSON args list, however you want to do that

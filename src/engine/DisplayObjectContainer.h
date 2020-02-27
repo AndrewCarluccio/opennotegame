@@ -33,6 +33,8 @@ public:
 	virtual void draw(AffineTransform &at);
 	virtual void draw(AffineTransform& at, Camera* cam);
 
+	//float scrollRate = 1.0;
+
 	vector<DisplayObject*> children;
 private:
 	

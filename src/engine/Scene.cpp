@@ -159,6 +159,11 @@ void Scene::loadScene(string sceneFilePath) {
 
 	queue<DisplayObject*> objQueue;
 	objQueue.push(root);
+
+	background = static_cast<DisplayObjectContainer*>(root->getChild("Background"));
+	midground = static_cast<DisplayObjectContainer*>(root->getChild("Midground"));
+	foreground = static_cast<DisplayObjectContainer*>(root->getChild("Foreground"));
+
 }
 
 DisplayObject* Scene::getChild(string id) {
@@ -182,5 +187,25 @@ void Scene::draw(AffineTransform& at) {
 void Scene::draw(AffineTransform& at, Camera* cam) {
 	DisplayObjectContainer::draw(at, cam);
 	root->draw(at, cam);
+}
+
+void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
+	DisplayObjectContainer::draw(at, cam);
+	if (paralax) {
+		cam->scrollRate = foregroundScrollRate;
+		foreground->draw(at, cam);
+
+		cam->scrollRate = midgroundScrollRate;
+		midground->draw(at, cam);
+
+		cam->backgroundScrollRate;
+		background->draw(at, cam);
+
+		cam->scrollRate = 1.0;
+	}
+	else {
+		root->draw(at, cam);
+	}
+	
 }
 

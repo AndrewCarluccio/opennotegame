@@ -15,17 +15,15 @@ Camera::Camera(int orig_x, int orig_y, int left, int right, int up, int down) {
 	minY = orig_y - down;
 }
 
-void Camera::applyCamera(AffineTransform& at){
-	
-	at.translate(x,y);
+void Camera::applyCamera(AffineTransform& at) {
+	at.translate(int(x*scrollRate), int(y*scrollRate));
 	at.scale(zoom, zoom);
 }
 
 void Camera::undoCamera(AffineTransform& at) {
 	at.scale(1.0 / zoom, 1.0 / zoom);
-	at.translate(-x, -y);
+	at.translate(int(-x*scrollRate), int(-y*scrollRate));
 }
-
 
 bool Camera::moveCameraBy(int dx, int dy) {
 	bool ret = false;
