@@ -7,7 +7,6 @@
 #include <iostream>
 
 #include <queue>
-#include <Windows.h>
 
 using namespace rapidjson;
 using namespace std;
@@ -191,21 +190,21 @@ void Scene::draw(AffineTransform& at, Camera* cam) {
 
 void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
 	DisplayObjectContainer::draw(at, cam);
-	if (paralax) {
-		cam->scrollRate = foregroundScrollRate;
-		foreground->draw(at, cam);
+	// if (paralax) {
+	// 	cam->scrollRate = foregroundScrollRate;
+	// 	foreground->draw(at, cam);
 
-		cam->scrollRate = midgroundScrollRate;
-		midground->draw(at, cam);
+	// 	cam->scrollRate = midgroundScrollRate;
+	// 	midground->draw(at, cam);
 
-		cam->backgroundScrollRate;
-		background->draw(at, cam);
+	// 	cam->backgroundScrollRate;
+	// 	background->draw(at, cam);
 
-		cam->scrollRate = 1.0;
-	}
-	else {
-		root->draw(at, cam);
-	}
+	// 	cam->scrollRate = 1.0;
+	// }
+	// else {
+	// 	root->draw(at, cam);
+	// }
 	
 }
 
