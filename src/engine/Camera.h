@@ -7,7 +7,7 @@ class Camera{
 
 public:
 	Camera();
-	Camera::Camera(int orig_x, int orig_y, int left, int right, int up, int down);
+	Camera(int orig_x, int orig_y, int left, int right, int up, int down);
 	~Camera();
 
 	int x = 0;
