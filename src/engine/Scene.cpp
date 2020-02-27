@@ -9,11 +9,10 @@
 #include <queue>
 
 using namespace rapidjson;
+using namespace std;
 
 Scene::Scene() {
 	root = new DisplayObjectContainer();
-
-
 
 	parent_ids.push_back("Root");
 	parent_ids.push_back("Background");
@@ -29,7 +28,7 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
     int loc_y = displayObjectInfo["locationY"].GetInt();
     float scale_x = displayObjectInfo["scaleX"].GetFloat();
     float scale_y = displayObjectInfo["scaleY"].GetFloat();
-    int rotation = displayObjectInfo["rotation"].GetInt();
+    float rotation = displayObjectInfo["rotation"].GetFloat();
     int alpha = displayObjectInfo["alpha"].GetInt();
     string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
 
@@ -52,7 +51,7 @@ DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectC
     int loc_y = displayObjectContainerInfo["locationY"].GetInt();
 	float scale_x = displayObjectContainerInfo["scaleX"].GetFloat();
 	float scale_y = displayObjectContainerInfo["scaleY"].GetFloat();
-    int rotation = displayObjectContainerInfo["rotation"].GetInt();
+    float rotation = displayObjectContainerInfo["rotation"].GetFloat();
     int alpha = displayObjectContainerInfo["alpha"].GetInt();
     string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
 
@@ -75,7 +74,7 @@ Sprite* createSprite(const Value& spriteInfo) {
     int loc_y = spriteInfo["locationY"].GetInt();
 	float scale_x = spriteInfo["scaleX"].GetFloat();
 	float scale_y = spriteInfo["scaleY"].GetFloat();
-    int rotation = spriteInfo["rotation"].GetInt();
+    float rotation = spriteInfo["rotation"].GetFloat();
     int alpha = spriteInfo["alpha"].GetInt();
     string path_to_texture = spriteInfo["sprite_file_path"].GetString();
 	
@@ -98,7 +97,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
     int loc_y = animatedSpriteInfo["locationY"].GetInt();
 	float scale_x = animatedSpriteInfo["scaleX"].GetFloat();
 	float scale_y = animatedSpriteInfo["scaleY"].GetFloat();
-    int rotation = animatedSpriteInfo["rotation"].GetInt();
+    float rotation = animatedSpriteInfo["rotation"].GetFloat();
     int alpha = animatedSpriteInfo["alpha"].GetInt();
 	
 	
@@ -160,22 +159,14 @@ void Scene::loadScene(string sceneFilePath) {
 	queue<DisplayObject*> objQueue;
 	objQueue.push(root);
 
-	std::cout << "Printing Tree" << std::endl;
-	while (!objQueue.empty()) {
-		DisplayObject* obj = objQueue.front();
-		objQueue.pop();
+	background = static_cast<DisplayObjectContainer*>(root->getChild("Background"));
+	midground = static_cast<DisplayObjectContainer*>(root->getChild("Midground"));
+	foreground = static_cast<DisplayObjectContainer*>(root->getChild("Foreground"));
 
-		std::cout <<  (obj->id + ": ").c_str();
-		DisplayObjectContainer* container = static_cast<DisplayObjectContainer*>(obj);
-		if (container != NULL) {
-			for (DisplayObject* child : container->children) {
-				objQueue.push(child);
-				std::cout << child->id.c_str();
-			}
-			std::cout << std::endl;
-		}
-	}
+}
 
+DisplayObject* Scene::getChild(string id) {
+	return root->getChild(id);
 }
 
 void Scene::update(set<SDL_Scancode> pressedKeys) {
@@ -195,5 +186,25 @@ void Scene::draw(AffineTransform& at) {
 void Scene::draw(AffineTransform& at, Camera* cam) {
 	DisplayObjectContainer::draw(at, cam);
 	root->draw(at, cam);
+}
+
+void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
+	DisplayObjectContainer::draw(at, cam);
+	if (paralax) {
+		cam->scrollRate = foregroundScrollRate;
+		foreground->draw(at, cam);
+
+		cam->scrollRate = midgroundScrollRate;
+		midground->draw(at, cam);
+
+		cam->backgroundScrollRate;
+		background->draw(at, cam);
+
+		cam->scrollRate = 1.0;
+	}
+	else {
+		root->draw(at, cam);
+	}
+	
 }
 

@@ -34,3 +34,6 @@
 *.exe
 *.out
 *.app
+
+.vs/Open Note/v16/ipch/AutoPCH/85bde60d5f24fd16/SCENE.ipch
+

@@ -9,6 +9,7 @@
 #include "../engine/AnimatedSprite.h"
 #include "../engine/Scene.h"
 #include "../engine/Camera.h"
+#include "../engine/Sound.h"
 
 
 using namespace std;
@@ -23,10 +24,14 @@ public:
 	virtual void draw(AffineTransform &at);
 	//virtual void draw(AffineTransform& at, Camera* cam);
 
-	Scene* scene1;
-	Scene* scene2;
+	Scene* scene;
+	DisplayObject* car;
 
 	Camera* cam;
+
+	Sound* sfx;
+
+	bool goUp = true;
 
 private:
 	Scene* activeScene;

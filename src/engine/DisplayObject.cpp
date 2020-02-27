@@ -54,7 +54,12 @@ void DisplayObject::loadRGBTexture(int red, int green, int blue){
 }
 
 void DisplayObject::setTexture(SDL_Texture* t){
-	this->curTexture = t;
+	
+	this->curTexture = t;	
+	if (curTexture != NULL) {
+		SDL_QueryTexture(this->curTexture, NULL, NULL, &width, &height);
+	}
+	
 }
 
 void DisplayObject::update(set<SDL_Scancode> pressedKeys){
@@ -94,6 +99,7 @@ void DisplayObject::draw(AffineTransform &at){
 void DisplayObject::draw(AffineTransform& at, Camera* cam) {
 	cam->applyCamera(at);
 	applyTransformations(at);
+	at.translate(-width / 2.0, -height / 2.0);
 
 	//cam->applyCamera(at);
 
@@ -121,7 +127,7 @@ void DisplayObject::draw(AffineTransform& at, Camera* cam) {
 	}
 
 	//cam->undoCamera(at);
-
+	at.translate(width / 2.0, height / 2.0);
 	reverseTransformations(at);
 	cam->undoCamera(at);
 }

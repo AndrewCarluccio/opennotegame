@@ -8,16 +8,33 @@ using namespace std;
 MyGame::MyGame() : Game(1200, 1000) {
 	//instance = this;
 
-	scene1 = new Scene();
-	scene1->loadScene("./resources/Scenes/room_one.json");
+	scene = new Scene();
+	scene->loadScene("./resources/Scenes/camera_demo.json");
 
-	scene2 = new Scene();
-	scene2->loadScene("./resources/Scenes/room_two.json");
+	car = scene->getChild("Girl");
 
-	//this->addChild(scene1);
-	activeScene = scene1;
+	activeScene = scene;
 
-	cam = new Camera();
+	cam = new Camera(305*4,475*4,0,0,0,2730);
+
+	//cam->moveCameraTo(1250, 2000);
+
+	SDL_Point orig;
+	orig.x = -150;
+	orig.y = -400;
+
+	//cam->moveCameraTo(1200,0);
+
+	car->position = orig;
+
+	//cam->zoom = 4;
+
+	cam->setZoom(1);
+
+	sfx = new Sound();
+	sfx->playMusic();
+
+
 }
 
 MyGame::~MyGame() {
@@ -25,27 +42,44 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-		show1 = !show1;
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		/*
+		if (car->position.y > 5) {
+			car->position.y -= 5;
+			cam->moveCameraBy(0, 5);
+		}
+		*/
+		car->position.y -= 1;
+		cam->moveCameraBy(0, 1);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		cam->y++;
+	else if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		car->position.x -= 1;
+		cam->moveCameraBy(1, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		cam->x--;
+	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+		car->position.y += 1;
+		cam->moveCameraBy(0, -1);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		cam->y--;
+	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		car->position.x += 1;
+		cam->moveCameraBy(-1, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		cam->x++;
-	}
-	else if (show1) {
-		activeScene = scene1;
+
+	if (car->position.y > 200 && car->position.x > 150 && car->position.x < 400 && car->position.y < 400) {
+		cam->setZoom(4.1);
 	}
 	else {
-		//do the stuff to load scene 2
-		activeScene = scene2;
+		cam->setZoom(4);
+	}
+
+	if (car->position.y > 250 && car->position.y < 800) {
+		if (goUp) {
+			cam->setBounds(2000, 0, 0, 0);
+			goUp = false;
+		}
+	}
+	else {
+		cam->setBounds(0, 0, 0, 2730);
 	}
 	
 	Game::update(pressedKeys);
