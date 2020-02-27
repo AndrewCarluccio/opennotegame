@@ -11,7 +11,7 @@
     "children": [
         {
             "node_id": "Background",
-            "type_id": "DisplayObjectContainer",
+            "type_id": "Layer",
             "locationX": 0,
             "locationY": 0,
             "scaleX": 1,
@@ -19,6 +19,7 @@
             "rotation": 0,
             "alpha": 255,
             "sprite_file_path": "",
+            "scroll_rate": 0.6,
             "children" : [
                 {
                     "node_id": "Skyscraper",
@@ -37,7 +38,7 @@
         },
         {
             "node_id": "Midground",
-            "type_id": "DisplayObjectContainer",
+            "type_id": "Layer",
             "locationX": 0,
             "locationY": 0,
             "scaleX": 1,
@@ -45,6 +46,7 @@
             "rotation": 0,
             "alpha": 255,
             "sprite_file_path": "",
+            "scroll_rate": 0.8,
             "children": [
                 {
                     "node_id": "Clock Tower",
@@ -63,7 +65,7 @@
         },
         {
             "node_id": "Foreground",
-            "type_id": "DisplayObjectContainer",
+            "type_id": "Layer",
             "locationX": 0,
             "locationY": 0,
             "scaleX": 1,
@@ -71,6 +73,7 @@
             "rotation": 0,
             "alpha": 255,
             "sprite_file_path": "",
+            "scroll_rate": 1,
             "children": [
                 {
                     "node_id": "Car",
@@ -86,9 +89,6 @@
                     ]
                 }
             ]
-                    
-                    
-
         }
     ]
 }

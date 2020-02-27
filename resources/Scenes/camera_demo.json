@@ -11,19 +11,20 @@
   "children": [
     {
       "node_id": "Background",
-      "type_id": "DisplayObjectContainer",
+      "type_id": "Layer",
       "locationX": 0,
       "locationY": 0,
       "scaleX": 1,
       "scaleY": 1,
       "rotation": 0,
       "alpha": 255,
-      "sprite_file_path": "",
+      "sprite_file_path": "./resources/Scenes/camera_demo/background.png",
+      "scroll_rate": 0.6,
       "children": []
     },
     {
       "node_id": "Midground",
-      "type_id": "DisplayObjectContainer",
+      "type_id": "Layer",
       "locationX": 0,
       "locationY": 0,
       "scaleX": 1,
@@ -31,38 +32,12 @@
       "rotation": 0,
       "alpha": 255,
       "sprite_file_path": "",
-      "children": [
-        {
-          "node_id": "Clock Tower",
-          "type_id": "Sprite",
-          "locationX": 0,
-          "locationY": 0,
-          "scaleX": 25.0,
-          "scaleY": 50.0,
-          "rotation": 0,
-          "alpha": 255,
-          "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
-          "children": [
-          ]
-        },
-        {
-          "node_id": "Clock Tower",
-          "type_id": "Sprite",
-          "locationX": 903,
-          "locationY": 2100,
-          "scaleX": 20.0,
-          "scaleY": 30.0,
-          "rotation": 1.57,
-          "alpha": 255,
-          "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
-          "children": [
-          ]
-        }
-      ]
+      "scroll_rate": 0.8,
+      "children": []
     },
     {
       "node_id": "Foreground",
-      "type_id": "DisplayObjectContainer",
+      "type_id": "Layer",
       "locationX": 0,
       "locationY": 0,
       "scaleX": 1,
@@ -70,6 +45,7 @@
       "rotation": 0,
       "alpha": 255,
       "sprite_file_path": "",
+      "scroll_rate": 1,
       "children": [
         {
           "node_id": "Car",

@@ -13,11 +13,41 @@ using namespace rapidjson;
 
 Scene::Scene() {
 	root = new DisplayObjectContainer();
+}
 
-	parent_ids.push_back("Root");
-	parent_ids.push_back("Background");
-	parent_ids.push_back("Midground");
-	parent_ids.push_back("Foreground");
+
+DisplayObjectContainer* createLayer(const Value& layerInfo) {
+	string node_id = layerInfo["node_id"].GetString();
+    string type_id = layerInfo["type_id"].GetString();
+    int loc_x = layerInfo["locationX"].GetInt();
+    int loc_y = layerInfo["locationY"].GetInt();
+	float scale_x = layerInfo["scaleX"].GetFloat();
+	float scale_y = layerInfo["scaleY"].GetFloat();
+    float rotation = layerInfo["rotation"].GetFloat();
+    int alpha = layerInfo["alpha"].GetInt();
+    string path_to_texture = layerInfo["sprite_file_path"].GetString();
+	float scroll_rate = layerInfo["scroll_rate"].GetFloat();
+
+	if(node_id == "Background") {
+		backgroundScrollRate = scroll_rate;
+	}
+	else if(node_id == "Midground") {
+		midgroundScrollRate = scroll_rate;
+	}
+	else if(node_id == "Foreground") {
+		foregroundScrollRate = scroll_rate;
+	}
+	
+	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	
+
+	return the_obj;
 
 }
 
@@ -131,6 +161,9 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	}
 	else if (type_id == "AnimatedSprite") {
 		newChild = createAnimatedSprite(attribute);
+	}
+	else if (type_id = "Layer") {
+		newChild = createLayer(attribute);
 	}
 
 	node->addChild(newChild);

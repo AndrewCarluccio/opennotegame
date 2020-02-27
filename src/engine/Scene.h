@@ -27,11 +27,13 @@ public:
 
 	DisplayObjectContainer* root;
 
+	float backgroundScrollRate;
+	float midgroundScrollRate;
+	float foregroundScrollRate;
+	
 private:
 	//TODO --> change this from vector type string to vector type JSON args list, however you want to do that
 	vector<string> the_list;
-
-	vector<string> parent_ids;
 };
 
 #endif
