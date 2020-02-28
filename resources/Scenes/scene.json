@@ -1,0 +1,122 @@
+{
+    "node_id": "Root",
+    "type_id": "DisplayObjectContainer",
+    "locationX": 0,
+    "locationY": 0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "rotation": 0.0,
+    "alpha": 255,
+    "sprite_file_path": "",
+    "children": [
+        {
+            "node_id": "Background",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "./resources/Scenes/camera_demo/background.png",
+            "children": []
+        },
+        {
+            "node_id": "Midground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": []
+        },
+        {
+            "node_id": "Foreground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": [
+                {
+                    "node_id": "Girl",
+                    "type_id": "Sprite",
+                    "locationX": 0,
+                    "locationY": 0,
+                    "scaleX": 0.10000000149011612,
+                    "scaleY": 0.10000000149011612,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/Scenes/camera_demo/Idle_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite3",
+                    "type_id": "Sprite",
+                    "locationX": 600,
+                    "locationY": 100,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Idle_2.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite4",
+                    "type_id": "Sprite",
+                    "locationX": 800,
+                    "locationY": 100,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Run_10.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite5",
+                    "type_id": "Sprite",
+                    "locationX": 700,
+                    "locationY": 100,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Run_10.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite6",
+                    "type_id": "Sprite",
+                    "locationX": 500,
+                    "locationY": 100,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Jump_23.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite7",
+                    "type_id": "Sprite",
+                    "locationX": 400,
+                    "locationY": 100,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Idle_5.png",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

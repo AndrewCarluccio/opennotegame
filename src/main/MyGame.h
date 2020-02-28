@@ -10,6 +10,8 @@
 #include "../engine/Scene.h"
 #include "../engine/Camera.h"
 #include "../engine/Sound.h"
+#include "../engine/dev_tool/SceneWriter.h"
+#include <cmath>
 
 
 using namespace std;
@@ -25,7 +27,6 @@ public:
 	//virtual void draw(AffineTransform& at, Camera* cam);
 
 	Scene* scene;
-	DisplayObject* car;
 
 	Camera* cam;
 
@@ -36,6 +37,9 @@ public:
 private:
 	Scene* activeScene;
 	bool show1 = true;
+	DisplayObjectContainer *bar;
+	Sprite *clickedSprite;
+	int spriteCount = 0;
 };
 
 #endif
