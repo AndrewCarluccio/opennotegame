@@ -6,7 +6,6 @@
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
-	//instance = this;
 
 	bar = new DisplayObjectContainer();
 	vector<string> filenames = {"Jump_5.png", "Idle_2.png","Idle_15.png","Jump_3.png","Idle_5.png", "Jump_23.png", "Idle_2.png","Run_10.png","Jump_3.png","Walk_15.png", "Run_5.png", "Jump_2.png"};
@@ -26,26 +25,6 @@ MyGame::MyGame() : Game(1200, 1000) {
 	activeScene = scene;
 
 	activeScene->root->position.y = 100;
-
-	cam = new Camera(305*4,475*4,0,0,0,2730);
-
-	//cam->moveCameraTo(1250, 2000);
-
-	SDL_Point orig;
-	orig.x = -150;
-	orig.y = -400;
-
-	//cam->moveCameraTo(1200,0);
-
-	// car->position = orig;
-
-	//cam->zoom = 4;
-
-	cam->setZoom(1);
-
-	sfx = new Sound();
-	sfx->playMusic();
-
 
 }
 

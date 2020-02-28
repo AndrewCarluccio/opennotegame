@@ -57,10 +57,10 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite3",
+                    "node_id": "sprite5",
                     "type_id": "Sprite",
                     "locationX": 600,
-                    "locationY": 100,
+                    "locationY": 0,
                     "scaleX": 0.2403846153846154,
                     "scaleY": 0.22026431718061674,
                     "rotation": 0.0,
@@ -69,7 +69,7 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite4",
+                    "node_id": "sprite6",
                     "type_id": "Sprite",
                     "locationX": 800,
                     "locationY": 100,
@@ -81,31 +81,55 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite5",
+                    "node_id": "sprite7",
                     "type_id": "Sprite",
-                    "locationX": 700,
-                    "locationY": 100,
+                    "locationX": 600,
+                    "locationY": 200,
                     "scaleX": 0.2403846153846154,
                     "scaleY": 0.22026431718061674,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "./resources/character/Run_10.png",
+                    "sprite_file_path": "./resources/character/Run_5.png",
                     "children": []
                 },
                 {
-                    "node_id": "sprite6",
+                    "node_id": "sprite8",
+                    "type_id": "Sprite",
+                    "locationX": 300,
+                    "locationY": 200,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Jump_3.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite9",
+                    "type_id": "Sprite",
+                    "locationX": 400,
+                    "locationY": 300,
+                    "scaleX": 0.2403846153846154,
+                    "scaleY": 0.22026431718061674,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/character/Idle_2.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite10",
                     "type_id": "Sprite",
                     "locationX": 500,
-                    "locationY": 100,
+                    "locationY": 400,
                     "scaleX": 0.2403846153846154,
                     "scaleY": 0.22026431718061674,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "./resources/character/Jump_23.png",
+                    "sprite_file_path": "./resources/character/Idle_5.png",
                     "children": []
                 },
                 {
-                    "node_id": "sprite7",
+                    "node_id": "sprite11",
                     "type_id": "Sprite",
                     "locationX": 400,
                     "locationY": 100,
