@@ -7,14 +7,15 @@ class Camera{
 
 public:
 	Camera();
-	Camera(int orig_x, int orig_y, int left, int right, int up, int down);
+	Camera(int viewport_width, int viewport_height); //you pass in the dimensions of the window here
 	~Camera();
+
+	int originX;
+	int originY;
 
 	int x = 0;
 	int y = 0;
-	//int viewportWidth = 1200;
-	//int viewportHeight = 1000;
-	int maxX, maxY, minX, minY;
+	int maxX, maxY, minX, minY; //these are RELATIVE TO THE CENTER OF THE SCREEN
 
 	double zoom = 1.0;
 

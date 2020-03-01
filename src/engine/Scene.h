@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Scene : public DisplayObjectContainer{
+class Scene : public DisplayObjectContainer {
 
 public:
 	Scene();
@@ -21,23 +21,26 @@ public:
 
 	virtual DisplayObject* getChild(string id);
 
+	//DisplayObjectContainer* createLayer(const Value& layerInfo);
+
 	virtual void update(set<SDL_Scancode> pressedKeys);
-	virtual void draw(AffineTransform &at);
+	virtual void draw(AffineTransform& at);
 	virtual void draw(AffineTransform& at, Camera* cam);
 	virtual void draw(AffineTransform& at, Camera* cam, bool paralax);
 
 	DisplayObjectContainer* root;
-
 	DisplayObjectContainer* foreground;
 	DisplayObjectContainer* midground;
 	DisplayObjectContainer* background;
 
+	//float backgroundScrollRate;
+	//float midgroundScrollRate;
+	//float foregroundScrollRate;
 
 private:
 	//TODO --> change this from vector type string to vector type JSON args list, however you want to do that
 	vector<string> the_list;
-
-	vector<string> parent_ids;
 };
 
 #endif
+

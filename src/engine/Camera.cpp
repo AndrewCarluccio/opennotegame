@@ -5,24 +5,28 @@ Camera::Camera() {
 
 }
 
-Camera::Camera(int orig_x, int orig_y, int left, int right, int up, int down) {
-	x = orig_x;
-	y = orig_y;
+Camera::Camera(int viewport_width, int viewport_height) {
+	//originX = viewport_width /2.0;
+	//originY = viewport_height / 2.0;
 
-	minX = orig_x - left;
-	maxY = orig_y - up;
-	maxX = orig_x + right;
-	minY = orig_y - down;
+	x = 0;
+	y = 0;
+
+	minX = viewport_width / 2.0;
+	maxX = viewport_width / 2.0;
+
+	minY = viewport_height / 2.0;
+	maxY = viewport_height / 2.0;
 }
 
 void Camera::applyCamera(AffineTransform& at) {
-	at.translate(int(x*scrollRate), int(y*scrollRate));
+	at.translate(int(x), int(y));
 	at.scale(zoom, zoom);
 }
 
 void Camera::undoCamera(AffineTransform& at) {
 	at.scale(1.0 / zoom, 1.0 / zoom);
-	at.translate(int(-x*scrollRate), int(-y*scrollRate));
+	at.translate(int(-x), int(-y));
 }
 
 bool Camera::moveCameraBy(int dx, int dy) {
@@ -39,6 +43,7 @@ bool Camera::moveCameraBy(int dx, int dy) {
 	cout << x << endl;
 	cout << "y ";
 	cout << y << endl;
+	cout << ret << endl;
 	return ret;
 }
 
@@ -69,8 +74,9 @@ bool Camera::setZoom(double z) {
 }
 
 void Camera::setBounds(int l, int r, int u, int d) {
-	minX = x - l;
-	maxY = y - u;
-	maxX = x + r;
-	minY = y - d;
+	minX = -l;  
+	maxX = r;
+
+	minY = -u;
+	maxY = d;
 }

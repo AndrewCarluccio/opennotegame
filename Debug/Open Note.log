@@ -1,2 +1,6 @@
-﻿  Sound.cpp
+﻿  DisplayObject.cpp
+C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\DisplayObject.cpp(103,37): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\DisplayObject.cpp(103,22): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\DisplayObject.cpp(131,35): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\akclu\Documents\GitHub\opennotegame\src\engine\DisplayObject.cpp(131,21): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Open Note.vcxproj -> C:\Users\akclu\Documents\GitHub\opennotegame\Debug\Open Note.exe

@@ -7,53 +7,39 @@
 #include <iostream>
 
 #include <queue>
+//#include <Windows.h>
 
 using namespace rapidjson;
-using namespace std;
 
 Scene::Scene() {
 	root = new DisplayObjectContainer();
-
-	parent_ids.push_back("Root");
-	parent_ids.push_back("Background");
-	parent_ids.push_back("Midground");
-	parent_ids.push_back("Foreground");
-
 }
 
-DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
-	string node_id = displayObjectInfo["node_id"].GetString();
-    string type_id = displayObjectInfo["type_id"].GetString();
-    int loc_x = displayObjectInfo["locationX"].GetInt();
-    int loc_y = displayObjectInfo["locationY"].GetInt();
-    float scale_x = displayObjectInfo["scaleX"].GetFloat();
-    float scale_y = displayObjectInfo["scaleY"].GetFloat();
-    float rotation = displayObjectInfo["rotation"].GetFloat();
-    int alpha = displayObjectInfo["alpha"].GetInt();
-    string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
 
-	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
+DisplayObjectContainer* createLayer(const Value& layerInfo) {
+	string node_id = layerInfo["node_id"].GetString();
+	string type_id = layerInfo["type_id"].GetString();
+	int loc_x = layerInfo["locationX"].GetInt();
+	int loc_y = layerInfo["locationY"].GetInt();
+	float scale_x = layerInfo["scaleX"].GetFloat();
+	float scale_y = layerInfo["scaleY"].GetFloat();
+	float rotation = layerInfo["rotation"].GetFloat();
+	int alpha = layerInfo["alpha"].GetInt();
+	string path_to_texture = layerInfo["sprite_file_path"].GetString();
+	float scroll_rate = layerInfo["scroll_rate"].GetFloat();
+
+	/*
+	if (node_id == "Background") {
+		backgroundScrollRate = scroll_rate;
+	}
+	else if (node_id == "Midground") {
+		midgroundScrollRate = scroll_rate;
+	}
+	else if (node_id == "Foreground") {
+		foregroundScrollRate = scroll_rate;
+	}
+	*/
 	
-	return the_obj;
-
-}
-
-DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectContainerInfo) {
-	string node_id = displayObjectContainerInfo["node_id"].GetString();
-    string type_id = displayObjectContainerInfo["type_id"].GetString();
-    int loc_x = displayObjectContainerInfo["locationX"].GetInt();
-    int loc_y = displayObjectContainerInfo["locationY"].GetInt();
-	float scale_x = displayObjectContainerInfo["scaleX"].GetFloat();
-	float scale_y = displayObjectContainerInfo["scaleY"].GetFloat();
-    float rotation = displayObjectContainerInfo["rotation"].GetFloat();
-    int alpha = displayObjectContainerInfo["alpha"].GetInt();
-    string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
 
 	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
 	the_obj->position.x = loc_x;
@@ -62,22 +48,70 @@ DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectC
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
-	
+	the_obj->scrollRate = scroll_rate;
+
+
+	return the_obj;
+
+}
+
+DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
+	string node_id = displayObjectInfo["node_id"].GetString();
+	string type_id = displayObjectInfo["type_id"].GetString();
+	int loc_x = displayObjectInfo["locationX"].GetInt();
+	int loc_y = displayObjectInfo["locationY"].GetInt();
+	float scale_x = displayObjectInfo["scaleX"].GetFloat();
+	float scale_y = displayObjectInfo["scaleY"].GetFloat();
+	float rotation = displayObjectInfo["rotation"].GetFloat();
+	int alpha = displayObjectInfo["alpha"].GetInt();
+	string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
+
+	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+
+	return the_obj;
+
+}
+
+DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectContainerInfo) {
+	string node_id = displayObjectContainerInfo["node_id"].GetString();
+	string type_id = displayObjectContainerInfo["type_id"].GetString();
+	int loc_x = displayObjectContainerInfo["locationX"].GetInt();
+	int loc_y = displayObjectContainerInfo["locationY"].GetInt();
+	float scale_x = displayObjectContainerInfo["scaleX"].GetFloat();
+	float scale_y = displayObjectContainerInfo["scaleY"].GetFloat();
+	float rotation = displayObjectContainerInfo["rotation"].GetFloat();
+	int alpha = displayObjectContainerInfo["alpha"].GetInt();
+	string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
+
+	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+
 	return the_obj;
 
 }
 
 Sprite* createSprite(const Value& spriteInfo) {
 	string node_id = spriteInfo["node_id"].GetString();
-    string type_id = spriteInfo["type_id"].GetString();
-    int loc_x = spriteInfo["locationX"].GetInt();
-    int loc_y = spriteInfo["locationY"].GetInt();
+	string type_id = spriteInfo["type_id"].GetString();
+	int loc_x = spriteInfo["locationX"].GetInt();
+	int loc_y = spriteInfo["locationY"].GetInt();
 	float scale_x = spriteInfo["scaleX"].GetFloat();
 	float scale_y = spriteInfo["scaleY"].GetFloat();
-    float rotation = spriteInfo["rotation"].GetFloat();
-    int alpha = spriteInfo["alpha"].GetInt();
-    string path_to_texture = spriteInfo["sprite_file_path"].GetString();
-	
+	float rotation = spriteInfo["rotation"].GetFloat();
+	int alpha = spriteInfo["alpha"].GetInt();
+	string path_to_texture = spriteInfo["sprite_file_path"].GetString();
+
 	Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
 	the_obj->position.x = loc_x;
@@ -86,21 +120,21 @@ Sprite* createSprite(const Value& spriteInfo) {
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
-	
+
 	return the_obj;
 }
 
 AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	string node_id = animatedSpriteInfo["node_id"].GetString();
-    string type_id = animatedSpriteInfo["type_id"].GetString();
-    int loc_x = animatedSpriteInfo["locationX"].GetInt();
-    int loc_y = animatedSpriteInfo["locationY"].GetInt();
+	string type_id = animatedSpriteInfo["type_id"].GetString();
+	int loc_x = animatedSpriteInfo["locationX"].GetInt();
+	int loc_y = animatedSpriteInfo["locationY"].GetInt();
 	float scale_x = animatedSpriteInfo["scaleX"].GetFloat();
 	float scale_y = animatedSpriteInfo["scaleY"].GetFloat();
-    float rotation = animatedSpriteInfo["rotation"].GetFloat();
-    int alpha = animatedSpriteInfo["alpha"].GetInt();
-	
-	
+	float rotation = animatedSpriteInfo["rotation"].GetFloat();
+	int alpha = animatedSpriteInfo["alpha"].GetInt();
+
+
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id);
 
 	the_obj->position.x = loc_x;
@@ -109,7 +143,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
-	
+
 	return the_obj;
 }
 
@@ -117,7 +151,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 // Recursion happens here
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
 
-    string type_id = attribute["type_id"].GetString();
+	string type_id = attribute["type_id"].GetString();
 
 	DisplayObject* newChild;
 	if (type_id == "DisplayObject") {
@@ -132,17 +166,20 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	else if (type_id == "AnimatedSprite") {
 		newChild = createAnimatedSprite(attribute);
 	}
+	else if (type_id == "Layer") {
+		newChild = createLayer(attribute);
+	}
 
 	node->addChild(newChild);
-    
-    const rapidjson::Value& children = attribute["children"];
+
+	const rapidjson::Value& children = attribute["children"];
 	// iterates throught the child nodes
-    for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
-        const rapidjson::Value& child = *itr;
-        assert(child.IsObject());
+	for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
+		const rapidjson::Value& child = *itr;
+		assert(child.IsObject());
 		createObject(child, static_cast<DisplayObjectContainer*>(newChild));
-    }
-    
+	}
+
 }
 
 void Scene::loadScene(string sceneFilePath) {
@@ -152,9 +189,9 @@ void Scene::loadScene(string sceneFilePath) {
 	FileReadStream json(fp, readBuffer, sizeof(readBuffer));
 	Document d;
 	d.ParseStream(json);
-    // cout << "IS OBJECT" << d.IsObject();
+	// cout << "IS OBJECT" << d.IsObject();
 	root = createDisplayObjectContainer(d);
-    createObject(d, root);
+	createObject(d, root);
 
 	queue<DisplayObject*> objQueue;
 	objQueue.push(root);
@@ -162,7 +199,6 @@ void Scene::loadScene(string sceneFilePath) {
 	background = static_cast<DisplayObjectContainer*>(root->getChild("Background"));
 	midground = static_cast<DisplayObjectContainer*>(root->getChild("Midground"));
 	foreground = static_cast<DisplayObjectContainer*>(root->getChild("Foreground"));
-
 }
 
 DisplayObject* Scene::getChild(string id) {
@@ -188,23 +224,29 @@ void Scene::draw(AffineTransform& at, Camera* cam) {
 	root->draw(at, cam);
 }
 
+
 void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
 	DisplayObjectContainer::draw(at, cam);
-	// if (paralax) {
-	// 	cam->scrollRate = foregroundScrollRate;
-	// 	foreground->draw(at, cam);
 
-	// 	cam->scrollRate = midgroundScrollRate;
-	// 	midground->draw(at, cam);
+	float foregroundScrollRate = foreground->scrollRate;
+	float midgroundScrollRate = midground->scrollRate;
+	float backgroundScrollRate = background->scrollRate;
 
-	// 	cam->backgroundScrollRate;
-	// 	background->draw(at, cam);
+	 if (paralax) {
+	 	cam->scrollRate = foregroundScrollRate;
+	 	foreground->draw(at, cam);
 
-	// 	cam->scrollRate = 1.0;
-	// }
-	// else {
-	// 	root->draw(at, cam);
-	// }
-	
+	 	cam->scrollRate = midgroundScrollRate;
+	 	midground->draw(at, cam);
+
+	 	cam->scrollRate = backgroundScrollRate;
+	 	background->draw(at, cam);
+
+	 	cam->scrollRate = 1.0;
+	 }
+	 else {
+	 	root->draw(at, cam);
+	 }
+
 }
 

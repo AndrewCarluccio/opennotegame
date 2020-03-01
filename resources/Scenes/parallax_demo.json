@@ -1,0 +1,97 @@
+{
+    "node_id": "Root",
+    "type_id": "DisplayObjectContainer",
+    "locationX": 0,
+    "locationY": 0,
+    "scaleX": 1,
+    "scaleY": 1,
+    "rotation": 0,
+    "alpha": 255,
+    "sprite_file_path": "",
+    "children": [
+        {
+            "node_id": "Background",
+            "type_id": "Layer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "alpha": 255,
+            "sprite_file_path": "",
+			"scroll_rate": 10,
+            "children" : [
+                {
+                    "node_id": "Skyscraper",
+                    "type_id": "Sprite",
+                    "locationX": 0,
+                    "locationY": 0,
+                    "scaleX": 1.5,
+                    "scaleY": 0.7,
+                    "rotation": 0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/Scenes/room_one/skyscraepers.png",
+                    "children": [
+                    ]
+                }
+            ]
+        },
+        {
+            "node_id": "Midground",
+            "type_id": "Layer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "alpha": 255,
+            "sprite_file_path": "",
+			"scroll_rate": 5,
+            "children": [
+                {
+                    "node_id": "Clock Tower",
+                    "type_id": "Sprite",
+                    "locationX": 750,
+                    "locationY": 250,
+                    "scaleX": 0.2,
+                    "scaleY": 0.2,
+                    "rotation": 0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/Scenes/room_one/clock_tower.png",
+                    "children": [
+                    ]
+                }
+            ]
+        },
+        {
+            "node_id": "Foreground",
+            "type_id": "Layer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "alpha": 255,
+            "sprite_file_path": "",
+			"scroll_rate": 1.0,
+            "children": [
+                {
+                    "node_id": "Car",
+                    "type_id": "Sprite",
+                    "locationX": 0,
+                    "locationY": 850,
+                    "scaleX": 0.5,
+                    "scaleY": 0.5,
+                    "rotation": 0,
+                    "alpha": 255,
+                    "sprite_file_path": "./resources/Scenes/room_one/car.png",
+                    "children": [
+                    ]
+                }
+            ]
+                    
+                    
+
+        }
+    ]
+}
