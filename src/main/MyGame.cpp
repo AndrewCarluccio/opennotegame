@@ -58,7 +58,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
-	activeScene->draw(at,cam);
-	//activeScene->draw(at);
+	//activeScene->draw(at,cam);
+	activeScene->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

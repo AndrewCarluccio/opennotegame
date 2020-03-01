@@ -39,6 +39,9 @@ public:
 	void applyTransformations(AffineTransform &at);
 	void reverseTransformations(AffineTransform &at);
 
+	void applyTransformations(AffineTransform& at, Camera* cam);
+	void reverseTransformations(AffineTransform& at, Camera* cam);
+
 	int getWidth();
 	int getHeight();
 

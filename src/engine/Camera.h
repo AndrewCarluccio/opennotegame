@@ -22,6 +22,11 @@ public:
 	void applyCamera(AffineTransform& at);
 	void undoCamera(AffineTransform& at);
 
+	void applyCameraScale(AffineTransform& at);
+	void applyCameraTrans(AffineTransform& at);
+	void undoCameraScale(AffineTransform& at);
+	void undoCameraTrans(AffineTransform& at);
+
 	float scrollRate = 1.0;
 
 	//Will return true if either x or y is changed, or both

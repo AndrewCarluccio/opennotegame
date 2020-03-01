@@ -20,13 +20,35 @@ Camera::Camera(int viewport_width, int viewport_height) {
 }
 
 void Camera::applyCamera(AffineTransform& at) {
-	at.translate(int(x), int(y));
 	at.scale(zoom, zoom);
+	at.translate(int(x), int(y));
+	
+}
+
+void Camera::applyCameraScale(AffineTransform& at) {
+	at.scale(zoom, zoom);
+
+}
+ 
+void Camera::applyCameraTrans(AffineTransform& at) {
+	at.translate(int(x), int(y));
+
+}
+
+void Camera::undoCameraScale(AffineTransform& at) {
+	at.scale(1.0 / zoom, 1.0 / zoom);
+
+}
+
+void Camera::undoCameraTrans(AffineTransform& at) {
+	at.scale(1.0 / zoom, 1.0 / zoom);
+
 }
 
 void Camera::undoCamera(AffineTransform& at) {
-	at.scale(1.0 / zoom, 1.0 / zoom);
 	at.translate(int(-x), int(-y));
+	at.scale(1.0 / zoom, 1.0 / zoom);
+
 }
 
 bool Camera::moveCameraBy(int dx, int dy) {
