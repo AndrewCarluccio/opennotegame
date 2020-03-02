@@ -30,7 +30,6 @@ public:
 	
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	virtual void draw(AffineTransform& at, Camera* cam);
 
 	void loadTexture(string filepath);
 	void loadRGBTexture(int red, int green, int blue);
@@ -38,9 +37,6 @@ public:
 
 	void applyTransformations(AffineTransform &at);
 	void reverseTransformations(AffineTransform &at);
-
-	void applyTransformations(AffineTransform& at, Camera* cam);
-	void reverseTransformations(AffineTransform& at, Camera* cam);
 
 	int getWidth();
 	int getHeight();

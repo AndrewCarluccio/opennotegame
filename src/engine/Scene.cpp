@@ -219,33 +219,34 @@ void Scene::draw(AffineTransform& at) {
 	root->draw(at);
 }
 
-void Scene::draw(AffineTransform& at, Camera* cam) {
-	DisplayObjectContainer::draw(at, cam);
-	root->draw(at, cam);
-}
-
-
 void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
-	DisplayObjectContainer::draw(at, cam);
+	DisplayObjectContainer::draw(at);
 
 	float foregroundScrollRate = foreground->scrollRate;
 	float midgroundScrollRate = midground->scrollRate;
 	float backgroundScrollRate = background->scrollRate;
 
 	 if (paralax) {
-	 	cam->scrollRate = foregroundScrollRate;
-	 	foreground->draw(at, cam);
+
+		 cam->scrollRate = backgroundScrollRate;
+		 cam->applyCamera(at);
+		 background->draw(at);
+		 cam->undoCamera(at);
 
 	 	cam->scrollRate = midgroundScrollRate;
-	 	midground->draw(at, cam);
+		cam->applyCamera(at);
+	 	midground->draw(at);
+		cam->undoCamera(at);
 
-	 	cam->scrollRate = backgroundScrollRate;
-	 	background->draw(at, cam);
+		cam->scrollRate = foregroundScrollRate;
+		cam->applyCamera(at);
+		foreground->draw(at);
+		cam->undoCamera(at);
 
 	 	cam->scrollRate = 1.0;
 	 }
 	 else {
-	 	root->draw(at, cam);
+	 	root->draw(at);
 	 }
 
 }

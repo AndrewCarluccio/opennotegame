@@ -19,7 +19,7 @@
             "rotation": 0,
             "alpha": 255,
             "sprite_file_path": "",
-			"scroll_rate": 10,
+			"scroll_rate": 0.7,
             "children" : [
                 {
                     "node_id": "Skyscraper",
@@ -46,7 +46,7 @@
             "rotation": 0,
             "alpha": 255,
             "sprite_file_path": "",
-			"scroll_rate": 5,
+			"scroll_rate": 0.9,
             "children": [
                 {
                     "node_id": "Clock Tower",

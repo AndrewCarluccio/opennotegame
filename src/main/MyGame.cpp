@@ -15,16 +15,12 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	activeScene = scene;
 
-	//cam = new Camera(305*4,475*4,0,0,0,2730);
-
 	cam = new Camera(1200, 1000);
 	cam->setBounds(1000, 1000, 1000, 1000);
 	cam->setZoom(1);
 
 	//sfx = new Sound();
 	//sfx->playMusic();
-
-
 }
 
 MyGame::~MyGame() {
@@ -35,19 +31,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
 
 		//car->position.y -= 1;
-		cam->moveCameraBy(0, 1);
+		//cam->moveCameraBy(0, 1);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		car->position.x -= 1;
-		cam->moveCameraBy(1, 0);
+		car->position.x -= 6;
+		cam->moveCameraBy(5, 0);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
 		//car->position.y += 1;
-		cam->moveCameraBy(0, -1);
+		//cam->moveCameraBy(0, -5);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		car->position.x += 1;
-		cam->moveCameraBy(-1, 0);
+		car->position.x += 6;
+		cam->moveCameraBy(-5, 0);
 	}
 
 	
@@ -58,7 +54,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
-	//activeScene->draw(at,cam);
-	activeScene->draw(at);
+	activeScene->draw(at,cam,true);
+	//activeScene->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

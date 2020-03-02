@@ -95,44 +95,6 @@ void DisplayObject::draw(AffineTransform &at){
 	reverseTransformations(at);
 }
 
-
-void DisplayObject::draw(AffineTransform& at, Camera* cam) {
-	//cam->applyCameraTrans(at);
-	applyTransformations(at, cam);
-	at.translate(-width / 2.0, -height / 2.0);
-	
-
-
-	if (curTexture != NULL && visible) {
-		SDL_Point origin = at.transformPoint(0, 0);
-		SDL_Point upperRight = at.transformPoint(width, 0);
-		SDL_Point lowerRight = at.transformPoint(width, height);
-		SDL_Point corner = { 0, 0 };
-
-		int w = (int)distance(origin, upperRight);
-		int h = (int)distance(upperRight, lowerRight);
-
-		SDL_Rect dstrect = { origin.x, origin.y, w, h };
-
-		SDL_RendererFlip flip;
-		if (facingRight) {
-			flip = SDL_FLIP_NONE;
-		}
-		else {
-			flip = SDL_FLIP_HORIZONTAL;
-		}
-
-		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
-	}
-
-	at.translate(width / 2.0, height / 2.0);
-	reverseTransformations(at,cam);
-	//cam->undoCamera(at);
-	
-}
-
-
 void DisplayObject::applyTransformations(AffineTransform &at) {
 	at.translate(position.x, position.y);
 	at.rotate(rotation);
@@ -146,26 +108,6 @@ void DisplayObject::reverseTransformations(AffineTransform &at) {
 	at.rotate(-rotation);
 	at.translate(-position.x, -position.y);
 }
-
-
-void DisplayObject::applyTransformations(AffineTransform& at, Camera* cam) {
-	cam->applyCameraTrans(at);
-	at.translate(position.x, position.y);
-	at.rotate(rotation);
-	at.scale(scaleX, scaleY);
-	cam->applyCameraScale(at);
-	at.translate(-pivot.x, -pivot.y);
-}
-
-void DisplayObject::reverseTransformations(AffineTransform& at, Camera* cam) {
-	at.translate(pivot.x, pivot.y);
-	at.scale(1.0 / scaleX, 1.0 / scaleY);
-	cam->applyCameraScale(at);
-	at.rotate(-rotation);
-	at.translate(-position.x, -position.y);
-	cam->applyCameraTrans(at);
-}
-
 
 int DisplayObject::getWidth() {
 	return this->image->w;

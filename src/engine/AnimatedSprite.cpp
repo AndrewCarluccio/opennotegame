@@ -99,7 +99,3 @@ void AnimatedSprite::update(set<SDL_Scancode> pressedKeys) {
 void AnimatedSprite::draw(AffineTransform &at) {
     Sprite::draw(at);
 }
-
-void AnimatedSprite::draw(AffineTransform& at, Camera* cam) {
-    Sprite::draw(at, cam);
-}

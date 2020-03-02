@@ -107,18 +107,3 @@ void DisplayObjectContainer::draw(AffineTransform &at) {
     reverseTransformations(at);
 }
 
-void DisplayObjectContainer::draw(AffineTransform& at, Camera* cam) {
-    DisplayObject::draw(at, cam);
-    applyTransformations(at,cam);
-   
-    // undo the parent's pivot
-    at.translate(pivot.x, pivot.y);
-    for (int i = 0; i < children.size(); i++) {
-        children[i]->draw(at, cam);
-    }
-
-    // redo the parent's pivot
-    at.translate(-pivot.x, -pivot.y);
-    reverseTransformations(at,cam);
-    
-}

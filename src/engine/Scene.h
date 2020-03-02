@@ -25,7 +25,6 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform& at);
-	virtual void draw(AffineTransform& at, Camera* cam);
 	virtual void draw(AffineTransform& at, Camera* cam, bool paralax);
 
 	DisplayObjectContainer* root;

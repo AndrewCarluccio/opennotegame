@@ -31,7 +31,6 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	virtual void draw(AffineTransform& at, Camera* cam);
 
 	float scrollRate = 1.0;
 
