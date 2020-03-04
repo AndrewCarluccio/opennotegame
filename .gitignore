@@ -1,5 +1,7 @@
 .DS_Store
-.vs/Open Note/v16/ipch/AutoPCH/20ad8691394f9196/SCENE.ipch
+.vs/Open Note/v16/ipch/
+Debug/
+
 # Binaries
 /bin
 # Prerequisites
@@ -12,6 +14,7 @@
 *.obj
 
 # Precompiled Headers
+*.ipch
 *.gch
 *.pch
 
@@ -34,6 +37,4 @@
 *.exe
 *.out
 *.app
-
-.vs/Open Note/v16/ipch/AutoPCH/85bde60d5f24fd16/SCENE.ipch
 
