@@ -125,6 +125,12 @@
     <ClCompile Include="src\engine\Scene.cpp" />
     <ClCompile Include="src\engine\Sound.cpp" />
     <ClCompile Include="src\engine\Sprite.cpp" />
+    <ClCompile Include="src\engine\Tween.cpp" />
+    <ClCompile Include="src\engine\TweenableParams.cpp" />
+    <ClCompile Include="src\engine\TweenEvent.cpp" />
+    <ClCompile Include="src\engine\TweenJuggler.cpp" />
+    <ClCompile Include="src\engine\TweenParam.cpp" />
+    <ClCompile Include="src\engine\TweenTransition.cpp" />
     <ClCompile Include="src\main\main.cpp" />
     <ClCompile Include="src\main\MyGame.cpp" />
   </ItemGroup>
@@ -138,6 +144,12 @@
     <ClInclude Include="src\engine\Scene.h" />
     <ClInclude Include="src\engine\Sound.h" />
     <ClInclude Include="src\engine\Sprite.h" />
+    <ClInclude Include="src\engine\Tween.h" />
+    <ClInclude Include="src\engine\TweenableParams.h" />
+    <ClInclude Include="src\engine\TweenEvent.h" />
+    <ClInclude Include="src\engine\TweenJuggler.h" />
+    <ClInclude Include="src\engine\TweenParam.h" />
+    <ClInclude Include="src\engine\TweenTransition.h" />
     <ClInclude Include="src\main\MyGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
