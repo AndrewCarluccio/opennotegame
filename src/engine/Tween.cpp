@@ -2,6 +2,8 @@
 #include "TweenParam.h"
 #include "TweenTransition.h"
 #include "TweenableParams.h"
+#include "TweenEvent.h"
+#include <iostream>
 
 #include <string>
 // Object representing on Sprite being tweened in some way. Can have multiple
@@ -9,7 +11,7 @@
 
 Tween::Tween(DisplayObject* object){
     this->tweenObject = object;
-    this->tweenTransition = nullptr;
+    this->tweenTransition = new TweenTransition(TweenTransition::LINEAR);
 }
 
 Tween::Tween(DisplayObject* object, TweenTransition* transition){
@@ -24,7 +26,28 @@ void Tween::animate(string fieldToAnimate, double startVal, double endVal, doubl
 
 //invoked once per frame by the TweenJuggler. Updates this tween / DisplayObject
 void Tween::update() {
+    time_t curTime = time(nullptr);
+    double elapsedTime;
+    double percentComplete;
 
+    vector<TweenParam*>::iterator iter = tweenParams.begin();
+    while (iter != tweenParams.end()) {
+        TweenParam* tp = *iter;
+       
+        elapsedTime = float(clock() - tp->getStartTime()) / CLOCKS_PER_SEC;
+        percentComplete = elapsedTime / tp->getTweenTime();
+        if (percentComplete <= 1.0) {
+            double percentOfValue = tweenTransition->getResult(percentComplete);
+            double newValue = (tp->getEndVal() - tp->getStartVal()) * percentOfValue + tp->getStartVal();
+            this->setValue(tp->getParam(), newValue);
+            cout << "timeDiff " << elapsedTime << endl;
+            cout << "name " << this->tweenObject->id << " val " << newValue << endl;
+            iter++;
+        }
+        else {
+            iter = tweenParams.erase(iter);
+        }
+    } 
 }
 
 bool Tween::isComplete(){
