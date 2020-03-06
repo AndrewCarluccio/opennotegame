@@ -74,24 +74,32 @@
             "alpha": 255,
             "sprite_file_path": "",
 			"scroll_rate": 1.0,
-            "children": [
-                {
-                    "node_id": "Car",
-                    "type_id": "Sprite",
-                    "locationX": 0,
-                    "locationY": 850,
-                    "scaleX": 0.5,
-                    "scaleY": 0.5,
-                    "rotation": 0,
-                    "alpha": 255,
-                    "sprite_file_path": "./resources/Scenes/room_one/car.png",
-                    "children": [
-                    ]
-                }
-            ]
-                    
-                    
-
+          "children": [
+            {
+              "node_id": "Car",
+              "type_id": "Sprite",
+              "locationX": 0,
+              "locationY": 800,
+              "scaleX": 0.5,
+              "scaleY": 0.5,
+              "rotation": 0,
+              "alpha": 255,
+              "sprite_file_path": "./resources/Scenes/room_one/car.png",
+              "children": []
+            },
+            {
+              "node_id": "Coin",
+              "type_id": "Sprite",
+              "locationX": 1700,
+              "locationY": 750,
+              "scaleX": 0.1,
+              "scaleY": 0.1,
+              "rotation": 0,
+              "alpha": 255,
+              "sprite_file_path": "./resources/Scenes/parallax_demo/coin.png",
+              "children": []
+            }
+          ]
         }
     ]
 }

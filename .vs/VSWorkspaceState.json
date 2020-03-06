@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\resources",
+    "\\resources\\Scenes",
+    "\\src",
+    "\\src\\main"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\resources\\Scenes\\parallax_demo.json",
   "PreviewInSolutionExplorer": false
 }

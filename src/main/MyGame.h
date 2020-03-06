@@ -10,6 +10,11 @@
 #include "../engine/Scene.h"
 #include "../engine/Camera.h"
 #include "../engine/Sound.h"
+#include "../engine/TweenJuggler.h"
+#include "../engine/EventDispatcher.h"
+#include "../engine/TweenEvent.h"
+#include "../engine/TweenListener.h"
+#include "../engine/Tween.h"
 
 
 using namespace std;
@@ -26,6 +31,9 @@ public:
 
 	Scene* scene;
 	DisplayObject* car;
+	DisplayObject* coin;
+
+	TweenJuggler* tweenJuggler;
 
 	Camera* cam;
 
@@ -33,9 +41,15 @@ public:
 
 	bool goUp = true;
 
+	EventDispatcher* dispatch;
+	TweenListener* coinTweenListen; 
+	Tween* coinExpandTween;
+
 private:
 	Scene* activeScene;
 	bool show1 = true;
+
+	bool collision = false;
 };
 
 #endif

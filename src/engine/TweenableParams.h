@@ -6,6 +6,7 @@
 using namespace std;
 
 class TweenableParams {
+
 public:
 	const static string X;
 	const static string Y;

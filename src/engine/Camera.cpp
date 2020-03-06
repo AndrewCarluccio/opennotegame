@@ -39,11 +39,13 @@ bool Camera::moveCameraBy(int dx, int dy) {
 		y += dy*zoom;
 		ret = true;
 	}
+	/*
 	cout << "x ";
 	cout << x << endl;
 	cout << "y ";
 	cout << y << endl;
 	cout << ret << endl;
+	*/
 	return ret;
 }
 
