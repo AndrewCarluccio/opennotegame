@@ -1,20 +1,20 @@
 #include "TweenParam.h"
 
 TweenParam::TweenParam(TweenableParams* paramToTween, double startVal, double endVal, double time) {
-    param = paramToTween;
-    startVal = startVal;
-    endVal =  endVal;
-    tweenTime = time;
+    this->param = paramToTween;
+    this->startVal = startVal;
+    this->endVal =  endVal;
+    this->tweenTime = time;
 }
 TweenableParams* TweenParam::getParam(){
-    return param;
+    return this->param;
 }
 double TweenParam::getStartVal(){
-    return startVal;
+    return this->startVal;
 }
 double TweenParam::getEndVal(){
-    return endVal;
+    return this->endVal;
 }
 double TweenParam::getTweenTime(){
-    return tweenTime;
+    return this->tweenTime;
 }

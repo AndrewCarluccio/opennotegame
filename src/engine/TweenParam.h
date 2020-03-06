@@ -3,8 +3,8 @@
 #include "TweenableParams.h"
 
 class TweenParam {
-public:
 
+public:
     TweenParam(TweenableParams* paramToTween, double startVal, double endVal, double time);
     TweenableParams* getParam();
     double getStartVal();
@@ -12,7 +12,6 @@ public:
     double getTweenTime();
     
 private:
-
     TweenableParams* param;
     double startVal;
     double endVal;
