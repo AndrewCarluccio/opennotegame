@@ -13,7 +13,7 @@ class Tween {
 public:
     Tween(DisplayObject* object);
     Tween(DisplayObject* object, TweenTransition* transition);
-    void animate(TweenableParams* fieldToAnimate, double startVal, double endVal, double time);
+    void animate(string fieldToAnimate, double startVal, double endVal, double time);
     void update(); //invoked once per frame by the TweenJuggler. Updates this tween / DisplayObject
     bool isComplete();
     void setValue(string param, double value);

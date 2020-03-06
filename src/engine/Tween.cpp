@@ -17,7 +17,7 @@ Tween::Tween(DisplayObject* object, TweenTransition* transition){
     this->tweenTransition = transition;
 }
 
-void Tween::animate(TweenableParams* fieldToAnimate, double startVal, double endVal, double time){
+void Tween::animate(string fieldToAnimate, double startVal, double endVal, double time){
     TweenParam* newParam = new TweenParam(fieldToAnimate, startVal, endVal, time);
     tweenParams.push_back(newParam);
 }

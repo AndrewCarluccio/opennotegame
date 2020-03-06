@@ -5,14 +5,14 @@
 class TweenParam {
 
 public:
-    TweenParam(TweenableParams* paramToTween, double startVal, double endVal, double time);
-    TweenableParams* getParam();
+    TweenParam(string paramToTween, double startVal, double endVal, double time);
+    string getParam();
     double getStartVal();
     double getEndVal();
     double getTweenTime();
     
 private:
-    TweenableParams* param;
+    string param;
     double startVal;
     double endVal;
     double tweenTime;
