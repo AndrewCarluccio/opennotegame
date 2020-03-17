@@ -53,6 +53,12 @@ public:
 	int alpha = 255;
 	bool facingRight = true;
 
+	// global coordinates that dictate where the sprite actually is on the screen
+	SDL_Point globalPos = {0, 0};
+	int globalW = width;
+	int globalH = height;
+	int globalRotation = rotation;
+
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
 	double calculateRotation(SDL_Point &origin, SDL_Point &p);

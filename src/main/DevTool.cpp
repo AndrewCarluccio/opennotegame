@@ -1,11 +1,37 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
-#include "MyGame.h"
+#include "DevTool.h"
+#include <thread>
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 1000) {
+int GRID_SIZE = 25;
+
+void DevTool::commandLine() {
+		while(true) {
+			cout << ">>";
+			string command;
+			cin >> command;
+			if (command == "load") {
+				cout << "Type the name of a scene file inside ./resources/Scenes, ex. camera_demo.json" << endl;
+				string filename;
+				cin >> filename;
+				delete activeScene;
+				activeScene = new Scene();
+				activeScene->loadScene("./resources/Scenes/" + filename);
+				activeScene->root->position.y = 100;
+			} else if (command == "save") {
+				cout << "Type the name of the file you want to save the scene as, ex. scene.json" << endl;
+				string filename;
+				cin >> filename;
+				SceneWriter sw(activeScene);
+				sw.saveScene("./resources/Scenes/" + filename);
+			}
+		}
+}
+
+DevTool::DevTool() : Game(1200, 1000) {
 
 	bar = new DisplayObjectContainer();
 	vector<string> filenames = {"Jump_5.png", "Idle_2.png","Idle_15.png","Jump_3.png","Idle_5.png", "Jump_23.png", "Idle_2.png","Run_10.png","Jump_3.png","Walk_15.png", "Run_5.png", "Jump_2.png"};
@@ -20,7 +46,8 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	scene = new Scene();
 	scene->loadScene("./resources/Scenes/camera_demo.json");
-
+	thread cmdThread(&DevTool::commandLine, this);
+	cmdThread.detach();
 
 	activeScene = scene;
 
@@ -28,11 +55,19 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 }
 
-MyGame::~MyGame() {
+DevTool::~DevTool() {
 }
 
+bool mouseWithinBounds(DisplayObject *sprite, int mouseX, int mouseY) {
+	return mouseY > sprite->globalPos.y &&
+		mouseY < sprite->globalPos.y + sprite->globalH &&
+		mouseX > sprite->globalPos.x &&
+		mouseX < sprite->globalPos.x + sprite->globalW;
 
-void MyGame::update(set<SDL_Scancode> pressedKeys) {
+
+}
+
+void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	
 	Game::update(pressedKeys);
 
@@ -49,49 +84,38 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			clickedSprite = newSprite;
 			activeScene->foreground->addChild(clickedSprite);
 
+		} else {
+			for (const auto& sprite: activeScene->foreground->children) {
+				// check if mouse is within the bounding box of the sprite
+				if (mouseWithinBounds(sprite, mouseX, mouseY)) {
+					clickedSprite = sprite;
+					break;
+				}
+			}
 		}
 
 		initialClick = false;
 	} else if(mousePressedDown) {
 		if (clickedSprite != NULL) {
 			clickedSprite->position.x = (mouseX - 50);
-			clickedSprite->position.y = (mouseY - 50) - 100;
+			clickedSprite->position.y = (mouseY - 50) - clickedSprite->globalH;
 		}
 	}
 
 	if(!mousePressedDown && initialRelease) {
 		if (clickedSprite != NULL) {
-			clickedSprite->position.x = (int)(round(clickedSprite->position.x / 100.0) * 100);
-			clickedSprite->position.y = (int)(round(clickedSprite->position.y / 100.0) * 100);
-			clickedSprite = NULL;
+			clickedSprite->position.x = (int)(round(clickedSprite->position.x / (double)GRID_SIZE) * GRID_SIZE);
+			clickedSprite->position.y = (int)(round(clickedSprite->position.y / (double)GRID_SIZE) * GRID_SIZE);
+			//clickedSprite = NULL;
 		}
 		initialRelease = false;
-	}
-
-	if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
-		cout << "Type the name of a scene file inside ./resources/Scenes, ex. camera_demo.json" << endl;
-		string filename;
-		cin >> filename;
-		delete activeScene;
-		activeScene = new Scene();
-		activeScene->loadScene("./resources/Scenes/" + filename);
-		activeScene->root->position.y = 100;
-
-	} 
-	
-	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		cout << "Type the name of the file you want to save the scene as, ex. scene.json" << endl;
-		string filename;
-		cin >> filename;
-		SceneWriter sw(activeScene);
-		sw.saveScene("./resources/Scenes/" + filename);
 	}
 	bar->update(pressedKeys);
 	activeScene->update(pressedKeys);
 }
 
 
-void MyGame::draw(AffineTransform& at) {
+void DevTool::draw(AffineTransform& at) {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(Game::renderer);
 	
@@ -102,10 +126,10 @@ void MyGame::draw(AffineTransform& at) {
 	bar->draw(at);
 	activeScene->draw(at);
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
-	for(int i = 100; i <= windowHeight; i+=100) {
+	for(int i = 100; i <= windowHeight; i+=GRID_SIZE) {
 		SDL_RenderDrawLine(renderer, 0, i, windowWidth, i);
 	}
-	for(int j = 0; j <= windowWidth; j+=100) {
+	for(int j = 0; j <= windowWidth; j+=GRID_SIZE) {
 		SDL_RenderDrawLine(renderer, j, 100, j, windowHeight);
 	}
 	SDL_RenderPresent(Game::renderer);

@@ -1,5 +1,5 @@
-#ifndef MYGAME_H
-#define MYGAME_H
+#ifndef DEVTOOL_H
+#define DEVTOOL_H
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -16,11 +16,13 @@
 
 using namespace std;
 
-class MyGame : public Game{
+class DevTool : public Game{
 
 public:
-	MyGame();
-	virtual ~MyGame();
+	DevTool();
+
+	void commandLine();
+	virtual ~DevTool();
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
@@ -38,7 +40,7 @@ private:
 	Scene* activeScene;
 	bool show1 = true;
 	DisplayObjectContainer *bar;
-	Sprite *clickedSprite;
+	DisplayObject *clickedSprite;
 	int spriteCount = 0;
 };
 
