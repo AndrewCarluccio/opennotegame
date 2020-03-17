@@ -34,11 +34,6 @@ public:
 
 	Sound* sfx;
 
-	bool goUp = true;
-
-	EventDispatcher* dispatch;
-	TweenListener* coinTweenListen; 
-	Tween* coinExpandTween;
 
 private:
 	Scene* activeScene;

@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include "../engine/DisplayObject.h"
 #include <iostream>
-// #include "MyGame.h"
+#include "MyGame.h"
 #include "DevTool.h"
 
 #ifdef _WIN32
@@ -16,6 +16,7 @@
 
 int main(int argc, char** argv)
 {
+	// comment out one of the following to choose between normal run and dev tool
 	// MyGame* myGame = new MyGame();
 	DevTool* myGame = new DevTool();
 	myGame->start();
@@ -37,6 +38,7 @@ WinMain(struct HINSTANCE__* hInstance,
 #else
 int main(int argc, char** argv)
 {
+	// comment out one of the following to choose between normal run and dev tool
 	// MyGame* myGame = new MyGame();
 	DevTool* myGame = new DevTool();
 	myGame->start();
