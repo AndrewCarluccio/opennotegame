@@ -9,3 +9,6 @@ In order to load a scene, push the L key when focused on the game window. Then o
 
 SCENE SAVING
 To save a scene, push the S key when focused on the game window. Then navigate to the terminal; you will be prompted to enter the name of the json file to save the scene as. As with scene loading, you may need to enter the filename multiple times.
+1. At the beginning, the car fades in at the bottom left corner.
+2. Control the car with the arrow keys.
+3. Move the car across the screen to the coin.

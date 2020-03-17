@@ -36,6 +36,10 @@ public:
 
 	bool goUp = true;
 
+	EventDispatcher* dispatch;
+	TweenListener* coinTweenListen; 
+	Tween* coinExpandTween;
+
 private:
 	Scene* activeScene;
 	bool show1 = true;

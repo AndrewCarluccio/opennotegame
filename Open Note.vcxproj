@@ -121,10 +121,19 @@
     <ClCompile Include="src\engine\Camera.cpp" />
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
+    <ClCompile Include="src\engine\Event.cpp" />
+    <ClCompile Include="src\engine\EventDispatcher.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
     <ClCompile Include="src\engine\Scene.cpp" />
     <ClCompile Include="src\engine\Sound.cpp" />
     <ClCompile Include="src\engine\Sprite.cpp" />
+    <ClCompile Include="src\engine\Tween.cpp" />
+    <ClCompile Include="src\engine\TweenableParams.cpp" />
+    <ClCompile Include="src\engine\TweenEvent.cpp" />
+    <ClCompile Include="src\engine\TweenJuggler.cpp" />
+    <ClCompile Include="src\engine\TweenListener.cpp" />
+    <ClCompile Include="src\engine\TweenParam.cpp" />
+    <ClCompile Include="src\engine\TweenTransition.cpp" />
     <ClCompile Include="src\main\main.cpp" />
     <ClCompile Include="src\main\MyGame.cpp" />
   </ItemGroup>
@@ -134,10 +143,20 @@
     <ClInclude Include="src\engine\Camera.h" />
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
+    <ClInclude Include="src\engine\Event.h" />
+    <ClInclude Include="src\engine\EventDispatcher.h" />
+    <ClInclude Include="src\engine\EventListener.h" />
     <ClInclude Include="src\engine\Game.h" />
     <ClInclude Include="src\engine\Scene.h" />
     <ClInclude Include="src\engine\Sound.h" />
     <ClInclude Include="src\engine\Sprite.h" />
+    <ClInclude Include="src\engine\Tween.h" />
+    <ClInclude Include="src\engine\TweenableParams.h" />
+    <ClInclude Include="src\engine\TweenEvent.h" />
+    <ClInclude Include="src\engine\TweenJuggler.h" />
+    <ClInclude Include="src\engine\TweenListener.h" />
+    <ClInclude Include="src\engine\TweenParam.h" />
+    <ClInclude Include="src\engine\TweenTransition.h" />
     <ClInclude Include="src\main\MyGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
