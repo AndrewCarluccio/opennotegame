@@ -30,6 +30,8 @@ public:
 	bool initialClick = false;
 	bool initialRelease = false;
 	bool keyPressed = false;
+	int prevMouseX;
+	int prevMouseY;
 	int mouseX;
 	int mouseY;
 

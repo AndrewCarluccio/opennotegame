@@ -86,6 +86,8 @@ void Game::start() {
 			mousePressedDown = true;
 			mouseX = event.motion.x;
 			mouseY = event.motion.y;
+			prevMouseX = mouseX;
+			prevMouseY = mouseY;
 			break;
 		case SDL_MOUSEBUTTONUP:
 			// cout << "Mouse released!" << endl;
@@ -96,6 +98,8 @@ void Game::start() {
 			break;
 		case SDL_MOUSEMOTION:
 			// cout << "Mouse position: " << event.motion.x << ", " << event.motion.y << endl;
+			prevMouseX = mouseX;
+			prevMouseY = mouseY;
 			mouseX = event.motion.x;
 			mouseY = event.motion.y;
 			break;

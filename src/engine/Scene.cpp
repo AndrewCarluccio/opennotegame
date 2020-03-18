@@ -246,8 +246,13 @@ void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
 	 	cam->scrollRate = 1.0;
 	 }
 	 else {
-	 	root->draw(at);
+		
+		cam->applyCamera(at);
+		root->draw(at);
+		cam->undoCamera(at);
 	 }
+
+	 
 
 }
 

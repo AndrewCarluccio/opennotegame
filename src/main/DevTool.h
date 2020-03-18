@@ -41,6 +41,7 @@ private:
 	DisplayObjectContainer *bar;
 	DisplayObject *clickedSprite;
 	int spriteCount = 0;
+	double zoom = 1;
 };
 
 #endif

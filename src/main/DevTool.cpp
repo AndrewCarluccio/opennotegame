@@ -3,10 +3,14 @@
 #include <iostream>
 #include "DevTool.h"
 #include <thread>
+#include <mutex>
 
 using namespace std;
 
 int GRID_SIZE = 25;
+
+// lock for scene since it is shared between threads
+mutex scene_lock;
 
 void DevTool::commandLine() {
 		while(true) {
@@ -17,10 +21,12 @@ void DevTool::commandLine() {
 				cout << "Type the name of a scene file inside ./resources/Scenes, ex. camera_demo.json" << endl;
 				string filename;
 				cin >> filename;
+				scene_lock.lock();
 				delete activeScene;
 				activeScene = new Scene();
 				activeScene->loadScene("./resources/Scenes/" + filename);
 				activeScene->root->position.y = 100;
+				scene_lock.unlock();
 			} else if (command == "save") {
 				cout << "Type the name of the file you want to save the scene as, ex. scene.json" << endl;
 				string filename;
@@ -43,16 +49,20 @@ DevTool::DevTool() : Game(1200, 1000) {
 		bar->addChild(sprite);
 		
 	}
+	cam = new Camera(1200, 1000);
+	cam->setBounds(1000, 1000, 1000, 1000);
+	cam->setZoom(zoom);
 
 	scene = new Scene();
+
 	scene->loadScene("./resources/Scenes/camera_demo.json");
 	thread cmdThread(&DevTool::commandLine, this);
 	cmdThread.detach();
 
+	scene_lock.lock();
 	activeScene = scene;
-
 	activeScene->root->position.y = 100;
-
+	scene_lock.unlock();
 }
 
 DevTool::~DevTool() {
@@ -70,17 +80,16 @@ bool mouseWithinBounds(DisplayObject *sprite, int mouseX, int mouseY) {
 void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	
 	Game::update(pressedKeys);
-
 	if(mousePressedDown && initialClick) {
 		if(mouseY < 100) {
 			int copyIndex = mouseX / 100;
 			DisplayObject *toCopy = bar->getChild(copyIndex);
 			Sprite* newSprite = new Sprite("sprite" + to_string(spriteCount), toCopy->imgPath);
 			spriteCount++;
-			newSprite->scaleX = 100.0 / newSprite->width;
-			newSprite->scaleY = 100.0 / newSprite->height;
-			newSprite->position.x = (mouseX - 50);
-			newSprite->position.y = (mouseY - 50) - 100;
+			// newSprite->scaleX = 100.0 / newSprite->width;
+			// newSprite->scaleY = 100.0 / newSprite->height;
+			newSprite->position.x = (mouseY);
+			newSprite->position.y = (mouseY);
 			clickedSprite = newSprite;
 			activeScene->foreground->addChild(clickedSprite);
 
@@ -97,8 +106,8 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 		initialClick = false;
 	} else if(mousePressedDown) {
 		if (clickedSprite != NULL) {
-			clickedSprite->position.x = (mouseX - 50);
-			clickedSprite->position.y = (mouseY - 50) - clickedSprite->globalH;
+			clickedSprite->position.x += 2* (mouseX - prevMouseX);
+			clickedSprite->position.y += 2 * (mouseY - prevMouseY);
 		}
 	}
 
@@ -106,12 +115,63 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 		if (clickedSprite != NULL) {
 			clickedSprite->position.x = (int)(round(clickedSprite->position.x / (double)GRID_SIZE) * GRID_SIZE);
 			clickedSprite->position.y = (int)(round(clickedSprite->position.y / (double)GRID_SIZE) * GRID_SIZE);
-			//clickedSprite = NULL;
 		}
 		initialRelease = false;
 	}
+
+	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
+			// car->position.x -= 6;
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleX += 0.01;
+		}
+	}
+
+	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleX -= 0.01;
+		}
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleY += 0.01;
+		}
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleY -= 0.01;
+		}
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		cam->moveCameraBy(5, 0);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		cam->moveCameraBy(-5, 0);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		cam->moveCameraBy(0, 5);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
+		cam->moveCameraBy(0, -5);
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
+		zoom += 0.01;
+		zoom = min(zoom, 4.0);
+		cam->setZoom(zoom);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
+		zoom -= 0.01;
+		zoom = max(zoom, 0.1);
+		cam->setZoom(zoom);
+	}
+
+
 	bar->update(pressedKeys);
+	scene_lock.lock();
 	activeScene->update(pressedKeys);
+	scene_lock.unlock();
 }
 
 
@@ -120,11 +180,19 @@ void DevTool::draw(AffineTransform& at) {
 	SDL_RenderClear(Game::renderer);
 	
 	Game::draw(at);
+	scene_lock.lock();
+	activeScene->draw(at, cam, false);
+	scene_lock.unlock();
+
 	SDL_Rect rect = {0, 0, windowWidth, 100};
+	
 	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &rect);
+	
+	
 	bar->draw(at);
-	activeScene->draw(at);
+
+	
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
 	for(int i = 100; i <= windowHeight; i+=GRID_SIZE) {
 		SDL_RenderDrawLine(renderer, 0, i, windowWidth, i);
