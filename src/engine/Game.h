@@ -34,6 +34,8 @@ public:
 	int prevMouseY;
 	int mouseX;
 	int mouseY;
+	int mouseMotionX;
+	int mouseMotionY;
 
 	Game(int windowWidth, int windowHeight);
 	virtual ~Game();

@@ -102,6 +102,8 @@ void Game::start() {
 			prevMouseY = mouseY;
 			mouseX = event.motion.x;
 			mouseY = event.motion.y;
+			mouseMotionX = event.motion.xrel;
+			mouseMotionY = event.motion.yrel;
 			break;
 		}
 	}

@@ -88,8 +88,8 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 			spriteCount++;
 			// newSprite->scaleX = 100.0 / newSprite->width;
 			// newSprite->scaleY = 100.0 / newSprite->height;
-			newSprite->position.x = (mouseY);
-			newSprite->position.y = (mouseY);
+			newSprite->position.x = (mouseX) - newSprite->globalW;
+			newSprite->position.y = (mouseY) - newSprite->globalH;
 			clickedSprite = newSprite;
 			activeScene->foreground->addChild(clickedSprite);
 
@@ -106,8 +106,9 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 		initialClick = false;
 	} else if(mousePressedDown) {
 		if (clickedSprite != NULL) {
-			clickedSprite->position.x += 2* (mouseX - prevMouseX);
-			clickedSprite->position.y += 2 * (mouseY - prevMouseY);
+			// cout << mouseX - prevMouseX << endl;
+			clickedSprite->position.x += 2 *(mouseMotionX / zoom);
+			clickedSprite->position.y += 2 *(mouseMotionY / zoom);
 		}
 	}
 
@@ -144,16 +145,16 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		cam->moveCameraBy(5, 0);
+		cam->moveCameraBy(GRID_SIZE, 0);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		cam->moveCameraBy(-5, 0);
+		cam->moveCameraBy(-GRID_SIZE, 0);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		cam->moveCameraBy(0, 5);
+		cam->moveCameraBy(0, GRID_SIZE);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		cam->moveCameraBy(0, -5);
+		cam->moveCameraBy(0, -GRID_SIZE);
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
