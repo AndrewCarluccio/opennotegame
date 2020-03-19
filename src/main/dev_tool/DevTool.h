@@ -4,6 +4,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <cmath>
+#include <thread>
+#include <mutex>
+
 #include "../engine/Game.h"
 #include "../engine/Sprite.h"
 #include "../engine/AnimatedSprite.h"
@@ -11,7 +15,10 @@
 #include "../engine/Camera.h"
 #include "../engine/Sound.h"
 #include "../engine/dev_tool/SceneWriter.h"
-#include <cmath>
+
+#include "DevToolBar.h"
+#include "CommandLine.h"
+
 
 
 using namespace std;
@@ -20,8 +27,7 @@ class DevTool : public Game{
 
 public:
 	DevTool();
-
-	void commandLine();
+	
 	virtual ~DevTool();
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
@@ -42,6 +48,10 @@ private:
 	DisplayObject *clickedSprite;
 	int spriteCount = 0;
 	double zoom = 1;
+	// lock for scene since it is shared between threads
+	mutex scene_lock;
+	// allow command class to access private members
+	friend class CommandLine;
 };
 
 #endif

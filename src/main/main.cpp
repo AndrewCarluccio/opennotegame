@@ -3,7 +3,7 @@
 #include "../engine/DisplayObject.h"
 #include <iostream>
 #include "MyGame.h"
-#include "DevTool.h"
+#include "dev_tool/DevTool.h"
 
 #ifdef _WIN32
 #include <windows.h>
