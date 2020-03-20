@@ -48,20 +48,26 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 		if(mouseY < 100) {
 			int copyIndex = mouseX / 100;
 			DisplayObject *toCopy = bar->getChild(copyIndex);
-			Sprite* newSprite = new Sprite("sprite" + to_string(spriteCount), toCopy->imgPath);
-			spriteCount++;
-			// newSprite->scaleX = 100.0 / newSprite->width;
-			// newSprite->scaleY = 100.0 / newSprite->height;
-			newSprite->position.x = (mouseX) - newSprite->globalW;
-			newSprite->position.y = (mouseY) - newSprite->globalH;
-			clickedSprite = newSprite;
-			activeScene->foreground->addChild(clickedSprite);
-
+			if (toCopy != NULL) {
+				Sprite* newSprite = new Sprite("sprite" + to_string(spriteCount), toCopy->imgPath);
+				spriteCount++;
+				// newSprite->scaleX = 100.0 / newSprite->width;
+				// newSprite->scaleY = 100.0 / newSprite->height;
+				newSprite->position.x = (mouseX) - newSprite->globalW;
+				newSprite->position.y = (mouseY) - newSprite->globalH;
+				clickedSprite = newSprite;
+				activeScene->foreground->addChild(clickedSprite);
+			}
 		} else {
-			for (const auto& sprite: activeScene->foreground->children) {
-				// check if mouse is within the bounding box of the sprite
+			vector<DisplayObject*> *sprites = &activeScene->foreground->children;
+
+			for (int i = sprites->size() - 1; i >= 0; i--) {
+				DisplayObject *sprite = (*sprites)[i];
 				if (mouseWithinBounds(sprite, mouseX, mouseY)) {
 					clickedSprite = sprite;
+					// move the clicked sprite to the front
+					sprites->erase(sprites->begin() + i);
+					sprites->push_back(sprite);
 					break;
 				}
 			}

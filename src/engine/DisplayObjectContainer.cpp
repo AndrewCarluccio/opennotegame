@@ -67,7 +67,7 @@ int DisplayObjectContainer::numChildren() {
 }
 
 DisplayObject* DisplayObjectContainer::getChild(int index) {
-    if (index < 0 || index > numChildren()) {
+    if (index < 0 || index >= numChildren()) {
         return NULL;
     }
     else return children[index];

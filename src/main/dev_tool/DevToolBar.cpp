@@ -1,18 +1,68 @@
 #include "DevToolBar.h"
 
 DevToolBar::DevToolBar(): DisplayObjectContainer() {
-    vector<string> filenames = {"Jump_5.png", "Idle_2.png","Idle_15.png","Jump_3.png","Idle_5.png", "Jump_23.png", "Idle_2.png","Run_10.png","Jump_3.png","Walk_15.png", "Run_5.png", "Jump_2.png"};
-	for (int i = 0; i < filenames.size(); i++) {
-		Sprite *sprite = new Sprite("test" + to_string(i), "./resources/character/" + filenames[i]);
-		sprite->scaleX = 100.0 / sprite->width;
-		sprite->scaleY = 100.0 / sprite->height;
-		sprite->position.x = 100 * i;
-		this->addChild(sprite);
+
+	string path = "./resources/Sprites";
+    for (const auto & entry : fs::recursive_directory_iterator(path)) {
+		string file = entry.path();
+		if(file.substr( file.length() - 4 ) == ".png") {
+			filenames.push_back(file);
+		}
 	}
+	
+	updateChildren();
 
 }
 
+void DevToolBar::updateChildren() {
+	for (int i = 0; i < this->children.size(); i++) {
+		delete children[i];
+	}
+
+	this->children.clear();
+
+	for (int i = current_pos; i < min(current_pos + 12, (int)filenames.size()); i++) {
+		Sprite *sprite = new Sprite("test" + to_string(i), filenames[i]);
+		sprite->scaleX = 100.0 / sprite->width;
+		sprite->scaleY = 100.0 / sprite->height;
+		sprite->position.x = 100 * (i - current_pos);
+		this->addChild(sprite);
+	}
+	
+}
+
 void DevToolBar::update(set<SDL_Scancode> pressedKeys) {
+
+
+	// need these flags to check for single key presses
+	if(pressedKeys.find(SDL_SCANCODE_1) == pressedKeys.end()) {
+		prevClicked = true;
+	}
+
+	if(pressedKeys.find(SDL_SCANCODE_2) == pressedKeys.end()) {
+		nextClicked = true;
+	}
+
+	if(prevClicked && pressedKeys.find(SDL_SCANCODE_1) != pressedKeys.end()) {
+		if(current_pos - 12 >= 0) {
+			current_pos -= 12;
+			updateChildren();
+		}
+		prevClicked = false;
+	}
+
+	
+	if(nextClicked && pressedKeys.find(SDL_SCANCODE_2) != pressedKeys.end()) {
+		if (current_pos + 12 < filenames.size()) {
+			current_pos += 12;
+			updateChildren();
+		}
+		nextClicked = false;
+	}
+
+
+
+
     DisplayObjectContainer::update(pressedKeys);
 }
 
