@@ -1,15 +1,14 @@
 #include "DevToolBar.h"
 
 DevToolBar::DevToolBar(): DisplayObjectContainer() {
-
-	string path = "./resources/Sprites";
-    for (const auto & entry : fs::recursive_directory_iterator(path)) {
-		string file = entry.path();
-		if(file.substr( file.length() - 4 ) == ".png") {
+	// load resources.txt file to figure out filepaths of sprites
+	std::ifstream in("resources.txt");
+	std::string file;
+	while (std::getline(in, file))
+	{
+		if(file.size() > 0)
 			filenames.push_back(file);
-		}
 	}
-	
 	updateChildren();
 
 }

@@ -5,13 +5,11 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <cmath>
-#include <experimental/filesystem>
 
 #include "../engine/DisplayObjectContainer.h"
 #include "../engine/Sprite.h"
 
 using namespace std;
-namespace fs = std::experimental::filesystem;
 
 class DevToolBar: public DisplayObjectContainer {
     public:
