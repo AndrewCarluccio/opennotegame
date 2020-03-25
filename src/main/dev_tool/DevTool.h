@@ -46,6 +46,7 @@ private:
 	bool show1 = true;
 	DisplayObjectContainer *bar;
 	DisplayObject *clickedSprite;
+	DisplayObjectContainer *selectedLayer;
 	int spriteCount = 0;
 	double zoom = 1;
 	// lock for scene since it is shared between threads

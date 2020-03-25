@@ -30,10 +30,12 @@ KEYBOARD CONTROLS
 TERMINAL COMMANDS (type the command into the terminal while the dev tool is running)
 -Load Scene: "load", then the name of the json file when prompted
 -Save Scene: "save", then the name of the json file when prompted
+-Updating ID of selected Sprite: "id" , then the new id when prompted (useful for when you want to refer to that sprite later on)
+-Changing layer: "layer fg", "layer mg", or "layer bg": (changes which layer new sprites will be added to, foreground, midground,
+or background
+
 
 TBD:
--editing id of Sprites
--deleting sprites
 -rotating sprites
 -adding animations
 -specifiying parent/child relationships

@@ -11,6 +11,8 @@
 
 using namespace std;
 
+class DisplayObjectContainer;
+
 class DisplayObject{
 
 public:
@@ -19,7 +21,7 @@ public:
 	int red, green, blue;
 	string type = "DisplayObject";
 
-	DisplayObject* parent = NULL;
+	DisplayObjectContainer* parent = NULL;
 
 	bool isRGB = false;
 

@@ -9,12 +9,13 @@ DevTool::DevTool() : Game(1200, 1000) {
 	bar = new DevToolBar();
 	
 	cam = new Camera(1200, 1000);
-	cam->setBounds(1000, 1000, 1000, 1000);
+	cam->setBounds(10000, 10000, 10000, 10000);
 	cam->setZoom(zoom);
 
 	scene = new Scene();
 
 	scene->loadScene("./resources/Scenes/empty.json");
+
 
 	CommandLine *cmdLine = new CommandLine(this);
 
@@ -24,6 +25,7 @@ DevTool::DevTool() : Game(1200, 1000) {
 	scene_lock.lock();
 	activeScene = scene;
 	activeScene->root->position.y = 100;
+	selectedLayer = activeScene->foreground;
 	scene_lock.unlock();
 }
 
@@ -56,20 +58,25 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 				newSprite->position.x = (mouseX) - newSprite->globalW;
 				newSprite->position.y = (mouseY) - newSprite->globalH;
 				clickedSprite = newSprite;
-				activeScene->foreground->addChild(clickedSprite);
+				selectedLayer->addChild(clickedSprite);
 			}
 		} else {
-			vector<DisplayObject*> *sprites = &activeScene->foreground->children;
 
-			for (int i = sprites->size() - 1; i >= 0; i--) {
-				DisplayObject *sprite = (*sprites)[i];
+			vector<DisplayObject*> sprites (selectedLayer->children);
+			while (!sprites.empty()) {
+				DisplayObjectContainer *sprite = (DisplayObjectContainer*)(sprites.back());
+				sprites.pop_back();
 				if (mouseWithinBounds(sprite, mouseX, mouseY)) {
+					sprite->parent->moveChildToFront(sprite->id);
 					clickedSprite = sprite;
-					// move the clicked sprite to the front
-					sprites->erase(sprites->begin() + i);
-					sprites->push_back(sprite);
 					break;
+				} else {
+					if(!sprite->children.empty()) {
+						sprites.insert(sprites.end(), sprite->children.begin(), sprite->children.end());
+
+					}
 				}
+
 			}
 		}
 
@@ -144,8 +151,7 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	// delete selected sprite
 	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
 		if (clickedSprite != NULL) {
-			DisplayObjectContainer *selectedLayer = activeScene->foreground;
-			selectedLayer->removeImmediateChild(clickedSprite->id);
+			selectedLayer->removeChild(clickedSprite->id);
 			clickedSprite = NULL;
 		}
 	}

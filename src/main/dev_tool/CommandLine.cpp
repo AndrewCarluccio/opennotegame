@@ -15,6 +15,8 @@ void CommandLine::run() {
 			save();
 		} else if (command == "id") {
 			updateId();
+		} else if (command == "layer") {
+			updateLayer();
 		}
 	}
 }
@@ -28,6 +30,7 @@ void CommandLine::load() {
 	instance->activeScene = new Scene();
 	instance->activeScene->loadScene("./resources/Scenes/" + filename);
 	instance->activeScene->root->position.y = 100;
+	instance->selectedLayer = instance->activeScene->foreground;
 	instance->scene_lock.unlock();
 }
 
@@ -47,6 +50,20 @@ void CommandLine::updateId() {
 		cin >> newId;
 		instance->clickedSprite->id = newId;
 	} else {
+		cout << "No sprite selected" << endl;
+	}
+}
 
+void CommandLine::updateLayer() {
+	string newLayer;
+	cin >> newLayer;
+	if (newLayer == "fg") {
+		instance->selectedLayer = instance->activeScene->foreground;
+	} else if (newLayer == "mg") {
+		instance->selectedLayer = instance->activeScene->midground;
+	} else if (newLayer == "bg") {
+		instance->selectedLayer = instance->activeScene->background;
+	} else {
+		cout << "invalid syntax. layer [fg mg bg]" << endl;
 	}
 }

@@ -19,7 +19,20 @@
             "rotation": 0.0,
             "alpha": 255,
             "sprite_file_path": "",
-            "children": []
+            "children": [
+                {
+                    "node_id": "sprite0",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 75,
+                    "locationY": -300,
+                    "scaleX": 1.0,
+                    "scaleY": 0.98,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/room_one/skyscraepers.png",
+                    "children": []
+                }
+            ]
         },
         {
             "node_id": "Midground",
@@ -31,7 +44,20 @@
             "rotation": 0.0,
             "alpha": 255,
             "sprite_file_path": "",
-            "children": []
+            "children": [
+                {
+                    "node_id": "sprite3",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 475,
+                    "locationY": 675,
+                    "scaleX": 0.9199999999999999,
+                    "scaleY": 0.9299999999999999,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/room_one/car.png",
+                    "children": []
+                }
+            ]
         },
         {
             "node_id": "Foreground",
@@ -45,36 +71,12 @@
             "sprite_file_path": "",
             "children": [
                 {
-                    "node_id": "sprite1",
-                    "type_id": "AnimatedSprite",
-                    "locationX": 775,
-                    "locationY": 250,
-                    "scaleX": 0.7399999999999998,
-                    "scaleY": 0.7899999999999998,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/Sprites/character/Jump_16.png",
-                    "children": []
-                },
-                {
                     "node_id": "sprite2",
                     "type_id": "AnimatedSprite",
-                    "locationX": 0,
-                    "locationY": 450,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/Sprites/room_one/skyscraepers.png",
-                    "children": []
-                },
-                {
-                    "node_id": "player",
-                    "type_id": "AnimatedSprite",
-                    "locationX": 250,
-                    "locationY": 1000,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
+                    "locationX": 125,
+                    "locationY": 475,
+                    "scaleX": 0.98,
+                    "scaleY": 0.99,
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/Sprites/character/Idle_10.png",

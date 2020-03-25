@@ -133,9 +133,10 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	float scale_y = animatedSpriteInfo["scaleY"].GetFloat();
 	float rotation = animatedSpriteInfo["rotation"].GetFloat();
 	int alpha = animatedSpriteInfo["alpha"].GetInt();
+	string path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
 
 
-	AnimatedSprite* the_obj = new AnimatedSprite(node_id);
+	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
 
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;

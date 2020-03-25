@@ -19,6 +19,7 @@ class CommandLine {
         void load();
         void save();
         void updateId();
+        void updateLayer();
 };
 
 #endif

@@ -46,7 +46,7 @@
             "children": [
                 {
                     "node_id": "player",
-                    "type_id": "Sprite",
+                    "type_id": "AnimatedSprite",
                     "locationX": 250,
                     "locationY": 100,
                     "scaleX": 1.0,
