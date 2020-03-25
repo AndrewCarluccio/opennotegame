@@ -45,6 +45,7 @@ void DisplayObjectContainer::removeImmediateChild(string id) {
             // delete the child
             delete children[i];
             children.erase(children.begin() + i);
+            break;
         }
     }
 }

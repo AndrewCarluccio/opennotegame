@@ -14,7 +14,7 @@ DevTool::DevTool() : Game(1200, 1000) {
 
 	scene = new Scene();
 
-	scene->loadScene("./resources/Scenes/camera_demo.json");
+	scene->loadScene("./resources/Scenes/empty.json");
 
 	CommandLine *cmdLine = new CommandLine(this);
 
@@ -139,6 +139,15 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 		zoom -= 0.01;
 		zoom = max(zoom, 0.1);
 		cam->setZoom(zoom);
+	}
+
+	// delete selected sprite
+	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			DisplayObjectContainer *selectedLayer = activeScene->foreground;
+			selectedLayer->removeImmediateChild(clickedSprite->id);
+			clickedSprite = NULL;
+		}
 	}
 
 
