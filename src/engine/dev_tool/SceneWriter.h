@@ -1,7 +1,8 @@
 #ifndef SCENE_WRITER_H
 #define SCENE_WRITER_H
 
-#include "Scene.h"
+//#include "Scene.h"
+#include "../Scene.h"
 #include <string>
 #include <iostream>
 #include "../../plugins/rapidjson/document.h"

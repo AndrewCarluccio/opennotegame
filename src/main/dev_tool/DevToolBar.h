@@ -5,9 +5,10 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
-#include "../engine/DisplayObjectContainer.h"
-#include "../engine/Sprite.h"
+#include "../../engine/DisplayObjectContainer.h"
+#include "../../engine/Sprite.h"
 
 using namespace std;
 

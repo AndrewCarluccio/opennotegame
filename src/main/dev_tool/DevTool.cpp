@@ -139,12 +139,12 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	// zooming in and out of scene using V and B
 	if (pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
 		zoom += 0.01;
-		zoom = min(zoom, 4.0);
+		zoom = std::min(zoom, 4.0);
 		cam->setZoom(zoom);
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_B) != pressedKeys.end()) {
 		zoom -= 0.01;
-		zoom = max(zoom, 0.1);
+		zoom = std::max(zoom, 0.1);
 		cam->setZoom(zoom);
 	}
 

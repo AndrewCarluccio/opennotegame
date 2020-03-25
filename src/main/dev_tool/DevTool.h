@@ -7,14 +7,15 @@
 #include <cmath>
 #include <thread>
 #include <mutex>
+#include <algorithm>
 
-#include "../engine/Game.h"
-#include "../engine/Sprite.h"
-#include "../engine/AnimatedSprite.h"
-#include "../engine/Scene.h"
-#include "../engine/Camera.h"
-#include "../engine/Sound.h"
-#include "../engine/dev_tool/SceneWriter.h"
+#include "../../engine/Game.h"
+#include "../../engine/Sprite.h"
+#include "../../engine/AnimatedSprite.h"
+#include "../../engine/Scene.h"
+#include "../../engine/Camera.h"
+#include "../../engine/Sound.h"
+#include "../../engine/dev_tool/SceneWriter.h"
 
 #include "DevToolBar.h"
 #include "CommandLine.h"

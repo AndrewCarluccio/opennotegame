@@ -1,8 +1,11 @@
 #ifndef COMMAND_LINE_H
 #define COMMAND_LINE_H
 
-#include "../engine/dev_tool/SceneWriter.h"
-#include "../engine/Scene.h"
+#include "../../engine/dev_tool/SceneWriter.h"
+#include "../../engine/Scene.h"
+
+#include "../../engine/dev_tool/SceneWriter.h"
+#include "../..//engine/Scene.h"
 
 #include "DevTool.h"
 
