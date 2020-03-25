@@ -49,7 +49,7 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 			int copyIndex = mouseX / 100;
 			DisplayObject *toCopy = bar->getChild(copyIndex);
 			if (toCopy != NULL) {
-				Sprite* newSprite = new Sprite("sprite" + to_string(spriteCount), toCopy->imgPath);
+				Sprite* newSprite = new AnimatedSprite("sprite" + to_string(spriteCount), toCopy->imgPath);
 				spriteCount++;
 				// newSprite->scaleX = 100.0 / newSprite->width;
 				// newSprite->scaleY = 100.0 / newSprite->height;

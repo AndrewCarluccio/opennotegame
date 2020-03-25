@@ -13,6 +13,8 @@ void CommandLine::run() {
 			load();
 		} else if (command == "save") {
 			save();
+		} else if (command == "id") {
+			updateId();
 		}
 	}
 }
@@ -35,4 +37,16 @@ void CommandLine::save() {
 	cin >> filename;
 	SceneWriter sw(instance->activeScene);
 	sw.saveScene("./resources/Scenes/" + filename);
+}
+
+void CommandLine::updateId() {
+	if (instance->clickedSprite != NULL) {
+		cout << "Old id: " << instance->clickedSprite->id << endl;
+		cout << "Type the new id of the selected sprite" << endl;
+		string newId;
+		cin >> newId;
+		instance->clickedSprite->id = newId;
+	} else {
+
+	}
 }

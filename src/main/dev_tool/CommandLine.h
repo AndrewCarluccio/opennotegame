@@ -18,6 +18,7 @@ class CommandLine {
         DevTool *instance;
         void load();
         void save();
+        void updateId();
 };
 
 #endif
