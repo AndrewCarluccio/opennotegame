@@ -119,6 +119,7 @@
     <ClCompile Include="src\engine\AffineTransform.cpp" />
     <ClCompile Include="src\engine\AnimatedSprite.cpp" />
     <ClCompile Include="src\engine\Camera.cpp" />
+    <ClCompile Include="src\engine\dev_tool\SceneWriter.cpp" />
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
     <ClCompile Include="src\engine\Event.cpp" />
@@ -134,6 +135,9 @@
     <ClCompile Include="src\engine\TweenListener.cpp" />
     <ClCompile Include="src\engine\TweenParam.cpp" />
     <ClCompile Include="src\engine\TweenTransition.cpp" />
+    <ClCompile Include="src\main\dev_tool\CommandLine.cpp" />
+    <ClCompile Include="src\main\dev_tool\DevTool.cpp" />
+    <ClCompile Include="src\main\dev_tool\DevToolBar.cpp" />
     <ClCompile Include="src\main\main.cpp" />
     <ClCompile Include="src\main\MyGame.cpp" />
   </ItemGroup>
@@ -141,6 +145,7 @@
     <ClInclude Include="src\engine\AffineTransform.h" />
     <ClInclude Include="src\engine\AnimatedSprite.h" />
     <ClInclude Include="src\engine\Camera.h" />
+    <ClInclude Include="src\engine\dev_tool\SceneWriter.h" />
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
     <ClInclude Include="src\engine\Event.h" />
@@ -157,6 +162,9 @@
     <ClInclude Include="src\engine\TweenListener.h" />
     <ClInclude Include="src\engine\TweenParam.h" />
     <ClInclude Include="src\engine\TweenTransition.h" />
+    <ClInclude Include="src\main\dev_tool\CommandLine.h" />
+    <ClInclude Include="src\main\dev_tool\DevTool.h" />
+    <ClInclude Include="src\main\dev_tool\DevToolBar.h" />
     <ClInclude Include="src\main\MyGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

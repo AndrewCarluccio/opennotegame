@@ -78,8 +78,34 @@ void Game::start() {
 		case SDL_KEYUP:
 			pressedKeys.erase(event.key.keysym.scancode);
 			break;
+		case SDL_MOUSEBUTTONDOWN:
+			// cout << "Mouse clicked!" << event.motion.x << ", " << event.motion.y << endl;
+			if(!mousePressedDown) {
+				initialClick = true;
+			}
+			mousePressedDown = true;
+			mouseX = event.motion.x;
+			mouseY = event.motion.y;
+			prevMouseX = mouseX;
+			prevMouseY = mouseY;
+			break;
+		case SDL_MOUSEBUTTONUP:
+			// cout << "Mouse released!" << endl;
+			if(mousePressedDown) {
+				initialRelease = true;
+			}
+			mousePressedDown = false;
+			break;
+		case SDL_MOUSEMOTION:
+			// cout << "Mouse position: " << event.motion.x << ", " << event.motion.y << endl;
+			prevMouseX = mouseX;
+			prevMouseY = mouseY;
+			mouseX = event.motion.x;
+			mouseY = event.motion.y;
+			mouseMotionX = event.motion.xrel;
+			mouseMotionY = event.motion.yrel;
+			break;
 		}
-
 	}
 }
 

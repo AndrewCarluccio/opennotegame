@@ -26,6 +26,16 @@ public:
 
 	//Global frame counter
 	static unsigned int frameCounter;
+	bool mousePressedDown = false;
+	bool initialClick = false;
+	bool initialRelease = false;
+	bool keyPressed = false;
+	int prevMouseX;
+	int prevMouseY;
+	int mouseX;
+	int mouseY;
+	int mouseMotionX;
+	int mouseMotionY;
 
 	Game(int windowWidth, int windowHeight);
 	virtual ~Game();

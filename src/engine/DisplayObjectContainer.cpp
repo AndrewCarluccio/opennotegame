@@ -45,6 +45,35 @@ void DisplayObjectContainer::removeImmediateChild(string id) {
             // delete the child
             delete children[i];
             children.erase(children.begin() + i);
+            break;
+        }
+    }
+}
+
+void DisplayObjectContainer::removeChild(string id) {
+    vector<DisplayObject *> objects (children);
+    while (!objects.empty()) {
+        DisplayObject *object = objects.back();
+        objects.pop_back();
+        if (object->id == id) {
+            object->parent->removeImmediateChild(id);
+        } else {
+            DisplayObjectContainer *obj = dynamic_cast<DisplayObjectContainer*>(object);
+            if(obj != NULL && !obj->children.empty()) {
+                objects.insert(objects.end(), obj->children.begin(), obj->children.end());
+            }
+        }
+    }
+
+}
+
+void DisplayObjectContainer::moveChildToFront(string id) {
+    for (int i = 0; i < children.size(); i++) {
+        if (children[i]->id == id) {
+            DisplayObject* child = children[i];
+            children.erase(children.begin() + i);
+            children.push_back(child);
+            break;
         }
     }
 }
@@ -67,7 +96,7 @@ int DisplayObjectContainer::numChildren() {
 }
 
 DisplayObject* DisplayObjectContainer::getChild(int index) {
-    if (index < 0 || index > numChildren()) {
+    if (index < 0 || index >= numChildren()) {
         return NULL;
     }
     else return children[index];

@@ -23,7 +23,9 @@ public:
 	void removeImmediateChild(DisplayObject* child);
 	void removeImmediateChild(string id);
 	void removeChild(int index);
+	void removeChild(string id);
 	void removeThis();
+	void moveChildToFront(string id);
 	
 	virtual int numChildren();
 	virtual DisplayObject* getChild(int index);

@@ -1,0 +1,49 @@
+{
+  "node_id": "Root",
+  "type_id": "DisplayObjectContainer",
+  "locationX": 0,
+  "locationY": 0,
+  "scaleX": 1,
+  "scaleY": 1,
+  "rotation": 0,
+  "alpha": 255,
+  "sprite_file_path": "",
+  "children": [
+    {
+      "node_id": "Background",
+      "type_id": "DisplayObjectContainer",
+      "locationX": 0,
+      "locationY": 0,
+      "scaleX": 1.0,
+      "scaleY": 1.0,
+      "rotation": 0,
+      "alpha": 255,
+      "sprite_file_path": "",
+      "children": []
+    },
+    {
+      "node_id": "Midground",
+      "type_id": "DisplayObjectContainer",
+      "locationX": 0,
+      "locationY": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "alpha": 255,
+      "sprite_file_path": "",
+      "children": []
+    },
+    {
+      "node_id": "Foreground",
+      "type_id": "DisplayObjectContainer",
+      "locationX": 0,
+      "locationY": 0,
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "alpha": 255,
+      "sprite_file_path": "",
+      "children": []
+    }
+  ]
+}

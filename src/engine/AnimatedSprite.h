@@ -29,6 +29,7 @@ public:
 	
 	AnimatedSprite();
 	AnimatedSprite(string id);
+	AnimatedSprite(string id, string filepath);
 	~AnimatedSprite();
 
 	void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop);

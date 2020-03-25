@@ -3,6 +3,7 @@
 #include "../engine/DisplayObject.h"
 #include <iostream>
 #include "MyGame.h"
+#include "dev_tool/DevTool.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -15,8 +16,11 @@
 
 int main(int argc, char** argv)
 {
-	MyGame* myGame = new MyGame();
+	// comment out one of the following to choose between normal run and dev tool
+	// MyGame* myGame = new MyGame();
+	DevTool* myGame = new DevTool();
 	myGame->start();
+	
 
 	delete myGame;
 	return 0;
@@ -34,7 +38,9 @@ WinMain(struct HINSTANCE__* hInstance,
 #else
 int main(int argc, char** argv)
 {
-	MyGame* myGame = new MyGame();
+	// comment out one of the following to choose between normal run and dev tool
+	// MyGame* myGame = new MyGame();
+	DevTool* myGame = new DevTool();
 	myGame->start();
 
 	delete myGame;
