@@ -33,6 +33,7 @@ private:
 	vector<string> transition_names;
 	vector<vector<int>> transition_metadata;
 	vector<vector<DisplayObjectContainer*>> transition_pairs;
+	void transitionScenes(int durr, DisplayObjectContainer* from_tree, DisplayObjectContainer* to_tree);
 };
 
 #endif

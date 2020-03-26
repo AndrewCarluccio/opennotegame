@@ -69,7 +69,7 @@ bool SceneManager::processPosition(int x, int y) {
 	return false;
 }
 
-void transitionScenes(int d, DisplayObjectContainer* from_tree, DisplayObjectContainer* to_tree) {
+void SceneManager::transitionScenes(int d, DisplayObjectContainer* from_tree, DisplayObjectContainer* to_tree) {
 
 
 }
