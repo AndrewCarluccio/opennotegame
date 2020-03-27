@@ -1,5 +1,8 @@
 resources/general_sprites/page_bg.png
 resources/general_sprites/character/idle.png
+resources/platforms/short1.PNG
+resources/platforms/med1.PNG
+resources/platforms/long1.PNG
 resources/general_sprites/coffee_stains/coffeestain1.png
 resources/general_sprites/coffee_stains/coffeestain2.png
 resources/general_sprites/coffee_stains/coffeestain3.png
