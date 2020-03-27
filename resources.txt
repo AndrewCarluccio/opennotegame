@@ -29,7 +29,7 @@ resources/area_1_sprites/levels/BOSS.PNG
 resources/area_1_sprites/enemies/boss/idle.png
 resources/area_1_sprites/enemies/cat/idle.png
 resources/area_1_sprites/enemies/schrodinger.png
-resources/area_1_sprites/objects/black_hole/black_hole.png
+resources/area_1_sprites/objects/black_hole/swirly_thing.png
 resources/area_1_sprites/objects/higgs_boson/higgsboson_1.png
 resources/area_1_sprites/objects/mirrors/tilt_left.PNG
 resources/area_1_sprites/objects/mirrors/tilt_right.PNG
