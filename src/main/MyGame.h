@@ -25,6 +25,10 @@ public:
 
 	Scene* scene;
 	DisplayObject* car;
+	DisplayObject* coin;
+	Player* myPlayer;
+
+	TweenJuggler* tweenJuggler;
 
 	Camera* cam;
 

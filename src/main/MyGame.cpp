@@ -15,7 +15,30 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	activeScene = scene;
 
-	cam = new Camera(600,500);
+	cam = new Camera(1200, 1000);
+	cam->setBounds(1000, 1000, 1000, 1000);
+	cam->setZoom(1);
+
+	myPlayer = new Player(scene->getChild("Car"));
+	
+	dispatch = new EventDispatcher();
+	//TweenListener* carTweenListen = new TweenListener();
+	coinExpandTween = new Tween(coin);
+
+	coinTweenListen = new TweenListener();
+
+	coinTweenListen->myTween = coinExpandTween;
+
+	dispatch->addEventListener(coinTweenListen,TweenEvent::TWEEN_END_EVENT);
+	tweenJuggler = new TweenJuggler(dispatch);
+
+	Tween* carEntryTween = new Tween(car);
+	carEntryTween->animate(TweenableParams::ALPHA, 0, 255, 2);
+
+	tweenJuggler->add(carEntryTween);
+
+	//sfx = new Sound();
+	//sfx->playMusic();
 }
 
 MyGame::~MyGame() {
@@ -23,22 +46,10 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		if (car->position.y > 5) {
-			car->position.y -= 5;
-			cam->moveCameraBy(0, 5);
-		}
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		car->position.x -= 5;
+	if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
 		cam->moveCameraBy(5, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) {
-		car->position.y += 5;
-		cam->moveCameraBy(0, -5);
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		car->position.x += 5;
+	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 		cam->moveCameraBy(-5, 0);
 	}
 
@@ -51,6 +62,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	
 	Game::update(pressedKeys);
 	activeScene->update(pressedKeys);
+	myPlayer->update(pressedKeys);
 }
 
 void MyGame::draw(AffineTransform& at) {
@@ -58,4 +70,5 @@ void MyGame::draw(AffineTransform& at) {
 	SDL_RenderClear(Game::renderer);
 	activeScene->draw(at,cam);
 	SDL_RenderPresent(Game::renderer);
+	// myPlayer->draw();
 }

@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include <vector>
 #include <set>
+#include "Player.h"
 
 using namespace std;
 
