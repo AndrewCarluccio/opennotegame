@@ -94,7 +94,8 @@ void DisplayObject::draw(AffineTransform &at){
 		globalRotation = calculateRotation(origin, upperRight);
 		
 		SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);	
+		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		drawHitbox();	
 	}
 
 	reverseTransformations(at);
@@ -130,4 +131,50 @@ double DisplayObject::calculateRotation(SDL_Point &origin, SDL_Point &p) {
 	double y = p.y - origin.y;
 	double x = p.x - origin.x;
 	return (atan2(y, x) * 180 / PI);
+}
+
+AffineTransform* DisplayObject::globalTransform() {
+	AffineTransform* at;
+	if(parent != NULL) {
+		at = parent->globalTransform();
+		at->translate(-parent->pivot.x, -parent->pivot.y);
+	}
+	else {
+		at = new AffineTransform();
+	}
+	applyTransformations(*at);
+	at->translate(-pivot.x, -pivot.y);
+	return at;
+}
+
+SDL_Rect DisplayObject::getHitbox() {
+	AffineTransform* at = globalTransform();
+
+	SDL_Point upperLeft = at->transformPoint(0, 0);
+	SDL_Point upperRight = at->transformPoint(width, 0);
+	SDL_Point lowerRight = at->transformPoint(width, height);
+	SDL_Point lowerLeft = at->transformPoint(0, height);
+
+	int x[] = {upperLeft.x, upperRight.x, lowerRight.x, lowerLeft.x};
+	int y[] = {upperLeft.y, upperRight.y, lowerRight.y, lowerLeft.y};
+
+	int min_x = *min_element(x, x+4);
+	int min_y = *min_element(y, y+4);
+
+	int max_x = *max_element(x, x+4);
+	int max_y = *max_element(y, y+4);
+
+	int w = max_x - min_x;
+	int h = max_y - min_y;
+
+	SDL_Rect hitbox = { min_x, min_y, w, h };
+	
+	return hitbox;
+}
+
+void DisplayObject::drawHitbox() {
+	SDL_Rect hitbox = getHitbox();
+	SDL_SetRenderDrawColor(Game::renderer, 0xFF, 0, 0, 0xFF);
+	SDL_RenderDrawRect(Game::renderer, &hitbox);
+	SDL_SetRenderDrawColor(Game::renderer, 0x00, 0, 0, 0xFF);
 }

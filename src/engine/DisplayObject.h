@@ -53,12 +53,17 @@ public:
 	double rotation = 0.0; // in radians
 	int alpha = 255;
 	bool facingRight = true;
+	int speedX = 0;
+	int speedY = 0;
 
 	// global coordinates that dictate where the sprite actually is on the screen
 	SDL_Point globalPos = {0, 0};
 	int globalW = width;
 	int globalH = height;
 	int globalRotation = rotation;
+	AffineTransform* globalTransform();
+	SDL_Rect getHitbox();
+	void drawHitbox();
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);

@@ -15,6 +15,7 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
+#include "../engine/CollisionSystem.h"
 
 
 using namespace std;
@@ -27,29 +28,19 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	//virtual void draw(AffineTransform& at, Camera* cam);
 
-	Scene* scene;
+	Scene *scene;
+
+	DisplayObject* parent;
+	DisplayObject* character;
 	DisplayObject* car;
-	DisplayObject* coin;
-
-	TweenJuggler* tweenJuggler;
 
 	Camera* cam;
 
-	Sound* sfx;
-
-	bool goUp = true;
-
-	EventDispatcher* dispatch;
-	TweenListener* coinTweenListen; 
-	Tween* coinExpandTween;
+	CollisionSystem* cs;
 
 private:
 	Scene* activeScene;
-	bool show1 = true;
-
-	bool collision = false;
 };
 
 #endif
