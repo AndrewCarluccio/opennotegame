@@ -40,8 +40,8 @@ void Tween::update() {
             double percentOfValue = tweenTransition->getResult(percentComplete);
             double newValue = (tp->getEndVal() - tp->getStartVal()) * percentOfValue + tp->getStartVal();
             this->setValue(tp->getParam(), newValue);
-            cout << "timeDiff " << elapsedTime << endl;
-            cout << "name " << this->tweenObject->id << " val " << newValue << endl;
+            //cout << "timeDiff " << elapsedTime << endl;
+            //cout << "name " << this->tweenObject->id << " val " << newValue << endl;
             iter++;
         }
         else {

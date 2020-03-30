@@ -58,7 +58,7 @@
             "sprite_file_path": "",
             "children": [
                 {
-                    "node_id": "sprite1",
+                    "node_id": "player",
                     "type_id": "AnimatedSprite",
                     "locationX": 75,
                     "locationY": 1250,
