@@ -58,8 +58,8 @@ private:
 	TweenJuggler* juggler;
 	EventDispatcher* dispatch;
 
-	TweenListener* listen_begin = new TweenListener();
-	TweenListener* listen_end = new TweenListener();
+	TweenListener* listen = new TweenListener();
+	//TweenListener* listen_end = new TweenListener();
 
 	int d = 0;
 	bool primed = false;

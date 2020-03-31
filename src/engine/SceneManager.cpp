@@ -6,8 +6,8 @@ SceneManager::SceneManager(TweenJuggler* jug, EventDispatcher* disp) {
 	juggler = jug;
 	dispatch = disp;
 
-	dispatch->addEventListener(listen_begin, TweenEvent::TWEEN_START_EVENT);
-	dispatch->addEventListener(listen_end, TweenEvent::TWEEN_END_EVENT);
+	dispatch->addEventListener(listen, TweenEvent::TWEEN_START_EVENT);
+	dispatch->addEventListener(listen, TweenEvent::TWEEN_END_EVENT);
 }
 
 //Adds a transition trigger to the manager
@@ -60,24 +60,22 @@ bool SceneManager::removeTransitionPoint(string name) {
 //Calls a scene transition if the provided position is within margin of any loaded transition
 //Return: true if transition triggered, false otherwise
 bool SceneManager::processPosition(int x, int y) {
-	if (listen_begin->occured) {
+	if (listen->started) {
 		cout << "Began fade" << endl;
-		if (listen_end->occured && !primed) {
+		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
 			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
 			active_scene = transition_scene;
 			active_scene->alpha = 0;
-			listen_begin->occured = false;
-			listen_end->occured = false;
+			listen->reset();
 			transitionIn(d / 2, active_scene);
 			primed = true;
 			cout << "Swapped pointer" << endl;
 		}
-		else if(listen_end->occured && primed) {
+		else if(listen->ended && primed) {
 			cout << "Ended final fade" << endl;
 			//after we fade back up, reset listeners and primer
-			listen_begin->occured = false;
-			listen_end->occured = false;
+			listen->reset();
 			primed = false;
 		}
 	}
@@ -104,28 +102,38 @@ bool SceneManager::processPosition(int x, int y) {
 
 void SceneManager::transitionOut(int d, Scene* from_tree) {
 	//Set up tweens and listeners
-	Tween* tree = new Tween(from_tree);
-	listen_begin->myTween = tree;
-	listen_end->myTween = tree;
+	Tween* tree = new Tween(from_tree->foreground);
+	SDL_Point pv;
+	pv.x = from_tree->foreground->width / 2.0;
+	pv.x = from_tree->foreground->height / 2.0;
+	from_tree->foreground->pivot = pv;
+	listen->myTween = tree;
+	//listen_end->myTween = tree;
 	
 
 	//Add the fade down event to the tree
-	tree->animate(TweenableParams::ALPHA, 0, 255, 2);
+	//tree->animate(TweenableParams::ALPHA, 1, 0, d);
+	tree->animate(TweenableParams::SCALE_X, 1, 0, d);
+	tree->animate(TweenableParams::SCALE_Y, 1, 0, d);
+	//tree->animate(TweenableParams::ROTATION, 0, 100, 2);
 	juggler->add(tree);
-
 	
 }
 
 
 void SceneManager::transitionIn(int d, Scene* to_tree) {
 	//Set up tweens and listeners
-	Tween* tree = new Tween(to_tree);
-	listen_begin->myTween = tree;
-	listen_end->myTween = tree;
-	
+	Tween* tree = new Tween(to_tree->foreground);
+	listen->myTween = tree;
+	SDL_Point pv;
+	pv.x = to_tree->foreground->width / 2.0;
+	pv.x = to_tree->foreground->height / 2.0;
+	to_tree->foreground->pivot = pv;
 
 	//Add the fade up event to the tree
-	tree->animate(TweenableParams::ALPHA, 0, 255, 2);
+	//tree->animate(TweenableParams::ALPHA, 0, 1, d);
+	tree->animate(TweenableParams::SCALE_X, 0, 1, d);
+	tree->animate(TweenableParams::SCALE_Y, 0, 1, d);
 	juggler->add(tree);
 
 }
