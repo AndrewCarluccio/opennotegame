@@ -84,8 +84,12 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	} else if(mousePressedDown) {
 		if (clickedSprite != NULL) {
 			// cout << mouseX - prevMouseX << endl;
-			clickedSprite->position.x += 2 *(mouseMotionX / zoom);
-			clickedSprite->position.y += 2 *(mouseMotionY / zoom);
+			if (abs(mouseMotionX) >= 2) {
+				clickedSprite->position.x += 2 *(mouseMotionX / zoom);
+			}
+			if (abs(mouseMotionY) >= 2) {
+				clickedSprite->position.y += 2 *(mouseMotionY / zoom);
+			}
 		}
 	}
 
