@@ -3,7 +3,7 @@
 
 #include "DisplayObject.h"
 #include "DisplayObjectContainer.h"
-#include "Sprite.h"
+#include "DisplayObjectEvent.h"
 #include "EventListener.h"
 #include "Event.h"
 
@@ -39,8 +39,9 @@ public:
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
 	
 private:
+	vector<DisplayObject*> collidables;
+	vector<pair<string, string>> collision_pairs;
 
-	
 };
 
 #endif

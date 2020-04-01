@@ -17,7 +17,6 @@
 #include "../engine/Tween.h"
 #include "../engine/CollisionSystem.h"
 
-
 using namespace std;
 
 class MyGame : public Game{
@@ -31,6 +30,7 @@ public:
 
 	Scene *scene;
 
+	DisplayObjectContainer* root;
 	DisplayObject* parent;
 	DisplayObject* character;
 	DisplayObject* car;

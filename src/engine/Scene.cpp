@@ -191,7 +191,7 @@ void Scene::loadScene(string sceneFilePath) {
 	Document d;
 	d.ParseStream(json);
 	// cout << "IS OBJECT" << d.IsObject();
-	root = createDisplayObjectContainer(d);
+	//root = createDisplayObjectContainer(d);
 	createObject(d, root);
 
 	queue<DisplayObject*> objQueue;

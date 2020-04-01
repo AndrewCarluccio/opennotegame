@@ -178,3 +178,10 @@ void DisplayObject::drawHitbox() {
 	SDL_RenderDrawRect(Game::renderer, &hitbox);
 	SDL_SetRenderDrawColor(Game::renderer, 0x00, 0, 0, 0xFF);
 }
+
+DisplayObject* DisplayObject::getRoot() {
+	if(parent != NULL)
+		return parent->getRoot();
+	else
+		return this;
+}
