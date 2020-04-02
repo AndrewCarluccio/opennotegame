@@ -62,7 +62,21 @@ MyGame::MyGame() : Game(597, 791) {
 
 	player = scene_manager->active_scene->getChild("player");
 
-	scene_manager->addTransitionPoint("transition to 1.2", 995, -50, 50, 5, area1_1, area1_2);
+	scene_manager->addTransitionPoint("transition to 1.2", 995, -50, 50, 2, area1_1, area1_2);
+	scene_manager->addTransitionPoint("transition to 1.3", 165, 345, 50, 2, area1_2, area1_3);
+	scene_manager->addTransitionPoint("transition to 1.4", 475, 1260, 50, 2, area1_3, area1_4);
+	scene_manager->addTransitionPoint("transition to 1.5", 1005, 975, 50, 2, area1_4, area1_5);
+	scene_manager->addTransitionPoint("transition to 1.6", 1010, 1430, 50, 2, area1_5, area1_6);
+	scene_manager->addTransitionPoint("transition to 1.7", 765, 330, 50, 2, area1_6, area1_7);
+	scene_manager->addTransitionPoint("transition to 1.8", 910, 710, 50, 2, area1_7, area1_8);
+	scene_manager->addTransitionPoint("transition to 2.1", 625, -30, 50, 2, area1_8, area2_1);
+	scene_manager->addTransitionPoint("transition to 2.2", -50, 1280, 50, 2, area2_1, area2_2);
+	scene_manager->addTransitionPoint("transition to 2.3", -20, 1280, 50, 2, area2_2, area2_3);
+	scene_manager->addTransitionPoint("transition to 2.4", 995, -50, 50, 2, area2_3, area2_4);
+	scene_manager->addTransitionPoint("transition to 2.5", 995, -50, 50, 2, area2_4, area2_5);
+	scene_manager->addTransitionPoint("transition to 2.6", 20, 35, 50, 2, area2_5, area2_6);
+	scene_manager->addTransitionPoint("transition to 2.7", 995, -50, 50, 2, area2_6, area2_7);
+	scene_manager->addTransitionPoint("transition to 2.8", 1015, 1275, 50, 2, area2_7, area2_8);
 	
 }
 
@@ -94,8 +108,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	else if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}
-
+	
+	player = scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	scene_manager->processPosition(player->position.x, player->position.y);
+	
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);

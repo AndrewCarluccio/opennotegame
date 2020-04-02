@@ -62,6 +62,7 @@ bool SceneManager::removeTransitionPoint(string name) {
 bool SceneManager::processPosition(int x, int y) {
 	if (listen->started) {
 		cout << "Began fade" << endl;
+		cout << active_scene->foreground->alpha << endl;
 		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
 			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
@@ -103,18 +104,17 @@ bool SceneManager::processPosition(int x, int y) {
 void SceneManager::transitionOut(int d, Scene* from_tree) {
 	//Set up tweens and listeners
 	Tween* tree = new Tween(from_tree->foreground);
-	SDL_Point pv;
-	pv.x = from_tree->foreground->width / 2.0;
-	pv.x = from_tree->foreground->height / 2.0;
-	from_tree->foreground->pivot = pv;
+	
+	//from_tree->foreground->position.x = 597 / 2.0;
+	//from_tree->foreground->position.y = 791 / 2.0;
 	listen->myTween = tree;
 	//listen_end->myTween = tree;
 	
 
 	//Add the fade down event to the tree
-	//tree->animate(TweenableParams::ALPHA, 1, 0, d);
-	tree->animate(TweenableParams::SCALE_X, 1, 0, d);
-	tree->animate(TweenableParams::SCALE_Y, 1, 0, d);
+	tree->animate(TweenableParams::ALPHA, 255, 0, d);
+	//tree->animate(TweenableParams::SCALE_X, 1, 0, d);
+	//tree->animate(TweenableParams::SCALE_Y, 1, 0, d);
 	//tree->animate(TweenableParams::ROTATION, 0, 100, 2);
 	juggler->add(tree);
 	
@@ -125,15 +125,14 @@ void SceneManager::transitionIn(int d, Scene* to_tree) {
 	//Set up tweens and listeners
 	Tween* tree = new Tween(to_tree->foreground);
 	listen->myTween = tree;
-	SDL_Point pv;
-	pv.x = to_tree->foreground->width / 2.0;
-	pv.x = to_tree->foreground->height / 2.0;
-	to_tree->foreground->pivot = pv;
+	
+	//to_tree->foreground->position.x = 597 / 2.0;
+	//to_tree->foreground->position.y = 791 / 2.0;
 
 	//Add the fade up event to the tree
-	//tree->animate(TweenableParams::ALPHA, 0, 1, d);
-	tree->animate(TweenableParams::SCALE_X, 0, 1, d);
-	tree->animate(TweenableParams::SCALE_Y, 0, 1, d);
+	tree->animate(TweenableParams::ALPHA, 0, 255, d);
+	//tree->animate(TweenableParams::SCALE_X, 0, 1, d);
+	//tree->animate(TweenableParams::SCALE_Y, 0, 1, d);
 	juggler->add(tree);
 
 }

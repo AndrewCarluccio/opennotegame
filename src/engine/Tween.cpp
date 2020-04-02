@@ -69,11 +69,12 @@ void Tween::setValue(string param, double value){
     }
     else if (param == TweenableParams::ALPHA) {
         tweenObject->alpha = value;
+		//cout << tweenObject->alpha << " from Tween.cpp" <<tweenObject->id << endl;
     }
     else if (param == TweenableParams::ROTATION) {
         tweenObject->rotation = value;
     }
     else {
-        // invalid tweenable param
+		cout << "invalid param" << endl;
     }
 }

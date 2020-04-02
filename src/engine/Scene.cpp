@@ -207,9 +207,9 @@ DisplayObject* Scene::getChild(string id) {
 }
 
 void Scene::update(set<SDL_Scancode> pressedKeys) {
-	//background->update(pressedKeys);
-	//midground->update(pressedKeys);
-	//foreground->update(pressedKeys);
+	background->update(pressedKeys);
+	midground->update(pressedKeys);
+	foreground->update(pressedKeys);
 
 	DisplayObjectContainer::update(pressedKeys);
 	root->update(pressedKeys);

@@ -478,7 +478,7 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite93",
+                    "node_id": "player",
                     "type_id": "AnimatedSprite",
                     "locationX": 600,
                     "locationY": 1950,

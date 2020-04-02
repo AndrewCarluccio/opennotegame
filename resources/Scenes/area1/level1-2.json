@@ -24,7 +24,7 @@
                     "node_id": "sprite27",
                     "type_id": "AnimatedSprite",
                     "locationX": 0,
-                    "locationY": -25,
+                    "locationY": 300,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotation": 0.0,
