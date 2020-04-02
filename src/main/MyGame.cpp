@@ -6,42 +6,78 @@
 
 using namespace std;
 
-MyGame::MyGame() : Game(1200, 1000) {
-	//instance = this;
+MyGame::MyGame() : Game(597, 791) {
 
-	scene = new Scene();
-	scene->loadScene("./resources/Scenes/parallax_demo.json");
+	//yeah, I know. going to replace this with loading from disk durring transition, or maybe only from a particular level at a time
+	cout << "loading..." << endl;
 
-	car = scene->getChild("Car");
-	coin = scene->getChild("Coin");
+	area1_1 = new Scene();
+	area1_2 = new Scene();
+	area1_3 = new Scene();
+	area1_4 = new Scene();
+	area1_5 = new Scene();
+	area1_6 = new Scene();
+	area1_7 = new Scene();
+	area1_8 = new Scene();
 
-	coin->pivot.x = coin->getWidth() / 2;
-	coin->pivot.y = coin->getHeight() / 2;
+	area2_1 = new Scene();
+	area2_2 = new Scene();
+	area2_3 = new Scene();
+	area2_4 = new Scene();
+	area2_5 = new Scene();
+	area2_6 = new Scene();
+	area2_7 = new Scene();
+	area2_8 = new Scene();
 
-	activeScene = scene;
+	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
+	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
+	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
+	area1_4->loadScene("./resources/Scenes/area1/level1-4.json");
+	area1_5->loadScene("./resources/Scenes/area1/level1-5.json");
+	area1_6->loadScene("./resources/Scenes/area1/level1-6.json");
+	area1_7->loadScene("./resources/Scenes/area1/level1-7.json");
+	area1_8->loadScene("./resources/Scenes/area1/level1-8.json");
+	area2_1->loadScene("./resources/Scenes/area2/level2-1.json");
+	area2_2->loadScene("./resources/Scenes/area2/level2-2.json");
+	area2_3->loadScene("./resources/Scenes/area2/level2-3.json");
+	area2_4->loadScene("./resources/Scenes/area2/level2-4.json");
+	area2_5->loadScene("./resources/Scenes/area2/level2-5.json");
+	area2_6->loadScene("./resources/Scenes/area2/level2-6.json");
+	area2_7->loadScene("./resources/Scenes/area2/level2-7.json");
+	area2_8->loadScene("./resources/Scenes/area2/level2-8.json");
 
-	cam = new Camera(1200, 1000);
-	cam->setBounds(1000, 1000, 1000, 1000);
-	cam->setZoom(1);
+	cout << "loaded!" << endl;
+
+	cam = new Camera(1195, 1583);
+	cam->setBounds(10000, 10000, 10000, 10000);
+	cam->setZoom(0.5);
+
+	
 
 	dispatch = new EventDispatcher();
-	//TweenListener* carTweenListen = new TweenListener();
-	coinExpandTween = new Tween(coin);
-
-	coinTweenListen = new TweenListener();
-
-	coinTweenListen->myTween = coinExpandTween;
-
-	dispatch->addEventListener(coinTweenListen,TweenEvent::TWEEN_END_EVENT);
 	tweenJuggler = new TweenJuggler(dispatch);
+	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
-	Tween* carEntryTween = new Tween(car);
-	carEntryTween->animate(TweenableParams::ALPHA, 0, 255, 2);
+	scene_manager->active_scene = area1_1;
 
-	tweenJuggler->add(carEntryTween);
+	player = scene_manager->active_scene->getChild("player");
 
-	//sfx = new Sound();
-	//sfx->playMusic();
+	scene_manager->addTransitionPoint("transition to 1.2", 995, -50, 50, 2, area1_1, area1_2);
+	scene_manager->addTransitionPoint("transition to 1.3", 165, 345, 50, 2, area1_2, area1_3);
+	scene_manager->addTransitionPoint("transition to 1.4", 475, 1260, 50, 2, area1_3, area1_4);
+	scene_manager->addTransitionPoint("transition to 1.5", 1005, 975, 50, 2, area1_4, area1_5);
+	scene_manager->addTransitionPoint("transition to 1.6", 1010, 1430, 50, 2, area1_5, area1_6);
+	scene_manager->addTransitionPoint("transition to 1.7", 765, 330, 50, 2, area1_6, area1_7);
+	scene_manager->addTransitionPoint("transition to 1.8", 910, 710, 50, 2, area1_7, area1_8);
+	scene_manager->addTransitionPoint("transition to 2.1", 625, -30, 50, 2, area1_8, area2_1);
+	scene_manager->addTransitionPoint("transition to 2.2", -50, 1280, 50, 2, area2_1, area2_2);
+	scene_manager->addTransitionPoint("transition to 2.3", -20, 1280, 50, 2, area2_2, area2_3);
+	scene_manager->addTransitionPoint("transition to 2.4", 995, -50, 50, 2, area2_3, area2_4);
+	scene_manager->addTransitionPoint("transition to 2.5", 995, -50, 50, 2, area2_4, area2_5);
+	scene_manager->addTransitionPoint("transition to 2.6", 20, 35, 50, 2, area2_5, area2_6);
+	scene_manager->addTransitionPoint("transition to 2.7", 995, -50, 50, 2, area2_6, area2_7);
+	scene_manager->addTransitionPoint("transition to 2.8", 1015, 1275, 50, 2, area2_7, area2_8);
+	
 }
 
 MyGame::~MyGame() {
@@ -49,46 +85,43 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		car->position.x -= 6;
-		cam->moveCameraBy(5, 0);
+	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
+		player->position.y -= 10;
+		//car->position.x -= 6;
+		//cam->moveCameraBy(5, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		car->position.x += 6;
-		cam->moveCameraBy(-5, 0);
+	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
+		player->position.x -= 10;
+		//car->position.x += 6;
+		//cam->moveCameraBy(-5, 0);
 	}
-
-	if (car->position.x > 1400) {
-		if (!collision) {
-			
-			coinExpandTween->animate(TweenableParams::SCALE_X, 0.1, 0.4, 2);
-			coinExpandTween->animate(TweenableParams::SCALE_Y, 0.1, 0.4, 2);
-
-			tweenJuggler->add(coinExpandTween);
-
-			collision = true;
-		}		
+	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
+		player->position.y += 10;
+		//car->position.x += 6;
+		//cam->moveCameraBy(-5, 0);
 	}
-
-	//Event handler gets Tween Finished event
-	if (coinTweenListen->occured) {
-		Tween* coinFadeTween = new Tween(coin);
-		coinFadeTween->animate(TweenableParams::ALPHA, 255, 0, 2);
-
-		tweenJuggler->add(coinFadeTween);
-		coinTweenListen->occured = false;
+	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
+		player->position.x += 10;
+		//car->position.x += 6;
+		//cam->moveCameraBy(-5, 0);
 	}
+	else if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
+		cout << player->position.x << " " << player->position.y << endl;
+	}
+	
+	player = scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
+	scene_manager->processPosition(player->position.x, player->position.y);
+	
 
 	tweenJuggler->nextFrame();
-	
 	Game::update(pressedKeys);
-	activeScene->update(pressedKeys);
+	scene_manager->active_scene->update(pressedKeys);
 }
 
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
-	activeScene->draw(at,cam,true);
+	scene_manager->active_scene->draw(at,cam,true);
 	//activeScene->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

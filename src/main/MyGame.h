@@ -15,6 +15,8 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
+#include "../engine/SceneManager.h"
+#include "../engine/Player.h"
 
 
 using namespace std;
@@ -29,27 +31,34 @@ public:
 	virtual void draw(AffineTransform &at);
 	//virtual void draw(AffineTransform& at, Camera* cam);
 
-	Scene* scene;
-	DisplayObject* car;
-	DisplayObject* coin;
+	Scene* area1_1;
+	Scene* area1_2;
+	Scene* area1_3;
+	Scene* area1_4;
+	Scene* area1_5;
+	Scene* area1_6;
+	Scene* area1_7;
+	Scene* area1_8;
+	Scene* area2_1;
+	Scene* area2_2;
+	Scene* area2_3;
+	Scene* area2_4;
+	Scene* area2_5;
+	Scene* area2_6;
+	Scene* area2_7;
+	Scene* area2_8;
+
 
 	TweenJuggler* tweenJuggler;
-
+	EventDispatcher* dispatch;
+	SceneManager* scene_manager;
 	Camera* cam;
 
-	Sound* sfx;
-
-	bool goUp = true;
-
-	EventDispatcher* dispatch;
-	TweenListener* coinTweenListen; 
-	Tween* coinExpandTween;
+	DisplayObject* player;
+	
 
 private:
-	Scene* activeScene;
-	bool show1 = true;
 
-	bool collision = false;
 };
 
 #endif
