@@ -23,6 +23,8 @@ KEYBOARD CONTROLS
 -Zoom in/out: v, b
 -Pan around scene: arrow keys
 -Scale selected sprite: W, A, S, D
+-Scale selected sprite (x and y locked): Q, E
+-Move Sprite with keyboard: I, J, K, L
 -Delete selected sprite: X
 -Page through sprites on the bar: 1, 2
 
