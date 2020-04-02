@@ -15,8 +15,8 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
-#include "../engine/character_programming/Player.h"
-#include "../engine/character_programming/controls.h"
+#include "../engine/Player.h"
+#include "../engine//controls.h"
 
 using namespace std;
 

@@ -2,8 +2,8 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "MyGame.h"
-#include "../engine/character_programming/Player.h"
-#include "../engine/character_programming/controls.h"
+#include "../engine/Player.h"
+#include "../engine/controls.h"
 
 
 using namespace std;
@@ -14,7 +14,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 	scene = new Scene();
 	scene->loadScene("./resources/Scenes/area1/level1-1.json");
 
-	player = scene->getChild("player");
+	player = (Player *) scene->getChild("player");
 	flag = scene->getChild("sprite64");
 
 	flag->pivot.x = flag->getWidth() / 2;
@@ -62,10 +62,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 
   */
-
-  	Player::update(pressedKeys);
-
-	
 	if (player->position.x > 1400) {
 		if (!collision) {
 			
@@ -91,6 +87,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	
 	Game::update(pressedKeys);
 	activeScene->update(pressedKeys);
+	player->update(pressedKeys);
 }
 
 void MyGame::draw(AffineTransform& at) {

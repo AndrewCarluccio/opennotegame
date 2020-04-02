@@ -69,7 +69,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	//Movement arrow keys
 	//Controls is a class we wrote that just checks the SDL Scancode values and game controller values in one check
-	if(c.holdRight()){
+	/*if(c.holdRight()){
 		this->position.x += 4;
 		this->flipH = false;
 		if(_standing){
@@ -83,6 +83,17 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			this->play("run");
 		}
 	}
+	*/
+
+  if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		this->position.x -= 6;
+		//cam->moveCameraBy(5, 0);
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+		this->position.x += 6;
+		//cam->moveCameraBy(-5, 0);
+	}
+
 	
 	
 	//play idle animation if player is just standing still on ground
@@ -118,6 +129,9 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	/* Actual falling depending on falling versus whether a jump occurred */
 	this->position.y += _yVel;
+
+
+	c.update(pressedKeys);
 }
 
 /*void Player::onEnemyCollision(Enemy* enemy){
