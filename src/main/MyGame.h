@@ -15,7 +15,8 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
-
+#include "../engine/character_programming/Player.h"
+#include "../engine/character_programming/controls.h"
 
 using namespace std;
 
@@ -30,8 +31,9 @@ public:
 	//virtual void draw(AffineTransform& at, Camera* cam);
 
 	Scene* scene;
-	DisplayObject* car;
-	DisplayObject* coin;
+  //DisplayObject* player;
+  Player* player;
+	DisplayObject* flag;
 
 	TweenJuggler* tweenJuggler;
 
@@ -42,8 +44,8 @@ public:
 	bool goUp = true;
 
 	EventDispatcher* dispatch;
-	TweenListener* coinTweenListen; 
-	Tween* coinExpandTween;
+	TweenListener* flagTweenListen; 
+	Tween* flagExpandTween;
 
 private:
 	Scene* activeScene;
