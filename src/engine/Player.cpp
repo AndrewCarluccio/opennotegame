@@ -21,10 +21,10 @@ Player::Player() : AnimatedSprite("Player"){
 	this->pivot.x = this->width / 2;
 	this->pivot.y = this->height / 2;
 
-	this->addAnimation("resources/character/", "Idle", 16, 4, true);
-	this->addAnimation("resources/character/", "Run", 20, 2, true);
-	this->addAnimation("resources/character/", "Jump", 30, 1, false);
-	this->play("Idle");
+	this->addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
+  this->addAnimation("resources/general_sprites/character/", "run", 8, 2, true);
+	this->addAnimation("resources/general_sprites/character/", "jump", 7, 1, false);
+	this->play("idle");
 }
 
 
@@ -73,21 +73,21 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		this->position.x += 4;
 		this->flipH = false;
 		if(_standing){
-			this->play("Run");
+			this->play("run");
 		}
 	}
 	else if (c.holdLeft()){
 		this->position.x -= 4;
 		this->flipH = true;
 		if(_standing){
-			this->play("Run");
+			this->play("run");
 		}
 	}
 	
 	
 	//play idle animation if player is just standing still on ground
 	if(_standing && !c.holdLeft() && !c.holdRight()) {
-		this->play("Idle");
+		this->play("idle");
 	}
 	
 
@@ -113,7 +113,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	if(_standing && c.pressJump()){
 		this->_yVel = _jumpVel;
 		_standing = false;
-		this->play("Jump");
+		this->play("jump");
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
