@@ -17,8 +17,10 @@
 int main(int argc, char** argv)
 {
 	// comment out one of the following to choose between normal run and dev tool
+
 	MyGame* myGame = new MyGame();
 	//DevTool* myGame = new DevTool();
+
 	myGame->start();
 	
 
@@ -40,9 +42,9 @@ int main(int argc, char** argv)
 {
 	// comment out one of the following to choose between normal run and dev tool
 	
-	MyGame* myGame = new MyGame();
+	// MyGame* myGame = new MyGame();
 
-	//DevTool* myGame = new DevTool();
+	DevTool* myGame = new DevTool();
 	myGame->start();
 
 	delete myGame;
