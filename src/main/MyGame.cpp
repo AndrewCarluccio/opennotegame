@@ -97,16 +97,6 @@ MyGame::MyGame() : Game(597, 791) {
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
 
-<<<<<<< HEAD
-	Tween* playerEntryTween = new Tween(player);
-  playerEntryTween->animate(TweenableParams::ALPHA, 0, 255, 2);
-
-	tweenJuggler->add(playerEntryTween);
-
-	//sfx = new Sound();
-	//sfx->playMusic();
-=======
->>>>>>> 6cf0f79dc173088bd5e02c107343dbaf4af2bb46
 }
 
 MyGame::~MyGame() {
@@ -114,52 +104,21 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-<<<<<<< HEAD
-  /*
-  if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		player->position.x -= 6;
-		//cam->moveCameraBy(5, 0);
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
-		player->position.x += 6;
-		//cam->moveCameraBy(-5, 0);
-	}
-
-  */
-	if (player->position.x > 1400) {
-		if (!collision) {
-			
-			flagExpandTween->animate(TweenableParams::SCALE_X, 0.1, 0.4, 2);
-			flagExpandTween->animate(TweenableParams::SCALE_Y, 0.1, 0.4, 2);
-
-			tweenJuggler->add(flagExpandTween);
-=======
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
 		player->position.y -= 10;
 
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
 		player->position.x -= 10;
->>>>>>> 6cf0f79dc173088bd5e02c107343dbaf4af2bb46
 
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
 		player->position.y += 10;
 
-<<<<<<< HEAD
-	//Event handler gets Tween Finished event
-	if (flagTweenListen->occured) {
-		Tween* flagFadeTween = new Tween(flag);
-		flagFadeTween->animate(TweenableParams::ALPHA, 255, 0, 2);
-
-		tweenJuggler->add(flagFadeTween);
-		flagTweenListen->occured = false;
-=======
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 		player->position.x += 10;
 
->>>>>>> 6cf0f79dc173088bd5e02c107343dbaf4af2bb46
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
@@ -174,12 +133,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
-<<<<<<< HEAD
-	activeScene->update(pressedKeys);
-	player->update(pressedKeys);
-=======
 	scene_manager->active_scene->update(pressedKeys);
->>>>>>> 6cf0f79dc173088bd5e02c107343dbaf4af2bb46
 }
 
 void MyGame::draw(AffineTransform& at) {
@@ -189,11 +143,3 @@ void MyGame::draw(AffineTransform& at) {
 	UserInterface->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }
-<<<<<<< HEAD
-  
-
-
-
-
-=======
->>>>>>> 6cf0f79dc173088bd5e02c107343dbaf4af2bb46

@@ -35,7 +35,7 @@ public:
 
 	Scene* scene;
   //DisplayObject* player;
-  Player* player;
+//   Player* player;
 	DisplayObject* flag;
 	Scene* area1_1;
 	Scene* area1_2;
@@ -56,7 +56,6 @@ public:
 
 
 	TweenJuggler* tweenJuggler;
-	EventDispatcher* dispatch;
 	SceneManager* scene_manager;
 	Camera* cam;
 

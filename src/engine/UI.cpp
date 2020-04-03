@@ -6,8 +6,7 @@
 
 using namespace std;
 
-UI::UI() {
-	Scene::Scene();
+UI::UI() : Scene() {
 	//Scene::root = new DisplayObjectContainer();
 }
 
