@@ -58,14 +58,14 @@ MyGame::MyGame() : Game(597, 791) {
 	tweenJuggler = new TweenJuggler(dispatch);
 	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
-	scene_manager->active_scene = area1_1;
+	scene_manager->active_scene = area2_5;
 
 	player = scene_manager->active_scene->getChild("player");
 
-	scene_manager->addTransitionPoint("transition to 1.2", 995, -50, 50, 2, area1_1, area1_2);
-	scene_manager->addTransitionPoint("transition to 1.3", 165, 345, 50, 2, area1_2, area1_3);
-	scene_manager->addTransitionPoint("transition to 1.4", 475, 1260, 50, 2, area1_3, area1_4);
-	scene_manager->addTransitionPoint("transition to 1.5", 1005, 975, 50, 2, area1_4, area1_5);
+	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
+	scene_manager->addTransitionPoint("transition to 1.3", 165, 45, 50, 2, area1_2, area1_3);
+	scene_manager->addTransitionPoint("transition to 1.4", 475, 1275, 50, 2, area1_3, area1_4);
+	scene_manager->addTransitionPoint("transition to 1.5", 1005, 950, 50, 2, area1_4, area1_5);
 	scene_manager->addTransitionPoint("transition to 1.6", 1010, 1430, 50, 2, area1_5, area1_6);
 
 	scene_manager->addTransitionPoint("transition to 1.7", 765, 330, 50, 2, area1_6, area1_7);
@@ -90,9 +90,11 @@ MyGame::MyGame() : Game(597, 791) {
 	scene_manager->addTransitionPoint("transition to 2.7", 875, 1075, 50, 2, area2_6, area2_7);
 	scene_manager->addTransitionPoint("transition to 2.8", 1040, 1325, 50, 2, area2_7, area2_8);
 
+
 	UserInterface = new UI();
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
+
 }
 
 MyGame::~MyGame() {
@@ -126,7 +128,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	
 	player = scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	scene_manager->processPosition(player->position.x, player->position.y);
-	
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
