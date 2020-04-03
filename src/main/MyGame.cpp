@@ -58,7 +58,7 @@ MyGame::MyGame() : Game(597, 791) {
 	tweenJuggler = new TweenJuggler(dispatch);
 	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
-	scene_manager->active_scene = area2_5;
+	scene_manager->active_scene = area1_1;
 
 	player = scene_manager->active_scene->getChild("player");
 
