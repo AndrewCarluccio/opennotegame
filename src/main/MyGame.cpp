@@ -62,7 +62,8 @@ MyGame::MyGame() : Game(597, 791) {
 
 	scene_manager->active_scene = area1_1;
 
-	player = scene_manager->active_scene->getChild("player");
+	player = (Player*)scene_manager->active_scene->getChild("player");
+	player->loadAnimations();
 
 	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
 	scene_manager->addTransitionPoint("transition to 1.3", 165, 45, 50, 2, area1_2, area1_3);
@@ -104,23 +105,7 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
-		player->position.y -= 10;
-
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
-		player->position.x -= 10;
-
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
-		player->position.y += 10;
-
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
-		player->position.x += 10;
-
-	}
-	else if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
+	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {
@@ -128,7 +113,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 	
 	
-	player = scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
+	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	scene_manager->processPosition(player->position.x, player->position.y);
 
 	tweenJuggler->nextFrame();

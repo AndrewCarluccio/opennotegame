@@ -5,6 +5,7 @@
 #include "DisplayObject.h"
 #include "AnimatedSprite.h"
 #include "Sprite.h"
+#include "Player.h"
 #include <string>
 #include <vector>
 #include <fstream>

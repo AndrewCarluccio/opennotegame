@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include "Sprite.h"
+#include "controls.h"
 
 using namespace std;
 
@@ -14,14 +15,8 @@ class Player : public AnimatedSprite{
 
 public:
 	Player();
-
-  	virtual void addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop);
-	Animation* getAnimation(string animName);
-
-	virtual void play(string animName);
-	virtual void replay();
-	virtual void stop();
-
+	Player(string id, string path);
+	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 
@@ -48,11 +43,12 @@ private:
 	int _jumpVel = -15;
 
 	/* Falling variables */
-	bool _standing = false;
+	bool _standing = true;
 	int _maxFall = 9;
 	int _yAcc = 2; //one pixel every two frames
 	int _yAccCount = 0;
 	int _yVel = 0;
+	Controls c;
 
 	void initIFrames(int numFrames);
 

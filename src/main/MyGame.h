@@ -59,7 +59,7 @@ public:
 	SceneManager* scene_manager;
 	Camera* cam;
 
-	DisplayObject* player;
+	Player* player;
 
 	EventDispatcher* dispatch;
 	TweenListener* flagTweenListen; 

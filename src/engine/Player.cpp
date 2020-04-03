@@ -8,39 +8,19 @@
 using namespace std;
 
 
-Player::Player() : AnimatedSprite("Player"){
+Player::Player(string id, string path) : AnimatedSprite(id, path){
 
 	this->type = "Player";
 	
-	this->position.x = 55;
-	this->position.y = 200;
-	this->width = 416;
-	this->height = 454;
-	this->scaleX = 0.15;
-	this->scaleY = 0.15;
-	this->pivot.x = this->width / 2;
-	this->pivot.y = this->height / 2;
-
-	this->addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
-  this->addAnimation("resources/general_sprites/character/", "run", 8, 2, true);
-	this->addAnimation("resources/general_sprites/character/", "jump", 7, 1, false);
-	this->play("idle");
 }
 
-
-void Player::addAnimation(string basepath, string animName, int numFrames, int frameRate, bool loop) {
+// careful to not do this in a loop, uses a lot of memory
+void Player::loadAnimations() {
+	addAnimation("resources/general_sprites/character/run/", "run", 8, 2, true);
+	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 2, false);
+	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
+	// play("jump");
 }
-Animation* Player::getAnimation(string animName) {
-}
-
-void Player::play(string animName) {
-}
-
-void Player::replay() {
-}
-void Player::stop() {
-}
-
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
@@ -62,7 +42,6 @@ void Player::onCollision(DisplayObject* other){
 
 
 void Player::update(set<SDL_Scancode> pressedKeys){
-  Controls c;
 	AnimatedSprite::update(pressedKeys);
 	oldY = this->position.y;
 	oldX = this->position.x;
@@ -98,7 +77,8 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	
 	//play idle animation if player is just standing still on ground
 	if(_standing && !c.holdLeft() && !c.holdRight()) {
-		this->play("idle");
+		// play("idle");
+	
 	}
 	
 
@@ -122,13 +102,13 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	/* Jumping */
 	if(_standing && c.pressJump()){
-		this->_yVel = _jumpVel;
-		_standing = false;
-		this->play("jump");
+		// this->_yVel = _jumpVel;
+		// _standing = false;
+		// cout << "should jump" << endl;
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
-	this->position.y += _yVel;
+	// this->position.y += _yVel;
 
 
 	c.update(pressedKeys);
