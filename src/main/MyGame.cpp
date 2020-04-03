@@ -67,6 +67,7 @@ MyGame::MyGame() : Game(597, 791) {
 	scene_manager->addTransitionPoint("transition to 1.4", 475, 1260, 50, 2, area1_3, area1_4);
 	scene_manager->addTransitionPoint("transition to 1.5", 1005, 975, 50, 2, area1_4, area1_5);
 	scene_manager->addTransitionPoint("transition to 1.6", 1010, 1430, 50, 2, area1_5, area1_6);
+
 	scene_manager->addTransitionPoint("transition to 1.7", 765, 330, 50, 2, area1_6, area1_7);
 	scene_manager->addTransitionPoint("transition to 1.8", 910, 710, 50, 2, area1_7, area1_8);
 	scene_manager->addTransitionPoint("transition to 2.1", 625, -30, 50, 2, area1_8, area2_1);
@@ -77,7 +78,21 @@ MyGame::MyGame() : Game(597, 791) {
 	scene_manager->addTransitionPoint("transition to 2.6", 20, 35, 50, 2, area2_5, area2_6);
 	scene_manager->addTransitionPoint("transition to 2.7", 995, -50, 50, 2, area2_6, area2_7);
 	scene_manager->addTransitionPoint("transition to 2.8", 1015, 1275, 50, 2, area2_7, area2_8);
-	
+
+	scene_manager->addTransitionPoint("transition to 1.7", 800, 50, 50, 2, area1_6, area1_7);
+	scene_manager->addTransitionPoint("transition to 1.8", 910, 85, 50, 2, area1_7, area1_8);
+	scene_manager->addTransitionPoint("transition to 2.1", 900, 0, 50, 2, area1_8, area2_1);
+	scene_manager->addTransitionPoint("transition to 2.2", -25, 1330, 50, 2, area2_1, area2_2);
+	scene_manager->addTransitionPoint("transition to 2.3", 30, 1350, 50, 2, area2_2, area2_3);
+	scene_manager->addTransitionPoint("transition to 2.4", 500, 275, 50, 2, area2_3, area2_4);
+	scene_manager->addTransitionPoint("transition to 2.5", 75, 1185, 50, 2, area2_4, area2_5);
+	scene_manager->addTransitionPoint("transition to 2.6", 70, 110, 50, 2, area2_5, area2_6);
+	scene_manager->addTransitionPoint("transition to 2.7", 875, 1075, 50, 2, area2_6, area2_7);
+	scene_manager->addTransitionPoint("transition to 2.8", 1040, 1325, 50, 2, area2_7, area2_8);
+
+	UserInterface = new UI();
+	UserInterface->loadInterface("./resources/UI/interface.json");
+	//scene_manager->active_scene->addChild(UserInterface);	
 }
 
 MyGame::~MyGame() {
@@ -87,27 +102,27 @@ MyGame::~MyGame() {
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
 		player->position.y -= 10;
-		//car->position.x -= 6;
-		//cam->moveCameraBy(5, 0);
+
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
 		player->position.x -= 10;
-		//car->position.x += 6;
-		//cam->moveCameraBy(-5, 0);
+
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
 		player->position.y += 10;
-		//car->position.x += 6;
-		//cam->moveCameraBy(-5, 0);
+
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 		player->position.x += 10;
-		//car->position.x += 6;
-		//cam->moveCameraBy(-5, 0);
+
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}
+	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {
+		UserInterface->setHealth(UserInterface->getHealth()-10); //we will poll player for this eventually
+	}
+	
 	
 	player = scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	scene_manager->processPosition(player->position.x, player->position.y);
@@ -122,6 +137,6 @@ void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
 	scene_manager->active_scene->draw(at,cam,true);
-	//activeScene->draw(at);
+	UserInterface->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

@@ -17,7 +17,7 @@
 #include "../engine/Tween.h"
 #include "../engine/SceneManager.h"
 #include "../engine/Player.h"
-
+#include "../engine/UI.h"
 
 using namespace std;
 
@@ -55,6 +55,8 @@ public:
 	Camera* cam;
 
 	DisplayObject* player;
+
+	UI* UserInterface;
 	
 
 private:
