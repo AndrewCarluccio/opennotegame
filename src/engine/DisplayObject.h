@@ -52,6 +52,7 @@ public:
 	double scaleY = 1.0;
 	double rotation = 0.0; // in radians
 	int alpha = 255;
+	int alpha_abs = 255;
 	bool facingRight = true;
 
 	// global coordinates that dictate where the sprite actually is on the screen

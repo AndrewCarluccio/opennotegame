@@ -105,24 +105,59 @@ void DevTool::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) {
 			// car->position.x -= 6;
 		if (clickedSprite != NULL) {
-			clickedSprite->scaleX += 0.01;
+			clickedSprite->scaleX += 0.0025;
 		}
 	}
 
 	else if (pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) {
 		if (clickedSprite != NULL) {
-			clickedSprite->scaleX -= 0.01;
+			clickedSprite->scaleX -= 0.0025;
 		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) {
 		if (clickedSprite != NULL) {
-			clickedSprite->scaleY += 0.01;
+			clickedSprite->scaleY += 0.0025;
 		}
 	}
 	else if (pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) {
 		if (clickedSprite != NULL) {
-			clickedSprite->scaleY -= 0.01;
+			clickedSprite->scaleY -= 0.0025;
+		}
+	}
+
+	// locked scaling with Q and E
+	if(pressedKeys.find(SDL_SCANCODE_Q) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleX -= 0.0025;
+			clickedSprite->scaleY -= 0.0025;
+		}
+	} else if(pressedKeys.find(SDL_SCANCODE_E) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->scaleX += 0.0025;
+			clickedSprite->scaleY += 0.0025;
+		}
+	}
+
+	// moving sprite with I, J, K, L
+	if (pressedKeys.find(SDL_SCANCODE_J) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->position.x -= 1;
+		}
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_L) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->position.x += 1;
+		}
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_I) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->position.y -= 1;
+		}
+	}
+	else if (pressedKeys.find(SDL_SCANCODE_K) != pressedKeys.end()) {
+		if (clickedSprite != NULL) {
+			clickedSprite->position.y += 1;
 		}
 	}
 

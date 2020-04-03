@@ -17,6 +17,9 @@
 #include "../engine/Tween.h"
 #include "../engine/Player.h"
 #include "../engine//controls.h"
+#include "../engine/SceneManager.h"
+#include "../engine/Player.h"
+#include "../engine/UI.h"
 
 using namespace std;
 
@@ -34,24 +37,39 @@ public:
   //DisplayObject* player;
   Player* player;
 	DisplayObject* flag;
+	Scene* area1_1;
+	Scene* area1_2;
+	Scene* area1_3;
+	Scene* area1_4;
+	Scene* area1_5;
+	Scene* area1_6;
+	Scene* area1_7;
+	Scene* area1_8;
+	Scene* area2_1;
+	Scene* area2_2;
+	Scene* area2_3;
+	Scene* area2_4;
+	Scene* area2_5;
+	Scene* area2_6;
+	Scene* area2_7;
+	Scene* area2_8;
+
 
 	TweenJuggler* tweenJuggler;
-
+	EventDispatcher* dispatch;
+	SceneManager* scene_manager;
 	Camera* cam;
 
-	Sound* sfx;
-
-	bool goUp = true;
+	DisplayObject* player;
 
 	EventDispatcher* dispatch;
 	TweenListener* flagTweenListen; 
 	Tween* flagExpandTween;
+	UI* UserInterface;
+	
 
 private:
-	Scene* activeScene;
-	bool show1 = true;
 
-	bool collision = false;
 };
 
 #endif
