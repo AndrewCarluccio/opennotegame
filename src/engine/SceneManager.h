@@ -45,6 +45,8 @@ public:
 	Scene* active_scene;
 	Scene* transition_scene;
 
+	DisplayObjectContainer* UI;
+
 
 
 private:
