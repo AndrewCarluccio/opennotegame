@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "controls.h"
 
+
 using namespace std;
 
 
@@ -24,6 +25,7 @@ void Player::loadAnimations() {
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
+
 /*
 void Player::onCollision(DisplayObject* other){
 	if(other->type == "Platform"){
@@ -39,6 +41,7 @@ void Player::onCollision(DisplayObject* other){
 
 }
 */
+
 
 
 void Player::update(set<SDL_Scancode> pressedKeys){
@@ -64,14 +67,22 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 	*/
 
-  if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+  	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
 		this->position.x -= 6;
 		//cam->moveCameraBy(5, 0);
 	}
-	else if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
+	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		this->position.x += 6;
 		//cam->moveCameraBy(-5, 0);
 	}
+
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
+		this->_yVel = _jumpVel;
+		this->position.y -= 6;
+		_standing = false;
+		//cam->moveCameraBy(-5, 0);
+	}
+
 
 	
 	
@@ -100,18 +111,20 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		if(_yVel > _maxFall) _yVel = _maxFall;
 	}
 
+
 	/* Jumping */
 	if(_standing && c.pressJump()){
-		// this->_yVel = _jumpVel;
-		// _standing = false;
+	//	this->_yVel = _jumpVel;
+	//	_standing = false;
 		// cout << "should jump" << endl;
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
-	// this->position.y += _yVel;
+	this->position.y += _yVel;
 
 
 	c.update(pressedKeys);
+
 }
 
 /*void Player::onEnemyCollision(Enemy* enemy){

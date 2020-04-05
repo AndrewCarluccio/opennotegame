@@ -14,6 +14,7 @@ using namespace std;
 class Player : public AnimatedSprite{
 
 public:
+
 	Player();
 	Player(string id, string path);
 	void loadAnimations();
@@ -35,6 +36,7 @@ public:
 	/* Current Enemy player is engaging with*/
 	//Enemy* curEnemy = NULL;
 
+
 private:
 
 	int oldX=0, oldY=0;
@@ -48,6 +50,9 @@ private:
 	int _yAcc = 2; //one pixel every two frames
 	int _yAccCount = 0;
 	int _yVel = 0;
+
+
+
 	Controls c;
 
 	void initIFrames(int numFrames);
