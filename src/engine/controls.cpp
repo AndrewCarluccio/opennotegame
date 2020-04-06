@@ -11,24 +11,19 @@ Controls::Controls() {
 }
      
 void Controls::update(set<SDL_Scancode> pressedKeys) {
-  for (SDL_Scancode key : pressedKeys) {
-    if (key == SDL_SCANCODE_LEFT || key == SDL_SCANCODE_A) { // or controller dpad left
-    	left = true; 
-	break;
+    if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) { // or controller dpad left
+    	holdLeft = true; 
     }
         
-    if (key == SDL_SCANCODE_RIGHT || key == SDL_SCANCODE_D) { // or controller dpad right
-      right = true;
-      break;
+    if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {  // or controller dpad right
+      holdRight = true;
     }
 
-    if (key == SDL_SCANCODE_UP || key == SDL_SCANCODE_SPACE) { // or controller key a
-      jump = true;
-      break;
+    if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) { // or controller key a
+      pressJump = true;
     }
-  }
 }
-
+/*
 bool Controls::holdLeft() {
   return left;
 }
@@ -41,3 +36,4 @@ bool Controls::pressJump() {
   return jump;
      
 }
+*/

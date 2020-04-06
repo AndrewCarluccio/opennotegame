@@ -51,8 +51,6 @@ private:
 	int _yAccCount = 0;
 	int _yVel = 0;
 
-
-
 	Controls c;
 
 	void initIFrames(int numFrames);

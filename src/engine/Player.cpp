@@ -17,7 +17,7 @@ Player::Player(string id, string path) : AnimatedSprite(id, path){
 
 // careful to not do this in a loop, uses a lot of memory
 void Player::loadAnimations() {
-	addAnimation("resources/general_sprites/character/run/", "run", 8, 2, true);
+	addAnimation("resources/general_sprites/character/run/", "run", 8, 4, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 2, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	// play("jump");
@@ -25,7 +25,6 @@ void Player::loadAnimations() {
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
-
 /*
 void Player::onCollision(DisplayObject* other){
 	if(other->type == "Platform"){
@@ -38,11 +37,8 @@ void Player::onCollision(DisplayObject* other){
 			this->onEnemyCollision((Enemy*)other);
 		}
 	}
-
 }
 */
-
-
 
 void Player::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
@@ -51,29 +47,42 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	//Movement arrow keys
 	//Controls is a class we wrote that just checks the SDL Scancode values and game controller values in one check
-	/*if(c.holdRight()){
+
+	
+	if(c.holdRight){
 		this->position.x += 4;
+		this->flipH = false;
+		c.holdRight = false;
+		if(this->current != getAnimation("run")){
+			this->play("run");
+		}
+	}
+
+	else if (c.holdLeft){
+		this->position.x -= 4;
+		this->flipH = true;
+		c.holdLeft = false;
+		if(this->current != getAnimation("run")){
+			this->play("run");
+		}
+	}
+	
+/*
+  	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
+		this->position.x -= 6;
 		this->flipH = false;
 		if(_standing){
 			this->play("run");
 		}
-	}
-	else if (c.holdLeft()){
-		this->position.x -= 4;
-		this->flipH = true;
-		if(_standing){
-			this->play("run");
-		}
-	}
-	*/
-
-  	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) {
-		this->position.x -= 6;
 		//cam->moveCameraBy(5, 0);
 	}
 	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {
 		this->position.x += 6;
+		this->flipH = true;
+		if(_standing){
+			this->play("run");
 		//cam->moveCameraBy(-5, 0);
+		}
 	}
 
 	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
@@ -82,13 +91,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		_standing = false;
 		//cam->moveCameraBy(-5, 0);
 	}
+	 */
 
 
 	
 	
 	//play idle animation if player is just standing still on ground
-	if(_standing && !c.holdLeft() && !c.holdRight()) {
-		// play("idle");
+	else if(_standing && !c.holdLeft && !c.holdRight) {
+		this->play("idle");
 	
 	}
 	
@@ -113,14 +123,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 
 	/* Jumping */
-	if(_standing && c.pressJump()){
+	if(_standing && c.pressJump){
 	//	this->_yVel = _jumpVel;
 	//	_standing = false;
 		// cout << "should jump" << endl;
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
-	this->position.y += _yVel;
+	//this->position.y += _yVel;
 
 
 	c.update(pressedKeys);
