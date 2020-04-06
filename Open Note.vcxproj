@@ -125,6 +125,7 @@
     <ClCompile Include="src\engine\Event.cpp" />
     <ClCompile Include="src\engine\EventDispatcher.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
+    <ClCompile Include="src\engine\Player.cpp" />
     <ClCompile Include="src\engine\Scene.cpp" />
     <ClCompile Include="src\engine\SceneManager.cpp" />
     <ClCompile Include="src\engine\Sound.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="src\engine\TweenListener.cpp" />
     <ClCompile Include="src\engine\TweenParam.cpp" />
     <ClCompile Include="src\engine\TweenTransition.cpp" />
+    <ClCompile Include="src\engine\UI.cpp" />
     <ClCompile Include="src\main\dev_tool\CommandLine.cpp" />
     <ClCompile Include="src\main\dev_tool\DevTool.cpp" />
     <ClCompile Include="src\main\dev_tool\DevToolBar.cpp" />
@@ -153,6 +155,7 @@
     <ClInclude Include="src\engine\EventDispatcher.h" />
     <ClInclude Include="src\engine\EventListener.h" />
     <ClInclude Include="src\engine\Game.h" />
+    <ClInclude Include="src\engine\Player.h" />
     <ClInclude Include="src\engine\Scene.h" />
     <ClInclude Include="src\engine\SceneManager.h" />
     <ClInclude Include="src\engine\Sound.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="src\engine\TweenListener.h" />
     <ClInclude Include="src\engine\TweenParam.h" />
     <ClInclude Include="src\engine\TweenTransition.h" />
+    <ClInclude Include="src\engine\UI.h" />
     <ClInclude Include="src\main\dev_tool\CommandLine.h" />
     <ClInclude Include="src\main\dev_tool\DevTool.h" />
     <ClInclude Include="src\main\dev_tool\DevToolBar.h" />
