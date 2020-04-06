@@ -28,11 +28,15 @@ DisplayObjectContainer::~DisplayObjectContainer() {
 void DisplayObjectContainer::addChild(DisplayObject* child) {
     children.push_back(child);
     child->parent = this; // make sure to include reverse reference also
+    DisplayObjectContainer* root = (DisplayObjectContainer*)getRoot();
+    root->dispatchEvent(new DisplayObjectEvent(DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT, root, child));
 }
 
 void DisplayObjectContainer::removeImmediateChild(DisplayObject* child) {
     for (int i = 0; i < children.size(); i++) {
         if (children[i] == child) {
+            DisplayObjectContainer* root = (DisplayObjectContainer*)getRoot();
+            root->dispatchEvent(new DisplayObjectEvent(DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT, root, child));
             delete child;
             children.erase(children.begin() + i);
         }
@@ -42,6 +46,8 @@ void DisplayObjectContainer::removeImmediateChild(DisplayObject* child) {
 void DisplayObjectContainer::removeImmediateChild(string id) {
     for (int i = 0; i < children.size(); i++) {
         if (children[i]->id == id) {
+            DisplayObjectContainer* root = (DisplayObjectContainer*)getRoot();
+            root->dispatchEvent(new DisplayObjectEvent(DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT, root, children[i]));
             // delete the child
             delete children[i];
             children.erase(children.begin() + i);

@@ -54,12 +54,17 @@ public:
 	int alpha = 255;
 	int alpha_abs = 255;
 	bool facingRight = true;
+	SDL_Point old_position = {0, 0};
 
 	// global coordinates that dictate where the sprite actually is on the screen
 	SDL_Point globalPos = {0, 0};
 	int globalW = width;
 	int globalH = height;
 	int globalRotation = rotation;
+	AffineTransform* globalTransform();
+	SDL_Rect getHitbox();
+	void drawHitbox();
+	DisplayObject* getRoot();
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);

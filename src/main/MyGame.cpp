@@ -97,7 +97,6 @@ MyGame::MyGame() : Game(597, 791) {
 	UserInterface = new UI();
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
-
 }
 
 MyGame::~MyGame() {
