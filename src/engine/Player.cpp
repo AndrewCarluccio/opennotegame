@@ -4,6 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
+#include "CollisionSystem.h"
 
 
 using namespace std;
@@ -17,7 +18,8 @@ Player::Player(string id, string path) : AnimatedSprite(id, path){
 
 // careful to not do this in a loop, uses a lot of memory
 void Player::loadAnimations() {
-	addAnimation("resources/general_sprites/character/run/", "run", 8, 4, true);
+	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 4, true);
+	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 4, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 2, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	// play("jump");
@@ -45,10 +47,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldY = this->position.y;
 	oldX = this->position.x;
 
-	//Movement arrow keys
-	//Controls is a class we wrote that just checks the SDL Scancode values and game controller values in one check
 
-	
 	if(c.holdRight){
 		this->position.x += 4;
 		this->flipH = false;
@@ -60,10 +59,10 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if (c.holdLeft){
 		this->position.x -= 4;
-		this->flipH = true;
+		//this->flipH = true;
 		c.holdLeft = false;
-		if(this->current != getAnimation("run")){
-			this->play("run");
+		if(this->current != getAnimation("run_l")){
+			this->play("run_l");
 		}
 	}
 	
