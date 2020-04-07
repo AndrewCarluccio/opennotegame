@@ -34,6 +34,7 @@ public:
 	virtual void draw(AffineTransform &at);
 
 	Scene* scene;
+	DisplayObjectContainer* root;
   //DisplayObject* player;
 //   Player* player;
 	DisplayObject* flag;

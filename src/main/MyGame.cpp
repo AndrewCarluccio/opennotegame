@@ -33,6 +33,10 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_7 = new Scene();
 	area2_8 = new Scene();
 
+	root = (DisplayObjectContainer*)area1_1->root;
+	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
+	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);
+
 	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -100,7 +104,7 @@ MyGame::MyGame() : Game(597, 791) {
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
 
-	cs->watchForCollisions("player", "sprite12");
+	cs->watchForCollisions("player", "sprite18");
 }
 
 MyGame::~MyGame() {
