@@ -23,7 +23,7 @@
                 {
                     "node_id": "sprite95",
                     "type_id": "AnimatedSprite",
-                    "locationX": 0,
+                    "locationX": -325,
                     "locationY": 0,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
@@ -60,7 +60,7 @@
                 {
                     "node_id": "sprite96",
                     "type_id": "AnimatedSprite",
-                    "locationX": 300,
+                    "locationX": -25,
                     "locationY": 25,
                     "scaleX": 0.2999999999999994,
                     "scaleY": 0.3299999999999994,
@@ -72,7 +72,7 @@
                 {
                     "node_id": "sprite97",
                     "type_id": "AnimatedSprite",
-                    "locationX": 825,
+                    "locationX": 500,
                     "locationY": 200,
                     "scaleX": 0.9099999999999999,
                     "scaleY": 1.0,
@@ -84,7 +84,7 @@
                 {
                     "node_id": "sprite98",
                     "type_id": "AnimatedSprite",
-                    "locationX": 0,
+                    "locationX": -325,
                     "locationY": 325,
                     "scaleX": 1.1600000000000002,
                     "scaleY": 1.0,
@@ -96,7 +96,7 @@
                 {
                     "node_id": "sprite99",
                     "type_id": "AnimatedSprite",
-                    "locationX": 675,
+                    "locationX": 350,
                     "locationY": 500,
                     "scaleX": 1.3000000000000003,
                     "scaleY": 1.0,
@@ -108,7 +108,7 @@
                 {
                     "node_id": "sprite100",
                     "type_id": "AnimatedSprite",
-                    "locationX": 0,
+                    "locationX": -325,
                     "locationY": 675,
                     "scaleX": 1.2100000000000002,
                     "scaleY": 1.0,
@@ -120,7 +120,7 @@
                 {
                     "node_id": "sprite101",
                     "type_id": "AnimatedSprite",
-                    "locationX": 725,
+                    "locationX": 400,
                     "locationY": 875,
                     "scaleX": 1.1600000000000002,
                     "scaleY": 1.0,
@@ -132,7 +132,7 @@
                 {
                     "node_id": "sprite103",
                     "type_id": "AnimatedSprite",
-                    "locationX": 0,
+                    "locationX": -325,
                     "locationY": 1375,
                     "scaleX": 1.2700000000000003,
                     "scaleY": 1.0,
@@ -144,7 +144,7 @@
                 {
                     "node_id": "sprite102",
                     "type_id": "AnimatedSprite",
-                    "locationX": -25,
+                    "locationX": -350,
                     "locationY": 1000,
                     "scaleX": 0.6499999999999997,
                     "scaleY": 1.0,
@@ -156,7 +156,7 @@
                 {
                     "node_id": "sprite104",
                     "type_id": "AnimatedSprite",
-                    "locationX": 750,
+                    "locationX": 425,
                     "locationY": 1225,
                     "scaleX": 1.1300000000000002,
                     "scaleY": 1.0,
@@ -166,9 +166,9 @@
                     "children": []
                 },
                 {
-                    "node_id": "player",
+                    "node_id": "sprite105",
                     "type_id": "AnimatedSprite",
-                    "locationX": 950,
+                    "locationX": 625,
                     "locationY": 950,
                     "scaleX": 0.10999999999999924,
                     "scaleY": 0.09999999999999924,
@@ -180,7 +180,7 @@
                 {
                     "node_id": "sprite106",
                     "type_id": "AnimatedSprite",
-                    "locationX": 100,
+                    "locationX": -225,
                     "locationY": 750,
                     "scaleX": 0.16999999999999927,
                     "scaleY": 0.2199999999999993,
@@ -192,7 +192,7 @@
                 {
                     "node_id": "sprite107",
                     "type_id": "AnimatedSprite",
-                    "locationX": 750,
+                    "locationX": 425,
                     "locationY": 1100,
                     "scaleX": 0.16999999999999927,
                     "scaleY": 0.1999999999999993,
@@ -204,7 +204,7 @@
                 {
                     "node_id": "sprite108",
                     "type_id": "AnimatedSprite",
-                    "locationX": -25,
+                    "locationX": -350,
                     "locationY": 600,
                     "scaleX": 0.2199999999999993,
                     "scaleY": 0.2199999999999993,
@@ -216,7 +216,7 @@
                 {
                     "node_id": "sprite109",
                     "type_id": "AnimatedSprite",
-                    "locationX": 700,
+                    "locationX": 475,
                     "locationY": -50,
                     "scaleX": 0.4299999999999995,
                     "scaleY": 0.4599999999999995,

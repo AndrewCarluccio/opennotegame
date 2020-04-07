@@ -40,8 +40,8 @@ void Tween::update() {
             double percentOfValue = tweenTransition->getResult(percentComplete);
             double newValue = (tp->getEndVal() - tp->getStartVal()) * percentOfValue + tp->getStartVal();
             this->setValue(tp->getParam(), newValue);
-            //cout << "timeDiff " << elapsedTime << endl;
-            //cout << "name " << this->tweenObject->id << " val " << newValue << endl;
+            // cout << "timeDiff " << elapsedTime << endl;
+            // cout << "name " << this->tweenObject->id << " val " << newValue << endl;
             iter++;
         }
         else {
@@ -69,12 +69,11 @@ void Tween::setValue(string param, double value){
     }
     else if (param == TweenableParams::ALPHA) {
         tweenObject->alpha = value;
-		//cout << tweenObject->alpha << " from Tween.cpp" <<tweenObject->id << endl;
     }
     else if (param == TweenableParams::ROTATION) {
         tweenObject->rotation = value;
     }
     else {
-		cout << "invalid param" << endl;
+        // invalid tweenable param
     }
 }

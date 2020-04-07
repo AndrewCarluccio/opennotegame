@@ -52,7 +52,6 @@ public:
 	double scaleY = 1.0;
 	double rotation = 0.0; // in radians
 	int alpha = 255;
-	int alpha_abs = 255;
 	bool facingRight = true;
 	SDL_Point old_position = {0, 0};
 

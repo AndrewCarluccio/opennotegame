@@ -11,11 +11,8 @@ using namespace std;
 class TweenListener : public EventListener {
 public:
     virtual void handleEvent(Event* event);
-    bool started = false;
-	bool ended = false;
+    bool occured = false;
     Tween* myTween = NULL;
-
-	void reset();
 };
 
 #endif

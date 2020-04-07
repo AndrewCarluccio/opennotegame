@@ -63,10 +63,7 @@ void DisplayObject::setTexture(SDL_Texture* t){
 }
 
 void DisplayObject::update(set<SDL_Scancode> pressedKeys){
-	if (this->parent != NULL) {
-		//this->alpha = 255 * ((this->parent->alpha / 255) * (this->alpha / 255));
-		//this->alpha = this->parent->alpha;
-	}
+	
 }
 
 void DisplayObject::draw(AffineTransform &at){
@@ -96,23 +93,9 @@ void DisplayObject::draw(AffineTransform &at){
 		globalH = h;
 		globalRotation = calculateRotation(origin, upperRight);
 		
-//collision_system
-		//SDL_SetTextureAlphaMod(curTexture, alpha);
-		//SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
-		//drawHitbox();	
-		//int alpha_tmp;
-		if (this->parent != NULL) {
-			//this->alpha = 255 * ((this->parent->alpha / 255) * (this->alpha / 255));
-			//this->alpha = this->parent->alpha;
-			SDL_SetTextureAlphaMod(curTexture, 255.0 * double(double(this->parent->alpha / 255.0) * double(this->alpha / 255.0)));
-			//cout << 255.0 * double(double(this->parent->alpha / 255.0) * double(this->alpha / 255.0)) << endl;
-		}
-		else {
-			SDL_SetTextureAlphaMod(curTexture, alpha);
-		}
-
-		//SDL_SetTextureAlphaMod(curTexture, alpha);
-		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);	
+		SDL_SetTextureAlphaMod(curTexture, alpha);
+		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);
+		drawHitbox();	
 	}
 
 	reverseTransformations(at);
