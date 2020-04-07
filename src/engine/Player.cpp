@@ -4,7 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
-#include "MyGame.h"
+#include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
 

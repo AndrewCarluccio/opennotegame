@@ -4,6 +4,7 @@
 #include "MyGame.h"
 #include "../engine/Player.h"
 #include "../engine/controls.h"
+#include "../engine/CollisionSystem.h"
 
 
 using namespace std;
@@ -99,7 +100,7 @@ MyGame::MyGame() : Game(597, 791) {
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
 
-	cs->watchForCollisions("AnimatedSprite", "AnimatedSprite");
+	cs->watchForCollisions("player", "sprite12");
 }
 
 MyGame::~MyGame() {
