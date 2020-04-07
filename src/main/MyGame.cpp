@@ -9,6 +9,7 @@
 using namespace std;
 
 MyGame::MyGame() : Game(597, 791) {
+	cs = new CollisionSystem();
 
 	//yeah, I know. going to replace this with loading from disk durring transition, or maybe only from a particular level at a time
 	cout << "loading..." << endl;
@@ -97,6 +98,8 @@ MyGame::MyGame() : Game(597, 791) {
 	UserInterface = new UI();
 	UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
+
+	cs->watchForCollisions("AnimatedSprite", "AnimatedSprite");
 }
 
 MyGame::~MyGame() {
@@ -118,6 +121,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
 	scene_manager->active_scene->update(pressedKeys);
+	cs->update();
 }
 
 void MyGame::draw(AffineTransform& at) {

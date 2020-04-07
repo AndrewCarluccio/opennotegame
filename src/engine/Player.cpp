@@ -4,6 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
+#include "MyGame.h"
 #include "CollisionSystem.h"
 
 
@@ -27,20 +28,22 @@ void Player::loadAnimations() {
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
-/*
+
 void Player::onCollision(DisplayObject* other){
-	if(other->type == "Platform"){
-		Game::instance->collisionSystem.resolveCollision(this, other, this->x - oldX, this->y - oldY);	
+	/*
+	if(other->type == "AnimatedSprite"){
+		MyGame::cs.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY);	
 		_yVel = 0;
 		_standing=true;
 	}
+	
 	else if(other->type == "Enemy"){
 		if(!this->iFrames){
 			this->onEnemyCollision((Enemy*)other);
 		}
-	}
+	}*/
 }
-*/
+
 
 void Player::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
@@ -83,6 +86,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		//cam->moveCameraBy(-5, 0);
 		}
 	}
+	*/
 
 	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
 		this->_yVel = _jumpVel;
@@ -90,7 +94,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		_standing = false;
 		//cam->moveCameraBy(-5, 0);
 	}
-	 */
+	 
 
 
 	
@@ -129,7 +133,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
-	//this->position.y += _yVel;
+	this->position.y += _yVel;
 
 
 	c.update(pressedKeys);

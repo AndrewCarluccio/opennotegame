@@ -22,7 +22,7 @@ public:
 	virtual void draw(AffineTransform &at);
 
   //void onEnemyCollision(Enemy* enemy);
-  //virtual void onCollision(DisplayObject* other);
+  virtual void onCollision(DisplayObject* other);
 
 	/* Health and such */
 	int health = 100;
