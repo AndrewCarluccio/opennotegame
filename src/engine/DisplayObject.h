@@ -6,6 +6,7 @@
 #include <set>
 #include "AffineTransform.h"
 #include "Camera.h"
+#include "Types.h"
 #include <string>
 #include <fstream>
 
@@ -20,6 +21,7 @@ public:
 	string imgPath = "";
 	int red, green, blue;
 	string type = "DisplayObject";
+	types::Type object_type = types::Type::Default;
 
 	DisplayObjectContainer* parent = NULL;
 
@@ -55,6 +57,13 @@ public:
 	int alpha_abs = 255;
 	bool facingRight = true;
 	SDL_Point old_position = {0, 0};
+	double oldScaleX = 1.0;
+	double oldScaleY = 1.0;
+	double oldRotation = 0.0;
+	bool collidable = false;
+	bool isDynamic = false;
+	double hitboxScaleX = 1.0;
+	double hitboxScaleY = 1.0;
 
 	// global coordinates that dictate where the sprite actually is on the screen
 	SDL_Point globalPos = {0, 0};
@@ -64,7 +73,9 @@ public:
 	AffineTransform* globalTransform();
 	SDL_Rect getHitbox();
 	void drawHitbox();
+	virtual void onCollision(DisplayObject* other);
 	DisplayObject* getRoot();
+	static bool compareByPosition(const DisplayObject* a, const DisplayObject* b);
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);

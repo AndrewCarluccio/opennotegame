@@ -113,6 +113,7 @@ void DisplayObject::draw(AffineTransform &at){
 
 		//SDL_SetTextureAlphaMod(curTexture, alpha);
 		SDL_RenderCopyEx(Game::renderer, curTexture, NULL, &dstrect, calculateRotation(origin, upperRight), &corner, flip);	
+		drawHitbox();
 	}
 
 	reverseTransformations(at);
@@ -184,7 +185,13 @@ SDL_Rect DisplayObject::getHitbox() {
 	int w = max_x - min_x;
 	int h = max_y - min_y;
 
-	SDL_Rect hitbox = { min_x, min_y, w, h };
+	int scaled_w = w * hitboxScaleX;
+	int scaled_h = h * hitboxScaleY;
+
+	min_x += (w - scaled_w) / 2;
+	min_y += (h - scaled_h) / 2;
+
+	SDL_Rect hitbox = { min_x, min_y, scaled_w, scaled_h };
 	
 	return hitbox;
 }
@@ -196,9 +203,19 @@ void DisplayObject::drawHitbox() {
 	SDL_SetRenderDrawColor(Game::renderer, 0x00, 0, 0, 0xFF);
 }
 
+void DisplayObject::onCollision(DisplayObject* other) {
+	Game::instance->collisionSystem.resolveCollision(this, other, 
+	  this->position.x - this->old_position.x, this->position.y - this->old_position.y,
+	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
+}
+
 DisplayObject* DisplayObject::getRoot() {
 	if(parent != NULL)
 		return parent->getRoot();
 	else
 		return this;
+}
+
+bool DisplayObject::compareByPosition(const DisplayObject* a, const DisplayObject* b) {
+	return (a->position.x < b->position.x);
 }
