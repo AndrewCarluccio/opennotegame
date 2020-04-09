@@ -20,7 +20,7 @@ MyGame::MyGame() : Game(1200, 1000) {
 
 	cam = new Camera(1200, 1000);
 	cam->setBounds(1000, 1000, 1000, 1000);
-	cam->setZoom(1);
+	cam->setZoom(0.5);
 
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
