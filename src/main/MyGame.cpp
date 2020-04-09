@@ -22,8 +22,8 @@ MyGame::MyGame() : Game(1200, 1000) {
 	cam->setBounds(1000, 1000, 1000, 1000);
 	cam->setZoom(1);
 
-	Game::instance->collisionSystem.watchForCollisions(Type::Platform, Type::Player);
-	Game::instance->collisionSystem.watchForCollisions(Type::Platform, Type::Enemy);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 }
 
 MyGame::~MyGame() {
@@ -142,7 +142,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
-	scene_manager->active_scene->draw(at,cam,true);
-	UserInterface->draw(at);
+	activeScene->draw(at,cam,true);
 	SDL_RenderPresent(Game::renderer);
 }

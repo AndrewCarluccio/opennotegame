@@ -91,7 +91,7 @@ void CollisionSystem::handleEvent(Event* e) {
 //This function asks the collision system to start checking for collisions between all pairs
 //of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 //against all platform objects that are in the current scene.
-void CollisionSystem::watchForCollisions(Type type1, Type type2) {
+void CollisionSystem::watchForCollisions(types::Type type1, types::Type type2) {
     collidable_pairs[type1][type2] = true;
     collidable_pairs[type2][type1] = true;
 }

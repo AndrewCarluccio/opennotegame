@@ -31,7 +31,7 @@ DisplayObjectContainer* createLayer(const Value& layerInfo) {
 	bool isDynamic = layerInfo["isDynamic"].GetBool();
 	float hitboxScaleX = layerInfo["hitboxScaleX"].GetFloat();
 	float hitboxScaleY = layerInfo["hitboxScaleY"].GetFloat();
-	::Type object_type = static_cast<::Type>(layerInfo["object_type"].GetInt());
+	types::Type object_type = static_cast<types::Type>(layerInfo["object_type"].GetInt());
 
 	/*
 	if (node_id == "Background") {
@@ -80,7 +80,7 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 	bool isDynamic = displayObjectInfo["isDynamic"].GetBool();
 	float hitboxScaleX = displayObjectInfo["hitboxScaleX"].GetFloat();
 	float hitboxScaleY = displayObjectInfo["hitboxScaleY"].GetFloat();
-	::Type object_type = static_cast<::Type>(displayObjectInfo["object_type"].GetInt());
+	types::Type object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
 
 	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
 
@@ -116,7 +116,7 @@ DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectC
 	bool isDynamic = displayObjectContainerInfo["isDynamic"].GetBool();
 	float hitboxScaleX = displayObjectContainerInfo["hitboxScaleX"].GetFloat();
 	float hitboxScaleY = displayObjectContainerInfo["hitboxScaleY"].GetFloat();
-	::Type object_type = static_cast<::Type>(displayObjectContainerInfo["object_type"].GetInt());
+	types::Type object_type = static_cast<types::Type>(displayObjectContainerInfo["object_type"].GetInt());
 
 	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
 
@@ -152,7 +152,7 @@ Sprite* createSprite(const Value& spriteInfo) {
 	bool isDynamic = spriteInfo["isDynamic"].GetBool();
 	float hitboxScaleX = spriteInfo["hitboxScaleX"].GetFloat();
 	float hitboxScaleY = spriteInfo["hitboxScaleY"].GetFloat();
-	::Type object_type = static_cast<::Type>(spriteInfo["object_type"].GetInt());
+	types::Type object_type = static_cast<types::Type>(spriteInfo["object_type"].GetInt());
 
 	Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
@@ -187,7 +187,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	bool isDynamic = animatedSpriteInfo["isDynamic"].GetBool();
 	float hitboxScaleX = animatedSpriteInfo["hitboxScaleX"].GetFloat();
 	float hitboxScaleY = animatedSpriteInfo["hitboxScaleY"].GetFloat();
-	::Type object_type = static_cast<::Type>(animatedSpriteInfo["object_type"].GetInt());
+	types::Type object_type = static_cast<types::Type>(animatedSpriteInfo["object_type"].GetInt());
 
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
 

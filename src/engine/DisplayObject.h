@@ -21,7 +21,7 @@ public:
 	string imgPath = "";
 	int red, green, blue;
 	string type = "DisplayObject";
-	Type object_type = Type::Default;
+	types::Type object_type = types::Type::Default;
 
 	DisplayObjectContainer* parent = NULL;
 

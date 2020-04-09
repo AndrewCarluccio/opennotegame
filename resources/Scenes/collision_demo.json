@@ -92,8 +92,8 @@
                         "sprite_file_path": "./resources/Scenes/room_one/car.png",
                         "collidable": true,
                         "isDynamic": true,
-                        "hitboxScaleX": 1.0,
-                        "hitboxScaleY": 2.0,
+                        "hitboxScaleX": 0.5,
+                        "hitboxScaleY": 0.5,
                         "object_type": 3,
                         "children": []
                     },

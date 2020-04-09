@@ -28,7 +28,7 @@ public:
 	//This function asks the collision system to start checking for collisions between all pairs
 	//of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 	//against all platform objects that are in the current scene.
-	void watchForCollisions(Type type1, Type type2);
+	void watchForCollisions(types::Type type1, types::Type type2);
 
 	//returns true iff obj1 hitbox and obj2 hitbox overlap. Uses the following method from DO:
 	//	SDL_Point* DisplayObject::getGlobalHitbox();
@@ -40,7 +40,7 @@ public:
 	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
 	
 private:
-	bool collidable_pairs[Type::COUNT][Type::COUNT];
+	bool collidable_pairs[types::COUNT][types::COUNT];
 	vector<DisplayObject*> static_collidables;
 	vector<DisplayObject*> dynamic_collidables;
 
