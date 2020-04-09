@@ -119,9 +119,12 @@
     <ClCompile Include="src\engine\AffineTransform.cpp" />
     <ClCompile Include="src\engine\AnimatedSprite.cpp" />
     <ClCompile Include="src\engine\Camera.cpp" />
+    <ClCompile Include="src\engine\CollisionSystem.cpp" />
+    <ClCompile Include="src\engine\controls.cpp" />
     <ClCompile Include="src\engine\dev_tool\SceneWriter.cpp" />
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
+    <ClCompile Include="src\engine\DisplayObjectEvent.cpp" />
     <ClCompile Include="src\engine\Event.cpp" />
     <ClCompile Include="src\engine\EventDispatcher.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
@@ -148,9 +151,12 @@
     <ClInclude Include="src\engine\AffineTransform.h" />
     <ClInclude Include="src\engine\AnimatedSprite.h" />
     <ClInclude Include="src\engine\Camera.h" />
+    <ClInclude Include="src\engine\CollisionSystem.h" />
+    <ClInclude Include="src\engine\controls.h" />
     <ClInclude Include="src\engine\dev_tool\SceneWriter.h" />
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
+    <ClInclude Include="src\engine\DisplayObjectEvent.h" />
     <ClInclude Include="src\engine\Event.h" />
     <ClInclude Include="src\engine\EventDispatcher.h" />
     <ClInclude Include="src\engine\EventListener.h" />
@@ -167,6 +173,7 @@
     <ClInclude Include="src\engine\TweenListener.h" />
     <ClInclude Include="src\engine\TweenParam.h" />
     <ClInclude Include="src\engine\TweenTransition.h" />
+    <ClInclude Include="src\engine\Types.h" />
     <ClInclude Include="src\engine\UI.h" />
     <ClInclude Include="src\main\dev_tool\CommandLine.h" />
     <ClInclude Include="src\main\dev_tool\DevTool.h" />
