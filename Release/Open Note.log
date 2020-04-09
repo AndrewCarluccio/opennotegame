@@ -1,0 +1,92 @@
+﻿  AffineTransform.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\AffineTransform.cpp(50,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\AffineTransform.cpp(51,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  AnimatedSprite.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\AnimatedSprite.cpp(51,23): warning C4018: '<': signed/unsigned mismatch
+  Camera.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(15,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(16,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(18,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(19,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(35,15): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Camera.cpp(39,15): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  CollisionSystem.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\CollisionSystem.cpp(28,26): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\CollisionSystem.cpp(29,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\CollisionSystem.cpp(119,29): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\CollisionSystem.cpp(120,29): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  controls.cpp
+  SceneWriter.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  DisplayObject.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.cpp(97,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.cpp(107,45): warning C4244: 'argument': conversion from 'double' to 'Uint8', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.cpp(188,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.cpp(189,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  DisplayObjectContainer.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(23,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(38,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(49,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(79,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(90,15): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(114,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(129,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObjectContainer.cpp(139,23): warning C4018: '<': signed/unsigned mismatch
+  DisplayObjectEvent.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Event.cpp
+  EventDispatcher.cpp
+  Game.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Game.cpp(53,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Scene.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Scene.cpp(277,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  SceneManager.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\SceneManager.cpp(49,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\SceneManager.cpp(84,21): warning C4018: '<': signed/unsigned mismatch
+  Sound.cpp
+  Sprite.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Tween.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Tween.cpp(59,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Tween.cpp(62,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\Tween.cpp(71,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  TweenableParams.cpp
+  TweenEvent.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  TweenJuggler.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  TweenListener.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  TweenParam.cpp
+  TweenTransition.cpp
+  UI.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  CommandLine.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  DevTool.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\main\dev_tool\DevTool.cpp(88,58): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\main\dev_tool\DevTool.cpp(91,58): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+  DevToolBar.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\main\dev_tool\DevToolBar.cpp(17,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\main\dev_tool\DevToolBar.cpp(55,24): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  MyGame.cpp
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\src\engine\DisplayObject.h(72,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+  Open Note.vcxproj -> C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\Open Note.exe

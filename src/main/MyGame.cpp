@@ -10,12 +10,12 @@
 using namespace std;
 
 MyGame::MyGame() : Game(597, 791) {
-	cs = new CollisionSystem();
 
 	//yeah, I know. going to replace this with loading from disk durring transition, or maybe only from a particular level at a time
 	cout << "loading..." << endl;
 
 	area1_1 = new Scene();
+	/*
 	area1_2 = new Scene();
 	area1_3 = new Scene();
 	area1_4 = new Scene();
@@ -32,12 +32,10 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_6 = new Scene();
 	area2_7 = new Scene();
 	area2_8 = new Scene();
-
-	root = (DisplayObjectContainer*)area1_1->root;
-	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
-	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);
+	*/
 
 	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
+	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
 	area1_4->loadScene("./resources/Scenes/area1/level1-4.json");
@@ -53,6 +51,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_6->loadScene("./resources/Scenes/area2/level2-6.json");
 	area2_7->loadScene("./resources/Scenes/area2/level2-7.json");
 	area2_8->loadScene("./resources/Scenes/area2/level2-8.json");
+	*/
 
 	cout << "loaded!" << endl;
 
@@ -60,17 +59,24 @@ MyGame::MyGame() : Game(597, 791) {
 	cam->setBounds(10000, 10000, 10000, 10000);
 	cam->setZoom(0.5);
 
-	
+	cout << "loaded!2" << endl;
 
 	dispatch = new EventDispatcher();
 	tweenJuggler = new TweenJuggler(dispatch);
 	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
+	cout << "loaded!3" << endl;
+
 	scene_manager->active_scene = area1_1;
+	
+	cout << "loaded!4" << endl;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
 	player->loadAnimations();
 
+	cout << "loaded!5" << endl;
+
+	/*
 	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
 	scene_manager->addTransitionPoint("transition to 1.3", 165, 45, 50, 2, area1_2, area1_3);
 	scene_manager->addTransitionPoint("transition to 1.4", 475, 1275, 50, 2, area1_3, area1_4);
@@ -98,13 +104,18 @@ MyGame::MyGame() : Game(597, 791) {
 	scene_manager->addTransitionPoint("transition to 2.6", 70, 110, 50, 2, area2_5, area2_6);
 	scene_manager->addTransitionPoint("transition to 2.7", 875, 1075, 50, 2, area2_6, area2_7);
 	scene_manager->addTransitionPoint("transition to 2.8", 1040, 1325, 50, 2, area2_7, area2_8);
+	*/
 
-
-	UserInterface = new UI();
-	UserInterface->loadInterface("./resources/UI/interface.json");
+	//UserInterface = new UI();
+	//UserInterface->loadInterface("./resources/UI/interface.json");
+	cout << "loaded!6" << endl;
 	//scene_manager->active_scene->addChild(UserInterface);	
 
-	cs->watchForCollisions("player", "sprite18");
+	//cs->watchForCollisions("player", "sprite18");
+
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
+	cout << "loaded!7" << endl;
 }
 
 MyGame::~MyGame() {
@@ -115,9 +126,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}
+	/*
 	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {
 		UserInterface->setHealth(UserInterface->getHealth()-10); //we will poll player for this eventually
 	}
+	*/
 	
 	
 	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
@@ -126,13 +139,13 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
 	scene_manager->active_scene->update(pressedKeys);
-	cs->update();
+	Game::instance->collisionSystem.update();
 }
 
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
 	scene_manager->active_scene->draw(at,cam,true);
-	UserInterface->draw(at);
+	//UserInterface->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

@@ -173,6 +173,7 @@
     <ClInclude Include="src\engine\TweenListener.h" />
     <ClInclude Include="src\engine\TweenParam.h" />
     <ClInclude Include="src\engine\TweenTransition.h" />
+    <ClInclude Include="src\engine\Types.h" />
     <ClInclude Include="src\engine\UI.h" />
     <ClInclude Include="src\main\dev_tool\CommandLine.h" />
     <ClInclude Include="src\main\dev_tool\DevTool.h" />
