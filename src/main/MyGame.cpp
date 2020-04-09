@@ -81,7 +81,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			character->position.y -= 5;
 			break;
 		case SDL_SCANCODE_K:
-			character->position.y += 5;
+			character->position.y += 100;
 			break;
 		case SDL_SCANCODE_J:
 			character->position.x -= 5;

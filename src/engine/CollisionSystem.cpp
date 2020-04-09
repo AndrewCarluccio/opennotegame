@@ -129,7 +129,24 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
         normY2 = (float)yDelta2 / directionMagnitude2;
     }
 
-    while (directionMagnitude1 >= 1 ||  directionMagnitude2 >= 1) {
+    // Collision caused by rotation of one object into another
+    if (!xDelta1 && !xDelta2 && !yDelta1 && !yDelta2)
+    {
+        if (d->rotation - d->oldRotation)
+            d->rotation = d->oldRotation;
+        if (other->rotation - other->oldRotation)
+            other->rotation = other->oldRotation;
+        if (d->scaleX - d->oldScaleX)
+            d->scaleX = d->oldScaleX;
+        if (other->scaleX - other->oldScaleX)
+            other->scaleX = other->oldScaleX;
+        if (d->scaleY - d->oldScaleY)
+            d->scaleY = d->oldScaleY;
+        if (other->scaleY - other->oldScaleY)
+            other->scaleY = other->oldScaleY;
+    }
+
+    while (directionMagnitude1  ||  directionMagnitude2) {
         if(collidesWith(d, other)) {
             d->position = {d->position.x - (int)(directionMagnitude1 * normX1), d->position.y - (int)(directionMagnitude1 * normY1)};
             other->position = {other->position.x - (int)(directionMagnitude2 * normX2), other->position.y - (int)(directionMagnitude2 * normY2)};
@@ -138,23 +155,13 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
             d->position = {d->position.x + (int)(directionMagnitude1 * normX1), d->position.y + (int)(directionMagnitude1 * normY1)};
             other->position = {other->position.x + (int)(directionMagnitude2 * normX2), other->position.y + (int)(directionMagnitude2 * normY2)};
         }
-        directionMagnitude1 /= 4;
-        directionMagnitude2 /= 4;
+        directionMagnitude1 /= 2;
+        directionMagnitude2 /= 2;
     }
 
-    // Collision caused by rotation of one object into another
-    if(!xDelta1 && !xDelta2 && !yDelta1 && !yDelta2) {
-        if(d->rotation - d->oldRotation)
-            d->rotation = d->oldRotation;
-        if(other->rotation - other->oldRotation)
-            other->rotation = other->oldRotation;
-        if(d->scaleX - d->oldScaleX)
-            d->scaleX = d->oldScaleX;
-        if(other->scaleX - other->oldScaleX)
-            other->scaleX = other->oldScaleX;
-        if(d->scaleY - d->oldScaleY)
-            d->scaleY = d->oldScaleY;
-        if(other->scaleY - other->oldScaleY)
-            other->scaleY = other->oldScaleY;
+    if(collidesWith(d, other))
+    {
+        d->position = {d->position.x - (int)ceil(normX1), d->position.y - (int)ceil(normY1)};
+        other->position = {other->position.x - (int)ceil(normX2), other->position.y - (int)ceil(normY2)};
     }
 }
