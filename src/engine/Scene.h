@@ -6,6 +6,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "Game.h"
+#include "Player.h"
 #include <string>
 #include <vector>
 #include <fstream>

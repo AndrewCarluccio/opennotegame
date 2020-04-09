@@ -208,14 +208,43 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	return the_obj;
 }
 
+Player* createPlayer(const Value& playerInfo) {
+	string node_id = playerInfo["node_id"].GetString();
+	string type_id = playerInfo["type_id"].GetString();
+	int loc_x = playerInfo["locationX"].GetInt();
+	int loc_y = playerInfo["locationY"].GetInt();
+	float scale_x = playerInfo["scaleX"].GetFloat();
+	float scale_y = playerInfo["scaleY"].GetFloat();
+	float rotation = playerInfo["rotation"].GetFloat();
+	int alpha = playerInfo["alpha"].GetInt();
+	string path_to_texture = playerInfo["sprite_file_path"].GetString();
+
+
+	Player* the_obj = new Player(node_id, path_to_texture);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+
+	return the_obj;
+}
+
 
 // Recursion happens here
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
 
 	string type_id = attribute["type_id"].GetString();
+	string node_id = attribute["node_id"].GetString();
 
 	DisplayObject* newChild;
-	if (type_id == "DisplayObject") {
+	if (node_id == "player") {
+		newChild = createPlayer(attribute);
+
+	}
+	else if (type_id == "DisplayObject") {
 		newChild = (createDisplayObject(attribute));
 	}
 	else if (type_id == "DisplayObjectContainer") {

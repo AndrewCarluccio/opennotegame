@@ -2,6 +2,8 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include "MyGame.h"
+#include "../engine/Player.h"
+#include "../engine/controls.h"
 
 
 using namespace std;
@@ -140,6 +142,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 void MyGame::draw(AffineTransform& at) {
 	Game::draw(at);
 	SDL_RenderClear(Game::renderer);
-	activeScene->draw(at,cam,true);
+	scene_manager->active_scene->draw(at,cam,true);
+	UserInterface->draw(at);
 	SDL_RenderPresent(Game::renderer);
 }

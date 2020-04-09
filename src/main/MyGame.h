@@ -16,6 +16,12 @@
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
 #include "../engine/Types.h"
+#include "../engine/CollisionSystem.h"
+#include "../engine/Player.h"
+#include "../engine//controls.h"
+#include "../engine/SceneManager.h"
+#include "../engine/Player.h"
+#include "../engine/UI.h"
 
 using namespace std;
 
@@ -37,7 +43,7 @@ public:
 	Camera* cam;
 
 private:
-	Scene* activeScene;
+	Scene *activeScene;
 };
 
 #endif
