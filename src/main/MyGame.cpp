@@ -7,16 +7,9 @@
 using namespace std;
 
 MyGame::MyGame() : Game(1200, 1000) {
-	cs = new CollisionSystem();
 	scene = new Scene();
-
-	// Make sure the root is listenting to display object add/remove 
-	// events before loading the scene
-	root = (DisplayObjectContainer*)scene->root;
-	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
-	root->addEventListener(cs, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);
-
 	scene->loadScene("./resources/Scenes/collision_demo.json");
+	
 	parent = scene->getChild("Parent");
 	character = scene->getChild("Character");
 	car = scene->getChild("Car");
@@ -27,7 +20,8 @@ MyGame::MyGame() : Game(1200, 1000) {
 	cam->setBounds(1000, 1000, 1000, 1000);
 	cam->setZoom(1);
 
-	cs->watchForCollisions("Car", "Character");
+	Game::instance->collisionSystem.watchForCollisions(Type::Platform, Type::Player);
+	Game::instance->collisionSystem.watchForCollisions(Type::Platform, Type::Enemy);
 }
 
 MyGame::~MyGame() {
@@ -35,22 +29,36 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
+	parent->old_position.x = parent->position.x;
+	parent->old_position.y = parent->position.y;
+	parent->oldScaleX = parent->scaleX;
+	parent->oldScaleY = parent->scaleY;
+	parent->oldRotation = parent->rotation;
+
+	character->old_position.x = character->position.x;
+	character->old_position.y = character->position.y;
+	character->oldScaleX = character->scaleX;
+	character->oldScaleY = character->scaleY;
+	character->oldRotation = character->rotation;
+
+	car->old_position.x = car->position.x;
+	car->old_position.y = car->position.y;
+	car->oldScaleX = car->scaleX;
+	car->oldScaleY = car->scaleY;
+	car->oldRotation = car->rotation;
+
 	for(SDL_Scancode s : pressedKeys) {
 		switch (s) {
 		case SDL_SCANCODE_W: // Movement of Parent
-			parent->old_position.y = parent->position.y;
 			parent->position.y -= 5;
 			break;
 		case SDL_SCANCODE_S:
-			parent->old_position.y = parent->position.y;
 			parent->position.y += 5;
 			break;
 		case SDL_SCANCODE_A:
-			parent->old_position.x = parent->position.x;
 			parent->position.x -= 5;
 			break;
 		case SDL_SCANCODE_D:
-			parent->old_position.x = parent->position.x;
 			parent->position.x += 5;
 			break;
 		case SDL_SCANCODE_E:
@@ -68,19 +76,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			parent->scaleY *= 1.01;
 			break;
 		case SDL_SCANCODE_I: // Movement of Character
-			character->old_position.y = character->position.y;
 			character->position.y -= 5;
 			break;
 		case SDL_SCANCODE_K:
-			character->old_position.y = character->position.y;
 			character->position.y += 5;
 			break;
 		case SDL_SCANCODE_J:
-			character->old_position.x = character->position.x;
 			character->position.x -= 5;
 			break;
 		case SDL_SCANCODE_L:
-			character->old_position.x = character->position.x;
 			character->position.x += 5;
 			break;
 		case SDL_SCANCODE_O:
@@ -98,19 +102,15 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			character->scaleY *= 1.01;
 			break;
 		case SDL_SCANCODE_UP: // Movement of Car
-			car->old_position.y = car->position.y;
 			car->position.y -= 5;
 			break;
 		case SDL_SCANCODE_DOWN:
-			car->old_position.y = car->position.y;
 			car->position.y += 5;
 			break;
 		case SDL_SCANCODE_LEFT:
-			car->old_position.x = car->position.x;
 			car->position.x -= 5;
 			break;
 		case SDL_SCANCODE_RIGHT:
-			car->old_position.x = car->position.x;
 			car->position.x += 5;
 			break;
 		case SDL_SCANCODE_X:
@@ -134,7 +134,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 
 	Game::update(pressedKeys);
 	activeScene->update(pressedKeys);
-	cs->update();
+	Game::instance->collisionSystem.update();
 }
 
 void MyGame::draw(AffineTransform& at) {

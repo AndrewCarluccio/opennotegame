@@ -21,6 +21,8 @@ DisplayObjectContainer::DisplayObjectContainer(string id, int red, int green, in
 
 DisplayObjectContainer::~DisplayObjectContainer() {
     for (int i = 0; i < children.size(); i++ ) {
+        DisplayObjectContainer *root = (DisplayObjectContainer *)getRoot();
+        root->dispatchEvent(new DisplayObjectEvent(DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT, root, children[i]));
         delete children[i];
     }
 }

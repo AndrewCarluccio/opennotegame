@@ -8,6 +8,11 @@
     "rotation": 0,
     "alpha": 255,
     "sprite_file_path": "",
+    "collidable": false,
+    "isDynamic": false,
+    "hitboxScaleX" : 1.0,
+    "hitboxScaleY" : 1.0,
+    "object_type" : 0,
     "children": [
       {
         "node_id": "Background",
@@ -19,6 +24,11 @@
         "rotation": 0,
         "alpha": 255,
         "sprite_file_path": "",
+        "collidable": false,
+        "isDynamic": false,
+        "hitboxScaleX": 1.0,
+        "hitboxScaleY": 1.0,
+        "object_type": 0,
         "children": []
       },
       {
@@ -31,6 +41,11 @@
         "rotation": 0,
         "alpha": 255,
         "sprite_file_path": "",
+        "collidable": false,
+        "isDynamic": false,
+        "hitboxScaleX": 1.0,
+        "hitboxScaleY": 1.0,
+        "object_type": 0,
         "children": [
             {
                 "node_id": "Parent",
@@ -42,6 +57,11 @@
                 "rotation": 0,
                 "alpha": 255,
                 "sprite_file_path": "",
+                "collidable": false,
+                "isDynamic": false,
+                "hitboxScaleX": 1.0,
+                "hitboxScaleY": 1.0,
+                "object_type": 0,
                 "children": [
                     {
                         "node_id": "Character",
@@ -53,6 +73,11 @@
                         "rotation": 0,
                         "alpha": 255,
                         "sprite_file_path": "./resources/character/Idle_1.png",
+                        "collidable": true,
+                        "isDynamic": true,
+                        "hitboxScaleX": 1.0,
+                        "hitboxScaleY": 1.0,
+                        "object_type": 1,
                         "children": []
                     },
                     {
@@ -65,8 +90,30 @@
                         "rotation": 0,
                         "alpha": 255,
                         "sprite_file_path": "./resources/Scenes/room_one/car.png",
+                        "collidable": true,
+                        "isDynamic": true,
+                        "hitboxScaleX": 1.0,
+                        "hitboxScaleY": 2.0,
+                        "object_type": 3,
                         "children": []
-                    }
+                    },
+                    {
+                      "node_id": "Platform",
+                      "type_id": "Sprite",
+                      "locationX": 0,
+                      "locationY": 500,
+                      "scaleX": 1,
+                      "scaleY": 1,
+                      "rotation": 0,
+                      "alpha": 255,
+                      "sprite_file_path": "./resources/platforms/long1.PNG",
+                      "collidable": true,
+                      "isDynamic": false,
+                      "hitboxScaleX": 1.0,
+                      "hitboxScaleY": 1.0,
+                      "object_type": 2,
+                      "children": []
+                  }
                 ]
             }
         ]
@@ -81,6 +128,11 @@
         "rotation": 0,
         "alpha": 255,
         "sprite_file_path": "",
+        "collidable": false,
+        "isDynamic": false,
+        "hitboxScaleX": 1.0,
+        "hitboxScaleY": 1.0,
+        "object_type": 0,
         "children": []
       }
     ]

@@ -15,7 +15,7 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
-#include "../engine/CollisionSystem.h"
+#include "../engine/Types.h"
 
 using namespace std;
 
@@ -29,15 +29,12 @@ public:
 	virtual void draw(AffineTransform &at);
 
 	Scene *scene;
-
-	DisplayObjectContainer* root;
+	
 	DisplayObject* parent;
 	DisplayObject* character;
 	DisplayObject* car;
 
 	Camera* cam;
-
-	CollisionSystem* cs;
 
 private:
 	Scene* activeScene;

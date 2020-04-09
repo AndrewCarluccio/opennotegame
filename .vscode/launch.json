@@ -9,6 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/myGame",
+            "environment": [ {"name":"DISPLAY", "value":":0"} ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "build",
             "setupCommands": [
