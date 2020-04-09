@@ -17,7 +17,7 @@
 #include "../engine/Tween.h"
 #include "../engine/CollisionSystem.h"
 #include "../engine/Player.h"
-#include "../engine//controls.h"
+#include "../engine/controls.h"
 #include "../engine/SceneManager.h"
 #include "../engine/Player.h"
 #include "../engine/UI.h"
@@ -34,10 +34,11 @@ public:
 	virtual void draw(AffineTransform &at);
 
 	Scene* scene;
+
 	DisplayObjectContainer* root;
-  //DisplayObject* player;
-//   Player* player;
+
 	DisplayObject* flag;
+
 	Scene* area1_1;
 	Scene* area1_2;
 	Scene* area1_3;

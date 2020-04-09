@@ -21,8 +21,8 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 
-  //void onEnemyCollision(Enemy* enemy);
-  virtual void onCollision(DisplayObject* other);
+  	//void onEnemyCollision(Enemy* enemy);
+  	virtual void onCollision(DisplayObject* other);
 
 	/* Health and such */
 	int health = 100;
@@ -40,7 +40,7 @@ public:
 private:
 
 	int oldX=0, oldY=0;
-  bool flipH = false;
+  	bool flipH = false;
 
 	int _jumpVel = -15;
 

@@ -218,7 +218,11 @@ Player* createPlayer(const Value& playerInfo) {
 	float rotation = playerInfo["rotation"].GetFloat();
 	int alpha = playerInfo["alpha"].GetInt();
 	string path_to_texture = playerInfo["sprite_file_path"].GetString();
-
+	bool collidable = playerInfo["collidable"].GetBool();
+	bool isDynamic = playerInfo["isDynamic"].GetBool();
+	float hitboxScaleX = playerInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = playerInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(playerInfo["object_type"].GetInt());
 
 	Player* the_obj = new Player(node_id, path_to_texture);
 
@@ -228,6 +232,11 @@ Player* createPlayer(const Value& playerInfo) {
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 }

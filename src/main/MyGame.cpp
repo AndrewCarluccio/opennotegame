@@ -53,28 +53,18 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8->loadScene("./resources/Scenes/area2/level2-8.json");
 	*/
 
-	cout << "loaded!" << endl;
-
 	cam = new Camera(1195, 1583);
 	cam->setBounds(10000, 10000, 10000, 10000);
 	cam->setZoom(0.5);
-
-	cout << "loaded!2" << endl;
 
 	dispatch = new EventDispatcher();
 	tweenJuggler = new TweenJuggler(dispatch);
 	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
-	cout << "loaded!3" << endl;
-
 	scene_manager->active_scene = area1_1;
-	
-	cout << "loaded!4" << endl;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
 	player->loadAnimations();
-
-	cout << "loaded!5" << endl;
 
 	/*
 	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
@@ -108,14 +98,11 @@ MyGame::MyGame() : Game(597, 791) {
 
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
-	cout << "loaded!6" << endl;
 	//scene_manager->active_scene->addChild(UserInterface);	
-
-	//cs->watchForCollisions("player", "sprite18");
 
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
-	cout << "loaded!7" << endl;
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
 }
 
 MyGame::~MyGame() {

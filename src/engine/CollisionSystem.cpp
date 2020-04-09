@@ -49,7 +49,7 @@ void CollisionSystem::update() {
 void CollisionSystem::handleEvent(Event* e) {
     DisplayObjectEvent *doe = (DisplayObjectEvent*) e;
     DisplayObject *modified = doe->getDisplayObject();
-
+    
     if(modified->collidable) {
 
         // Object added to display tree
