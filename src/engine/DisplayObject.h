@@ -72,7 +72,7 @@ public:
 	int globalRotation = rotation;
 	AffineTransform* globalTransform();
 	SDL_Rect getHitbox();
-	void drawHitbox();
+	void drawHitbox(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
 	DisplayObject* getRoot();
 	static bool compareByPosition(const DisplayObject* a, const DisplayObject* b);
