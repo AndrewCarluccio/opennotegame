@@ -14,58 +14,60 @@ using namespace std;
 class Player : public AnimatedSprite{
 
 public:
-
 	Player();
 	Player(string id, string path);
 	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
+	virtual void onCollision(DisplayObject* other);
+	//void onEnemyCollision(Enemy* enemy);
 
+	/* UI variables */
 	int health = 100;
 	int maxHealth = 100;
+	bool lowHealth = false;
 
-	// jump vars
-	int jumps = 0;
-	bool doubleJump = false;
+	/* Jump variables */
 	int _jumpVel = -15;
+	int jumps = 0; 
+	bool doubleJump = false;
+	bool megaJump = false;
 
-	//current item
-	//current weapon
-	//shield ?
-
-	// states
-	//fly
-	//shoot
-	//shield
-
-	// collision
-  	virtual void onCollision(DisplayObject* other);
-	
-	// enemy
-
-	//void onEnemyCollision(Enemy* enemy);
-	//die
-	//decrease health
-	//state of limbo
-	//transport elsewhere
-	//remove item
-
-	// environment
-
-	//increase health
-	//gravity flip (DONE)
-	//reduced control
-	//mega jump
-
-	//Enemy* curEnemy = NULL;
 
 	/*
+	Enemy* curEnemy = NULL;
+
 	//iFrames
 	bool iFrames = false;
 	int iFrameCount = 0;
 	int numIFrames = 0;
 	*/
 
+
+	/* --------------------- TO IMPLEMENT ------------------*/
+
+	// ITEMS
+	//current item
+	//current weapon
+	//shield ?
+
+	// STATES
+	//fly
+	//shoot
+	//shield
+	//die
+
+	//decrease health
+	//state of limbo
+	//transport elsewhere
+	//remove item
+
+	// ENVIRONMENT
+
+	//increase health
+	//reduced control (i know how to implement)
+
+	
 private:
 
 	Controls c;

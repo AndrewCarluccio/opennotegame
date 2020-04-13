@@ -26,10 +26,8 @@ void Player::loadAnimations() {
 
 void Player::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
-	oldY = this->position.y;
-	oldX = this->position.x;
 
-	// 1195, 1583
+	/* (1195, 1583) is the window size. These if-statements keep the player within the scope of the camera */
 	if (this->position.x  < 0) {
 		this->position.x = 0;
 	}
@@ -46,43 +44,72 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		_standing = true;
 	}
 
-	if(c.holdRight){
-		this->position.x += 4;
-		c.holdRight = false;
+
+
+	/* Player controls */
+	if(c.holdRight) {
 		if(this->current != getAnimation("run")){
 			this->play("run");
 		}
+		if (lowHealth) {
+			this->position.x += 4; // limited controls when health is low
+		}
+		else {
+		this->position.x += 10; // move to the right
+		}
+
+		c.holdRight = false;
 	}
 
 	else if (c.holdLeft){
-		this->position.x -= 4;
-		c.holdLeft = false;
 		if(this->current != getAnimation("run_l")){
 			this->play("run_l");
 		}
+		if (lowHealth) {
+			this->position.x -= 4; // limited controls when health is low
+		}
+		else {
+		this->position.x += 10; // move to left
+		}
+
+		c.holdLeft = false;
 	}
 
 	else if (c.pressJump) {
 		if (_standing) {
 			_standing = false;
-			this->_yVel = _jumpVel;
-			jumps++;
+			this->_yVel = _jumpVel; 
+			jumps++; // account for possible double jumps
+			if (megaJump) {
+				this->_yVel = (_jumpVel * 2); 
+			}
+			if (lowHealth) {
+				if (_yVel < -10.0) {
+					_yVel = -10.0;
+				}
+			}
 		}
 
 		if (!_standing) {
-		c.pressJump = false;
+		c.pressJump = false; // only want player to jump when standing
 		}
-		
-			//if(this->current != getAnimation("jump")){
-				//this->play("jump");
+
+		//if(this->current != getAnimation("jump")){
+			//this->play("jump");
 		//}
 	}
+
 	else if(_standing && !c.holdLeft && !c.holdRight) {
-		jumps = 0;
-		this->play("idle");
+		jumps = 0; 
+		//this->play("idle");
+		if(this->current != getAnimation("idle")) {
+			this->play("idle");
+		}
 	}
 
-	/* Calculate fall velocity */ 
+
+
+	/* Calculate fall velocity. Given to us. */ 
 	_yAccCount++;
 	if(_yAccCount == _yAcc){
 		_yAccCount=0;
@@ -90,14 +117,16 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		if(_yVel > _maxFall) _yVel = _maxFall;
 	}
 
-	/* Actual falling depending on falling versus whether a jump occurred */
 
+
+	/* Checks for gravity and flips player if necessary. */
 	if (_gravity) {
 		this->position.y += _yVel;
 	}
 	else {
 		this->position.y -= _yVel;
 	}
+
 
 
 	c.update(pressedKeys);
@@ -111,10 +140,6 @@ void Player::draw(AffineTransform &at){
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
-//Resolves the collision that occurred between d and other
-//xDelta1 and yDelta1 are the amount d moved before causing the collision.
-//xDelta2 and yDelta2 are the amount other moved before causing the collision.
-//Resolved using binary search to place objects as close as they can to one another
 void Player::onCollision(DisplayObject* other){
 	if(other->type == "AnimatedSprite"){
 		//Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - this->old_position.x, this->position.y - oldY, oldX, oldY);	
