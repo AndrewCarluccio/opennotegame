@@ -74,7 +74,7 @@ private:
 	int _jumpVel = -15;
 
 	/* Falling variables */ 
-	bool _gravity = false;
+	bool _gravity = true;
 	bool _standing = true;
 	// are these even being used?
 	int _maxFall = 9;

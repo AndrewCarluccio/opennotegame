@@ -15,8 +15,8 @@ Player::Player(string id, string path) : AnimatedSprite(id, path){
 
 // careful to not do this in a loop, uses a lot of memory
 void Player::loadAnimations() {
-	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 4, true);
-	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 4, true);
+	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 6, true);
+	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 6, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 2, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	//shoot
@@ -40,14 +40,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	if (this->position.y < 0) {
 		this->position.y = 0;
 	}
-	else if (this->position.y + ((this->height) * (this->scaleY)) > 1583) {
-		this->position.y = 1583 - ((this->height) * (this->scaleY));
-		this->play("idle");
+	else if (this->position.y + ((this->height) * (this->scaleY)) > 1555) {
+		this->position.y = 1555 - ((this->height) * (this->scaleY));
+		// if falling this->play("idle");
 		_standing = true;
 	}
 
 	if(c.holdRight){
-		this->position.x += 4;
+		this->position.x += 5;
 		c.holdRight = false;
 		if(this->current != getAnimation("run")){
 			this->play("run");
@@ -55,7 +55,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	else if (c.holdLeft){
-		this->position.x -= 4;
+		this->position.x -= 5;
 		c.holdLeft = false;
 		if(this->current != getAnimation("run_l")){
 			this->play("run_l");
