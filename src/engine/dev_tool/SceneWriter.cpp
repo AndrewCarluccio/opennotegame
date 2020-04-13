@@ -53,6 +53,16 @@ void SceneWriter::saveDisplayObject(PrettyWriter<StringBuffer> *writer, DisplayO
     writer->Int(object->alpha);
     writer->Key("sprite_file_path");
     writer->String(object->imgPath.c_str());
+    writer->Key("collidable");
+    writer->Bool(object->collidable);
+    writer->Key("isDynamic");
+    writer->Bool(object->isDynamic);
+    writer->Key("hitboxScaleX");
+    writer->Double(object->hitboxScaleX);
+    writer->Key("hitboxScaleY");
+    writer->Double(object->hitboxScaleY);
+    writer->Key("object_type");
+    writer->Int(object->object_type);
 }
 
 void SceneWriter::saveDisplayObjectContainer(PrettyWriter<StringBuffer> *writer, DisplayObjectContainer *object) {

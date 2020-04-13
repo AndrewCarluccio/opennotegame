@@ -5,10 +5,10 @@ using namespace std;
 
 int GRID_SIZE = 25;
 
-DevTool::DevTool() : Game(1200, 1000) {
+DevTool::DevTool() : Game(1200, 800) {
 	bar = new DevToolBar();
 	
-	cam = new Camera(1200, 1000);
+	cam = new Camera(1200, 800);
 	cam->setBounds(10000, 10000, 10000, 10000);
 	cam->setZoom(zoom);
 

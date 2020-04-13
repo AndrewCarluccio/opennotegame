@@ -21,40 +21,65 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 
-  	//void onEnemyCollision(Enemy* enemy);
-  	virtual void onCollision(DisplayObject* other);
-
-	/* Health and such */
 	int health = 100;
 	int maxHealth = 100;
 
+	// jump vars
+	int jumps = 0;
+	bool doubleJump = false;
+
+	//current item
+	//current weapon
+	//shield ?
+
+	// states
+	//fly
+	//shoot
+	//shield
+
+	// collision
+  	virtual void onCollision(DisplayObject* other);
+	
+	// enemy
+	//void onEnemyCollision(Enemy* enemy);
+	//die
+	//decrease health
+	//state of limbo
+	//transport elsewhere
+	//remove item
+
+	// environment
+	//increase health
+	//gravity flip
+	//reduced control
+	//mega jump
+
+	//Enemy* curEnemy = NULL;
+
+	/*
 	//iFrames
 	bool iFrames = false;
 	int iFrameCount = 0;
 	int numIFrames = 0;
-
-	/* Current Enemy player is engaging with*/
-	//Enemy* curEnemy = NULL;
-
+	*/
 
 private:
 
+	Controls c;
 	int oldX=0, oldY=0;
-  	bool flipH = false;
+  	//bool flipH = false;
 
 	int _jumpVel = -15;
 
-	/* Falling variables */
+	/* Falling variables */ 
 	bool _standing = true;
+	// are these even being used?
 	int _maxFall = 9;
 	int _yAcc = 2; //one pixel every two frames
 	int _yAccCount = 0;
 	int _yVel = 0;
 
-	Controls c;
-
-	void initIFrames(int numFrames);
-
+	//void initIFrames(int numFrames);
 };
 
 #endif
