@@ -23,17 +23,3 @@ void Controls::update(set<SDL_Scancode> pressedKeys) {
       pressJump = true;
     }
 }
-/*
-bool Controls::holdLeft() {
-  return left;
-}
-  
-bool Controls::holdRight() {
-  return right;
-}
-  
-bool Controls::pressJump() {
-  return jump;
-     
-}
-*/

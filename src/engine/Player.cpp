@@ -46,17 +46,19 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		}
 	}
 
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) {
-		if (_standing || (!_standing && doubleJump && jump < 2)) {
+	else if (c.pressJump) {
+		if (_standing) {
 				this->_yVel = _jumpVel;
 				this->position.y -= 6;
 				this->play("jump");
 				_standing = false;
 				jumps++;
 		}
+		_standing = true;
+		c.pressJump = false;
 	}
 
-	if(_standing && !c.holdLeft && !c.holdRight) {
+	else if(_standing && !c.holdLeft && !c.holdRight) {
 		jumps = 0;
 		this->play("idle");
 	}
@@ -83,19 +85,23 @@ void Player::draw(AffineTransform &at){
 
 //Called automatically by collision system when something collides with the player
 //our job is to simply react to that collision.
+//Resolves the collision that occurred between d and other
+//xDelta1 and yDelta1 are the amount d moved before causing the collision.
+//xDelta2 and yDelta2 are the amount other moved before causing the collision.
+//Resolved using binary search to place objects as close as they can to one another
 void Player::onCollision(DisplayObject* other){
-	/*
 	if(other->type == "AnimatedSprite"){
-		MyGame::cs.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY);	
+		//Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - this->old_position.x, this->position.y - oldY, oldX, oldY);	
 		_yVel = 0;
 		_standing=true;
 	}
-	
+	/*
 	else if(other->type == "Enemy"){
 		if(!this->iFrames){
 			this->onEnemyCollision((Enemy*)other);
 		}
-	}*/
+	}
+	*/
 }
 
 /*void Player::onEnemyCollision(Enemy* enemy){
