@@ -29,6 +29,22 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldY = this->position.y;
 	oldX = this->position.x;
 
+	// 1195, 1583
+	if (this->position.x  < 0) {
+		this->position.x = 0;
+	}
+	else if (this->position.x + ((this->width) * (this->scaleX)) > 1195) {
+		this->position.x = 1195 - ((this->width) * (this->scaleX));
+	}
+
+	if (this->position.y < 0) {
+		this->position.y = 0;
+	}
+	else if (this->position.y + ((this->height) * (this->scaleY)) > 1583) {
+		this->position.y = 1583 - ((this->height) * (this->scaleY));
+		this->play("idle");
+		_standing = true;
+	}
 
 	if(c.holdRight){
 		this->position.x += 4;
@@ -131,6 +147,5 @@ void Player::initIFrames(int numFrames){
 	this->iFrames = true;
 }
 */
-
 
 
