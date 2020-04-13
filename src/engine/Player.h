@@ -27,6 +27,7 @@ public:
 	// jump vars
 	int jumps = 0;
 	bool doubleJump = false;
+	int _jumpVel = -15;
 
 	//current item
 	//current weapon
@@ -52,7 +53,7 @@ public:
 	// environment
 
 	//increase health
-	//gravity flip
+	//gravity flip (DONE)
 	//reduced control
 	//mega jump
 
@@ -68,17 +69,14 @@ public:
 private:
 
 	Controls c;
-	int oldX=0, oldY=0;
-  	//bool flipH = false;
-
-	int _jumpVel = -15;
+	int oldX = 0;
+	int oldY = 0;
 
 	/* Falling variables */ 
 	bool _gravity = true;
 	bool _standing = true;
-	// are these even being used?
 	int _maxFall = 9;
-	int _yAcc = 2; //one pixel every two frames
+	int _yAcc = 2; 
 	int _yAccCount = 0;
 	int _yVel = 0;
 

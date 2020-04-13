@@ -124,14 +124,13 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
-
 	player->old_position.x = player->position.x;
 	player->old_position.y = player->position.y;
 	player->oldScaleX = player->scaleX;
 	player->oldScaleY = player->scaleY;
 	player->oldRotation = player->rotation;
 
-	
+
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}

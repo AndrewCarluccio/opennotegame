@@ -21,9 +21,6 @@ public:
   bool holdRight;
   bool pressJump;
   
-  //bool left = false;
-  //bool right = false;
-  //bool jump = false;
 
 private:
 
