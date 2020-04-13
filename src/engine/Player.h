@@ -41,6 +41,7 @@ public:
   	virtual void onCollision(DisplayObject* other);
 	
 	// enemy
+
 	//void onEnemyCollision(Enemy* enemy);
 	//die
 	//decrease health
@@ -49,6 +50,7 @@ public:
 	//remove item
 
 	// environment
+
 	//increase health
 	//gravity flip
 	//reduced control
@@ -72,6 +74,7 @@ private:
 	int _jumpVel = -15;
 
 	/* Falling variables */ 
+	bool _gravity = false;
 	bool _standing = true;
 	// are these even being used?
 	int _maxFall = 9;

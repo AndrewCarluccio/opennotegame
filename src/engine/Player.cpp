@@ -48,14 +48,16 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if (c.pressJump) {
 		if (_standing) {
-				this->_yVel = _jumpVel;
-				this->position.y -= 6;
-				this->play("jump");
-				_standing = false;
-				jumps++;
-		}
+			this->_yVel = _jumpVel;
+			this->position.y -= 6;
+			_standing = false;
+			jumps++;
+			//if(this->current != getAnimation("jump")){
+				//this->play("jump");
+		//}
 		_standing = true;
-		c.pressJump = false;
+		c.pressJump= false;
+		}
 	}
 
 	else if(_standing && !c.holdLeft && !c.holdRight) {
@@ -72,7 +74,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	/* Actual falling depending on falling versus whether a jump occurred */
-	this->position.y += _yVel;
+
+	if (_gravity) {
+		this->position.y += _yVel;
+	}
+	else {
+		this->position.y -= _yVel;
+	}
+
 
 	c.update(pressedKeys);
 }
