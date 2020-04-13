@@ -64,24 +64,25 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if (c.pressJump) {
 		if (_standing) {
-			this->_yVel = _jumpVel;
-			this->position.y -= 6;
 			_standing = false;
+			this->_yVel = _jumpVel;
 			jumps++;
+		}
+
+		if (!_standing) {
+		c.pressJump = false;
+		}
+		
 			//if(this->current != getAnimation("jump")){
 				//this->play("jump");
 		//}
-		_standing = true;
-		c.pressJump= false;
-		}
 	}
-
 	else if(_standing && !c.holdLeft && !c.holdRight) {
 		jumps = 0;
 		this->play("idle");
 	}
 
-	/* Calculate fall velocity */ // does this do anything
+	/* Calculate fall velocity */ 
 	_yAccCount++;
 	if(_yAccCount == _yAcc){
 		_yAccCount=0;
