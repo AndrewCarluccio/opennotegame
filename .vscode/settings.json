@@ -4,6 +4,7 @@
         "cstdlib": "cpp",
         "iostream": "cpp",
         "__node_handle": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "fstream": "cpp"
     }
 }

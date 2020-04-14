@@ -94,8 +94,8 @@
                     "sprite_file_path": "resources/general_sprites/character/idle_1.PNG",
                     "collidable": true,
                     "isDynamic": true,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
+                    "hitboxScaleX": 0.5,
+                    "hitboxScaleY": 0.9,
                     "object_type": 1,
                     "children": []
                 },

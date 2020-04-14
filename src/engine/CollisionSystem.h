@@ -37,13 +37,15 @@ public:
 	//Resolves the collision that occurred between d and other
 	//xDelta1 and yDelta1 are the amount d moved before causing the collision.
 	//xDelta2 and yDelta2 are the amount other moved before causing the collision.
-	void resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2);
+	void resolveCollision(DisplayObject* d, DisplayObject* other, float xDelta1, float yDelta1, float xDelta2, float yDelta2);
 	
 private:
 	bool collidable_pairs[types::COUNT][types::COUNT];
 	vector<DisplayObject*> static_collidables;
 	vector<DisplayObject*> dynamic_collidables;
 
+	bool xDirectionCollision(DisplayObject *d, DisplayObject *other, int xDelta1, int xDelta2);
+	bool yDirectionCollision(DisplayObject *d, DisplayObject *other, int yDelta1, int yDelta2);
 };
 
 #endif

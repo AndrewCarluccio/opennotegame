@@ -116,6 +116,7 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
 	cout << "loaded!7" << endl;
 }
 

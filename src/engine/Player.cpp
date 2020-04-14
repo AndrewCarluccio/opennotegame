@@ -46,6 +46,8 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		_standing = true;
 	}
 
+	oldX = this->position.x;
+	oldY = this->position.y;
 
 	/* Player controls */
 	if(c.holdRight) {
@@ -56,7 +58,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			this->position.x += 4; // limited controls when health is low
 		}
 		else {
-		this->position.x += 10; // move to the right
+			this->position.x += 10; // move to the right
 		}
 
 		c.holdRight = false;
@@ -70,7 +72,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			this->position.x -= 4; // limited controls when health is low
 		}
 		else {
-		this->position.x -= 10; // move to left
+			this->position.x -= 10; // move to left
 		}
 
 		c.holdLeft = false;
@@ -105,7 +107,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		}
 
 		if (!_standing) {
-		c.pressJump = false; // only want player to jump when standing
+			c.pressJump = false; // only want player to jump when standing
 		}
 	}
 
@@ -162,19 +164,22 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	Game::instance->collisionSystem.resolveCollision(this, other, 
-	  this->position.x - this->old_position.x, this->position.y - this->old_position.y,
-	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
-	
-	if (other->object_type == types::Type::Platform) {
-		_yVel = 0;
-		_standing=true;
+	if (other->object_type == types::Type::Platform)
+	{
+		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		if(_yVel < 0)
+			_yVel = 0;
+		int meY = this->getHitbox().y;
+		int meH = this->getHitbox().h;
+		int otherY = other->getHitbox().y;
+		if (meY + meH <= otherY)
+			_standing=true;
 	}
 
 	/* PHYSICS ENVIRONMENTAL COLLISIONS */
 
 	// higgs boson collision 
-	if (other->object_type == 4) { 
+	if (other->object_type == types::Type::HiggsBoson) { 
 		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
 		_standing = false;
 		if (!_standing) {
@@ -192,12 +197,12 @@ void Player::onCollision(DisplayObject* other){
 	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
 	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
 	//just nromal since the if statements takes care of "if hasPowerUp"
-	if (other->object_type == 5) {
+	if (other->object_type == types::Type::Eraser) {
 		hasPowerUp = false;
 	}
 
 	//paint brush
-	if (other->object_type == 7) { // if in contact with paint brush
+	if (other->object_type == types::Type::PaintBrush) { // if in contact with paint brush
 		other->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
 		// move y position quickly.
 		delete other; // can u just do this 

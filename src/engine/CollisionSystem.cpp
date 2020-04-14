@@ -1,6 +1,7 @@
 #include "CollisionSystem.h"
 #include <iostream>
 #include <algorithm>
+#define epsilon 0.0625
 
 CollisionSystem::CollisionSystem() {
 
@@ -30,7 +31,7 @@ void CollisionSystem::update() {
                 DisplayObject* potential = combined_collidables[i];
                 DisplayObject* active = active_list[j];
                 if(potential->getHitbox().x > (active->getHitbox().x + active->getHitbox().w))
-                    active_list.erase(active_list.begin() + j);
+                    active_list.erase(active_list.begin() + j--);
                 // Potential Collision
                 else if (collidable_pairs[potential->object_type][active->object_type] && collidesWith(potential, active)) {
                     potential->onCollision(active);
@@ -104,7 +105,7 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
 
     if (hitbox1.x < hitbox2.x + hitbox2.w && hitbox1.x + hitbox1.w > hitbox2.x &&
         hitbox1.y < hitbox2.y + hitbox2.h && hitbox1.y + hitbox1.h > hitbox2.y) {
-        cout << "Collision Detected between " << obj1->id << " and " << obj2->id << endl;
+        // cout << "Collision Detected between " << obj1->id << " and " << obj2->id << endl;
         return true;
     }
 
@@ -115,23 +116,69 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
 //xDelta1 and yDelta1 are the amount d moved before causing the collision.
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
 //Resolved using binary search to place objects as close as they can to one another
-void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, int xDelta1, int yDelta1, int xDelta2, int yDelta2) {
-    int directionMagnitude1 = sqrt(xDelta1*xDelta1 + yDelta1*yDelta1);
-    int directionMagnitude2 = sqrt(xDelta2*xDelta2 + yDelta2*yDelta2);
-    float normX1 = 0, normY1 = 0, normX2 = 0, normY2 = 0;
+void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, float xDelta1, float yDelta1, float xDelta2, float yDelta2) {
+    bool xCollision = xDirectionCollision(d, other, xDelta1, xDelta2);
+    bool yCollision = yDirectionCollision(d, other, yDelta1, yDelta2);
 
-    if(directionMagnitude1) {
-        normX1 = (float)xDelta1 / directionMagnitude1;
-        normY1 = (float)yDelta1 / directionMagnitude1;
+    if(xCollision && yCollision) {
+        while (xDelta1 || xDelta2 || yDelta1 || yDelta2) {
+            if (collidesWith(d, other)) {
+                d->position.x -= ceil(xDelta1);
+                d->position.y -= ceil(yDelta1);
+                other->position.x -= ceil(xDelta2);
+                other->position.y -= ceil(yDelta2);
+                if (xDelta1 < epsilon && xDelta2 < epsilon && yDelta1 < epsilon && yDelta2 < epsilon)
+                    break;
+            }
+            else {
+                d->position.x += ceil(xDelta1);
+                d->position.y += ceil(yDelta1);
+                other->position.y += ceil(yDelta2);
+                other->position.x += ceil(xDelta2);
+            }
+            xDelta1 /= 2;
+            xDelta2 /= 2;
+            yDelta1 /= 2;
+            yDelta2 /= 2;
+        }
     }
-    if(directionMagnitude2) {
-        normX2 = (float)xDelta2 / directionMagnitude2, 
-        normY2 = (float)yDelta2 / directionMagnitude2;
+    else if(xCollision) {
+        // cout << "X collision" << endl;
+        while(xDelta1 || xDelta2) {
+            if(collidesWith(d, other)) {
+                d->position.x -= ceil(xDelta1);
+                other->position.x -= ceil(xDelta2);
+                if(xDelta1 < epsilon && xDelta2 < epsilon)
+                    break;
+            }
+            else {
+                d->position.x += ceil(xDelta1);
+                other->position.x += ceil(xDelta2);
+            }
+            xDelta1 /= 2;
+            xDelta2 /= 2;
+        }
+    }
+    else if(yCollision) {
+        // cout << "Y collision" << endl;
+        while(yDelta1 || yDelta2) {
+            if(collidesWith(d, other)) {
+                d->position.y -= ceil(yDelta1);
+                other->position.y -= ceil(yDelta2);
+                if (yDelta1 < epsilon && yDelta2 < epsilon)
+                    break;
+            }
+            else {
+                d->position.y += ceil(yDelta1);
+                other->position.y += ceil(yDelta2);
+            }
+            yDelta1 /= 2;
+            yDelta2 /= 2;
+        }
     }
 
     // Collision caused by rotation of one object into another
-    if (!xDelta1 && !xDelta2 && !yDelta1 && !yDelta2)
-    {
+    if (!xDelta1 && !xDelta2 && !yDelta1 && !yDelta2)  {
         if (d->rotation - d->oldRotation)
             d->rotation = d->oldRotation;
         if (other->rotation - other->oldRotation)
@@ -146,22 +193,65 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, i
             other->scaleY = other->oldScaleY;
     }
 
-    while (directionMagnitude1  ||  directionMagnitude2) {
-        if(collidesWith(d, other)) {
-            d->position = {d->position.x - (int)(directionMagnitude1 * normX1), d->position.y - (int)(directionMagnitude1 * normY1)};
-            other->position = {other->position.x - (int)(directionMagnitude2 * normX2), other->position.y - (int)(directionMagnitude2 * normY2)};
-        }
-        else {
-            d->position = {d->position.x + (int)(directionMagnitude1 * normX1), d->position.y + (int)(directionMagnitude1 * normY1)};
-            other->position = {other->position.x + (int)(directionMagnitude2 * normX2), other->position.y + (int)(directionMagnitude2 * normY2)};
-        }
-        directionMagnitude1 /= 2;
-        directionMagnitude2 /= 2;
-    }
+    // int directionMagnitude1 = sqrt(xDelta1*xDelta1 + yDelta1*yDelta1);
+    // int directionMagnitude2 = sqrt(xDelta2*xDelta2 + yDelta2*yDelta2);
+    // float normX1 = 0, normY1 = 0, normX2 = 0, normY2 = 0;
 
-    if(collidesWith(d, other))
-    {
-        d->position = {d->position.x - (int)ceil(normX1), d->position.y - (int)ceil(normY1)};
-        other->position = {other->position.x - (int)ceil(normX2), other->position.y - (int)ceil(normY2)};
-    }
+    // if(directionMagnitude1) {
+    //     normX1 = (float)xDelta1 / directionMagnitude1;
+    //     normY1 = (float)yDelta1 / directionMagnitude1;
+    // }
+    // if(directionMagnitude2) {
+    //     normX2 = (float)xDelta2 / directionMagnitude2,
+    //     normY2 = (float)yDelta2 / directionMagnitude2;
+    // }
+
+    // while (directionMagnitude1  ||  directionMagnitude2) {
+    //     if(collidesWith(d, other)) {
+    //         d->position = {d->position.x - (int)(directionMagnitude1 * normX1), d->position.y - (int)(directionMagnitude1 * normY1)};
+    //         other->position = {other->position.x - (int)(directionMagnitude2 * normX2), other->position.y - (int)(directionMagnitude2 * normY2)};
+    //     }
+    //     else {
+    //         d->position = {d->position.x + (int)(directionMagnitude1 * normX1), d->position.y + (int)(directionMagnitude1 * normY1)};
+    //         other->position = {other->position.x + (int)(directionMagnitude2 * normX2), other->position.y + (int)(directionMagnitude2 * normY2)};
+    //     }
+    //     directionMagnitude1 /= 2;
+    //     directionMagnitude2 /= 2;
+    // }
+
+    // if(collidesWith(d, other))
+    // {
+    //     d->position = {d->position.x - (int)ceil(normX1), d->position.y - (int)ceil(normY1)};
+    //     other->position = {other->position.x - (int)ceil(normX2), other->position.y - (int)ceil(normY2)};
+    // }
+}
+
+bool CollisionSystem::xDirectionCollision(DisplayObject *d, DisplayObject *other, int xDelta1, int xDelta2) {
+    bool xCollision = false;
+
+    d->position.x -= xDelta1;
+    other->position.x -= xDelta2;
+
+    if(!collidesWith(d, other))
+        xCollision = true;
+
+    d->position.x += xDelta1;
+    other->position.x += xDelta2;
+
+    return xCollision;
+}
+
+bool CollisionSystem::yDirectionCollision(DisplayObject *d, DisplayObject *other, int yDelta1, int yDelta2) {
+    bool yCollision = false;
+
+    d->position.y -= yDelta1;
+    other->position.y -= yDelta2;
+
+    if (!collidesWith(d, other))
+        yCollision = true;
+
+    d->position.y += yDelta1;
+    other->position.y += yDelta2;
+
+    return yCollision;
 }

@@ -220,9 +220,9 @@ void DisplayObject::drawHitbox(AffineTransform &at) {
 }
 
 void DisplayObject::onCollision(DisplayObject* other) {
-	Game::instance->collisionSystem.resolveCollision(this, other, 
-	  this->position.x - this->old_position.x, this->position.y - this->old_position.y,
-	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
+	// Game::instance->collisionSystem.resolveCollision(this, other, 
+	//   this->position.x - this->old_position.x, this->position.y - this->old_position.y,
+	//   other->position.x - other->old_position.x, other->position.y - other->old_position.y);
 }
 
 DisplayObject* DisplayObject::getRoot() {
