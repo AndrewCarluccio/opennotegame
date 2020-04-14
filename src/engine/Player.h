@@ -25,6 +25,7 @@ public:
 	/* UI variables */
 	int health = 100;
 	int maxHealth = 100;
+	int lowHealthThreshold = 30;
 	bool lowHealth = false;
 
 	/* Jump variables */
@@ -57,15 +58,19 @@ public:
 	//shield
 	//die
 
-	//decrease health
+	void incHealth();
+	void decHealth();
+
 	//state of limbo
 	//transport elsewhere
 	//remove item
 
-	// ENVIRONMENT
-
-	//increase health
 	//reduced control (i know how to implement)
+	//use item
+	//interact (w/ another person)
+
+	// ??
+	//get emotions to play
 
 	
 private:

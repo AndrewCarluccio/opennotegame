@@ -17,7 +17,7 @@ Player::Player(string id, string path) : AnimatedSprite(id, path){
 void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 6, true);
 	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 6, true);
-	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 2, false);
+	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	//shoot
 	//shield
@@ -45,10 +45,9 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 
-
 	/* Player controls */
 	if(c.holdRight) {
-		if(this->current != getAnimation("run")){
+		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
 			this->play("run");
 		}
 		if (lowHealth) {
@@ -62,14 +61,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	else if (c.holdLeft){
-		if(this->current != getAnimation("run_l")){
+		if(this->current != getAnimation("run_l") && this->current != getAnimation("jump")){
 			this->play("run_l");
 		}
 		if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
 		}
 		else {
-		this->position.x += 10; // move to left
+		this->position.x -= 10; // move to left
 		}
 
 		c.holdLeft = false;
@@ -80,6 +79,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			_standing = false;
 			this->_yVel = _jumpVel; 
 			jumps++; // account for possible double jumps
+			this->play("jump");
 			if (megaJump) {
 				this->_yVel = (_jumpVel * 2); 
 			}
@@ -93,10 +93,6 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		if (!_standing) {
 		c.pressJump = false; // only want player to jump when standing
 		}
-
-		//if(this->current != getAnimation("jump")){
-			//this->play("jump");
-		//}
 	}
 
 	else if(_standing && !c.holdLeft && !c.holdRight) {
@@ -105,6 +101,10 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		if(this->current != getAnimation("idle")) {
 			this->play("idle");
 		}
+	}
+
+	else if(!_standing) {
+		//play falling?
 	}
 
 
@@ -127,7 +127,30 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		this->position.y -= _yVel;
 	}
 
+	/* Non-Movement Related Controls */
+	/*
+	if(c.shoot) {
+		this->play("shoot");
+	}
 
+	if(c.shield) {
+		this->play("shield");
+	}
+
+	if(c.useItem) {
+
+	}
+
+	if(c.interact) {
+		// must detect which interactable object is in the player's proximity... 
+		// or maybe to make it easier it has to be something the player is colliding with?
+		// that's going to be awkward to go right up to another stick figure tho lmao
+
+		//probably prompts dialogue of that character
+		// if player doesn't have item -> this dialogue/thought bubble
+		// else -> this dialogue/thought bubble
+	}
+	*/
 
 	c.update(pressedKeys);
 }
@@ -143,6 +166,9 @@ void Player::draw(AffineTransform &at){
 void Player::onCollision(DisplayObject* other){
 	if(other->type == "AnimatedSprite"){
 		//Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - this->old_position.x, this->position.y - oldY, oldX, oldY);	
+		Game::instance->collisionSystem.resolveCollision(this, other, 
+	  this->position.x - this->old_position.x, this->position.y - this->old_position.y,
+	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
 		_yVel = 0;
 		_standing=true;
 	}
@@ -161,9 +187,35 @@ void Player::onCollision(DisplayObject* other){
 }
 */
 
-void dead() {
-	
+/* On Collision Supporting Methods */
+
+void Player::incHealth(int hp){
+	this->health += hp;
+	if (this->health > this->maxHealth){
+		this->health = this->maxHealth;
+	}
+	else if (this->health > this->lowHealthThreshold){ 
+		this->lowHealth = false;
+	}
 }
+
+void Player::decHealth(int hp){
+	this->health -= hp;
+	if (this->health <= 0){
+		this->dead();
+	}
+	else if (this->health < this->lowHealthThreshold){ 
+		this->lowHealth = true;
+	}
+}
+
+/* Other */
+
+/*
+void Player::emotions(String emotion){
+	// show one of the displayobject children of player depending on its id
+}
+*/
 
 // what is this lol
 /*
