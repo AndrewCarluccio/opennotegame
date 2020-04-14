@@ -8,6 +8,10 @@ namespace types {
         Player,   // 1
         Platform, // 2
         Enemy,    // 3
+        HiggsBoson, // 4
+        PowerUp,  // 5
+        Eraser, // 6 <- not implemented yet
+        PaintBrush,
 
 
 

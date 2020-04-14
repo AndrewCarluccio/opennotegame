@@ -4,6 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
+//#include "Enemy.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
@@ -92,7 +93,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			this->_yVel = _jumpVel; 
 			jumps++; // account for possible double jumps
 			this->play("jump");
-			if (megaJump) {
+			if (megaJump) { // power up
 				this->_yVel = (_jumpVel * 2); 
 			}
 			if (lowHealth) {
@@ -169,21 +170,63 @@ void Player::onCollision(DisplayObject* other){
 	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
 		_yVel = 0;
 		_standing=true;
-	}
-	/*
-	else if(other->type == "Enemy"){
-		if(!this->iFrames){
-			this->onEnemyCollision((Enemy*)other);
+	
+	/* PHYSICS ENVIRONMENTAL COLLISIONS */
+
+	// higgs boson collision 
+		if (other->object_type == 4) { 
+			this->_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
+			_standing = false;
+			if (!_standing) {
+				this->play("jump"); // plays the jumping animation
+			}	
+			else {
+				_standing = true;
+			}
+		}	
+
+
+	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
+
+	// eraser (this needs to be edited, my brain tiny)
+	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
+	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
+	//just nromal since the if statements takes care of "if hasPowerUp"
+		if (other->object_type == 5) {
+			hasPowerUp = false;
 		}
+
+	//paint brush
+		if (other->object_type == 7) { // if in contact with paint brush
+			other->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
+			// move y position quickly.
+			delete other; // can u just do this 
+		}
+
+
+
 	}
-	*/
+
+	else if(other->type == "Enemy"){
+		//if(!this->iFrames){
+			//this->onEnemyCollision((Enemy*)other);
+		}
+
+	}
+
+/*
+void Player::initIFrames(int numFrames) {
+	this->iFrameCount = 0;
+	this->numIFrames = numFrames;
+	this->iFrames = true;
 }
 
-/*void Player::onEnemyCollision(Enemy* enemy){
+void Player::onEnemyCollision(Enemy* enemy){
 	this->health -= enemy->damage;
 	this->initIFrames(120);
 }
 */
+
 
 /* On Collision Supporting Methods */
 
@@ -216,12 +259,7 @@ void Player::emotions(String emotion){
 */
 
 // what is this lol
-/*
-void Player::initIFrames(int numFrames){
-	this->iFrameCount = 0;
-	this->numIFrames = numFrames;
-	this->iFrames = true;
-}
-*/
+
+
 
 

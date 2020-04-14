@@ -113,7 +113,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 0.5,
                     "hitboxScaleY": 0.5,
-                    "object_type": 3,
+                    "object_type": 4,
                     "children": []
                 },
                 {
