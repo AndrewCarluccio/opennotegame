@@ -33,7 +33,8 @@ public:
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
 
-	bool hasPowerUp = false; 
+	bool hasPowerUp = true; 
+	bool collision;
 	DisplayObject* curPowerUp;
 
 	/* Jump variables */
@@ -85,6 +86,7 @@ public:
 private:
 
 	Controls c;
+	EnvironmentalObject e;
 	int oldX = 0;
 	int oldY = 0;
 

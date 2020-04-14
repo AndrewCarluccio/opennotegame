@@ -5,7 +5,7 @@
 #include "Sprite.h"
 #include "controls.h"
 //#include "Enemy.h"
-//#include "EnvironmentalObject.h"
+#include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
@@ -47,6 +47,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	oldX = this->position.x;
 	oldY = this->position.y;
+
 
 	/* Player controls */
 	if(c.holdRight) {
@@ -110,6 +111,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		}
 	}
 
+
 	/* Calculate fall velocity. Given to us. */ 
 	_yAccCount++;
 	if(_yAccCount == _yAcc){
@@ -117,7 +119,6 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		_yVel++;
 		if(_yVel > _maxFall) _yVel = _maxFall;
 	}
-
 
 
 	/* Checks for gravity and flips player if necessary. */
@@ -180,7 +181,7 @@ void Player::onCollision(DisplayObject* other){
 		this->onEnvObjCollision((EnvironmentalObject*) other);
 	}
 
-	else if(other->type == "Enemy"){ 
+	else if(other->type == "Enemy") { 
 		//this->onEnemyCollision((Enemy*) other); 
 	}
 
@@ -235,24 +236,23 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 		}
 	}	
 
-
 	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
 
 	// eraser (this needs to be edited, my brain tiny)
 	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
 	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
 	//just nromal since the if statements takes care of "if hasPowerUp"
+
 	if (envObj->object_type == types::Type::Eraser) {
-		hasPowerUp = false;
+		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		hasPowerUp = false;		
 	}
 
 	//paint brush
-	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush
-		envObj->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
-		// move y position quickly.
-		delete envObj; // can u just do this 
+	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
+		envObj->position.y += _yVel; // fall with the player
+		}
 	}
-}
 
 
 /*
