@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "controls.h"
 //#include "Enemy.h"
+//#include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
@@ -160,30 +161,29 @@ void Player::draw(AffineTransform &at){
 
 /* Collision Methods */
 
-//Called automatically by collision system when something collides with the player
-//our job is to simply react to that collision.
 void Player::onCollision(DisplayObject* other){
-	if(other->type == "AnimatedSprite"){
-		//Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - this->old_position.x, this->position.y - oldY, oldX, oldY);	
-		Game::instance->collisionSystem.resolveCollision(this, other, 
+	Game::instance->collisionSystem.resolveCollision(this, other, 
 	  this->position.x - this->old_position.x, this->position.y - this->old_position.y,
 	  other->position.x - other->old_position.x, other->position.y - other->old_position.y);
+	
+	if (other->object_type == types::Type::Platform) {
 		_yVel = 0;
 		_standing=true;
-	
+	}
+
 	/* PHYSICS ENVIRONMENTAL COLLISIONS */
 
 	// higgs boson collision 
-		if (other->object_type == 4) { 
-			this->_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
-			_standing = false;
-			if (!_standing) {
-				this->play("jump"); // plays the jumping animation
-			}	
-			else {
-				_standing = true;
-			}
+	if (other->object_type == 4) { 
+		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
+		_standing = false;
+		if (!_standing) {
+			this->play("jump"); // plays the jumping animation
 		}	
+		else {
+			_standing = true;
+		}
+	}	
 
 
 	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
@@ -192,41 +192,121 @@ void Player::onCollision(DisplayObject* other){
 	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
 	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
 	//just nromal since the if statements takes care of "if hasPowerUp"
-		if (other->object_type == 5) {
-			hasPowerUp = false;
-		}
-
-	//paint brush
-		if (other->object_type == 7) { // if in contact with paint brush
-			other->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
-			// move y position quickly.
-			delete other; // can u just do this 
-		}
-
-
-
+	if (other->object_type == 5) {
+		hasPowerUp = false;
 	}
 
-	else if(other->type == "Enemy"){
-		//if(!this->iFrames){
-			//this->onEnemyCollision((Enemy*)other);
-		}
+	//paint brush
+	if (other->object_type == 7) { // if in contact with paint brush
+		other->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
+		// move y position quickly.
+		delete other; // can u just do this 
+	}
 
+	else if(other->type == "EnvironmentalObject") {
+		//this->onEnvObjCollision((EnvironmentalObject*) other);
+	}
+
+	else if(other->type == "Enemy"){ 
+		//this->onEnemyCollision((Enemy*) other); 
+	}
+
+	else if(other->object_type == types::Type::Character){
+		this->onCharacterCollision(other); // replace this w Character class?
 	}
 
 /*
+	if item -> 
+		if health item -> health
+		if power up ->
+			go into particular power up
+		if it's an item u actually use ->
+			put in your only item slot lol 
+			if you give it someone ->
+				upon interaction, triggers a check between what is wanted from the interaction and what item you have 
+			if you use it yourself ->
+				enable when the control is pressed
+	if weapon -> equip upon collision
+*/
+}
+
+/*
+
 void Player::initIFrames(int numFrames) {
 	this->iFrameCount = 0;
 	this->numIFrames = numFrames;
 	this->iFrames = true;
 }
+*/
 
-void Player::onEnemyCollision(Enemy* enemy){
-	this->health -= enemy->damage;
-	this->initIFrames(120);
+/* these methods don't work rn so uh. okay.
+void Player::onEnvObjCollision(EnvironmentalObject* envObj){
+	
+
+	// higgs boson collision 
+	if (envObj->object_type == 4) { 
+		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
+		_standing = false;
+		if (!_standing) {
+			this->play("jump"); // plays the jumping animation
+		}	
+		else {
+			_standing = true;
+		}
+	}	
+
+
+	
+
+	// eraser (this needs to be edited, my brain tiny)
+	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
+	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
+	//just nromal since the if statements takes care of "if hasPowerUp"
+	if (envObj->object_type == 5) {
+		hasPowerUp = false;
+	}
+
+	//paint brush
+	if (envObj->object_type == 7) { // if in contact with paint brush
+		envObj->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
+		// move y position quickly.
+		delete envObj; // can u just do this 
+	}
 }
 */
 
+/*
+void Player::onEnemyCollision(Enemy* enemy){ // replaace w enemy class later
+	if(enemy->object_type == types::Type::Cat) {
+		this->decHealth(10);
+		// remove from collision system for a few seconds >3>
+	}
+	*/
+/*
+phys:
+	black hole -> DEATH
+
+anim:
+	glitch -> moves you somewhere else (how to specify somewhere else?)
+	lamp -> dec health
+
+linear alg:
+	matrix -> lose health
+	projection -> lose health
+	eigenvectors -> ?
+	theorem -> collected (probs separate from item bc u can only hold one item?)
+	
+game design:
+	affine transformations -> lose health UNLESS hits shield
+	glitches -> moves you somewhere else, lose item
+	TAs -> can interact (less of an env obj, more like character)
+	office hours -> inc health
+*/
+//}
+
+void Player::onCharacterCollision(DisplayObject* character) {
+	// stuff
+}
 
 /* On Collision Supporting Methods */
 
@@ -257,9 +337,3 @@ void Player::emotions(String emotion){
 	// show one of the displayobject children of player depending on its id
 }
 */
-
-// what is this lol
-
-
-
-

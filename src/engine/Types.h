@@ -11,7 +11,9 @@ namespace types {
         HiggsBoson, // 4
         PowerUp,  // 5
         Eraser, // 6 <- not implemented yet
-        PaintBrush,
+        PaintBrush, // 7
+        Cat, // 8
+        Character, // 9
 
 
 

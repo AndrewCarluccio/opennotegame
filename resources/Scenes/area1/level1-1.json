@@ -154,7 +154,7 @@
                     "node_id": "sprite64",
                     "type_id": "AnimatedSprite",
                     "locationX": 1050,
-                    "locationY": 125,
+                    "locationY": 120,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotation": 0.0,
