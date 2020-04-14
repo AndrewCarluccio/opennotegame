@@ -74,7 +74,19 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		c.holdLeft = false;
 	}
 
-	else if (c.pressJump) {
+	else if(_standing && !c.holdLeft && !c.holdRight) {
+		jumps = 0; 
+		//this->play("idle");
+		if(this->current != getAnimation("idle")) {
+			this->play("idle");
+		}
+	}
+
+	else if(!_standing) {
+		//play falling?
+	}
+
+	if (c.pressJump) {
 		if (_standing) {
 			_standing = false;
 			this->_yVel = _jumpVel; 
@@ -94,20 +106,6 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		c.pressJump = false; // only want player to jump when standing
 		}
 	}
-
-	else if(_standing && !c.holdLeft && !c.holdRight) {
-		jumps = 0; 
-		//this->play("idle");
-		if(this->current != getAnimation("idle")) {
-			this->play("idle");
-		}
-	}
-
-	else if(!_standing) {
-		//play falling?
-	}
-
-
 
 	/* Calculate fall velocity. Given to us. */ 
 	_yAccCount++;
@@ -190,22 +188,22 @@ void Player::onCollision(DisplayObject* other){
 /* On Collision Supporting Methods */
 
 void Player::incHealth(int hp){
-	this->health += hp;
-	if (this->health > this->maxHealth){
-		this->health = this->maxHealth;
+	health += hp;
+	if (health > maxHealth){
+		health = maxHealth;
 	}
-	else if (this->health > this->lowHealthThreshold){ 
-		this->lowHealth = false;
+	else if (health > lowHealthThreshold){ 
+		lowHealth = false;
 	}
 }
 
 void Player::decHealth(int hp){
-	this->health -= hp;
-	if (this->health <= 0){
-		this->dead();
+	health -= hp;
+	if (health <= 0){
+//		this->dead();
 	}
-	else if (this->health < this->lowHealthThreshold){ 
-		this->lowHealth = true;
+	else if (health < lowHealthThreshold){ 
+		lowHealth = true;
 	}
 }
 

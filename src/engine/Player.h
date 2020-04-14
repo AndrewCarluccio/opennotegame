@@ -58,8 +58,8 @@ public:
 	//shield
 	//die
 
-	void incHealth();
-	void decHealth();
+	void incHealth(int hp);
+	void decHealth(int hp);
 
 	//state of limbo
 	//transport elsewhere
