@@ -176,40 +176,8 @@ void Player::onCollision(DisplayObject* other){
 			_standing=true;
 	}
 
-	/* PHYSICS ENVIRONMENTAL COLLISIONS */
-
-	// higgs boson collision 
-	if (other->object_type == types::Type::HiggsBoson) { 
-		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
-		_standing = false;
-		if (!_standing) {
-			this->play("jump"); // plays the jumping animation
-		}	
-		else {
-			_standing = true;
-		}
-	}	
-
-
-	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
-
-	// eraser (this needs to be edited, my brain tiny)
-	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
-	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
-	//just nromal since the if statements takes care of "if hasPowerUp"
-	if (other->object_type == types::Type::Eraser) {
-		hasPowerUp = false;
-	}
-
-	//paint brush
-	if (other->object_type == types::Type::PaintBrush) { // if in contact with paint brush
-		other->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
-		// move y position quickly.
-		delete other; // can u just do this 
-	}
-
 	else if(other->type == "EnvironmentalObject") {
-		//this->onEnvObjCollision((EnvironmentalObject*) other);
+		this->onEnvObjCollision((EnvironmentalObject*) other);
 	}
 
 	else if(other->type == "Enemy"){ 
@@ -244,12 +212,11 @@ void Player::initIFrames(int numFrames) {
 }
 */
 
-/* these methods don't work rn so uh. okay.
 void Player::onEnvObjCollision(EnvironmentalObject* envObj){
-	
+	/* PHYSICS ENVIRONMENTAL COLLISIONS */
 
 	// higgs boson collision 
-	if (envObj->object_type == 4) { 
+	if (envObj->object_type == types::Type::HiggsBoson) { 
 		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
 		_standing = false;
 		if (!_standing) {
@@ -261,24 +228,24 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	}	
 
 
-	
+	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
 
 	// eraser (this needs to be edited, my brain tiny)
 	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
 	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
 	//just nromal since the if statements takes care of "if hasPowerUp"
-	if (envObj->object_type == 5) {
+	if (envObj->object_type == types::Type::Eraser) {
 		hasPowerUp = false;
 	}
 
 	//paint brush
-	if (envObj->object_type == 7) { // if in contact with paint brush
+	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush
 		envObj->position.y += _yVel; // it will fall and be deleted (?) NOT in update method so idk if it will gradually fall or just
 		// move y position quickly.
 		delete envObj; // can u just do this 
 	}
 }
-*/
+
 
 /*
 void Player::onEnemyCollision(Enemy* enemy){ // replaace w enemy class later

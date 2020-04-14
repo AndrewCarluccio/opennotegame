@@ -241,6 +241,39 @@ Player* createPlayer(const Value& playerInfo) {
 	return the_obj;
 }
 
+EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectInfo) {
+	string node_id = EnvironmentalObjectInfo["node_id"].GetString();
+	string type_id = EnvironmentalObjectInfo["type_id"].GetString();
+	int loc_x = EnvironmentalObjectInfo["locationX"].GetInt();
+	int loc_y = EnvironmentalObjectInfo["locationY"].GetInt();
+	float scale_x = EnvironmentalObjectInfo["scaleX"].GetFloat();
+	float scale_y = EnvironmentalObjectInfo["scaleY"].GetFloat();
+	float rotation = EnvironmentalObjectInfo["rotation"].GetFloat();
+	int alpha = EnvironmentalObjectInfo["alpha"].GetInt();
+	string path_to_texture = EnvironmentalObjectInfo["sprite_file_path"].GetString();
+	bool collidable = EnvironmentalObjectInfo["collidable"].GetBool();
+	bool isDynamic = EnvironmentalObjectInfo["isDynamic"].GetBool();
+	float hitboxScaleX = EnvironmentalObjectInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = EnvironmentalObjectInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(EnvironmentalObjectInfo["object_type"].GetInt());
+
+	EnvironmentalObject* the_obj = new EnvironmentalObject(node_id, path_to_texture);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
+
+	return the_obj;
+}
+
 
 // Recursion happens here
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
@@ -267,6 +300,9 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	}
 	else if (type_id == "Layer") {
 		newChild = createLayer(attribute);
+	}
+	else if (type_id == "EnvironmentalObject") {
+		newChild = createEnvironmentalObject(attribute);
 	}
 
 	node->addChild(newChild);

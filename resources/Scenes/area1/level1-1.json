@@ -101,7 +101,7 @@
                 },
                 {
                     "node_id": "sprite19",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "EnvironmentalObject",
                     "locationX": 925,
                     "locationY": 800,
                     "scaleX": 1.0,

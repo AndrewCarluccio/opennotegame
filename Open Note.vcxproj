@@ -125,6 +125,7 @@
     <ClCompile Include="src\engine\DisplayObject.cpp" />
     <ClCompile Include="src\engine\DisplayObjectContainer.cpp" />
     <ClCompile Include="src\engine\DisplayObjectEvent.cpp" />
+    <ClCompile Include="src\engine\EnvironmentalObject.cpp" />
     <ClCompile Include="src\engine\Event.cpp" />
     <ClCompile Include="src\engine\EventDispatcher.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="src\engine\DisplayObject.h" />
     <ClInclude Include="src\engine\DisplayObjectContainer.h" />
     <ClInclude Include="src\engine\DisplayObjectEvent.h" />
+    <ClInclude Include="src\engine\EnvironmentalObject.h" />
     <ClInclude Include="src\engine\Event.h" />
     <ClInclude Include="src\engine\EventDispatcher.h" />
     <ClInclude Include="src\engine\EventListener.h" />

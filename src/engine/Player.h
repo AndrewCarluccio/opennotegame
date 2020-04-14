@@ -9,7 +9,7 @@
 #include "Sprite.h"
 #include "controls.h"
 //#include "Enemy.h"
-//#include "EnvironmentalObject.h"
+#include "EnvironmentalObject.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
-	//void onEnvObjCollision(EnvironmentalObject* envObj);
+	void onEnvObjCollision(EnvironmentalObject* envObj);
 	//void onEnemyCollision(Enemy* enemy);
 	void onCharacterCollision(DisplayObject* character);
 	//void initIFrames(int numFrames);
