@@ -21,7 +21,7 @@ public:
 	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	//virtual void onCollision(DisplayObject* other);
+	virtual void onCollision(DisplayObject* other);
 
 	/* Jump variables */
 	//int _jumpVel = -15;
@@ -29,6 +29,7 @@ public:
 	//bool doubleJump = false;
 	//bool megaJump = false;
 
+	bool paintBrushTouched;
 private:
 
 	int oldX = 0;
@@ -41,6 +42,8 @@ private:
 	int _yAcc = 2; 
 	int _yAccCount = 0;
 	int _yVel = 0;
+
+	
 
 };
 

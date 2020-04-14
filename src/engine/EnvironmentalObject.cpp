@@ -5,13 +5,16 @@
 #include "Sprite.h"
 #include "controls.h"
 //#include "Enemy.h"
-//#include "Player.h"
+#include "Player.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
 using namespace std;
 
-EnvironmentalObject::EnvironmentalObject(string id, string path) : AnimatedSprite(id, path){
+EnvironmentalObject::EnvironmentalObject() {
+}
+
+EnvironmentalObject::EnvironmentalObject(string id, string path) : AnimatedSprite(id, path) {
 	this->type = "EnvironmentalObject";
 }
 
@@ -28,4 +31,17 @@ void EnvironmentalObject::draw(AffineTransform &at){
 	AnimatedSprite::draw(at);
 }
 
-// on Collision override
+void EnvironmentalObject::onCollision(DisplayObject* other) {
+	// very specific to the paintbrush envObj
+if (other->object_type == types::Type::Platform) {
+		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		if(_yVel < 0)
+			_yVel = 0;
+			this->visible = false;
+		int meY = this->getHitbox().y;
+		int meH = this->getHitbox().h;
+		int otherY = other->getHitbox().y;
+		if (meY + meH <= otherY)
+			_standing=true;
+	}
+}

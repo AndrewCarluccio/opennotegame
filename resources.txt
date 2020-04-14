@@ -1,4 +1,6 @@
+resources/Sprites/room_one/eraser1.PNG
 resources/Sprites/room_one/skyscraepers.png
+resources/Sprites/room_one/paintbrush_1.png
 resources/Sprites/room_one/clock_tower.png
 resources/Sprites/room_one/car.png
 resources/Sprites/character/Run_19.png
