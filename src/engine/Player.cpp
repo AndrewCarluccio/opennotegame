@@ -23,7 +23,6 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	//shoot
 	//shield
-	//fly
 }
 
 void Player::update(set<SDL_Scancode> pressedKeys){
@@ -140,17 +139,18 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	if(c.useItem) {
-
+		if you give it someone ->
+			upon interaction, triggers a check between what is wanted from the interaction and what item you have 
+		if you use it yourself ->
+			enable when the control is pressed
 	}
 
 	if(c.interact) {
-		// must detect which interactable object is in the player's proximity... 
-		// or maybe to make it easier it has to be something the player is colliding with?
-		// that's going to be awkward to go right up to another stick figure tho lmao
+		if first time you talked with them -> first dialogue
+		else if you have the item they're looking for -> item dialogue & item exchange 
+		else (you havent gotten the correct item yet) -> random dialogue from an array of quips
 
-		//probably prompts dialogue of that character
-		// if player doesn't have item -> this dialogue/thought bubble
-		// else -> this dialogue/thought bubble
+		i imagine all these dialogues are methods of the character class
 	}
 	*/
 
@@ -184,23 +184,31 @@ void Player::onCollision(DisplayObject* other){
 		//this->onEnemyCollision((Enemy*) other); 
 	}
 
-	else if(other->object_type == types::Type::Character){
-		this->onCharacterCollision(other); // replace this w Character class?
+	else if(other->object_type == types::Type::Character) {
+		curCharacter = other; // possibly make a Character class
+		// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
 	}
 
-/*
-	if item -> 
-		if health item -> health
-		if power up ->
-			go into particular power up
-		if it's an item u actually use ->
-			put in your only item slot lol 
-			if you give it someone ->
-				upon interaction, triggers a check between what is wanted from the interaction and what item you have 
-			if you use it yourself ->
-				enable when the control is pressed
-	if weapon -> equip upon collision
-*/
+	else if(other->object_type == types::Type::Item) {
+		curItem = other;
+	}
+
+	else if(other->object_type == types::Type::Health) {
+		// if it's a shin ramyun, +10; buldak, +20
+		// remove sprite from DO tree
+	}
+
+	else if(other->object_type == types::Type::PowerUp) {
+		curPowerUp = other;
+		// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
+		// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
+	}
+
+	else if(other->object_type == types::Type::Weapon) {
+		curWeapon = other;
+		// add sprite as child of player but only for shooting animation
+		// for simplicity... ig uess we won't have them carry the weapon all the time :")
+	}
 }
 
 /*
@@ -275,10 +283,6 @@ game design:
 	office hours -> inc health
 */
 //}
-
-void Player::onCharacterCollision(DisplayObject* character) {
-	// stuff
-}
 
 /* On Collision Supporting Methods */
 

@@ -33,7 +33,8 @@ public:
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
 
-	bool hasPowerUp = false;
+	bool hasPowerUp = false; 
+	DisplayObject* curPowerUp;
 
 	/* Jump variables */
 	int _jumpVel = -15;
@@ -41,9 +42,13 @@ public:
 	bool doubleJump = false;
 	bool megaJump = false;
 
+	DisplayObject* curItem;
+	DisplayObject* curWeapon;
+	//DisplayObject* curShield;
 
 
 	//Enemy* curEnemy = NULL;
+	DisplayObject* curCharacter;
 	
 	
 	/* iFrames 
@@ -55,11 +60,6 @@ public:
 
 
 	/* --------------------- TO IMPLEMENT ------------------*/
-
-	// ITEMS
-	//current item
-	//current weapon
-	//shield ?
 
 	// STATES
 	//fly
