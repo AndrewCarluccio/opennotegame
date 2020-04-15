@@ -1,0 +1,9 @@
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\Open Note.vcxproj.CopyComplete
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\Open Note.exe
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\SDL2.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\SDL2_image.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\libpng16.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\zlib1.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\SDL2_ttf.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\freetype.dll
+C:\Users\Jeenso\Documents\GitHub\sp9he\opennotegame\Release\bz2.dll

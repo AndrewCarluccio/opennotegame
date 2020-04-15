@@ -44,10 +44,11 @@ public:
 
 	bool playing = false;
 
-private:
 	Animation* current;
 	vector<Animation*> animations;
 	int frameCount;
+private:
+
 	
 };
 

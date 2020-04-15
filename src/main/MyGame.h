@@ -15,6 +15,9 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
+#include "../engine/CollisionSystem.h"
+#include "../engine/Player.h"
+#include "../engine/controls.h"
 #include "../engine/SceneManager.h"
 #include "../engine/Player.h"
 #include "../engine/UI.h"
@@ -29,7 +32,12 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	//virtual void draw(AffineTransform& at, Camera* cam);
+
+	Scene* scene;
+
+	DisplayObjectContainer* root;
+
+	DisplayObject* flag;
 
 	Scene* area1_1;
 	Scene* area1_2;
@@ -48,14 +56,17 @@ public:
 	Scene* area2_7;
 	Scene* area2_8;
 
-
 	TweenJuggler* tweenJuggler;
-	EventDispatcher* dispatch;
 	SceneManager* scene_manager;
 	Camera* cam;
 
-	DisplayObject* player;
+	CollisionSystem* cs;
 
+	Player* player;
+
+	EventDispatcher* dispatch;
+	TweenListener* flagTweenListen; 
+	Tween* flagExpandTween;
 	UI* UserInterface;
 	
 

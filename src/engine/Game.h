@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "DisplayObjectContainer.h"
 #include "Camera.h"
+#include "CollisionSystem.h"
 #include <vector>
 #include <set>
 
@@ -44,6 +45,8 @@ public:
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	//virtual void draw(AffineTransform &at, Camera* cam);
+
+	CollisionSystem collisionSystem;
 
 private:
 

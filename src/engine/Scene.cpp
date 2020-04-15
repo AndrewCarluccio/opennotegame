@@ -27,6 +27,11 @@ DisplayObjectContainer* createLayer(const Value& layerInfo) {
 	int alpha = layerInfo["alpha"].GetInt();
 	string path_to_texture = layerInfo["sprite_file_path"].GetString();
 	float scroll_rate = layerInfo["scroll_rate"].GetFloat();
+	bool collidable = layerInfo["collidable"].GetBool();
+	bool isDynamic = layerInfo["isDynamic"].GetBool();
+	float hitboxScaleX = layerInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = layerInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(layerInfo["object_type"].GetInt());
 
 	/*
 	if (node_id == "Background") {
@@ -39,17 +44,23 @@ DisplayObjectContainer* createLayer(const Value& layerInfo) {
 		foregroundScrollRate = scroll_rate;
 	}
 	*/
-	
 
 	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
+	the_obj->old_position.x = loc_x;
+	the_obj->old_position.y = loc_y;
 	the_obj->scaleX = scale_x;
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
 	the_obj->scrollRate = scroll_rate;
-
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 
@@ -65,14 +76,27 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 	float rotation = displayObjectInfo["rotation"].GetFloat();
 	int alpha = displayObjectInfo["alpha"].GetInt();
 	string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
+	bool collidable = displayObjectInfo["collidable"].GetBool();
+	bool isDynamic = displayObjectInfo["isDynamic"].GetBool();
+	float hitboxScaleX = displayObjectInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = displayObjectInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
 
 	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
+	the_obj->old_position.x = loc_x;
+	the_obj->old_position.y = loc_y;
 	the_obj->scaleX = scale_x;
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 
@@ -88,14 +112,27 @@ DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectC
 	float rotation = displayObjectContainerInfo["rotation"].GetFloat();
 	int alpha = displayObjectContainerInfo["alpha"].GetInt();
 	string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
+	bool collidable = displayObjectContainerInfo["collidable"].GetBool();
+	bool isDynamic = displayObjectContainerInfo["isDynamic"].GetBool();
+	float hitboxScaleX = displayObjectContainerInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = displayObjectContainerInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(displayObjectContainerInfo["object_type"].GetInt());
 
 	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
+
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
+	the_obj->old_position.x = loc_x;
+	the_obj->old_position.y = loc_y;
 	the_obj->scaleX = scale_x;
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 
@@ -111,15 +148,27 @@ Sprite* createSprite(const Value& spriteInfo) {
 	float rotation = spriteInfo["rotation"].GetFloat();
 	int alpha = spriteInfo["alpha"].GetInt();
 	string path_to_texture = spriteInfo["sprite_file_path"].GetString();
+	bool collidable = spriteInfo["collidable"].GetBool();
+	bool isDynamic = spriteInfo["isDynamic"].GetBool();
+	float hitboxScaleX = spriteInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = spriteInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(spriteInfo["object_type"].GetInt());
 
 	Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
+	the_obj->old_position.x = loc_x;
+	the_obj->old_position.y = loc_y;
 	the_obj->scaleX = scale_x;
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 }
@@ -134,9 +183,48 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	float rotation = animatedSpriteInfo["rotation"].GetFloat();
 	int alpha = animatedSpriteInfo["alpha"].GetInt();
 	string path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
-
+	bool collidable = animatedSpriteInfo["collidable"].GetBool();
+	bool isDynamic = animatedSpriteInfo["isDynamic"].GetBool();
+	float hitboxScaleX = animatedSpriteInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = animatedSpriteInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(animatedSpriteInfo["object_type"].GetInt());
 
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->old_position.x = loc_x;
+	the_obj->old_position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
+
+	return the_obj;
+}
+
+Player* createPlayer(const Value& playerInfo) {
+	string node_id = playerInfo["node_id"].GetString();
+	string type_id = playerInfo["type_id"].GetString();
+	int loc_x = playerInfo["locationX"].GetInt();
+	int loc_y = playerInfo["locationY"].GetInt();
+	float scale_x = playerInfo["scaleX"].GetFloat();
+	float scale_y = playerInfo["scaleY"].GetFloat();
+	float rotation = playerInfo["rotation"].GetFloat();
+	int alpha = playerInfo["alpha"].GetInt();
+	string path_to_texture = playerInfo["sprite_file_path"].GetString();
+	bool collidable = playerInfo["collidable"].GetBool();
+	bool isDynamic = playerInfo["isDynamic"].GetBool();
+	float hitboxScaleX = playerInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = playerInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(playerInfo["object_type"].GetInt());
+
+	Player* the_obj = new Player(node_id, path_to_texture);
 
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
@@ -144,6 +232,44 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	the_obj->scaleY = scale_y;
 	the_obj->rotation = rotation;
 	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
+
+	return the_obj;
+}
+
+EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectInfo) {
+	string node_id = EnvironmentalObjectInfo["node_id"].GetString();
+	string type_id = EnvironmentalObjectInfo["type_id"].GetString();
+	int loc_x = EnvironmentalObjectInfo["locationX"].GetInt();
+	int loc_y = EnvironmentalObjectInfo["locationY"].GetInt();
+	float scale_x = EnvironmentalObjectInfo["scaleX"].GetFloat();
+	float scale_y = EnvironmentalObjectInfo["scaleY"].GetFloat();
+	float rotation = EnvironmentalObjectInfo["rotation"].GetFloat();
+	int alpha = EnvironmentalObjectInfo["alpha"].GetInt();
+	string path_to_texture = EnvironmentalObjectInfo["sprite_file_path"].GetString();
+	bool collidable = EnvironmentalObjectInfo["collidable"].GetBool();
+	bool isDynamic = EnvironmentalObjectInfo["isDynamic"].GetBool();
+	float hitboxScaleX = EnvironmentalObjectInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = EnvironmentalObjectInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(EnvironmentalObjectInfo["object_type"].GetInt());
+
+	EnvironmentalObject* the_obj = new EnvironmentalObject(node_id, path_to_texture);
+
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
 
 	return the_obj;
 }
@@ -153,9 +279,14 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
 
 	string type_id = attribute["type_id"].GetString();
+	string node_id = attribute["node_id"].GetString();
 
 	DisplayObject* newChild;
-	if (type_id == "DisplayObject") {
+	if (node_id == "player") {
+		newChild = createPlayer(attribute);
+
+	}
+	else if (type_id == "DisplayObject") {
 		newChild = (createDisplayObject(attribute));
 	}
 	else if (type_id == "DisplayObjectContainer") {
@@ -169,6 +300,9 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	}
 	else if (type_id == "Layer") {
 		newChild = createLayer(attribute);
+	}
+	else if (type_id == "EnvironmentalObject") {
+		newChild = createEnvironmentalObject(attribute);
 	}
 
 	node->addChild(newChild);
@@ -192,6 +326,8 @@ void Scene::loadScene(string sceneFilePath) {
 	d.ParseStream(json);
 	// cout << "IS OBJECT" << d.IsObject();
 	root = createDisplayObjectContainer(d);
+	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
+	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);
 	createObject(d, root);
 
 	queue<DisplayObject*> objQueue;
@@ -229,10 +365,10 @@ void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
 
 	 if (paralax) {
 
-		 cam->scrollRate = backgroundScrollRate;
-		 cam->applyCamera(at);
-		 background->draw(at);
-		 cam->undoCamera(at);
+		cam->scrollRate = backgroundScrollRate;
+		cam->applyCamera(at);
+		background->draw(at);
+		cam->undoCamera(at);
 
 	 	cam->scrollRate = midgroundScrollRate;
 		cam->applyCamera(at);
@@ -247,13 +383,10 @@ void Scene::draw(AffineTransform& at, Camera* cam, bool paralax) {
 	 	cam->scrollRate = 1.0;
 	 }
 	 else {
-		
+
 		cam->applyCamera(at);
 		root->draw(at);
 		cam->undoCamera(at);
 	 }
-
-	 
-
 }
 
