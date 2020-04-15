@@ -240,6 +240,6 @@ DisplayObject* DisplayObject::getRoot() {
 		return this;
 }
 
-bool DisplayObject::compareByPosition(const DisplayObject* a, const DisplayObject* b) {
-	return (a->position.x < b->position.x);
+bool DisplayObject::compareByPosition(DisplayObject* a, DisplayObject* b) {
+	return (a->getHitbox().x < b->getHitbox().x);
 }
