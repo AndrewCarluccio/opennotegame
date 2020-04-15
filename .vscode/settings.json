@@ -5,6 +5,13 @@
         "iostream": "cpp",
         "__node_handle": "cpp",
         "iterator": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "locale": "cpp",
+        "xlocale": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "xstring": "cpp"
     }
 }

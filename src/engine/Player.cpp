@@ -165,8 +165,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	if (other->object_type == types::Type::Platform)
-	{
+	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
 			_yVel = 0;
@@ -177,35 +176,57 @@ void Player::onCollision(DisplayObject* other){
 			_standing=true;
 	}
 
-	else if(other->type == "EnvironmentalObject") {
+	else if (other->type == "EnvironmentalObject") {
 		this->onEnvObjCollision((EnvironmentalObject*) other);
 	}
 
-	else if(other->type == "Enemy") { 
-		//this->onEnemyCollision((Enemy*) other); 
+	else if (other->type == "Enemy") { 
+		this->onEnemyCollision((Enemy*) other); 
 	}
 
-	else if(other->object_type == types::Type::Character) {
+	else if  (other->object_type == types::Type::Character) {
 		curCharacter = other; // possibly make a Character class
 		// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
 	}
 
 	else if(other->object_type == types::Type::Item) {
-		curItem = other;
+		if (!(other->collision)) {
+			curItem = other;
+			other->visible = false;
+			other->collision = true;
+		}
 	}
 
-	else if(other->object_type == types::Type::Health) {
-		// if it's a shin ramyun, +10; buldak, +20
-		// remove sprite from DO tree
+	else if (other->object_type == types::Type::Health) {
+		if (!(other->collision)) {
+			if (other->sprite_type == "shin") {
+				this->incHealth(10);
+				other->visible = false;
+				other->collision = true;
+			}
+			else if (other->sprite_type == "buldak") {
+				this->incHealth(20);
+				other->visible = false;
+				other->collision = true;
+			}
+		}
+
+		if (other->sprite_type == "oh") {
+			this->incHealth(15);
+		}
 	}
 
-	else if(other->object_type == types::Type::PowerUp) {
-		curPowerUp = other;
+	else if (other->object_type == types::Type::PowerUp) {
+		if (!(other->collision)) {
+			curPowerUp = other;
+			other->visible = false;
+			other->collision = true;
+		}
 		// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
 		// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
 	}
 
-	else if(other->object_type == types::Type::Weapon) {
+	else if (other->object_type == types::Type::Weapon) {
 		curWeapon = other;
 		// add sprite as child of player but only for shooting animation
 		// for simplicity... ig uess we won't have them carry the weapon all the time :")
@@ -251,38 +272,60 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	//paint brush
 	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
-		}
 	}
 
+	/* LINEAR ALGEBRA */
+	//eigenvectors -> ?
+	//theorem -> collected (probs separate from item bc u can only hold one item?)
 
-/*
-void Player::onEnemyCollision(Enemy* enemy){ // replaace w enemy class later
-	if(enemy->object_type == types::Type::Cat) {
+	// GAME DESIGN: TAs are characters, Office Hours are "health" items
+}
+
+
+
+void Player::onEnemyCollision(Enemy* enemy){ 
+	/* PHYSICS */
+	if (enemy->sprite_type == "blackhole") {
+		//this->play("blackhole");
+		this->dead();
+	}
+
+	else if (enemy->sprite_type == "cat") {
 		this->decHealth(10);
-		// remove from collision system for a few seconds >3>
 	}
-	*/
-/*
-phys:
-	black hole -> DEATH
 
-anim:
-	glitch -> moves you somewhere else (how to specify somewhere else?)
-	lamp -> dec health
 
-linear alg:
-	matrix -> lose health
-	projection -> lose health
-	eigenvectors -> ?
-	theorem -> collected (probs separate from item bc u can only hold one item?)
+	/* ANIMATION */
+	else if (enemy->sprite_type == "glitch") {
+		// move somewhere else
+	}
+
+	else if (enemy->sprite_type == "lamp") {
+		this->decHealth(10);
+	}
+
+
+	/* LINEAR ALGEBRA */
+	else if (enemy->sprite_type == "matrix") {
+		this->decHealth(10);
+	}
+
+	else if (enemy->sprite_type == "projection") {
+		this->decHealth(10);
+	}
+
+
+	/* GAME DESIGN */
+	else if (enemy->sprite_type == "affine") {
+		this->decHealth(10);
+		// if hits shield
+	}
+	else if (enemy->sprite_type == "adv_glitch") {
+		// move somewhere else
+		// lose item
+	}
 	
-game design:
-	affine transformations -> lose health UNLESS hits shield
-	glitches -> moves you somewhere else, lose item
-	TAs -> can interact (less of an env obj, more like character)
-	office hours -> inc health
-*/
-//}
+}
 
 /* On Collision Supporting Methods */
 
@@ -299,11 +342,16 @@ void Player::incHealth(int hp){
 void Player::decHealth(int hp){
 	health -= hp;
 	if (health <= 0){
-//		this->dead();
+		this->dead();
 	}
 	else if (health < lowHealthThreshold){ 
 		lowHealth = true;
 	}
+}
+
+void Player::dead(){
+	//Game::instance->quitSDL();
+	// later replace this with game over scene
 }
 
 /* Other */

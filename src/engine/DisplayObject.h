@@ -22,6 +22,9 @@ public:
 	int red, green, blue;
 	string type = "DisplayObject";
 	types::Type object_type = types::Type::Default;
+	string sprite_type = "";
+
+	bool collision = false;
 
 	DisplayObjectContainer* parent = NULL;
 

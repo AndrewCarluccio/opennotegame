@@ -8,7 +8,7 @@
 #include <fstream>
 #include "Sprite.h"
 #include "controls.h"
-//#include "Enemy.h"
+#include "Enemy.h"
 #include "EnvironmentalObject.h"
 
 using namespace std;
@@ -23,8 +23,7 @@ public:
 	virtual void draw(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
 	void onEnvObjCollision(EnvironmentalObject* envObj);
-	//void onEnemyCollision(Enemy* enemy);
-	void onCharacterCollision(DisplayObject* character);
+	void onEnemyCollision(Enemy* enemy);
 	//void initIFrames(int numFrames);
 
 	/* UI and Player variables */
@@ -35,7 +34,7 @@ public:
 
 	bool hasPowerUp = true; 
 	bool collision;
-	DisplayObject* curPowerUp;
+	DisplayObject* curPowerUp = NULL;
 
 	/* Jump variables */
 	int _jumpVel = -15;
@@ -43,13 +42,13 @@ public:
 	bool doubleJump = false;
 	bool megaJump = false;
 
-	DisplayObject* curItem;
-	DisplayObject* curWeapon;
+	DisplayObject* curItem = NULL;
+	DisplayObject* curWeapon = NULL;
 	//DisplayObject* curShield;
 
 
 	//Enemy* curEnemy = NULL;
-	DisplayObject* curCharacter;
+	DisplayObject* curCharacter = NULL;
 	
 	
 	/* iFrames 
@@ -70,6 +69,7 @@ public:
 
 	void incHealth(int hp);
 	void decHealth(int hp);
+	void dead();
 
 	//state of limbo
 	//transport elsewhere

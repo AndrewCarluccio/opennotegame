@@ -108,6 +108,9 @@
     <ClCompile Include="src\engine\EnvironmentalObject.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\AffineTransform.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\EnvironmentalObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
