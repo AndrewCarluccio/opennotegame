@@ -90,6 +90,14 @@ void DisplayObject::draw(AffineTransform &at){
 		else {
 			flip = SDL_FLIP_HORIZONTAL;
 		}
+
+		if (facingDown) {
+			flip = SDL_FLIP_NONE;
+		}
+		else {
+			flip = SDL_FLIP_VERTICAL;
+		}
+
 		
 		globalPos = origin;
 		globalW = w;

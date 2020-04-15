@@ -48,9 +48,9 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldX = this->position.x;
 	oldY = this->position.y;
 
-
 	/* Player controls */
 	if(c.holdRight) {
+		this->facingRight = true;
 		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
 			this->play("run");
 		}
@@ -65,8 +65,9 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	else if (c.holdLeft){
-		if(this->current != getAnimation("run_l") && this->current != getAnimation("jump")){
-			this->play("run_l");
+		this->facingRight = false;
+		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
+			this->play("run");
 		}
 		if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
@@ -91,9 +92,9 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	if (c.pressJump) {
-		if (_standing) {
-			_standing = false;
-			this->_yVel = _jumpVel; 
+		if (_standing && !_gStanding) { // idle to jump
+			_standing = false;  // can only jump once
+			this->_yVel = _jumpVel; // height you can jump
 			jumps++; // account for possible double jumps
 			this->play("jump");
 			if (megaJump) { // power up
@@ -106,9 +107,27 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 			}
 		}
 
-		if (!_standing) {
+		else if (_gStanding && !_standing) {
+			_gStanding = false;
+			this->_yVel = _jumpVel; // height you can jump
+			jumps++; // account for possible double jumps
+			this->play("jump");
+			if (megaJump) { // power up
+				this->_yVel = (_jumpVel * 2); 
+			}
+			if (lowHealth) {
+				if (_yVel < -10.0) {
+					_yVel = -10.0;
+				}
+			}
+
+			c.pressJump = false;
+		}
+
+		if (!_standing && !_gStanding) {
 			c.pressJump = false; // only want player to jump when standing
 		}
+		
 	}
 
 
@@ -124,9 +143,13 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	/* Checks for gravity and flips player if necessary. */
 	if (_gravity) {
 		this->position.y += _yVel;
+		_gStanding = false;
 	}
 	else {
 		this->position.y -= _yVel;
+		_gStanding = true;
+		_standing = false;
+		//this->facingDown = false;
 	}
 
 	/* Non-Movement Related Controls */
@@ -237,18 +260,14 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	}	
 
 	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
-
-	// eraser (this needs to be edited, my brain tiny)
-	// thought process: somewhere there is a collision w/powerup that sets powerup to true, then if satemetns inside of the
-	//player controls (mega jump or msth) but if interact wiht eraser then powerup is false and then controls are
-	//just nromal since the if statements takes care of "if hasPowerUp"
-
+	
+	// eraser
 	if (envObj->object_type == types::Type::Eraser) {
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		hasPowerUp = false;		
 	}
 
-	//paint brush
+	// paint brush
 	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 		}

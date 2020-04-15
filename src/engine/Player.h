@@ -34,7 +34,7 @@ public:
 	bool lowHealth = false;
 
 	bool hasPowerUp = true; 
-	bool collision;
+
 	DisplayObject* curPowerUp;
 
 	/* Jump variables */
@@ -93,6 +93,7 @@ private:
 	/* Falling variables */ 
 	bool _gravity = true;
 	bool _standing = true;
+	bool _gStanding = false;
 	int _maxFall = 9;
 	int _yAcc = 2; 
 	int _yAccCount = 0;

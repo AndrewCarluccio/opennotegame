@@ -56,6 +56,7 @@ public:
 	int alpha = 255;
 	int alpha_abs = 255;
 	bool facingRight = true;
+	bool facingDown = true;
 	SDL_Point old_position = {0, 0};
 	double oldScaleX = 1.0;
 	double oldScaleY = 1.0;
