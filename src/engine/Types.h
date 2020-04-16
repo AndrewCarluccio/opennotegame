@@ -17,9 +17,7 @@ namespace types {
         Item, // 10 - items that you use manually, or need to give to someone
         Weapon, // 11 - automatically equiped upon impact, has a sprite 
         Health, // 12 - things that boost health upon impact, has sprite -> disappears after collision (unless it's an office hour ball)
-
-
-
+        Car,
         // Add additional types above this line 
         COUNT
     };

@@ -33,15 +33,25 @@ void EnvironmentalObject::draw(AffineTransform &at){
 
 void EnvironmentalObject::onCollision(DisplayObject* other) {
 	// very specific to the paintbrush envObj
-if (other->object_type == types::Type::Platform) {
+	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		if (this->object_type == types::Type::PaintBrush) {
 		if(_yVel < 0)
-			_yVel = 0;
-			this->visible = false;
+		_yVel = 0;
+		this->visible = false;
+		paintBrushTouched = true;
 		int meY = this->getHitbox().y;
 		int meH = this->getHitbox().h;
 		int otherY = other->getHitbox().y;
 		if (meY + meH <= otherY)
 			_standing=true;
+		}
+	}
+
+	if (other->object_type == types::Type::Item) {
+		other->visible = false;
+		if (paintBrushTouched) {
+			other->visible = true;
+		}
 	}
 }

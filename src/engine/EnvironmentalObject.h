@@ -29,7 +29,7 @@ public:
 	//bool doubleJump = false;
 	//bool megaJump = false;
 
-	bool paintBrushTouched;
+	bool paintBrushTouched = false;
 private:
 
 	int oldX = 0;

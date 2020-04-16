@@ -9,6 +9,7 @@
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 
+
 using namespace std;
 
 Player::Player(string id, string path) : AnimatedSprite(id, path){
@@ -292,6 +293,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 	}
+
+
 
 	/* LINEAR ALGEBRA */
 	//eigenvectors -> ?

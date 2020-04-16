@@ -83,22 +83,22 @@ void DisplayObject::draw(AffineTransform &at){
 
 		SDL_Rect dstrect = { origin.x, origin.y, w, h };
 
+		// flipping animationws
 		SDL_RendererFlip flip;
-		if (facingRight) {
+		if (facingRight && facingDown) { // facing right and gravity keeps u right
 			flip = SDL_FLIP_NONE;
 		}
-		else {
+		if (!facingRight && facingDown) { // not facing right but gravity should turn u left
 			flip = SDL_FLIP_HORIZONTAL;
 		}
 
-		if (facingDown) {
-			flip = SDL_FLIP_NONE;
-		}
-		else {
+		 if (facingRight && !facingDown) { // facing right and no gravity should make u upside down
 			flip = SDL_FLIP_VERTICAL;
 		}
 
 		
+
+	
 		globalPos = origin;
 		globalW = w;
 		globalH = h;

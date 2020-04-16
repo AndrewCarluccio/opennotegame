@@ -34,7 +34,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
+	area1_1->loadScene("./resources/Scenes/area1/level1-1(2).json");
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -120,6 +120,7 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Eraser);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::PaintBrush);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Item, types::Type::PaintBrush);
 
 	cout << "loaded!7" << endl;
 }
