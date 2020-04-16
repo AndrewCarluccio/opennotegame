@@ -112,6 +112,10 @@ bool CollisionSystem::collidesWith(DisplayObject* obj1, DisplayObject* obj2) {
     return false;
 }
 
+inline float myCeil(float x) {
+    return (x < 0) ? floor(x) : ceil(x);
+}
+
 //Resolves the collision that occurred between d and other
 //xDelta1 and yDelta1 are the amount d moved before causing the collision.
 //xDelta2 and yDelta2 are the amount other moved before causing the collision.
@@ -123,18 +127,19 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, f
     if(xCollision && yCollision) {
         while (xDelta1 || xDelta2 || yDelta1 || yDelta2) {
             if (collidesWith(d, other)) {
-                d->position.x -= ceil(xDelta1);
-                d->position.y -= ceil(yDelta1);
-                other->position.x -= ceil(xDelta2);
-                other->position.y -= ceil(yDelta2);
-                if (xDelta1 < epsilon && xDelta2 < epsilon && yDelta1 < epsilon && yDelta2 < epsilon)
+                d->position.x -= myCeil(xDelta1);
+                d->position.y -= myCeil(yDelta1);
+                other->position.x -= myCeil(xDelta2);
+                other->position.y -= myCeil(yDelta2);
+                if (abs(xDelta1) < epsilon && abs(xDelta2) < epsilon &&
+                    abs(yDelta1) < epsilon && abs(yDelta2) < epsilon)
                     break;
             }
             else {
-                d->position.x += ceil(xDelta1);
-                d->position.y += ceil(yDelta1);
-                other->position.y += ceil(yDelta2);
-                other->position.x += ceil(xDelta2);
+                d->position.x += myCeil(xDelta1);
+                d->position.y += myCeil(yDelta1);
+                other->position.y += myCeil(yDelta2);
+                other->position.x += myCeil(xDelta2);
             }
             xDelta1 /= 2;
             xDelta2 /= 2;
@@ -143,34 +148,32 @@ void CollisionSystem::resolveCollision(DisplayObject* d, DisplayObject* other, f
         }
     }
     else if(xCollision) {
-        // cout << "X collision" << endl;
         while(xDelta1 || xDelta2) {
             if(collidesWith(d, other)) {
-                d->position.x -= ceil(xDelta1);
-                other->position.x -= ceil(xDelta2);
-                if(xDelta1 < epsilon && xDelta2 < epsilon)
+                d->position.x -= myCeil(xDelta1);
+                other->position.x -= myCeil(xDelta2);
+                if(abs(xDelta1) < epsilon && abs(xDelta2) < epsilon)
                     break;
             }
             else {
-                d->position.x += ceil(xDelta1);
-                other->position.x += ceil(xDelta2);
+                d->position.x += myCeil(xDelta1);
+                other->position.x += myCeil(xDelta2);
             }
             xDelta1 /= 2;
             xDelta2 /= 2;
         }
     }
     else if(yCollision) {
-        // cout << "Y collision" << endl;
         while(yDelta1 || yDelta2) {
             if(collidesWith(d, other)) {
-                d->position.y -= ceil(yDelta1);
-                other->position.y -= ceil(yDelta2);
-                if (yDelta1 < epsilon && yDelta2 < epsilon)
+                d->position.y -= myCeil(yDelta1);
+                other->position.y -= myCeil(yDelta2);
+                if (abs(yDelta1) < epsilon && abs(yDelta2) < epsilon)
                     break;
             }
             else {
-                d->position.y += ceil(yDelta1);
-                other->position.y += ceil(yDelta2);
+                d->position.y += myCeil(yDelta1);
+                other->position.y += myCeil(yDelta2);
             }
             yDelta1 /= 2;
             yDelta2 /= 2;

@@ -79,7 +79,7 @@ public:
 	void drawHitbox(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
 	DisplayObject* getRoot();
-	static bool compareByPosition(const DisplayObject* a, const DisplayObject* b);
+	static bool compareByPosition(DisplayObject* a, DisplayObject* b);
 
 private:
 	double distance(SDL_Point &p1, SDL_Point &p2);
