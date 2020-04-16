@@ -5,6 +5,9 @@
 #include "../engine/Player.h"
 #include "../engine/controls.h"
 #include "../engine/CollisionSystem.h"
+#include "../engine/Character.h"
+#include "../engine/Enemy.h"
+#include "../engine/EnvironmentalObject.h"
 
 
 using namespace std;
@@ -116,6 +119,8 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
+	//Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Eraser);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);

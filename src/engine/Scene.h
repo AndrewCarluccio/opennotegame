@@ -8,6 +8,8 @@
 #include "Game.h"
 #include "Player.h"
 #include "EnvironmentalObject.h"
+#include "Enemy.h"
+#include "Character.h"
 #include <string>
 #include <vector>
 #include <fstream>

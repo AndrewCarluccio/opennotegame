@@ -10,6 +10,7 @@
 #include "controls.h"
 #include "Enemy.h"
 #include "EnvironmentalObject.h"
+#include "Character.h"
 
 using namespace std;
 
@@ -48,7 +49,7 @@ public:
 
 
 	//Enemy* curEnemy = NULL;
-	DisplayObject* curCharacter = NULL;
+	Character* curCharacter = NULL;
 	
 	
 	/* iFrames 

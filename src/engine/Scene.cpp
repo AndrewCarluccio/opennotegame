@@ -69,6 +69,7 @@ DisplayObjectContainer* createLayer(const Value& layerInfo) {
 DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 	string node_id = displayObjectInfo["node_id"].GetString();
 	string type_id = displayObjectInfo["type_id"].GetString();
+	string spriteType = displayObjectInfo["sprite_type"].GetString();
 	int loc_x = displayObjectInfo["locationX"].GetInt();
 	int loc_y = displayObjectInfo["locationY"].GetInt();
 	float scale_x = displayObjectInfo["scaleX"].GetFloat();
@@ -84,6 +85,7 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 
 	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
 
+	the_obj->sprite_type = spriteType;
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
 	the_obj->old_position.x = loc_x;
@@ -176,6 +178,7 @@ Sprite* createSprite(const Value& spriteInfo) {
 AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	string node_id = animatedSpriteInfo["node_id"].GetString();
 	string type_id = animatedSpriteInfo["type_id"].GetString();
+	string spriteType = animatedSpriteInfo["sprite_type"].GetString();
 	int loc_x = animatedSpriteInfo["locationX"].GetInt();
 	int loc_y = animatedSpriteInfo["locationY"].GetInt();
 	float scale_x = animatedSpriteInfo["scaleX"].GetFloat();
@@ -191,6 +194,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
 
+	the_obj->sprite_type = spriteType;
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
 	the_obj->old_position.x = loc_x;
@@ -244,6 +248,7 @@ Player* createPlayer(const Value& playerInfo) {
 EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectInfo) {
 	string node_id = EnvironmentalObjectInfo["node_id"].GetString();
 	string type_id = EnvironmentalObjectInfo["type_id"].GetString();
+	string spriteType = EnvironmentalObjectInfo["sprite_type"].GetString();
 	int loc_x = EnvironmentalObjectInfo["locationX"].GetInt();
 	int loc_y = EnvironmentalObjectInfo["locationY"].GetInt();
 	float scale_x = EnvironmentalObjectInfo["scaleX"].GetFloat();
@@ -259,6 +264,7 @@ EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectI
 
 	EnvironmentalObject* the_obj = new EnvironmentalObject(node_id, path_to_texture);
 
+	the_obj->sprite_type = spriteType;
 	the_obj->position.x = loc_x;
 	the_obj->position.y = loc_y;
 	the_obj->scaleX = scale_x;
@@ -274,6 +280,92 @@ EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectI
 	return the_obj;
 }
 
+Enemy* createEnemy(const Value& EnemyInfo) {
+	string node_id = EnemyInfo["node_id"].GetString();
+	string type_id = EnemyInfo["type_id"].GetString();
+	string spriteType = EnemyInfo["sprite_type"].GetString();
+	int loc_x = EnemyInfo["locationX"].GetInt();
+	int loc_y = EnemyInfo["locationY"].GetInt();
+	float scale_x = EnemyInfo["scaleX"].GetFloat();
+	float scale_y = EnemyInfo["scaleY"].GetFloat();
+	float rotation = EnemyInfo["rotation"].GetFloat();
+	int alpha = EnemyInfo["alpha"].GetInt();
+	string path_to_texture = EnemyInfo["sprite_file_path"].GetString();
+	bool collidable = EnemyInfo["collidable"].GetBool();
+	bool isDynamic = EnemyInfo["isDynamic"].GetBool();
+	float hitboxScaleX = EnemyInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = EnemyInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(EnemyInfo["object_type"].GetInt());
+
+	Enemy* the_obj = new Enemy(node_id, path_to_texture);
+
+	the_obj->sprite_type = spriteType;
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
+
+	return the_obj;
+}
+
+Character* createCharacter(const Value& CharacterInfo) {
+	string node_id = CharacterInfo["node_id"].GetString();
+	string type_id = CharacterInfo["type_id"].GetString();
+	string spriteType = CharacterInfo["sprite_type"].GetString();
+	int loc_x = CharacterInfo["locationX"].GetInt();
+	int loc_y = CharacterInfo["locationY"].GetInt();
+	float scale_x = CharacterInfo["scaleX"].GetFloat();
+	float scale_y = CharacterInfo["scaleY"].GetFloat();
+	float rotation = CharacterInfo["rotation"].GetFloat();
+	int alpha = CharacterInfo["alpha"].GetInt();
+	string path_to_texture = CharacterInfo["sprite_file_path"].GetString();
+	bool collidable = CharacterInfo["collidable"].GetBool();
+	bool isDynamic = CharacterInfo["isDynamic"].GetBool();
+	float hitboxScaleX = CharacterInfo["hitboxScaleX"].GetFloat();
+	float hitboxScaleY = CharacterInfo["hitboxScaleY"].GetFloat();
+	types::Type object_type = static_cast<types::Type>(CharacterInfo["object_type"].GetInt());
+
+	string first_dialogue = CharacterInfo["first_dialogue"].GetString();
+	string mid_dialogue = CharacterInfo["mid_dialogue"].GetString();
+	string item_dialogue = CharacterInfo["item_dialogue"].GetString();
+	string post_dialogue = CharacterInfo["post_dialogue"].GetString();
+	string item_needed = CharacterInfo["item_needed"].GetString();
+	string item_to_give = CharacterInfo["item_to_give"].GetString();
+	string item_path = CharacterInfo["item_path"].GetString();
+	
+
+	Character* the_obj = new Character(node_id, path_to_texture);
+
+	the_obj->sprite_type = spriteType;
+	the_obj->position.x = loc_x;
+	the_obj->position.y = loc_y;
+	the_obj->scaleX = scale_x;
+	the_obj->scaleY = scale_y;
+	the_obj->rotation = rotation;
+	the_obj->alpha = alpha;
+	the_obj->collidable = collidable;
+	the_obj->isDynamic = isDynamic;
+	the_obj->hitboxScaleX = hitboxScaleX;
+	the_obj->hitboxScaleY = hitboxScaleY;
+	the_obj->object_type = object_type;
+	
+	the_obj->firstDialogue = first_dialogue;
+	the_obj->midDialogue = mid_dialogue;
+	the_obj->itemDialogue = item_dialogue;
+	the_obj->postDialogue = post_dialogue;
+	the_obj->itemNeeded = item_needed;
+	the_obj->itemToGive = item_to_give;
+	the_obj->itemPath = item_path;
+
+	return the_obj;
+}
 
 // Recursion happens here
 void createObject(const Value& attribute, DisplayObjectContainer* node) {
@@ -303,6 +395,12 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	}
 	else if (type_id == "EnvironmentalObject") {
 		newChild = createEnvironmentalObject(attribute);
+	}
+	else if (type_id == "Enemy") {
+		newChild = createEnemy(attribute);
+	}
+	else if (type_id == "Character") {
+		newChild = createCharacter(attribute);
 	}
 
 	node->addChild(newChild);

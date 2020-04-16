@@ -119,6 +119,7 @@
     <ClCompile Include="src\engine\AffineTransform.cpp" />
     <ClCompile Include="src\engine\AnimatedSprite.cpp" />
     <ClCompile Include="src\engine\Camera.cpp" />
+    <ClCompile Include="src\engine\Character.cpp" />
     <ClCompile Include="src\engine\CollisionSystem.cpp" />
     <ClCompile Include="src\engine\controls.cpp" />
     <ClCompile Include="src\engine\dev_tool\SceneWriter.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="src\engine\AffineTransform.h" />
     <ClInclude Include="src\engine\AnimatedSprite.h" />
     <ClInclude Include="src\engine\Camera.h" />
+    <ClInclude Include="src\engine\Character.h" />
     <ClInclude Include="src\engine\CollisionSystem.h" />
     <ClInclude Include="src\engine\controls.h" />
     <ClInclude Include="src\engine\dev_tool\SceneWriter.h" />

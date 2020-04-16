@@ -1,5 +1,0 @@
-sry that a sprite had to come with a read me lol
-but 
-1. black hole.png is parent & others are children
-2. shiny bits.png i thought would fade in and out
-3. swirly thing.png i thought would rotate and scale in and out simultaneously

@@ -22,7 +22,7 @@ public:
 	int red, green, blue;
 	string type = "DisplayObject";
 	types::Type object_type = types::Type::Default;
-	string sprite_type = "";
+	string sprite_type = "default";
 
 	bool collision = false;
 
