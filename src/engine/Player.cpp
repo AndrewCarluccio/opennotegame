@@ -163,20 +163,23 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	if(c.useItem) {
-		if you give it someone ->
-			upon interaction, triggers a check between what is wanted from the interaction and what item you have 
-		if you use it yourself ->
-			enable when the control is pressed
-	}
-
-	if(c.interact) {
-		if first time you talked with them -> first dialogue
-		else if you have the item they're looking for -> item dialogue & item exchange 
-		else (you havent gotten the correct item yet) -> random dialogue from an array of quips
-
-		i imagine all these dialogues are methods of the character class
+		check what kind of item it is 
 	}
 	*/
+
+	if(c.interact) {
+		if (curCharacter != NULL) {
+			curItem = curCharacter->dialogueGenerator(curItem);
+			if (curItem != NULL) {
+				cout << "The player's current item is " + curItem->sprite_type << endl;
+			}
+			else {
+				cout << "get an item fool" << endl;
+			}
+		}
+		cout << "ENTER was pressed" << endl;
+		c.interact = false;
+	}
 
 	c.update(pressedKeys);
 }
@@ -208,13 +211,14 @@ void Player::onCollision(DisplayObject* other){
 	}
 
 	else if  (other->object_type == types::Type::Character) {
-		curCharacter = other; // possibly make a Character class
+		curCharacter = (Character*) other; 
 		// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
 	}
 
 	else if(other->object_type == types::Type::Item) {
 		if (!(other->collision)) {
 			curItem = other;
+			cout << curItem->sprite_type << endl;
 			other->visible = false;
 			other->collision = true;
 		}

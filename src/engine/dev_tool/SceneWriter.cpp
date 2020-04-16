@@ -39,6 +39,8 @@ void SceneWriter::saveDisplayObject(PrettyWriter<StringBuffer> *writer, DisplayO
     writer->String(object->id.c_str());
     writer->Key("type_id");
     writer->String(object->type.c_str());
+    writer->Key("sprite_type");
+    writer->String(object->sprite_type.c_str());
     writer->Key("locationX");
     writer->Int(object->position.x);
     writer->Key("locationY");

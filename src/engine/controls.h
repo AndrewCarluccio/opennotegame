@@ -17,9 +17,10 @@ public:
   Controls();
   void update(set<SDL_Scancode> pressedKeys);
 
-  bool holdLeft;
-  bool holdRight;
-  bool pressJump;
+  bool holdLeft = false;
+  bool holdRight = false;
+  bool pressJump = false;
+  bool interact = false;
   
 
 private:
