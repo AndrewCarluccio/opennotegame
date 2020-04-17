@@ -92,10 +92,9 @@ void DisplayObject::draw(AffineTransform &at){
 			flip = SDL_FLIP_HORIZONTAL;
 		}
 
-		 if (facingRight && !facingDown) { // facing right and no gravity should make u upside down
+		 if (!facingDown) { // facing right and no gravity should make u upside down
 			flip = SDL_FLIP_VERTICAL;
 		}
-
 		
 
 	

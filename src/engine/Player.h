@@ -92,9 +92,9 @@ private:
 	int oldY = 0;
 
 	/* Falling variables */ 
-	bool _gravity = true;
+	bool _gravity = false;
 	bool _standing = true;
-	bool _gStanding = false;
+	bool _gStanding = true;
 	int _maxFall = 9;
 	int _yAcc = 2; 
 	int _yAccCount = 0;

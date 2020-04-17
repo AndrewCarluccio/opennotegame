@@ -37,7 +37,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area1/level1-1(2).json");
+	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -119,6 +119,7 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Health);
 	//Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
