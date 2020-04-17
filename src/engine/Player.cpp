@@ -4,10 +4,12 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
-//#include "Enemy.h"
+#include "Enemy.h"
 #include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
+#include <random>
+#include <vector>
 
 
 using namespace std;
@@ -22,7 +24,9 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 6, true);
 	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 6, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 10, false);
+	addAnimation("resources/general_sprites/character/jump_left/", "jump_l", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
+	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
 	//shoot
 	//shield
 }
@@ -55,6 +59,12 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 	AnimatedSprite::update(pressedKeys);
 
+	if (ticks == curTicks + 60) {
+		dying = false;
+		limbo = false;
+		alpha = 250;
+	}
+
 	/* (1195, 1583) is the window size. These if-statements keep the player within the scope of the camera */
 	if (this->position.x  < 0) {
 		this->position.x = 0;
@@ -76,6 +86,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldY = this->position.y;
 
 	/* Player controls */
+	if (!dying) {
 	if(c.holdRight) {
 		this->facingRight = true;
 		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
@@ -93,8 +104,15 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if (c.holdLeft){
 		this->facingRight = false;
-		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
-			this->play("run");
+		if (_gravity) {
+			if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
+				this->play("run");
+			}
+		}
+		else if (!_gravity) { // work around to get the upside down animation
+			if(this->current != getAnimation("run_l") && this->current != getAnimation("jump_l")) {
+				this->play("run_l");
+			}
 		}
 		if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
@@ -102,11 +120,10 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		else {
 			this->position.x -= 10; // move to left
 		}
-
 		c.holdLeft = false;
 	}
 
-	else if(_standing && !c.holdLeft && !c.holdRight) {
+	else if((_standing && !c.holdLeft && !c.holdRight) || (_gStanding && !c.holdLeft && !c.holdRight)) {
 		jumps = 0; 
 		//this->play("idle");
 		if(this->current != getAnimation("idle")) {
@@ -119,43 +136,33 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	if (c.pressJump) {
-		if (_standing && !_gStanding) { // idle to jump
-			_standing = false;  // can only jump once
-			this->_yVel = _jumpVel; // height you can jump
-			jumps++; // account for possible double jumps
-			this->play("jump");
-			if (megaJump) { // power up
+			if (_standing || _gStanding) { // idle to jump
+				_standing = false;  // false bc now ur jumping 
+				_gStanding = false;
+				this->_yVel = _jumpVel; // height you can jump
+				jumps++; // account for possible double jumps
+				this->play("jump");
+				if (!_gravity) {
+					if (!this->facingRight) {
+						this->play("jump_l");
+					}
+					else if (this->facingRight) {
+						this->play("jump");
+					}
+				}
+				if (megaJump) { // power up
 				this->_yVel = (_jumpVel * 2); 
-			}
-			if (lowHealth) {
-				if (_yVel < -10.0) {
-					_yVel = -10.0;
+				}
+				if (lowHealth) {
+					if (_yVel < -10.0) {
+						_yVel = -10.0;
+					}
 				}
 			}
-		}
-
-		else if (_gStanding && !_standing) {
-			_gStanding = false;
-			this->_yVel = _jumpVel; // height you can jump
-			jumps++; // account for possible double jumps
-			this->play("jump");
-			if (megaJump) { // power up
-				this->_yVel = (_jumpVel * 2); 
-			}
-			if (lowHealth) {
-				if (_yVel < -10.0) {
-					_yVel = -10.0;
+			if (!_standing || !_gStanding) { // if jumping bc not on ground
+				c.pressJump = false; // only want player to jump when standing
 				}
-			}
-
-			c.pressJump = false;
 		}
-
-		if (!_standing && !_gStanding) {
-			c.pressJump = false; // only want player to jump when standing
-		}
-		
-	}
 
 
 	/* Calculate fall velocity. Given to us. */ 
@@ -170,12 +177,13 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	/* Checks for gravity and flips player if necessary. */
 	if (_gravity) {
 		this->position.y += _yVel;
-		_gStanding = false;
+		this->facingDown = true;
+
 	}
 	else {
 		this->position.y -= _yVel;
-		_gStanding = true;
-		_standing = false;
+		this->facingDown = false;
+
 		//this->facingDown = false;
 	}
 
@@ -207,8 +215,12 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		cout << "ENTER was pressed" << endl;
 		c.interact = false;
 	}
+	}
 
 	c.update(pressedKeys);
+
+	ticks++;
+	cout << ticks << endl;
 }
 
 void Player::draw(AffineTransform &at){
@@ -218,6 +230,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
+	if (!dying && !limbo) {
 	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
@@ -227,6 +240,7 @@ void Player::onCollision(DisplayObject* other){
 		int otherY = other->getHitbox().y;
 		if (meY + meH <= otherY)
 			_standing=true;
+			_gStanding = true;
 	}
 
 	else if (other->type == "EnvironmentalObject") {
@@ -249,6 +263,12 @@ void Player::onCollision(DisplayObject* other){
 			other->visible = false;
 			other->collision = true;
 		}
+		else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
+		if (!(other->collision)) {
+			other->visible = false;
+			other->collision = true;		
+			}
+		}
 	}
 
 	else if (other->object_type == types::Type::Health) {
@@ -257,6 +277,7 @@ void Player::onCollision(DisplayObject* other){
 				this->incHealth(10);
 				other->visible = false;
 				other->collision = true;
+				cout << other->sprite_type << "increased health" << endl;
 			}
 			else if (other->sprite_type == "buldak") {
 				this->incHealth(20);
@@ -284,6 +305,7 @@ void Player::onCollision(DisplayObject* other){
 		curWeapon = other;
 		// add sprite as child of player but only for shooting animation
 		// for simplicity... ig uess we won't have them carry the weapon all the time :")
+	}
 	}
 }
 
@@ -324,6 +346,25 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 		envObj->position.y += _yVel; // fall with the player
 	}
 
+	// cloud platform
+	if (envObj->object_type == types::Type::CloudPlatform) {
+		// this is so player can stand on cloud
+		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
+		if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
+			this->isTouching = true; // true
+		}
+		else if (!Game::instance->collisionSystem.collidesWith(this, envObj)) // not colliding
+			this->isTouching = false; // set to false
+			if (!isTouching) {  // if false, turn off visibility 
+				envObj->visible = false; // THIS IS A TEMPORARY SOLUTION. SHOULD REMOVE THE PLATFORM, NOT JUST MAKE IT INVISIBLEs
+			}
+			else {
+				envObj->visible = true; 
+			}
+		}	
+
+
+
 
 
 	/* LINEAR ALGEBRA */
@@ -336,20 +377,34 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 
 
 void Player::onEnemyCollision(Enemy* enemy){ 
+	if (enemy->sprite_type == "coffee") {
+		dying = true;
+		alpha = 75;
+		this->play("idle");
+		curTicks = ticks;
+		this->dead();
+	}
+
 	/* PHYSICS */
-	if (enemy->sprite_type == "blackhole") {
-		//this->play("blackhole");
+	else if (enemy->sprite_type == "blackhole") {
+		dying = true;
+		this->play("bh");
+		curTicks = ticks;
 		this->dead();
 	}
 
 	else if (enemy->sprite_type == "cat") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
 	/* ANIMATION */
 	else if (enemy->sprite_type == "glitch") {
-		// move somewhere else
+		this->position.x = rand() % 1196;
+		this->position.y = rand() % 1584;
 	}
 
 	else if (enemy->sprite_type == "lamp") {
@@ -402,7 +457,7 @@ void Player::decHealth(int hp){
 }
 
 void Player::dead(){
-	//Game::instance->quitSDL();
+	cout << "game over" << endl;
 	// later replace this with game over scene
 }
 

@@ -30,11 +30,16 @@ public:
 	bool godMode = false;
 	//void initIFrames(int numFrames);
 
+	int ticks = 0;
+	int curTicks = 0;
+
 	/* UI and Player variables */
 	int health = 100;
 	int maxHealth = 100;
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
+	bool dying = false;
+	bool limbo = false;
 
 	bool hasPowerUp = true; 
 	bool collision;
@@ -45,13 +50,14 @@ public:
 	int jumps = 0; 
 	bool doubleJump = false;
 	bool megaJump = false;
+	bool isTouching;
 
 	DisplayObject* curItem = NULL;
 	DisplayObject* curWeapon = NULL;
 	//DisplayObject* curShield;
 
 
-	//Enemy* curEnemy = NULL;
+	Enemy* curEnemy = NULL;
 	Character* curCharacter = NULL;
 	
 	
@@ -97,7 +103,7 @@ private:
 	/* Falling variables */ 
 	bool _gravity = true;
 	bool _standing = true;
-	bool _gStanding = false;
+	bool _gStanding = true;
 	int _maxFall = 9;
 	int _yAcc = 2; 
 	int _yAccCount = 0;

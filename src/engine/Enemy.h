@@ -8,8 +8,9 @@
 #include <fstream>
 #include "Sprite.h"
 #include "controls.h"
-//#include "Player.h"
-//#include "EnvironmentalObject.h"
+#include "EnvironmentalObject.h"
+#include "CollisionSystem.h"
+
 
 using namespace std;
 
@@ -21,7 +22,18 @@ public:
 	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
-	//virtual void onCollision(DisplayObject* other);
+	virtual void onCollision(DisplayObject* other);
+
+
+	void setPatrolRange();
+	void patrol();
+	void lunge();
+	void bodySlam();
+	void shield();
+	void shoot();
+	bool isTargetReached();
+	void moveToTarget();
+
 
 	int health = 100;
 	int maxHealth = 100;
@@ -37,6 +49,20 @@ public:
     void dead();
 	
 private:
+	int minPatX;
+	int maxPatX;
+	int minPatY;
+	int maxPatY;
+	int targX;
+	int targY;
+	int vel;
+	int maxVel;
+	int acc = 5;
+	double theta;
+	double xComp;
+	double yComp;
+
+	int state = 0; // how to control states
 
 	int oldX = 0;
 	int oldY = 0;
@@ -52,3 +78,5 @@ private:
 };
 
 #endif
+
+
