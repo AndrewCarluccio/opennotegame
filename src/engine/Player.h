@@ -45,6 +45,7 @@ public:
 	int jumps = 0; 
 	bool doubleJump = false;
 	bool megaJump = false;
+	bool isTouching;
 
 	DisplayObject* curItem = NULL;
 	DisplayObject* curWeapon = NULL;

@@ -9,6 +9,7 @@
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
 #include <random>
+#include <vector>
 
 
 using namespace std;
@@ -229,6 +230,12 @@ void Player::onCollision(DisplayObject* other){
 			other->visible = false;
 			other->collision = true;
 		}
+		else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
+		if (!(other->collision)) {
+			other->visible = false;
+			other->collision = true;		
+			}
+		}
 	}
 
 	else if (other->object_type == types::Type::Health) {
@@ -305,6 +312,25 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 	}
+
+	// cloud platform
+	if (envObj->object_type == types::Type::CloudPlatform) {
+		// this is so player can stand on cloud
+		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
+		if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
+			this->isTouching = true; // true
+		}
+		else if (!Game::instance->collisionSystem.collidesWith(this, envObj))) // not colliding
+			this->isTouching = false; // set to false
+			if (!isTouching) {  // if false, turn off visibility 
+				envObj->visible = false; // THIS IS A TEMPORARY SOLUTION. SHOULD REMOVE THE PLATFORM, NOT JUST MAKE IT INVISIBLEs
+			}
+			else {
+				envObj->visible = true; 
+			}
+		}	
+
+
 
 
 
