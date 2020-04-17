@@ -8,6 +8,10 @@
     "rotation": 0.0,
     "alpha": 255,
     "sprite_file_path": "",
+    "collidable": false,
+    "isDynamic": false,
+    "hitboxScaleX": 1.0,
+    "hitboxScaleY": 1.0,
     "children": [
         {
             "node_id": "Background",
@@ -19,6 +23,10 @@
             "rotation": 0.0,
             "alpha": 255,
             "sprite_file_path": "",
+	    "collidable": false,
+	    "isDynamic": false,
+	    "hitboxScaleX": 1.0,
+	    "hitboxScaleY": 1.0,
             "children": [
                 {
                     "node_id": "sprite0",
@@ -30,6 +38,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/page_bg.png",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 }
             ]
@@ -44,6 +56,10 @@
             "rotation": 0.0,
             "alpha": 255,
             "sprite_file_path": "",
+	    "collidable": false,
+	    "isDynamic": false,
+	    "hitboxScaleX": 1.0,
+	    "hitboxScaleY": 1.0,
             "children": []
         },
         {
@@ -56,6 +72,10 @@
             "rotation": 0.0,
             "alpha": 255,
             "sprite_file_path": "",
+	    "collidable": false,
+	    "isDynamic": false,
+	    "hitboxScaleX": 1.0,
+	    "hitboxScaleY": 1.0,
             "children": [
                 {
                     "node_id": "sprite11",
@@ -67,6 +87,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/platforms/long1.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -79,6 +103,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -91,6 +119,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -103,6 +135,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -115,6 +151,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -127,6 +167,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -139,6 +183,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -151,6 +199,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -163,6 +215,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -175,6 +231,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -187,6 +247,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -199,6 +263,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -211,6 +279,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -223,6 +295,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/cloud.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -235,6 +311,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/levels/anim_3.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -247,6 +327,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -259,6 +343,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -271,6 +359,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -283,6 +375,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -295,6 +391,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -307,6 +407,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -319,6 +423,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -331,6 +439,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -343,6 +455,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -355,6 +471,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -367,6 +487,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -379,6 +503,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -391,6 +519,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/objects/sprite_can.PNG",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 },
                 {
@@ -403,6 +535,10 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/character/idle.png",
+		    "collidable": false,
+		    "isDynamic": false,
+		    "hitboxScaleX": 1.0,
+		    "hitboxScaleY": 1.0,
                     "children": []
                 }
             ]
