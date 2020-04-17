@@ -8,6 +8,7 @@
 #include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
+#include <random>
 
 
 using namespace std;
@@ -52,6 +53,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldY = this->position.y;
 
 	/* Player controls */
+	if (!dying) {
 	if(c.holdRight) {
 		this->facingRight = true;
 		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
@@ -180,8 +182,11 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		cout << "ENTER was pressed" << endl;
 		c.interact = false;
 	}
-	
+	}
+
 	c.update(pressedKeys);
+
+	ticks++;
 }
 
 void Player::draw(AffineTransform &at){
@@ -191,6 +196,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
+	if (!dying) {
 	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
@@ -260,6 +266,7 @@ void Player::onCollision(DisplayObject* other){
 		// add sprite as child of player but only for shooting animation
 		// for simplicity... ig uess we won't have them carry the weapon all the time :")
 	}
+	}
 }
 
 /*
@@ -311,8 +318,15 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 
 
 void Player::onEnemyCollision(Enemy* enemy){ 
+	if (enemy->sprite_type == "coffee") {
+		dying = true;
+		alpha = 25;
+		this->play("idle");
+		this->dead();
+	}
 	/* PHYSICS */
-	if (enemy->sprite_type == "blackhole") {
+	else if (enemy->sprite_type == "blackhole") {
+		dying = true;
 		this->play("bh");
 		this->dead();
 	}
@@ -324,7 +338,8 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	/* ANIMATION */
 	else if (enemy->sprite_type == "glitch") {
-		// move somewhere else
+		this->position.x = rand() % 1196;
+		this->position.y = rand() % 1584;
 	}
 
 	else if (enemy->sprite_type == "lamp") {

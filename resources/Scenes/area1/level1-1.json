@@ -234,7 +234,7 @@
                 {
                     "node_id": "sprite0",
                     "type_id": "Enemy",
-                    "sprite_type": "blackhole",
+                    "sprite_type": "glitch",
                     "locationX": -375,
                     "locationY": -325,
                     "scaleX": 1.0,

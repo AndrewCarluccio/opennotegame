@@ -132,7 +132,7 @@ void Enemy::patrol() {
 }
 
 void Enemy::moveToTarget() {
-	this->vel = std::min(this->vel+this->acc, this->maxVel);
+	//this->vel = std::min(this->vel+this->acc, this->maxVel);
 	double theta = std::atan2(std::abs(this->targY - this->position.y),std::abs(this->targX - this->position.x));
 	double xComp = this->vel*std::cos(theta);
 	double yComp = this->vel*std::sin(theta);

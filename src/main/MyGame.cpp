@@ -150,6 +150,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	Game::update(pressedKeys);
 	scene_manager->active_scene->update(pressedKeys);
 	Game::instance->collisionSystem.update();
+
 }
 
 void MyGame::draw(AffineTransform& at) {
