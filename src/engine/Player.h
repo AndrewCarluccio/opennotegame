@@ -22,12 +22,15 @@ public:
 	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	void updateGodMode(set<SDL_Scancode> pressedKeys);
+	void updateDevToolMode(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
 	void onEnvObjCollision(EnvironmentalObject* envObj);
 	void onEnemyCollision(Enemy* enemy);
 	// determines if player is in god mode
 	bool godMode = false;
+	// determines if in dev tool mode (don't move around)
+	bool devToolMode = false;
 	//void initIFrames(int numFrames);
 
 	int ticks = 0;

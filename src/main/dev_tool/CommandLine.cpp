@@ -29,8 +29,10 @@ void CommandLine::load() {
 	delete instance->activeScene;
 	instance->activeScene = new Scene();
 	instance->activeScene->loadScene("./resources/Scenes/" + filename);
-	instance->activeScene->root->position.y = 100;
+	instance->activeScene->root->position.y = 200;
 	instance->selectedLayer = instance->activeScene->foreground;
+	instance->player = (Player*)instance->activeScene->getChild("player");
+	instance->player->devToolMode = true;
 	instance->scene_lock.unlock();
 }
 

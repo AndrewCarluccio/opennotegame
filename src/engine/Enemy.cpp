@@ -7,6 +7,7 @@
 #include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
+#include <cmath>
 
 
 using namespace std;

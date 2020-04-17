@@ -14,7 +14,10 @@ DevTool::DevTool() : Game(597, 891) {
 
 	scene = new Scene();
 
-	scene->loadScene("./resources/Scenes/area1/level1-2.json");
+	scene->loadScene("./resources/Scenes/area1/level1-1.json");
+	player = (Player*)scene->getChild("player");
+	player->devToolMode = true;
+
 
 
 	CommandLine *cmdLine = new CommandLine(this);

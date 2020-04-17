@@ -31,7 +31,13 @@ void Player::loadAnimations() {
 	//shield
 }
 
-// execute this update method instead if in god mode, allow free movement
+void Player::updateDevToolMode(set<SDL_Scancode> pressedKeys) {
+// execute this update method instead if in dev tool mode, no movement
+	AnimatedSprite::update(pressedKeys);
+	this->play("idle");
+}
+
+
 void Player::updateGodMode(set<SDL_Scancode> pressedKeys) {
 	AnimatedSprite::update(pressedKeys);
 	this->play("idle");
@@ -53,6 +59,10 @@ void Player::updateGodMode(set<SDL_Scancode> pressedKeys) {
 }
 
 void Player::update(set<SDL_Scancode> pressedKeys){
+	if (devToolMode) {
+		updateDevToolMode(pressedKeys);
+		return;
+	}
 	if (godMode) {
 		updateGodMode(pressedKeys);
 		return;
