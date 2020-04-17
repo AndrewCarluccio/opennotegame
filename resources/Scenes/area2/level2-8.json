@@ -29,7 +29,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/page_bg.png",
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
                     "children": []
                 }
             ]
@@ -66,7 +66,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/levels/anim_8.png",
+                    "sprite_file_path": "resources/Sprites/titles/area2/anim_8.png",
                     "children": []
                 },
                 {
@@ -78,7 +78,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -90,7 +90,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -102,7 +102,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -114,7 +114,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -126,7 +126,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -138,7 +138,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -150,7 +150,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -162,7 +162,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -174,7 +174,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -186,7 +186,7 @@
                     "scaleY": 0.46999999999999955,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain1.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain1.png",
                     "children": []
                 },
                 {
@@ -198,7 +198,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/enemies/glitch.png",
+                    "sprite_file_path": "resources/Sprites/enemies/glitch.png",
                     "children": []
                 },
                 {
@@ -210,7 +210,7 @@
                     "scaleY": 0.4399999999999995,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain8.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain8.png",
                     "children": []
                 },
                 {
@@ -222,7 +222,7 @@
                     "scaleY": 0.4599999999999995,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain6.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain6.png",
                     "children": []
                 },
                 {
@@ -234,7 +234,7 @@
                     "scaleY": 0.13999999999999925,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/shinramyun.png",
+                    "sprite_file_path": "resources/Sprites/objects/shinramyun.png",
                     "children": []
                 },
                 {
@@ -246,7 +246,7 @@
                     "scaleY": 0.15999999999999926,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/paintbrush/paintbrush_1.png",
+                    "sprite_file_path": "resources/Sprites/objects/paintbrush/paintbrush_1.png",
                     "children": []
                 },
                 {
@@ -258,7 +258,7 @@
                     "scaleY": 0.15999999999999926,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/paintbrush/paintbrush_1.png",
+                    "sprite_file_path": "resources/Sprites/objects/paintbrush/paintbrush_1.png",
                     "children": []
                 },
                 {
@@ -270,7 +270,7 @@
                     "scaleY": 0.15999999999999926,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/paintbrush/paintbrush_1.png",
+                    "sprite_file_path": "resources/Sprites/objects/paintbrush/paintbrush_1.png",
                     "children": []
                 },
                 {
@@ -282,7 +282,7 @@
                     "scaleY": 0.07999999999999925,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/buldalk.png",
+                    "sprite_file_path": "resources/Sprites/objects/buldalk.png",
                     "children": []
                 },
                 {
@@ -294,7 +294,7 @@
                     "scaleY": 0.48999999999999957,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -306,7 +306,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/enemies/mark_5240/idle.png",
+                    "sprite_file_path": "resources/Sprites/enemies/mark_5240/idle.png",
                     "children": []
                 },
                 {
@@ -318,7 +318,7 @@
                     "scaleY": 0.09999999999999924,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/character/idle.png",
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
                     "children": []
                 }
             ]

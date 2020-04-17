@@ -29,7 +29,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/page_bg.png",
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
                     "children": []
                 }
             ]
@@ -66,7 +66,7 @@
                     "scaleY": 0.30000001192092898,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/levels/5.PNG",
+                    "sprite_file_path": "resources/Sprites/titles/area1/5.PNG",
                     "children": []
                 },
                 {
@@ -78,7 +78,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -90,7 +90,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -102,7 +102,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -114,7 +114,7 @@
                     "scaleY": 0.2199999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/cat/idle.png",
+                    "sprite_file_path": "resources/Sprites/enemies/schrodinger_cat/idle.png",
                     "children": []
                 },
                 {
@@ -126,7 +126,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -138,7 +138,7 @@
                     "scaleY": 0.23000000417232514,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/schrodinger.png",
+                    "sprite_file_path": "resources/Sprites/npcs/schrodinger.png",
                     "children": []
                 },
                 {
@@ -150,7 +150,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -162,7 +162,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -174,7 +174,7 @@
                     "scaleY": 0.2800000011920929,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/cat/idle.png",
+                    "sprite_file_path": "resources/Sprites/enemies/schrodinger_cat/idle.png",
                     "children": []
                 },
                 {
@@ -186,7 +186,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -198,7 +198,7 @@
                     "scaleY": 0.4300000071525574,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/flag.PNG",
                     "children": []
                 },
                 {
@@ -210,7 +210,7 @@
                     "scaleY": 0.07000000029802323,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/character/idle.png",
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
                     "children": []
                 },
                 {
@@ -222,7 +222,7 @@
                     "scaleY": 1.100000023841858,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -234,7 +234,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -246,7 +246,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -258,7 +258,7 @@
                     "scaleY": 0.23999999463558198,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/cat/idle.png",
+                    "sprite_file_path": "resources/Sprites/enemies/schrodinger_cat/idle.png",
                     "children": []
                 }
             ]

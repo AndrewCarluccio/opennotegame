@@ -29,7 +29,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/page_bg.png",
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
                     "children": []
                 }
             ]
@@ -66,7 +66,7 @@
                     "scaleY": 0.6899999976158142,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain3.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain3.png",
                     "children": []
                 },
                 {
@@ -78,7 +78,7 @@
                     "scaleY": 0.3100000023841858,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -90,7 +90,7 @@
                     "scaleY": 0.3400000035762787,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain4.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain4.png",
                     "children": []
                 },
                 {
@@ -102,7 +102,7 @@
                     "scaleY": 0.05999999865889549,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/character/idle.png",
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
                     "children": []
                 },
                 {
@@ -114,7 +114,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -126,7 +126,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -138,7 +138,7 @@
                     "scaleY": 0.17000000178813935,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -150,7 +150,7 @@
                     "scaleY": 0.1599999964237213,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain10.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain10.png",
                     "children": []
                 },
                 {
@@ -162,7 +162,7 @@
                     "scaleY": 0.20000000298023225,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain4.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain4.png",
                     "children": []
                 },
                 {
@@ -174,7 +174,7 @@
                     "scaleY": 0.28999999165534975,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain3.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain3.png",
                     "children": []
                 },
                 {
@@ -186,7 +186,7 @@
                     "scaleY": 0.17000000178813935,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -198,7 +198,7 @@
                     "scaleY": 0.11999999731779099,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain10.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain10.png",
                     "children": []
                 },
                 {
@@ -210,7 +210,7 @@
                     "scaleY": 0.11999999731779099,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -222,7 +222,7 @@
                     "scaleY": 0.10000000149011612,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -234,7 +234,7 @@
                     "scaleY": 0.07000000029802323,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain4.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain4.png",
                     "children": []
                 },
                 {
@@ -246,7 +246,7 @@
                     "scaleY": 0.6100000143051148,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain3.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain3.png",
                     "children": []
                 },
                 {
@@ -258,7 +258,7 @@
                     "scaleY": 0.4000000059604645,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -270,7 +270,7 @@
                     "scaleY": 0.3199999928474426,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain4.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain4.png",
                     "children": []
                 },
                 {
@@ -282,7 +282,7 @@
                     "scaleY": 0.4399999976158142,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain7.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain7.png",
                     "children": []
                 },
                 {
@@ -294,7 +294,7 @@
                     "scaleY": 0.3799999952316284,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain10.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain10.png",
                     "children": []
                 },
                 {
@@ -306,7 +306,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -318,7 +318,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -330,7 +330,7 @@
                     "scaleY": 0.28999999165534975,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/levels/3.PNG",
+                    "sprite_file_path": "resources/Sprites/titles/area1/3.PNG",
                     "children": []
                 },
                 {
@@ -342,7 +342,7 @@
                     "scaleY": 0.5600000023841858,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/flag.PNG",
                     "children": []
                 },
                 {
@@ -354,7 +354,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -366,7 +366,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/med1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
                     "children": []
                 },
                 {
@@ -378,7 +378,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -390,7 +390,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -402,7 +402,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -414,7 +414,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -426,7 +426,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -438,7 +438,7 @@
                     "scaleY": 0.19250000178813937,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/coffee_stains/coffeestain3.png",
+                    "sprite_file_path": "resources/Sprites/coffee_stains/coffeestain3.png",
                     "children": []
                 }
             ]

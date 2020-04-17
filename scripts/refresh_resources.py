@@ -1,6 +1,6 @@
 import os
 
-sprite_path = 'resources/Sprites'
+sprite_path = 'resources\Sprites'
 animation_path = 'resources/Animations'
 
 output_file = open('resources.txt', 'w')

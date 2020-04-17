@@ -29,7 +29,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/page_bg.png",
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
                     "children": []
                 }
             ]
@@ -66,7 +66,7 @@
                     "scaleY": 0.5099999904632568,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -78,7 +78,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -90,7 +90,7 @@
                     "scaleY": 0.44999998807907107,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -102,7 +102,7 @@
                     "scaleY": 0.47999998927116396,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -114,7 +114,7 @@
                     "scaleY": 0.47999998927116396,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -126,7 +126,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -138,7 +138,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -150,7 +150,7 @@
                     "scaleY": 0.49000000953674319,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -162,7 +162,7 @@
                     "scaleY": 0.4300000071525574,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -174,7 +174,7 @@
                     "scaleY": 0.5099999904632568,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -186,7 +186,7 @@
                     "scaleY": 0.550000011920929,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -198,7 +198,7 @@
                     "scaleY": 0.5299999713897705,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -210,7 +210,7 @@
                     "scaleY": 0.6000000238418579,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -222,7 +222,7 @@
                     "scaleY": 0.6499999761581421,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -234,7 +234,7 @@
                     "scaleY": 0.6200000047683716,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -246,7 +246,7 @@
                     "scaleY": 0.5,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -258,7 +258,7 @@
                     "scaleY": 0.49000000953674319,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -270,7 +270,7 @@
                     "scaleY": 0.44999998807907107,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -282,7 +282,7 @@
                     "scaleY": 0.5299999713897705,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -294,7 +294,7 @@
                     "scaleY": 0.5299999713897705,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -306,7 +306,7 @@
                     "scaleY": 0.5099999904632568,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -318,7 +318,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -330,7 +330,7 @@
                     "scaleY": 0.5199999809265137,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -342,7 +342,7 @@
                     "scaleY": 0.5199999809265137,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -354,7 +354,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -366,7 +366,7 @@
                     "scaleY": 0.5099999904632568,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -378,7 +378,7 @@
                     "scaleY": 0.44999998807907107,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -390,7 +390,7 @@
                     "scaleY": 0.49000000953674319,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -402,7 +402,7 @@
                     "scaleY": 0.49000000953674319,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -414,7 +414,7 @@
                     "scaleY": 0.4699999988079071,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -426,7 +426,7 @@
                     "scaleY": 0.47999998927116396,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -438,7 +438,7 @@
                     "scaleY": 0.550000011920929,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -450,7 +450,7 @@
                     "scaleY": 0.5400000214576721,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/objects/eraser/eraser1.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/eraser/eraser1.PNG",
                     "children": []
                 },
                 {
@@ -462,7 +462,7 @@
                     "scaleY": 0.10999999940395355,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/character/idle.png",
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
                     "children": []
                 },
                 {
@@ -474,7 +474,7 @@
                     "scaleY": 0.20000000298023225,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/power_up.PNG",
+                    "sprite_file_path": "resources/Sprites/objects/power_up.PNG",
                     "children": []
                 },
                 {
@@ -486,7 +486,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/platforms/short1.PNG",
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
                     "children": []
                 },
                 {
@@ -498,7 +498,7 @@
                     "scaleY": 0.5900000000000087,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_2_sprites/levels/anim_7.PNG",
+                    "sprite_file_path": "resources/Sprites/titles/area2/anim_7.PNG",
                     "children": []
                 }
             ]
