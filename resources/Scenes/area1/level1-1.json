@@ -234,7 +234,7 @@
                 {
                     "node_id": "sprite0",
                     "type_id": "Enemy",
-                    "sprite_type": "glitch",
+                    "sprite_type": "blackhole",
                     "locationX": -375,
                     "locationY": -325,
                     "scaleX": 1.0,
@@ -269,8 +269,8 @@
                 },
                 {
                     "node_id": "sprite5",
-                    "type_id": "Character",
-                    "sprite_type": "peterpan",
+                    "type_id": "Enemy",
+                    "sprite_type": "cat",
                     "locationX": 525,
                     "locationY": 300,
                     "scaleX": 1.0,
@@ -307,7 +307,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 12,
+                    "object_type": 10,
                     "children": []
                 },
                 {

@@ -27,7 +27,8 @@ public:
 	void onEnemyCollision(Enemy* enemy);
 	//void initIFrames(int numFrames);
 
-	int ticks;
+	int ticks = 0;
+	int curTicks = 0;
 
 	/* UI and Player variables */
 	int health = 100;
@@ -35,6 +36,7 @@ public:
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
 	bool dying = false;
+	bool limbo = false;
 
 	bool hasPowerUp = true; 
 	bool collision;

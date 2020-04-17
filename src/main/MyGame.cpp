@@ -37,7 +37,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area2/level2-3.json");
+	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");

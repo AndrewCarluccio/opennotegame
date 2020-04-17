@@ -33,6 +33,12 @@ void Player::loadAnimations() {
 void Player::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
 
+	if (ticks == curTicks + 60) {
+		dying = false;
+		limbo = false;
+		alpha = 250;
+	}
+
 	/* (1195, 1583) is the window size. These if-statements keep the player within the scope of the camera */
 	if (this->position.x  < 0) {
 		this->position.x = 0;
@@ -188,6 +194,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	c.update(pressedKeys);
 
 	ticks++;
+	cout << ticks << endl;
 }
 
 void Player::draw(AffineTransform &at){
@@ -197,7 +204,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	if (!dying) {
+	if (!dying && !limbo) {
 	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
@@ -320,7 +327,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 		if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
 			this->isTouching = true; // true
 		}
-		else if (!Game::instance->collisionSystem.collidesWith(this, envObj))) // not colliding
+		else if (!Game::instance->collisionSystem.collidesWith(this, envObj)) // not colliding
 			this->isTouching = false; // set to false
 			if (!isTouching) {  // if false, turn off visibility 
 				envObj->visible = false; // THIS IS A TEMPORARY SOLUTION. SHOULD REMOVE THE PLATFORM, NOT JUST MAKE IT INVISIBLEs
@@ -346,19 +353,25 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 void Player::onEnemyCollision(Enemy* enemy){ 
 	if (enemy->sprite_type == "coffee") {
 		dying = true;
-		alpha = 25;
+		alpha = 75;
 		this->play("idle");
+		curTicks = ticks;
 		this->dead();
 	}
+
 	/* PHYSICS */
 	else if (enemy->sprite_type == "blackhole") {
 		dying = true;
 		this->play("bh");
+		curTicks = ticks;
 		this->dead();
 	}
 
 	else if (enemy->sprite_type == "cat") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
