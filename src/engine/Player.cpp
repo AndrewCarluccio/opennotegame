@@ -321,6 +321,7 @@ void Player::onCollision(DisplayObject* other){
 		else if (other->object_type == types::Type::TransitionPoint) {
 			//toss a transition event later
 			other->collision = true;
+			other->collidable = false;
 			cout << "Detected Collision with Transition Point" << endl;
 		}
 	}

@@ -15,6 +15,10 @@ Scene::Scene() {
 	root = new DisplayObjectContainer();
 }
 
+Scene::~Scene() {
+	delete(root);
+}
+
 void setDisplayObjectProperties(const Value &displayObjectInfo, DisplayObject *the_obj) {
 	string node_id = displayObjectInfo["node_id"].GetString();
 	string type_id = displayObjectInfo["type_id"].GetString();
