@@ -33,7 +33,7 @@ void CollisionSystem::update() {
                 if(potential->getHitbox().x > (active->getHitbox().x + active->getHitbox().w))
                     active_list.erase(active_list.begin() + j--);
                 // Potential Collision
-                else if (collidable_pairs[potential->object_type][active->object_type] && collidesWith(potential, active)) {
+                else if (potential->collidable && active->collidable && collidable_pairs[potential->object_type][active->object_type] && collidesWith(potential, active)) {
                     potential->onCollision(active);
                     active->onCollision(potential);
                 }
@@ -73,6 +73,7 @@ void CollisionSystem::handleEvent(Event* e) {
                 for(it = dynamic_collidables.begin(); it != dynamic_collidables.end(); ++it) {
                     if(*it == modified) {
                         dynamic_collidables.erase(it);
+                        cout << "Object " << modified->id << " removed" << endl;
                         break;
                     }
                 }
@@ -81,6 +82,7 @@ void CollisionSystem::handleEvent(Event* e) {
                 for(it = static_collidables.begin(); it != static_collidables.end(); ++it) {
                     if(*it == modified) {
                         static_collidables.erase(it);
+                        cout << "Object " << modified->id << " removed" << endl;
                         break;
                     }
                 }

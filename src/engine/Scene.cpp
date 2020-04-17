@@ -12,7 +12,7 @@
 using namespace rapidjson;
 
 Scene::Scene() {
-	root = new DisplayObjectContainer();
+	// root = new DisplayObjectContainer();
 }
 
 Scene::~Scene() {

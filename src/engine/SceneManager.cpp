@@ -133,7 +133,6 @@ bool SceneManager::processPosition() {
 			//after we fade back up, reset listeners and primer
 			listen->reset();
 			primed = false;
-			delete(transition_scene);
 			transition_scene = new Scene();
 		}
 	}

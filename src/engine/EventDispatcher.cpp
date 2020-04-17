@@ -11,7 +11,7 @@
         while (it != listeners->end()) {
             vector<EventListener*>::iterator it2 = it->second->begin();
             while (it2 != it->second->end()) {
-                delete *it2;
+                // delete *it2; // FIGURE OUT WHY THIS BREAKS THINGS
                 it2++;
             }
             it++;
