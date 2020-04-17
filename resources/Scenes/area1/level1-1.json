@@ -157,7 +157,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 2,
+                    "object_type": 15,
                     "children": []
                 },
 				{
@@ -165,7 +165,7 @@
                     "type_id": "TransitionPoint",
                     "sprite_type": "default",
                     "locationX": 75,
-                    "locationY": 1423,
+                    "locationY": 1300,
                     "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotation": 0.0,
@@ -176,7 +176,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 2,
+                    "object_type": 15,
                     "children": []
                 },
                 {
