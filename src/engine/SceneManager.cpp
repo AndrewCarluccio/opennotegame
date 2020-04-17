@@ -118,6 +118,7 @@ bool SceneManager::processPosition() {
 		cout << active_scene->foreground->alpha << endl;
 		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
+			delete(active_scene);
 			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
 			active_scene = transition_scene;
 			//delete(transition_scene);
@@ -132,6 +133,8 @@ bool SceneManager::processPosition() {
 			//after we fade back up, reset listeners and primer
 			listen->reset();
 			primed = false;
+			delete(transition_scene);
+			transition_scene = new Scene();
 		}
 	}
 	else {
@@ -178,7 +181,7 @@ bool SceneManager::processPosition() {
 					d = 2; //hard coded fade time
 					transitionOut(d / 2, active_scene);
 					cout << "Fired transition!" << endl;
-					active_scene = transition_scene;
+					//active_scene = transition_scene;
 					return true;
 				}
 			}
