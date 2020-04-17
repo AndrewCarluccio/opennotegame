@@ -20,6 +20,7 @@
 #include "../engine/controls.h"
 #include "../engine/SceneManager.h"
 #include "../engine/Player.h"
+#include "../engine/TransitionPoint.h"
 #include "../engine/UI.h"
 
 using namespace std;
@@ -39,6 +40,9 @@ public:
 
 	DisplayObject* flag;
 
+	Scene* default_area;
+
+	/*
 	Scene* area1_1;
 	Scene* area1_2;
 	Scene* area1_3;
@@ -55,6 +59,41 @@ public:
 	Scene* area2_6;
 	Scene* area2_7;
 	Scene* area2_8;
+	*/
+
+	string a1_1_name;
+	string a1_2_name;
+	string a1_3_name;
+	string a1_4_name;
+	string a1_5_name;
+	string a1_6_name;
+	string a1_7_name;
+	string a1_8_name;
+	string a2_1_name;
+	string a2_2_name;
+	string a2_3_name;
+	string a2_4_name;
+	string a2_5_name;
+	string a2_6_name;
+	string a2_7_name;
+	string a2_8_name;
+
+	string a1_1_path;
+	string a1_2_path;
+	string a1_3_path;
+	string a1_4_path;
+	string a1_5_path;
+	string a1_6_path;
+	string a1_7_path;
+	string a1_8_path;
+	string a2_1_path;
+	string a2_2_path;
+	string a2_3_path;
+	string a2_4_path;
+	string a2_5_path;
+	string a2_6_path;
+	string a2_7_path;
+	string a2_8_path;
 
 	TweenJuggler* tweenJuggler;
 	SceneManager* scene_manager;

@@ -19,6 +19,7 @@ namespace types {
         Health, // 12 - things that boost health upon impact, has sprite -> disappears after collision (unless it's an office hour ball)
         Car, // 13 ... this was an example (can be deleted)
         CloudPlatform, // 14
+		TransitionPoint, // 15
         // Add additional types above this line 
         COUNT
     };

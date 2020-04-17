@@ -127,6 +127,22 @@ Sprite* createSprite(const Value& spriteInfo) {
 	return the_obj;
 }
 
+TransitionPoint* createTransitionPoint(const Value& transitionPointInfo) {
+	string node_id = transitionPointInfo["node_id"].GetString();
+	string path_to_texture = transitionPointInfo["sprite_file_path"].GetString();
+	string scene_name = transitionPointInfo["transition_scene_name"].GetString();
+
+	TransitionPoint* the_obj = new TransitionPoint(node_id, path_to_texture);
+	the_obj->transition_scene_name = scene_name;
+	the_obj->type = types::Type::TransitionPoint;
+
+	setDisplayObjectProperties(transitionPointInfo, the_obj);
+
+	cout << "Created transition point" << endl;
+
+	return the_obj;
+}
+
 AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	string node_id = animatedSpriteInfo["node_id"].GetString();
 	string path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
@@ -148,6 +164,7 @@ Player* createPlayer(const Value& playerInfo) {
 
 	return the_obj;
 }
+
 
 EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectInfo) {
 	string node_id = EnvironmentalObjectInfo["node_id"].GetString();
@@ -219,6 +236,9 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	}
 	else if (type_id == "Sprite") {
 		newChild = createSprite(attribute);
+	}
+	else if (type_id == "TransitionPoint") {
+		newChild = createTransitionPoint(attribute);
 	}
 	else if (type_id == "AnimatedSprite") {
 		newChild = createAnimatedSprite(attribute);

@@ -8,6 +8,7 @@
 #include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
+#include "TransitionPoint.h"
 #include <random>
 #include <vector>
 
@@ -230,7 +231,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	c.update(pressedKeys);
 
 	ticks++;
-	cout << ticks << endl;
+	//cout << ticks << endl;
 }
 
 void Player::draw(AffineTransform &at){
@@ -241,81 +242,87 @@ void Player::draw(AffineTransform &at){
 
 void Player::onCollision(DisplayObject* other){
 	if (!dying && !limbo) {
-	if (other->object_type == types::Type::Platform) {
-		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
-		if(_yVel < 0)
-			_yVel = 0;
-		int meY = this->getHitbox().y;
-		int meH = this->getHitbox().h;
-		int otherY = other->getHitbox().y;
-		if (meY + meH <= otherY)
-			_standing=true;
-			_gStanding = true;
-	}
-
-	else if (other->type == "EnvironmentalObject") {
-		this->onEnvObjCollision((EnvironmentalObject*) other);
-	}
-
-	else if (other->type == "Enemy") { 
-		this->onEnemyCollision((Enemy*) other); 
-	}
-
-	else if  (other->object_type == types::Type::Character) {
-		curCharacter = (Character*) other; 
-		// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
-	}
-
-	else if(other->object_type == types::Type::Item) {
-		if (!(other->collision)) {
-			curItem = other;
-			cout << curItem->sprite_type << endl;
-			other->visible = false;
-			other->collision = true;
+		if (other->object_type == types::Type::Platform) {
+			Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+			if(_yVel < 0)
+				_yVel = 0;
+			int meY = this->getHitbox().y;
+			int meH = this->getHitbox().h;
+			int otherY = other->getHitbox().y;
+			if (meY + meH <= otherY)
+				_standing=true;
+				_gStanding = true;
 		}
-		else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
-		if (!(other->collision)) {
-			other->visible = false;
-			other->collision = true;		
-			}
-		}
-	}
 
-	else if (other->object_type == types::Type::Health) {
-		if (!(other->collision)) {
-			if (other->sprite_type == "shin") {
-				this->incHealth(10);
-				other->visible = false;
-				other->collision = true;
-				cout << other->sprite_type << "increased health" << endl;
-			}
-			else if (other->sprite_type == "buldak") {
-				this->incHealth(20);
+		else if (other->type == "EnvironmentalObject") {
+			this->onEnvObjCollision((EnvironmentalObject*) other);
+		}
+
+		else if (other->type == "Enemy") { 
+			this->onEnemyCollision((Enemy*) other); 
+		}
+
+		else if  (other->object_type == types::Type::Character) {
+			curCharacter = (Character*) other; 
+			// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
+		}
+
+		else if(other->object_type == types::Type::Item) {
+			if (!(other->collision)) {
+				curItem = other;
+				cout << curItem->sprite_type << endl;
 				other->visible = false;
 				other->collision = true;
 			}
+			else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
+			if (!(other->collision)) {
+				other->visible = false;
+				other->collision = true;		
+				}
+			}
 		}
 
-		if (other->sprite_type == "oh") {
-			this->incHealth(15);
-		}
-	}
+		else if (other->object_type == types::Type::Health) {
+			if (!(other->collision)) {
+				if (other->sprite_type == "shin") {
+					this->incHealth(10);
+					other->visible = false;
+					other->collision = true;
+					cout << other->sprite_type << "increased health" << endl;
+				}
+				else if (other->sprite_type == "buldak") {
+					this->incHealth(20);
+					other->visible = false;
+					other->collision = true;
+				}
+			}
 
-	else if (other->object_type == types::Type::PowerUp) {
-		if (!(other->collision)) {
-			curPowerUp = other;
-			other->visible = false;
+			if (other->sprite_type == "oh") {
+				this->incHealth(15);
+			}
+		}
+
+		else if (other->object_type == types::Type::PowerUp) {
+			if (!(other->collision)) {
+				curPowerUp = other;
+				other->visible = false;
+				other->collision = true;
+			}
+			// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
+			// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
+		}
+
+		else if (other->object_type == types::Type::Weapon) {
+			curWeapon = other;
+			// add sprite as child of player but only for shooting animation
+			// for simplicity... ig uess we won't have them carry the weapon all the time :")
+		}
+
+		else if (other->object_type == types::Type::TransitionPoint) {
+			//toss a transition event later
 			other->collision = true;
+			cout << "Detected Collision with Transition Point" << endl;
 		}
-		// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
-		// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
-	}
-
-	else if (other->object_type == types::Type::Weapon) {
-		curWeapon = other;
-		// add sprite as child of player but only for shooting animation
-		// for simplicity... ig uess we won't have them carry the weapon all the time :")
-	}
 	}
 }
 

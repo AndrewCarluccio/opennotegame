@@ -17,7 +17,82 @@ MyGame::MyGame() : Game(597, 791) {
 	//yeah, I know. going to replace this with loading from disk durring transition, or maybe only from a particular level at a time
 	cout << "loading..." << endl;
 
-	area1_1 = new Scene();
+	a1_1_path = "./resources/Scenes/area1/level1-1.json";
+	a1_2_path = "./resources/Scenes/area1/level1-2.json";
+	a1_3_path = "./resources/Scenes/area1/level1-3.json";
+	a1_4_path = "./resources/Scenes/area1/level1-4.json";
+	a1_5_path = "./resources/Scenes/area1/level1-5.json";
+	a1_6_path = "./resources/Scenes/area1/level1-6.json";
+	a1_7_path = "./resources/Scenes/area1/level1-7.json";
+	a1_8_path = "./resources/Scenes/area1/level1-8.json";
+	a2_1_path = "./resources/Scenes/area2/level2-1.json";
+	a2_2_path = "./resources/Scenes/area2/level2-2.json";
+	a2_3_path = "./resources/Scenes/area2/level2-3.json";
+	a2_4_path = "./resources/Scenes/area2/level2-4.json";
+	a2_5_path = "./resources/Scenes/area2/level2-5.json";
+	a2_6_path = "./resources/Scenes/area2/level2-6.json";
+	a2_7_path = "./resources/Scenes/area2/level2-7.json";
+	a2_8_path = "./resources/Scenes/area2/level2-8.json";
+
+	a1_1_name = "area1_1";
+	a1_2_name = "area1_2";
+	a1_3_name = "area1_3";
+	a1_4_name = "area1_4";
+	a1_5_name = "area1_5";
+	a1_6_name = "area1_6";
+	a1_7_name = "area1_7";
+	a1_8_name = "area1_8";
+	a2_1_name = "area2_1";
+	a2_2_name = "area2_2";
+	a2_3_name = "area2_3";
+	a2_4_name = "area2_4";
+	a2_5_name = "area2_5";
+	a2_6_name = "area2_6";
+	a2_7_name = "area2_7";
+	a2_8_name = "area2_8";
+
+	vector<string> all_paths;
+
+	all_paths.push_back(a1_1_path);
+	all_paths.push_back(a1_2_path);
+	all_paths.push_back(a1_3_path);
+	all_paths.push_back(a1_4_path);
+	all_paths.push_back(a1_5_path);
+	all_paths.push_back(a1_6_path);
+	all_paths.push_back(a1_7_path);
+	all_paths.push_back(a1_8_path);
+	all_paths.push_back(a2_1_path);
+	all_paths.push_back(a2_2_path);
+	all_paths.push_back(a2_3_path);
+	all_paths.push_back(a2_4_path);
+	all_paths.push_back(a2_5_path);
+	all_paths.push_back(a2_6_path);
+	all_paths.push_back(a2_7_path);
+	all_paths.push_back(a2_8_path);
+
+	vector<string> all_names;
+
+	all_names.push_back(a1_1_name);
+	all_names.push_back(a1_2_name);
+	all_names.push_back(a1_3_name);
+	all_names.push_back(a1_4_name);
+	all_names.push_back(a1_5_name);
+	all_names.push_back(a1_6_name);
+	all_names.push_back(a1_7_name);
+	all_names.push_back(a1_8_name);
+	all_names.push_back(a2_1_name);
+	all_names.push_back(a2_2_name);
+	all_names.push_back(a2_3_name);
+	all_names.push_back(a2_4_name);
+	all_names.push_back(a2_5_name);
+	all_names.push_back(a2_6_name);
+	all_names.push_back(a2_7_name);
+	all_names.push_back(a2_8_name);
+
+	default_area = new Scene();
+	default_area->loadScene(a1_1_path);
+
+
 	/*
 	area1_2 = new Scene();
 	area1_3 = new Scene();
@@ -37,7 +112,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
+	
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -64,9 +139,9 @@ MyGame::MyGame() : Game(597, 791) {
 
 	dispatch = new EventDispatcher();
 	tweenJuggler = new TweenJuggler(dispatch);
-	scene_manager = new SceneManager(tweenJuggler,dispatch);
+	scene_manager = new SceneManager(tweenJuggler,dispatch,all_names,all_paths);
 
-	scene_manager->active_scene = area1_1;
+	scene_manager->active_scene = default_area;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
 
@@ -116,6 +191,7 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Eraser);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::TransitionPoint);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Item, types::Type::PaintBrush);
 }

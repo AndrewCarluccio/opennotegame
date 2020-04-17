@@ -8,6 +8,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "EnvironmentalObject.h"
+#include "TransitionPoint.h"
 #include "Enemy.h"
 #include "Character.h"
 #include <string>
