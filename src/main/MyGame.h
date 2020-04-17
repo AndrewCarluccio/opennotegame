@@ -99,6 +99,10 @@ public:
 	SceneManager* scene_manager;
 	Camera* cam;
 
+	int i = 0;
+	vector<string> all_paths;
+	vector<string> all_names;
+
 	CollisionSystem* cs;
 
 	Player* player;

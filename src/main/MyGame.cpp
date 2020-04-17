@@ -51,7 +51,6 @@ MyGame::MyGame() : Game(597, 791) {
 	a2_7_name = "area2_7";
 	a2_8_name = "area2_8";
 
-	vector<string> all_paths;
 
 	all_paths.push_back(a1_1_path);
 	all_paths.push_back(a1_2_path);
@@ -70,7 +69,7 @@ MyGame::MyGame() : Game(597, 791) {
 	all_paths.push_back(a2_7_path);
 	all_paths.push_back(a2_8_path);
 
-	vector<string> all_names;
+	
 
 	all_names.push_back(a1_1_name);
 	all_names.push_back(a1_2_name);
@@ -217,6 +216,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
 		player->godMode = false;
 	}
+	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
+		if (player->godMode == true) {
+			//delete(scene_manager->active_scene);
+			i++;
+			Scene* to_scene = new Scene();
+			to_scene->loadScene(all_paths.at(i));
+
+			scene_manager->active_scene = to_scene;
+			
+		}
+
+	}
+		
 	/*
 	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {
 		UserInterface->setHealth(UserInterface->getHealth()-10); //we will poll player for this eventually
