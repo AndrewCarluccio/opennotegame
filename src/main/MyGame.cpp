@@ -37,7 +37,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area1/level1-1(2).json");
+	area1_1->loadScene("./resources/Scenes/area1/level1-1.json");
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -62,22 +62,14 @@ MyGame::MyGame() : Game(597, 791) {
 	cam->setBounds(10000, 10000, 10000, 10000);
 	cam->setZoom(0.5);
 
-	cout << "loaded!2" << endl;
-
 	dispatch = new EventDispatcher();
 	tweenJuggler = new TweenJuggler(dispatch);
 	scene_manager = new SceneManager(tweenJuggler,dispatch);
 
-	cout << "loaded!3" << endl;
-
 	scene_manager->active_scene = area1_1;
-	
-	cout << "loaded!4" << endl;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
 	player->loadAnimations();
-
-	cout << "loaded!5" << endl;
 
 	/*
 	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
@@ -111,7 +103,7 @@ MyGame::MyGame() : Game(597, 791) {
 
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
-	cout << "loaded!6" << endl;
+
 	//scene_manager->active_scene->addChild(UserInterface);	
 
 	//cs->watchForCollisions("player", "sprite18");
@@ -126,8 +118,6 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Item, types::Type::PaintBrush);
-
-	cout << "loaded!7" << endl;
 }
 
 MyGame::~MyGame() {

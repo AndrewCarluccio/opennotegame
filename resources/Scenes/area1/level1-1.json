@@ -233,8 +233,8 @@
                 },
                 {
                     "node_id": "sprite0",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "blackhole",
                     "locationX": -375,
                     "locationY": -325,
                     "scaleX": 1.0,

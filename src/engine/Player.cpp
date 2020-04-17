@@ -22,6 +22,7 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 6, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
+	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
 	//shoot
 	//shield
 }
@@ -181,7 +182,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		cout << "ENTER was pressed" << endl;
 		c.interact = false;
 	}
-
+	
 	c.update(pressedKeys);
 }
 
@@ -312,7 +313,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 void Player::onEnemyCollision(Enemy* enemy){ 
 	/* PHYSICS */
 	if (enemy->sprite_type == "blackhole") {
-		//this->play("blackhole");
+		this->play("bh");
 		this->dead();
 	}
 
@@ -376,7 +377,7 @@ void Player::decHealth(int hp){
 }
 
 void Player::dead(){
-	//Game::instance->quitSDL();
+	cout << "game over" << endl;
 	// later replace this with game over scene
 }
 
