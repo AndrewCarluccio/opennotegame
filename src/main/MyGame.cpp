@@ -225,7 +225,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	
 	
 	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
-	scene_manager->processPosition(player->position.x, player->position.y);
+	//scene_manager->processPosition(player->position.x, player->position.y);
+	scene_manager->processPosition();
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);

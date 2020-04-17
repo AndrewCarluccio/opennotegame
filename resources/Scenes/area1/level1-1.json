@@ -160,6 +160,25 @@
                     "object_type": 2,
                     "children": []
                 },
+				{
+                    "node_id": "EntryPoint",
+                    "type_id": "TransitionPoint",
+                    "sprite_type": "default",
+                    "locationX": 75,
+                    "locationY": 1423,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/general_sprites/flag.PNG",
+					"transition_scene_name": "area1_8",
+                    "collidable": true,
+                    "isDynamic": false,
+                    "hitboxScaleX": 1.0,
+                    "hitboxScaleY": 1.0,
+                    "object_type": 2,
+                    "children": []
+                },
                 {
                     "node_id": "sprite4",
                     "type_id": "AnimatedSprite",
