@@ -21,10 +21,13 @@ public:
 	Player(string id, string path);
 	void loadAnimations();
 	virtual void update(set<SDL_Scancode> pressedKeys);
+	void updateGodMode(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
 	virtual void onCollision(DisplayObject* other);
 	void onEnvObjCollision(EnvironmentalObject* envObj);
 	void onEnemyCollision(Enemy* enemy);
+	// determines if player is in god mode
+	bool godMode = false;
 	//void initIFrames(int numFrames);
 
 	/* UI and Player variables */

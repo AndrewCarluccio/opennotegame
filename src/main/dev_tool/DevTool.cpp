@@ -5,16 +5,16 @@ using namespace std;
 
 int GRID_SIZE = 25;
 
-DevTool::DevTool() : Game(1200, 800) {
+DevTool::DevTool() : Game(597, 891) {
 	bar = new DevToolBar();
 	
-	cam = new Camera(1200, 800);
+	cam = new Camera(1195, 1583);
 	cam->setBounds(10000, 10000, 10000, 10000);
-	cam->setZoom(zoom);
+	cam->setZoom(0.5);
 
 	scene = new Scene();
 
-	scene->loadScene("./resources/Scenes/empty.json");
+	scene->loadScene("./resources/Scenes/area1/level1-2.json");
 
 
 	CommandLine *cmdLine = new CommandLine(this);
@@ -24,7 +24,7 @@ DevTool::DevTool() : Game(1200, 800) {
 
 	scene_lock.lock();
 	activeScene = scene;
-	activeScene->root->position.y = 100;
+	activeScene->root->position.y = 200;
 	selectedLayer = activeScene->foreground;
 	scene_lock.unlock();
 }

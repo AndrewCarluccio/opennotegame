@@ -14,6 +14,7 @@ using namespace std;
 
 Player::Player(string id, string path) : AnimatedSprite(id, path){
 	this->type = "Player";
+	loadAnimations();
 }
 
 // careful to not do this in a loop, uses a lot of memory
@@ -26,7 +27,32 @@ void Player::loadAnimations() {
 	//shield
 }
 
+// execute this update method instead if in god mode, allow free movement
+void Player::updateGodMode(set<SDL_Scancode> pressedKeys) {
+	AnimatedSprite::update(pressedKeys);
+	this->play("idle");
+	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) { 
+		position.x -= 10; 
+	}
+		
+	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {  
+		position.x += 10; 
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) { 
+		position.y -= 10; 
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_DOWN) != pressedKeys.end()) { 
+		position.y += 10; 
+	}
+}
+
 void Player::update(set<SDL_Scancode> pressedKeys){
+	if (godMode) {
+		updateGodMode(pressedKeys);
+		return;
+	}
 	AnimatedSprite::update(pressedKeys);
 
 	/* (1195, 1583) is the window size. These if-statements keep the player within the scope of the camera */

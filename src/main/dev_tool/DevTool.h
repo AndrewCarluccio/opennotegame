@@ -50,6 +50,7 @@ private:
 	DisplayObjectContainer *selectedLayer;
 	int spriteCount = 0;
 	double zoom = 1;
+	Player *player;
 	// lock for scene since it is shared between threads
 	mutex scene_lock;
 	// allow command class to access private members

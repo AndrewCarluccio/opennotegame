@@ -37,7 +37,7 @@ MyGame::MyGame() : Game(597, 791) {
 	area2_8 = new Scene();
 	*/
 
-	area1_1->loadScene("./resources/Scenes/area1/level1-1(2).json");
+	area1_1->loadScene("./resources/Scenes/area2/level2-7.json");
 	/*
 	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
 	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
@@ -75,7 +75,6 @@ MyGame::MyGame() : Game(597, 791) {
 	cout << "loaded!4" << endl;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
-	player->loadAnimations();
 
 	cout << "loaded!5" << endl;
 
@@ -144,6 +143,12 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_G) != pressedKeys.end()) {
+		player->godMode = true;
+	}
+	if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
+		player->godMode = false;
 	}
 	/*
 	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {

@@ -15,61 +15,15 @@ Scene::Scene() {
 	root = new DisplayObjectContainer();
 }
 
-
-DisplayObjectContainer* createLayer(const Value& layerInfo) {
-	string node_id = layerInfo["node_id"].GetString();
-	string type_id = layerInfo["type_id"].GetString();
-	int loc_x = layerInfo["locationX"].GetInt();
-	int loc_y = layerInfo["locationY"].GetInt();
-	float scale_x = layerInfo["scaleX"].GetFloat();
-	float scale_y = layerInfo["scaleY"].GetFloat();
-	float rotation = layerInfo["rotation"].GetFloat();
-	int alpha = layerInfo["alpha"].GetInt();
-	string path_to_texture = layerInfo["sprite_file_path"].GetString();
-	float scroll_rate = layerInfo["scroll_rate"].GetFloat();
-	bool collidable = layerInfo["collidable"].GetBool();
-	bool isDynamic = layerInfo["isDynamic"].GetBool();
-	float hitboxScaleX = layerInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = layerInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(layerInfo["object_type"].GetInt());
-
-	/*
-	if (node_id == "Background") {
-		backgroundScrollRate = scroll_rate;
-	}
-	else if (node_id == "Midground") {
-		midgroundScrollRate = scroll_rate;
-	}
-	else if (node_id == "Foreground") {
-		foregroundScrollRate = scroll_rate;
-	}
-	*/
-
-	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
-
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->old_position.x = loc_x;
-	the_obj->old_position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->scrollRate = scroll_rate;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
-
-	return the_obj;
-
-}
-
-DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
+void setDisplayObjectProperties(const Value &displayObjectInfo, DisplayObject *the_obj) {
 	string node_id = displayObjectInfo["node_id"].GetString();
 	string type_id = displayObjectInfo["type_id"].GetString();
-	string spriteType = displayObjectInfo["sprite_type"].GetString();
+	string spriteType;
+	if (displayObjectInfo.HasMember("sprite_type")) {
+		spriteType = displayObjectInfo["sprite_type"].GetString();
+	} else {
+		spriteType = "default";
+	}
 	int loc_x = displayObjectInfo["locationX"].GetInt();
 	int loc_y = displayObjectInfo["locationY"].GetInt();
 	float scale_x = displayObjectInfo["scaleX"].GetFloat();
@@ -77,13 +31,43 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 	float rotation = displayObjectInfo["rotation"].GetFloat();
 	int alpha = displayObjectInfo["alpha"].GetInt();
 	string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
-	bool collidable = displayObjectInfo["collidable"].GetBool();
-	bool isDynamic = displayObjectInfo["isDynamic"].GetBool();
-	float hitboxScaleX = displayObjectInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = displayObjectInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
 
-	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+	bool collidable;
+	if (displayObjectInfo.HasMember("collidable")) {
+		collidable = displayObjectInfo["collidable"].GetBool();
+	} else {
+		collidable = true;
+	}
+
+	bool isDynamic;
+	if (displayObjectInfo.HasMember("isDynamic")) {
+		isDynamic = displayObjectInfo["isDynamic"].GetBool();
+	} else {
+		isDynamic = false;
+	}
+	float hitboxScaleX;
+	if (displayObjectInfo.HasMember("hitboxScaleX")) {
+		hitboxScaleX = displayObjectInfo["hitboxScaleX"].GetFloat();
+	} else {
+		hitboxScaleX = 1.0;
+	}
+	float hitboxScaleY;
+	if (displayObjectInfo.HasMember("hitboxScaleY")) {
+		hitboxScaleY = displayObjectInfo["hitboxScaleY"].GetFloat();
+	} else {
+		hitboxScaleY = 1.0;
+	}
+
+	types::Type object_type;
+	if (displayObjectInfo.HasMember("object_type")) {
+		object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
+		the_obj->object_type = object_type;
+	} else {
+		if (path_to_texture.find("platform") != string::npos) {
+			object_type = types::Type::Platform;
+			the_obj->object_type = object_type;
+		}	
+	}
 
 	the_obj->sprite_type = spriteType;
 	the_obj->position.x = loc_x;
@@ -98,239 +82,98 @@ DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
 	the_obj->isDynamic = isDynamic;
 	the_obj->hitboxScaleX = hitboxScaleX;
 	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+
+
+}
+
+DisplayObject* createDisplayObject(const Value& displayObjectInfo) {
+	string node_id = displayObjectInfo["node_id"].GetString();
+	string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
+
+	DisplayObject* the_obj = new DisplayObject(node_id, path_to_texture);
+
+	setDisplayObjectProperties(displayObjectInfo, the_obj);
 
 	return the_obj;
 
 }
 
-DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectContainerInfo) {
-	string node_id = displayObjectContainerInfo["node_id"].GetString();
-	string type_id = displayObjectContainerInfo["type_id"].GetString();
-	int loc_x = displayObjectContainerInfo["locationX"].GetInt();
-	int loc_y = displayObjectContainerInfo["locationY"].GetInt();
-	float scale_x = displayObjectContainerInfo["scaleX"].GetFloat();
-	float scale_y = displayObjectContainerInfo["scaleY"].GetFloat();
-	float rotation = displayObjectContainerInfo["rotation"].GetFloat();
-	int alpha = displayObjectContainerInfo["alpha"].GetInt();
-	string path_to_texture = displayObjectContainerInfo["sprite_file_path"].GetString();
-	bool collidable = displayObjectContainerInfo["collidable"].GetBool();
-	bool isDynamic = displayObjectContainerInfo["isDynamic"].GetBool();
-	float hitboxScaleX = displayObjectContainerInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = displayObjectContainerInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(displayObjectContainerInfo["object_type"].GetInt());
+DisplayObjectContainer* createDisplayObjectContainer(const Value& displayObjectInfo) {
+	string node_id = displayObjectInfo["node_id"].GetString();
+	string path_to_texture = displayObjectInfo["sprite_file_path"].GetString();
 
 	DisplayObjectContainer* the_obj = new DisplayObjectContainer(node_id, path_to_texture);
 
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->old_position.x = loc_x;
-	the_obj->old_position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(displayObjectInfo, the_obj);
 
 	return the_obj;
 
 }
 
+DisplayObjectContainer* createLayer(const Value& layerInfo) {
+	return createDisplayObjectContainer(layerInfo);
+
+}
+
+
 Sprite* createSprite(const Value& spriteInfo) {
 	string node_id = spriteInfo["node_id"].GetString();
-	string type_id = spriteInfo["type_id"].GetString();
-	int loc_x = spriteInfo["locationX"].GetInt();
-	int loc_y = spriteInfo["locationY"].GetInt();
-	float scale_x = spriteInfo["scaleX"].GetFloat();
-	float scale_y = spriteInfo["scaleY"].GetFloat();
-	float rotation = spriteInfo["rotation"].GetFloat();
-	int alpha = spriteInfo["alpha"].GetInt();
 	string path_to_texture = spriteInfo["sprite_file_path"].GetString();
-	bool collidable = spriteInfo["collidable"].GetBool();
-	bool isDynamic = spriteInfo["isDynamic"].GetBool();
-	float hitboxScaleX = spriteInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = spriteInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(spriteInfo["object_type"].GetInt());
 
 	Sprite* the_obj = new Sprite(node_id, path_to_texture);
 
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->old_position.x = loc_x;
-	the_obj->old_position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(spriteInfo, the_obj);
 
 	return the_obj;
 }
 
 AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	string node_id = animatedSpriteInfo["node_id"].GetString();
-	string type_id = animatedSpriteInfo["type_id"].GetString();
-	string spriteType = animatedSpriteInfo["sprite_type"].GetString();
-	int loc_x = animatedSpriteInfo["locationX"].GetInt();
-	int loc_y = animatedSpriteInfo["locationY"].GetInt();
-	float scale_x = animatedSpriteInfo["scaleX"].GetFloat();
-	float scale_y = animatedSpriteInfo["scaleY"].GetFloat();
-	float rotation = animatedSpriteInfo["rotation"].GetFloat();
-	int alpha = animatedSpriteInfo["alpha"].GetInt();
 	string path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
-	bool collidable = animatedSpriteInfo["collidable"].GetBool();
-	bool isDynamic = animatedSpriteInfo["isDynamic"].GetBool();
-	float hitboxScaleX = animatedSpriteInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = animatedSpriteInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(animatedSpriteInfo["object_type"].GetInt());
 
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
 
-	the_obj->sprite_type = spriteType;
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->old_position.x = loc_x;
-	the_obj->old_position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(animatedSpriteInfo, the_obj);
 
 	return the_obj;
 }
 
 Player* createPlayer(const Value& playerInfo) {
 	string node_id = playerInfo["node_id"].GetString();
-	string type_id = playerInfo["type_id"].GetString();
-	int loc_x = playerInfo["locationX"].GetInt();
-	int loc_y = playerInfo["locationY"].GetInt();
-	float scale_x = playerInfo["scaleX"].GetFloat();
-	float scale_y = playerInfo["scaleY"].GetFloat();
-	float rotation = playerInfo["rotation"].GetFloat();
-	int alpha = playerInfo["alpha"].GetInt();
 	string path_to_texture = playerInfo["sprite_file_path"].GetString();
-	bool collidable = playerInfo["collidable"].GetBool();
-	bool isDynamic = playerInfo["isDynamic"].GetBool();
-	float hitboxScaleX = playerInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = playerInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(playerInfo["object_type"].GetInt());
 
 	Player* the_obj = new Player(node_id, path_to_texture);
 
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(playerInfo, the_obj);
 
 	return the_obj;
 }
 
 EnvironmentalObject* createEnvironmentalObject(const Value& EnvironmentalObjectInfo) {
 	string node_id = EnvironmentalObjectInfo["node_id"].GetString();
-	string type_id = EnvironmentalObjectInfo["type_id"].GetString();
-	string spriteType = EnvironmentalObjectInfo["sprite_type"].GetString();
-	int loc_x = EnvironmentalObjectInfo["locationX"].GetInt();
-	int loc_y = EnvironmentalObjectInfo["locationY"].GetInt();
-	float scale_x = EnvironmentalObjectInfo["scaleX"].GetFloat();
-	float scale_y = EnvironmentalObjectInfo["scaleY"].GetFloat();
-	float rotation = EnvironmentalObjectInfo["rotation"].GetFloat();
-	int alpha = EnvironmentalObjectInfo["alpha"].GetInt();
 	string path_to_texture = EnvironmentalObjectInfo["sprite_file_path"].GetString();
-	bool collidable = EnvironmentalObjectInfo["collidable"].GetBool();
-	bool isDynamic = EnvironmentalObjectInfo["isDynamic"].GetBool();
-	float hitboxScaleX = EnvironmentalObjectInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = EnvironmentalObjectInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(EnvironmentalObjectInfo["object_type"].GetInt());
 
 	EnvironmentalObject* the_obj = new EnvironmentalObject(node_id, path_to_texture);
 
-	the_obj->sprite_type = spriteType;
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(EnvironmentalObjectInfo, the_obj);
 
 	return the_obj;
 }
 
 Enemy* createEnemy(const Value& EnemyInfo) {
 	string node_id = EnemyInfo["node_id"].GetString();
-	string type_id = EnemyInfo["type_id"].GetString();
-	string spriteType = EnemyInfo["sprite_type"].GetString();
-	int loc_x = EnemyInfo["locationX"].GetInt();
-	int loc_y = EnemyInfo["locationY"].GetInt();
-	float scale_x = EnemyInfo["scaleX"].GetFloat();
-	float scale_y = EnemyInfo["scaleY"].GetFloat();
-	float rotation = EnemyInfo["rotation"].GetFloat();
-	int alpha = EnemyInfo["alpha"].GetInt();
 	string path_to_texture = EnemyInfo["sprite_file_path"].GetString();
-	bool collidable = EnemyInfo["collidable"].GetBool();
-	bool isDynamic = EnemyInfo["isDynamic"].GetBool();
-	float hitboxScaleX = EnemyInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = EnemyInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(EnemyInfo["object_type"].GetInt());
 
 	Enemy* the_obj = new Enemy(node_id, path_to_texture);
 
-	the_obj->sprite_type = spriteType;
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(EnemyInfo, the_obj);
 
 	return the_obj;
 }
 
 Character* createCharacter(const Value& CharacterInfo) {
 	string node_id = CharacterInfo["node_id"].GetString();
-	string type_id = CharacterInfo["type_id"].GetString();
-	string spriteType = CharacterInfo["sprite_type"].GetString();
-	int loc_x = CharacterInfo["locationX"].GetInt();
-	int loc_y = CharacterInfo["locationY"].GetInt();
-	float scale_x = CharacterInfo["scaleX"].GetFloat();
-	float scale_y = CharacterInfo["scaleY"].GetFloat();
-	float rotation = CharacterInfo["rotation"].GetFloat();
-	int alpha = CharacterInfo["alpha"].GetInt();
 	string path_to_texture = CharacterInfo["sprite_file_path"].GetString();
-	bool collidable = CharacterInfo["collidable"].GetBool();
-	bool isDynamic = CharacterInfo["isDynamic"].GetBool();
-	float hitboxScaleX = CharacterInfo["hitboxScaleX"].GetFloat();
-	float hitboxScaleY = CharacterInfo["hitboxScaleY"].GetFloat();
-	types::Type object_type = static_cast<types::Type>(CharacterInfo["object_type"].GetInt());
 
 	string first_dialogue = CharacterInfo["first_dialogue"].GetString();
 	string mid_dialogue = CharacterInfo["mid_dialogue"].GetString();
@@ -343,18 +186,8 @@ Character* createCharacter(const Value& CharacterInfo) {
 
 	Character* the_obj = new Character(node_id, path_to_texture);
 
-	the_obj->sprite_type = spriteType;
-	the_obj->position.x = loc_x;
-	the_obj->position.y = loc_y;
-	the_obj->scaleX = scale_x;
-	the_obj->scaleY = scale_y;
-	the_obj->rotation = rotation;
-	the_obj->alpha = alpha;
-	the_obj->collidable = collidable;
-	the_obj->isDynamic = isDynamic;
-	the_obj->hitboxScaleX = hitboxScaleX;
-	the_obj->hitboxScaleY = hitboxScaleY;
-	the_obj->object_type = object_type;
+	setDisplayObjectProperties(CharacterInfo, the_obj);
+
 	
 	the_obj->firstDialogue = first_dialogue;
 	the_obj->midDialogue = mid_dialogue;
@@ -419,6 +252,7 @@ void Scene::loadScene(string sceneFilePath) {
 	//sceneFilePath = "example_Kenny.json";
 	FILE* fp = fopen(sceneFilePath.c_str(), "r");
 	char readBuffer[65536];
+	if (fp != NULL) {
 	FileReadStream json(fp, readBuffer, sizeof(readBuffer));
 	Document d;
 	d.ParseStream(json);
@@ -434,6 +268,9 @@ void Scene::loadScene(string sceneFilePath) {
 	background = static_cast<DisplayObjectContainer*>(root->getChild("Background"));
 	midground = static_cast<DisplayObjectContainer*>(root->getChild("Midground"));
 	foreground = static_cast<DisplayObjectContainer*>(root->getChild("Foreground"));
+	} else {
+		cout << "Could not find scene at " << sceneFilePath << endl;
+	}
 }
 
 DisplayObject* Scene::getChild(string id) {
