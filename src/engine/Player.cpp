@@ -4,7 +4,7 @@
 #include "AnimatedSprite.h"
 #include "Sprite.h"
 #include "controls.h"
-//#include "Enemy.h"
+#include "Enemy.h"
 #include "EnvironmentalObject.h"
 #include "../main/MyGame.h"
 #include "CollisionSystem.h"
@@ -21,6 +21,7 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/run_right/", "run", 8, 6, true);
 	addAnimation("resources/general_sprites/character/run_left/", "run_l", 8, 6, true);
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 10, false);
+	addAnimation("resources/general_sprites/character/jump_left/", "jump_l", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
 	//shoot
@@ -68,8 +69,15 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if (c.holdLeft){
 		this->facingRight = false;
-		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
-			this->play("run");
+		if (_gravity) {
+			if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
+				this->play("run");
+			}
+		}
+		else if (!_gravity) { // work around to get the upside down animation
+			if(this->current != getAnimation("run_l") && this->current != getAnimation("jump_l")) {
+				this->play("run_l");
+			}
 		}
 		if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
@@ -77,11 +85,10 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		else {
 			this->position.x -= 10; // move to left
 		}
-
 		c.holdLeft = false;
 	}
 
-	else if(_standing && !c.holdLeft && !c.holdRight) {
+	else if((_standing && !c.holdLeft && !c.holdRight) || (_gStanding && !c.holdLeft && !c.holdRight)) {
 		jumps = 0; 
 		//this->play("idle");
 		if(this->current != getAnimation("idle")) {
@@ -94,43 +101,33 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	}
 
 	if (c.pressJump) {
-		if (_standing && !_gStanding) { // idle to jump
-			_standing = false;  // can only jump once
-			this->_yVel = _jumpVel; // height you can jump
-			jumps++; // account for possible double jumps
-			this->play("jump");
-			if (megaJump) { // power up
+			if (_standing || _gStanding) { // idle to jump
+				_standing = false;  // false bc now ur jumping 
+				_gStanding = false;
+				this->_yVel = _jumpVel; // height you can jump
+				jumps++; // account for possible double jumps
+				this->play("jump");
+				if (!_gravity) {
+					if (!this->facingRight) {
+						this->play("jump_l");
+					}
+					else if (this->facingRight) {
+						this->play("jump");
+					}
+				}
+				if (megaJump) { // power up
 				this->_yVel = (_jumpVel * 2); 
-			}
-			if (lowHealth) {
-				if (_yVel < -10.0) {
-					_yVel = -10.0;
+				}
+				if (lowHealth) {
+					if (_yVel < -10.0) {
+						_yVel = -10.0;
+					}
 				}
 			}
-		}
-
-		else if (_gStanding && !_standing) {
-			_gStanding = false;
-			this->_yVel = _jumpVel; // height you can jump
-			jumps++; // account for possible double jumps
-			this->play("jump");
-			if (megaJump) { // power up
-				this->_yVel = (_jumpVel * 2); 
-			}
-			if (lowHealth) {
-				if (_yVel < -10.0) {
-					_yVel = -10.0;
+			if (!_standing || !_gStanding) { // if jumping bc not on ground
+				c.pressJump = false; // only want player to jump when standing
 				}
-			}
-
-			c.pressJump = false;
 		}
-
-		if (!_standing && !_gStanding) {
-			c.pressJump = false; // only want player to jump when standing
-		}
-		
-	}
 
 
 	/* Calculate fall velocity. Given to us. */ 
@@ -145,12 +142,13 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	/* Checks for gravity and flips player if necessary. */
 	if (_gravity) {
 		this->position.y += _yVel;
-		_gStanding = false;
+		this->facingDown = true;
+
 	}
 	else {
 		this->position.y -= _yVel;
-		_gStanding = true;
-		_standing = false;
+		this->facingDown = false;
+
 		//this->facingDown = false;
 	}
 
@@ -202,6 +200,7 @@ void Player::onCollision(DisplayObject* other){
 		int otherY = other->getHitbox().y;
 		if (meY + meH <= otherY)
 			_standing=true;
+			_gStanding = true;
 	}
 
 	else if (other->type == "EnvironmentalObject") {
@@ -232,6 +231,7 @@ void Player::onCollision(DisplayObject* other){
 				this->incHealth(10);
 				other->visible = false;
 				other->collision = true;
+				cout << other->sprite_type << "increased health" << endl;
 			}
 			else if (other->sprite_type == "buldak") {
 				this->incHealth(20);

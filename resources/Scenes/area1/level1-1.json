@@ -307,7 +307,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 10,
+                    "object_type": 12,
                     "children": []
                 },
                 {
