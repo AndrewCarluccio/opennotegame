@@ -48,7 +48,7 @@ public:
 	//DisplayObject* curShield;
 
 
-	//Enemy* curEnemy = NULL;
+	Enemy* curEnemy = NULL;
 	Character* curCharacter = NULL;
 	
 	
@@ -92,7 +92,7 @@ private:
 	int oldY = 0;
 
 	/* Falling variables */ 
-	bool _gravity = false;
+	bool _gravity = true;
 	bool _standing = true;
 	bool _gStanding = true;
 	int _maxFall = 9;
