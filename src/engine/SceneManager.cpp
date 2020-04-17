@@ -178,6 +178,7 @@ bool SceneManager::processPosition() {
 					d = 2; //hard coded fade time
 					transitionOut(d / 2, active_scene);
 					cout << "Fired transition!" << endl;
+					active_scene = transition_scene;
 					return true;
 				}
 			}

@@ -47,7 +47,7 @@ public:
 
 	bool processPosition();
 
-	Scene* active_scene;
+	Scene* active_scene = new Scene();
 	Scene* transition_scene = new Scene();
 
 	DisplayObjectContainer* UI;
