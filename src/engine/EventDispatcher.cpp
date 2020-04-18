@@ -7,6 +7,7 @@
     }
 
 	EventDispatcher::~EventDispatcher() {
+        /*
         unordered_map<string, vector<EventListener*>*>::iterator it = listeners->begin();
         while (it != listeners->end()) {
             vector<EventListener*>::iterator it2 = it->second->begin();
@@ -18,6 +19,7 @@
         }
 
         delete listeners;
+        */
 
     }
 	

@@ -20,10 +20,14 @@ void CollisionSystem::update() {
     if(num_collidables) {
         vector<DisplayObject*> combined_collidables(num_collidables);
         // Eventually skip this step to save memory
-        merge(static_collidables.begin(), static_collidables.end(), 
+
+        sort(dynamic_collidables.begin(), dynamic_collidables.end(), DisplayObject::compareByPosition);
+        sort(static_collidables.begin(), static_collidables.end(), DisplayObject::compareByPosition);
+
+        std::merge(static_collidables.begin(), static_collidables.end(), 
             dynamic_collidables.begin(), dynamic_collidables.end(), 
             combined_collidables.begin(), DisplayObject::compareByPosition);
-
+        
         vector<DisplayObject*> active_list{combined_collidables[0]};
 
         for(int i = 1; i < combined_collidables.size(); i++) {

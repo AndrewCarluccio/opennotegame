@@ -16,7 +16,7 @@ Scene::Scene() {
 }
 
 Scene::~Scene() {
-	delete(root);
+	delete root;
 }
 
 void setDisplayObjectProperties(const Value &displayObjectInfo, DisplayObject *the_obj) {

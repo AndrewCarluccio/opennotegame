@@ -118,9 +118,11 @@ bool SceneManager::processPosition() {
 		cout << active_scene->foreground->alpha << endl;
 		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
-			delete(active_scene);
+			delete active_scene;
 			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
-			active_scene = transition_scene;
+			//active_scene = transition_scene;
+			active_scene = new Scene();
+			active_scene->loadScene(target_path);
 			//delete(transition_scene);
 			active_scene->alpha = 0;
 			listen->reset();
@@ -162,7 +164,7 @@ bool SceneManager::processPosition() {
 			for(int k=0; k<scene_names.size(); k++){
 				string name = scene_names.at(k);
 				if (name == scene_name) {
-					transition_scene->loadScene(scene_paths.at(k));
+					//transition_scene->loadScene(scene_paths.at(k));
 					d = 2; //hard coded fade time
 					transitionOut(d / 2, active_scene);
 					cout << "Fired transition!" << endl;
@@ -176,7 +178,8 @@ bool SceneManager::processPosition() {
 			for (int k = 0; k < scene_names.size(); k++) {
 				string name = scene_names.at(k);
 				if (name == scene_name) {
-					transition_scene->loadScene(scene_paths.at(k));
+					//transition_scene->loadScene(scene_paths.at(k));
+					target_path = scene_paths.at(k);
 					d = 2; //hard coded fade time
 					transitionOut(d / 2, active_scene);
 					cout << "Fired transition!" << endl;

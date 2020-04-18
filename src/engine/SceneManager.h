@@ -55,6 +55,7 @@ public:
 	vector<string> scene_names;
 	vector<string> scene_paths;
 
+	string target_path;
 
 
 private:
