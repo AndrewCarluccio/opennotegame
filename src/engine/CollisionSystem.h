@@ -25,6 +25,10 @@ public:
 	//or taken off of the tree. Thus, the collision system always knows what DOs are in the game at any moment automatically.
 	void handleEvent(Event* e);
 
+	// This function takes the root of a new display tree and replaces all objects currently watched by the collision system
+	// with the objects in the new tree
+	void updateWithNewScene(DisplayObjectContainer* root);
+
 	//This function asks the collision system to start checking for collisions between all pairs
 	//of DOs of a given type (e.g., player vs platform). The system will begin to check all player objects
 	//against all platform objects that are in the current scene.
@@ -46,6 +50,7 @@ private:
 
 	bool xDirectionCollision(DisplayObject *d, DisplayObject *other, int xDelta1, int xDelta2);
 	bool yDirectionCollision(DisplayObject *d, DisplayObject *other, int yDelta1, int yDelta2);
+	void updateWithNewSceneHelper(DisplayObjectContainer* node);
 };
 
 #endif

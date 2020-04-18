@@ -33,7 +33,7 @@ void CollisionSystem::update() {
                 if(potential->getHitbox().x > (active->getHitbox().x + active->getHitbox().w))
                     active_list.erase(active_list.begin() + j--);
                 // Potential Collision
-                else if (potential->collidable && active->collidable && collidable_pairs[potential->object_type][active->object_type] && collidesWith(potential, active)) {
+                else if (collidable_pairs[potential->object_type][active->object_type] && collidesWith(potential, active)) {
                     potential->onCollision(active);
                     active->onCollision(potential);
                 }
@@ -89,6 +89,41 @@ void CollisionSystem::handleEvent(Event* e) {
             }
         }
     }
+}
+
+// This function takes the root of a new display tree and replaces all objects currently watched by the collision system
+// with the objects in the new tree
+void CollisionSystem::updateWithNewScene(DisplayObjectContainer *root) {
+    // Empty the contents from the previous display tree
+    static_collidables.clear();
+    dynamic_collidables.clear();
+
+    cout << "Collision System: Current scene's objects removed" << endl;
+
+    // Iterate through display tree and populate static/dynamic lists
+    updateWithNewSceneHelper(root);
+
+    cout << "Collision System: New scene's objects added" << endl;
+
+    // Sort lists
+    sort(dynamic_collidables.begin(), dynamic_collidables.end(), DisplayObject::compareByPosition);
+    sort(static_collidables.begin(), static_collidables.end(), DisplayObject::compareByPosition);
+}
+
+void CollisionSystem::updateWithNewSceneHelper(DisplayObjectContainer* node) {
+    if(node == NULL)
+        return;
+
+    if (node->collidable) {
+        if (node->isDynamic)
+            dynamic_collidables.push_back(node);
+        else
+            static_collidables.push_back(node);
+        cout << "Object " << node->id << " added" << endl;
+    }
+
+    for (DisplayObject *c : node->children)
+        updateWithNewSceneHelper(static_cast<DisplayObjectContainer*>(c));
 }
 
 //This function asks the collision system to start checking for collisions between all pairs

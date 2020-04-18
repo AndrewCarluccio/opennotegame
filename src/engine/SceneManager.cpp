@@ -118,9 +118,10 @@ bool SceneManager::processPosition() {
 		cout << active_scene->foreground->alpha << endl;
 		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
-			delete(active_scene);
+			// delete(active_scene);
 			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
 			active_scene = transition_scene;
+			Game::instance->collisionSystem.updateWithNewScene(active_scene->root);
 			//delete(transition_scene);
 			active_scene->alpha = 0;
 			listen->reset();
