@@ -16,7 +16,11 @@
 int main(int argc, char** argv)
 {
 	// comment out one of the following to choose between normal run and dev tool
+<<<<<<< Updated upstream
 	//  MyGame* myGame = new MyGame();
+=======
+	// MyGame* myGame = new MyGame();
+>>>>>>> Stashed changes
 	DevTool* myGame = new DevTool();
 	myGame->start();
 
@@ -36,7 +40,15 @@ WinMain(struct HINSTANCE__* hInstance,
 #else
 int main(int argc, char** argv)
 {
+<<<<<<< Updated upstream
 	MyGame* myGame = new MyGame();
+=======
+	// comment out one of the following to choose between normal run and dev tool
+	
+	// MyGame* myGame = new MyGame();
+	DevTool* myGame = new DevTool();
+	
+>>>>>>> Stashed changes
 	myGame->start();
 
 	delete myGame;

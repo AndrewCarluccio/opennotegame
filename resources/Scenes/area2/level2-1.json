@@ -1,0 +1,231 @@
+{
+    "node_id": "Root",
+    "type_id": "DisplayObjectContainer",
+    "locationX": 0,
+    "locationY": 0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "rotation": 0.0,
+    "alpha": 255,
+    "sprite_file_path": "",
+    "children": [
+        {
+            "node_id": "Background",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": [
+                {
+                    "node_id": "sprite7",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "node_id": "Midground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": []
+        },
+        {
+            "node_id": "Foreground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": [
+                {
+                    "node_id": "sprite8",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 475,
+                    "locationY": 25,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/titles/area2/anim_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite15",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 175,
+                    "locationY": 325,
+                    "scaleX": 0.6999999999999997,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite16",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 500,
+                    "locationY": 450,
+                    "scaleX": 1.03,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite18",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 700,
+                    "locationY": 625,
+                    "scaleX": 0.8199999999999998,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite17",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 175,
+                    "locationY": 625,
+                    "scaleX": 0.9199999999999999,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite20",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 225,
+                    "locationY": 925,
+                    "scaleX": 0.7199999999999998,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite19",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 400,
+                    "locationY": 800,
+                    "scaleX": 1.12,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite22",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 775,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/waterfall/waterfall_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite21",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 750,
+                    "locationY": 925,
+                    "scaleX": 0.6299999999999997,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite25",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 925,
+                    "locationY": 850,
+                    "scaleX": 0.11999999999999923,
+                    "scaleY": 0.12999999999999924,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/shinramyun.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite27",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 600,
+                    "locationY": 450,
+                    "scaleX": 0.15999999999999926,
+                    "scaleY": 0.17999999999999928,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/paintbrush/paintbrush_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite26",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 375,
+                    "locationY": 325,
+                    "scaleX": 0.17999999999999928,
+                    "scaleY": 0.17999999999999928,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/paintbrush/paintbrush_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite29",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 350,
+                    "locationY": 575,
+                    "scaleX": 0.4399999999999995,
+                    "scaleY": 0.4499999999999995,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/catfood.png",
+                    "children": []
+                },
+                {
+                    "node_id": "player",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 175,
+                    "locationY": 50,
+                    "scaleX": 0.07999999999999925,
+                    "scaleY": 0.09999999999999924,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

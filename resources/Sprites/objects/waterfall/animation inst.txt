@@ -1,0 +1,4 @@
+-sO i was thinking waterfall_1_a was appear from top to bottom first
+-then waterfall_1_b comes in from right to left
+-but if that's too much waterfall_1 can just appear in some how
+-after the first animation i was imagine it switches between waterfall_1 and waterfall_2 to show motion

@@ -1,0 +1,231 @@
+{
+    "node_id": "Root",
+    "type_id": "DisplayObjectContainer",
+    "locationX": 0,
+    "locationY": 0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "rotation": 0.0,
+    "alpha": 255,
+    "sprite_file_path": "",
+    "children": [
+        {
+            "node_id": "Background",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": [
+                {
+                    "node_id": "sprite95",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 0,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/page_bg.png",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "node_id": "Midground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": []
+        },
+        {
+            "node_id": "Foreground",
+            "type_id": "DisplayObjectContainer",
+            "locationX": 0,
+            "locationY": 0,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "rotation": 0.0,
+            "alpha": 255,
+            "sprite_file_path": "",
+            "children": [
+                {
+                    "node_id": "sprite96",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 300,
+                    "locationY": 25,
+                    "scaleX": 0.2999999999999994,
+                    "scaleY": 0.3299999999999994,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/titles/area1/BOSS.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite97",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 825,
+                    "locationY": 200,
+                    "scaleX": 0.9099999999999999,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite98",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 325,
+                    "scaleX": 1.1600000000000002,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite99",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 675,
+                    "locationY": 500,
+                    "scaleX": 1.3000000000000003,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite100",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 675,
+                    "scaleX": 1.2100000000000002,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite101",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 725,
+                    "locationY": 875,
+                    "scaleX": 1.1600000000000002,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite103",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 0,
+                    "locationY": 1375,
+                    "scaleX": 1.2700000000000003,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite102",
+                    "type_id": "AnimatedSprite",
+                    "locationX": -25,
+                    "locationY": 1000,
+                    "scaleX": 0.6499999999999997,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/med1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite104",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 750,
+                    "locationY": 1225,
+                    "scaleX": 1.1300000000000002,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "player",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 950,
+                    "locationY": 950,
+                    "scaleX": 0.10999999999999924,
+                    "scaleY": 0.09999999999999924,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/character/idle_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite106",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 100,
+                    "locationY": 750,
+                    "scaleX": 0.16999999999999927,
+                    "scaleY": 0.2199999999999993,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/enemies/area1_boss/idle.PNG",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite107",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 750,
+                    "locationY": 1100,
+                    "scaleX": 0.16999999999999927,
+                    "scaleY": 0.1999999999999993,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/higgs_boson/higgsboson_1.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite108",
+                    "type_id": "AnimatedSprite",
+                    "locationX": -25,
+                    "locationY": 600,
+                    "scaleX": 0.2199999999999993,
+                    "scaleY": 0.2199999999999993,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/enemies/schrodinger_cat/idle.png",
+                    "children": []
+                },
+                {
+                    "node_id": "sprite109",
+                    "type_id": "AnimatedSprite",
+                    "locationX": 700,
+                    "locationY": -50,
+                    "scaleX": 0.4299999999999995,
+                    "scaleY": 0.4599999999999995,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/objects/flag.PNG",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
