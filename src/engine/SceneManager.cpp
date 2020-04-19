@@ -58,8 +58,8 @@ vector<string> SceneManager::getTransitions() {
 bool SceneManager::removeTransitionPoint(string name) {
 	int index;
 	for (index = 0; index < transition_names.size(); index++) {
-		if (transition_names.at(index) == name){
-			transition_names.erase(transition_names.begin()+index);
+		if (transition_names.at(index) == name) {
+			transition_names.erase(transition_names.begin() + index);
 			transition_metadata.erase(transition_metadata.begin() + index);
 			transition_pairs.erase(transition_pairs.begin() + index);
 			return true;
@@ -84,7 +84,7 @@ bool SceneManager::processPosition(int x, int y) {
 			primed = true;
 			cout << "Swapped pointer" << endl;
 		}
-		else if(listen->ended && primed) {
+		else if (listen->ended && primed) {
 			cout << "Ended final fade" << endl;
 			//after we fade back up, reset listeners and primer
 			listen->reset();
@@ -106,7 +106,7 @@ bool SceneManager::processPosition(int x, int y) {
 		}
 	}
 
-	
+
 	return false;
 
 
@@ -118,18 +118,14 @@ bool SceneManager::processPosition() {
 		cout << active_scene->foreground->alpha << endl;
 		if (listen->ended && !primed) {
 			cout << "Ended first fade" << endl;
-			/*
+			
+			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
+			transition_scene->loadScene(target_path);
+			
+			Game::instance->collisionSystem.updateWithNewScene(transition_scene->root);
 			delete active_scene;
-			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
-			//active_scene = transition_scene;
-			active_scene = new Scene();
-			active_scene->loadScene(target_path);
-			// delete(active_scene);
-			//swap active scene pointer, reset listeners, start fade up, prime for fade up complete condition
-			active_scene = transition_scene;
-			Game::instance->collisionSystem.updateWithNewScene(active_scene->root);
-			*/
 			//delete(transition_scene);
+			active_scene = transition_scene;
 			active_scene->alpha = 0;
 			listen->reset();
 			transitionIn(d / 2, active_scene);
@@ -167,10 +163,11 @@ bool SceneManager::processPosition() {
 		if (tp_in->collision) {
 			tp_in->collision = false;
 			string scene_name = tp_in->transition_scene_name;
-			for(int k=0; k<scene_names.size(); k++){
+			for (int k = 0; k < scene_names.size(); k++) {
 				string name = scene_names.at(k);
 				if (name == scene_name) {
 					//transition_scene->loadScene(scene_paths.at(k));
+					target_path = scene_paths.at(k);
 					d = 2; //hard coded fade time
 					transitionOut(d / 2, active_scene);
 					cout << "Fired transition!" << endl;
@@ -203,12 +200,12 @@ bool SceneManager::processPosition() {
 void SceneManager::transitionOut(int d, Scene* from_tree) {
 	//Set up tweens and listeners
 	Tween* tree = new Tween(from_tree->foreground);
-	
+
 	//from_tree->foreground->position.x = 597 / 2.0;
 	//from_tree->foreground->position.y = 791 / 2.0;
 	listen->myTween = tree;
 	//listen_end->myTween = tree;
-	
+
 
 	//Add the fade down event to the tree
 	tree->animate(TweenableParams::ALPHA, 255, 0, d);
@@ -216,7 +213,7 @@ void SceneManager::transitionOut(int d, Scene* from_tree) {
 	//tree->animate(TweenableParams::SCALE_Y, 1, 0, d);
 	//tree->animate(TweenableParams::ROTATION, 0, 100, 2);
 	juggler->add(tree);
-	
+
 }
 
 
@@ -224,7 +221,7 @@ void SceneManager::transitionIn(int d, Scene* to_tree) {
 	//Set up tweens and listeners
 	Tween* tree = new Tween(to_tree->foreground);
 	listen->myTween = tree;
-	
+
 	//to_tree->foreground->position.x = 597 / 2.0;
 	//to_tree->foreground->position.y = 791 / 2.0;
 
