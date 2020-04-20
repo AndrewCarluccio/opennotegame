@@ -14,6 +14,7 @@
 #include "../engine/TweenEvent.h"
 #include "../engine/TweenListener.h"
 #include "../engine/Tween.h"
+#include "../engine/TransitionPoint.h"
 
 
 #include <vector>
@@ -24,6 +25,8 @@ class SceneManager{
 
 public:
 	SceneManager(TweenJuggler* jug, EventDispatcher* disp);
+
+	SceneManager(TweenJuggler* jug, EventDispatcher* disp, vector<string> scn_names, vector<string> scn_paths);
 
 	//Adds a transition trigger to the manager
 	//Params: name of the transition, x,y position to trigger the transition and a margin m, a durration d for the xfade, tree from_tree to transition out of, tree to_tree to transition to
@@ -42,11 +45,17 @@ public:
 	//Return: true if transition triggered, false otherwise
 	bool processPosition(int x, int y);
 
-	Scene* active_scene;
-	Scene* transition_scene;
+	bool processPosition();
+
+	Scene* active_scene = new Scene();
+	Scene* transition_scene = new Scene();
 
 	DisplayObjectContainer* UI;
 
+	vector<string> scene_names;
+	vector<string> scene_paths;
+
+	string target_path;
 
 
 private:

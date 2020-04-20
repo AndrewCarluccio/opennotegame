@@ -2,20 +2,21 @@
 #include "AffineTransform.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 
 using namespace std;
 
 
-DisplayObjectContainer::DisplayObjectContainer() : DisplayObject() {
+DisplayObjectContainer::DisplayObjectContainer() : DisplayObject(), EventDispatcher() {
     this->type = "DisplayObjectContainer";
 }
 
-DisplayObjectContainer::DisplayObjectContainer(string id, string filepath) : DisplayObject(id, filepath) {
+DisplayObjectContainer::DisplayObjectContainer(string id, string filepath) : DisplayObject(id, filepath), EventDispatcher() {
     this->type = "DisplayObjectContainer";
 }
 
-DisplayObjectContainer::DisplayObjectContainer(string id, int red, int green, int blue) : DisplayObject(id, red, green, blue) {
+DisplayObjectContainer::DisplayObjectContainer(string id, int red, int green, int blue) : DisplayObject(id, red, green, blue), EventDispatcher() {
     this->type = "DisplayObjectContainer";
 }
 

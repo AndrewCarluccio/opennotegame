@@ -20,10 +20,14 @@ void CollisionSystem::update() {
     if(num_collidables) {
         vector<DisplayObject*> combined_collidables(num_collidables);
         // Eventually skip this step to save memory
-        merge(static_collidables.begin(), static_collidables.end(), 
+
+        sort(dynamic_collidables.begin(), dynamic_collidables.end(), DisplayObject::compareByPosition);
+        sort(static_collidables.begin(), static_collidables.end(), DisplayObject::compareByPosition);
+
+        std::merge(static_collidables.begin(), static_collidables.end(), 
             dynamic_collidables.begin(), dynamic_collidables.end(), 
             combined_collidables.begin(), DisplayObject::compareByPosition);
-
+        
         vector<DisplayObject*> active_list{combined_collidables[0]};
 
         for(int i = 1; i < combined_collidables.size(); i++) {
@@ -73,6 +77,7 @@ void CollisionSystem::handleEvent(Event* e) {
                 for(it = dynamic_collidables.begin(); it != dynamic_collidables.end(); ++it) {
                     if(*it == modified) {
                         dynamic_collidables.erase(it);
+                        cout << "Object " << modified->id << " removed" << endl;
                         break;
                     }
                 }
@@ -81,12 +86,48 @@ void CollisionSystem::handleEvent(Event* e) {
                 for(it = static_collidables.begin(); it != static_collidables.end(); ++it) {
                     if(*it == modified) {
                         static_collidables.erase(it);
+                        cout << "Object " << modified->id << " removed" << endl;
                         break;
                     }
                 }
             }
         }
     }
+}
+
+// This function takes the root of a new display tree and replaces all objects currently watched by the collision system
+// with the objects in the new tree
+void CollisionSystem::updateWithNewScene(DisplayObjectContainer *root) {
+    // Empty the contents from the previous display tree
+    static_collidables.clear();
+    dynamic_collidables.clear();
+
+    cout << "Collision System: Current scene's objects removed" << endl;
+
+    // Iterate through display tree and populate static/dynamic lists
+    updateWithNewSceneHelper(root);
+
+    cout << "Collision System: New scene's objects added" << endl;
+
+    // Sort lists
+    sort(dynamic_collidables.begin(), dynamic_collidables.end(), DisplayObject::compareByPosition);
+    sort(static_collidables.begin(), static_collidables.end(), DisplayObject::compareByPosition);
+}
+
+void CollisionSystem::updateWithNewSceneHelper(DisplayObjectContainer* node) {
+    if(node == NULL)
+        return;
+
+    if (node->collidable) {
+        if (node->isDynamic)
+            dynamic_collidables.push_back(node);
+        else
+            static_collidables.push_back(node);
+        cout << "Object " << node->id << " added" << endl;
+    }
+
+    for (DisplayObject *c : node->children)
+        updateWithNewSceneHelper(static_cast<DisplayObjectContainer*>(c));
 }
 
 //This function asks the collision system to start checking for collisions between all pairs

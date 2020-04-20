@@ -8,6 +8,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "EnvironmentalObject.h"
+#include "TransitionPoint.h"
 #include "Enemy.h"
 #include "Character.h"
 #include <string>
@@ -20,6 +21,7 @@ class Scene : public DisplayObjectContainer {
 
 public:
 	Scene();
+	~Scene();
 
 	/* Load scene from a file */
 	void loadScene(string sceneFilePath);
