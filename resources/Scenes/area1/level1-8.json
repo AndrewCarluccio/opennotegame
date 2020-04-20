@@ -168,10 +168,10 @@
                 {
                     "node_id": "player",
                     "type_id": "AnimatedSprite",
-                    "locationX": 950,
+                    "locationX": 1000,
                     "locationY": 950,
-                    "scaleX": 0.10999999999999924,
-                    "scaleY": 0.09999999999999924,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/character/idle.png",
@@ -224,7 +224,7 @@
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
                     "children": []
-                }
+                },
 				{
                     "node_id": "ExitPoint",
                     "type_id": "TransitionPoint",
@@ -262,7 +262,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 15,
                     "children": []
-                },
+                }
             ]
         }
     ]

@@ -25,6 +25,7 @@ MyGame::MyGame() : Game(597, 791) {
 	a1_6_path = "./resources/Scenes/area1/level1-6.json";
 	a1_7_path = "./resources/Scenes/area1/level1-7.json";
 	a1_8_path = "./resources/Scenes/area1/level1-8.json";
+	
 	a2_1_path = "./resources/Scenes/area2/level2-1.json";
 	a2_2_path = "./resources/Scenes/area2/level2-2.json";
 	a2_3_path = "./resources/Scenes/area2/level2-3.json";
@@ -34,6 +35,24 @@ MyGame::MyGame() : Game(597, 791) {
 	a2_7_path = "./resources/Scenes/area2/level2-7.json";
 	a2_8_path = "./resources/Scenes/area2/level2-8.json";
 
+	a3_1_path = "./resources/Scenes/area3/level3-1.json";
+	a3_2_path = "./resources/Scenes/area3/level3-2.json";
+	a3_3_path = "./resources/Scenes/area3/level3-3.json";
+	a3_4_path = "./resources/Scenes/area3/level3-4.json";
+	a3_5_path = "./resources/Scenes/area3/level3-5.json";
+	a3_6_path = "./resources/Scenes/area3/level3-6.json";
+	a3_7_path = "./resources/Scenes/area3/level3-7.json";
+	a3_8_path = "./resources/Scenes/area3/level3-8.json";
+
+	a4_1_path = "./resources/Scenes/area4/level4-1.json";
+	a4_2_path = "./resources/Scenes/area4/level4-2.json";
+	a4_3_path = "./resources/Scenes/area4/level4-3.json";
+	a4_4_path = "./resources/Scenes/area4/level4-4.json";
+	a4_5_path = "./resources/Scenes/area4/level4-5.json";
+	a4_6_path = "./resources/Scenes/area4/level4-6.json";
+	a4_7_path = "./resources/Scenes/area4/level4-7.json";
+	a4_8_path = "./resources/Scenes/area4/level4-8.json";
+
 	a1_1_name = "area1_1";
 	a1_2_name = "area1_2";
 	a1_3_name = "area1_3";
@@ -42,6 +61,7 @@ MyGame::MyGame() : Game(597, 791) {
 	a1_6_name = "area1_6";
 	a1_7_name = "area1_7";
 	a1_8_name = "area1_8";
+	
 	a2_1_name = "area2_1";
 	a2_2_name = "area2_2";
 	a2_3_name = "area2_3";
@@ -50,6 +70,24 @@ MyGame::MyGame() : Game(597, 791) {
 	a2_6_name = "area2_6";
 	a2_7_name = "area2_7";
 	a2_8_name = "area2_8";
+
+	a3_1_name = "area3_1";
+	a3_2_name = "area3_2";
+	a3_3_name = "area3_3";
+	a3_4_name = "area3_4";
+	a3_5_name = "area3_5";
+	a3_6_name = "area3_6";
+	a3_7_name = "area3_7";
+	a3_8_name = "area3_8";
+
+	a4_1_name = "area4_1";
+	a4_2_name = "area4_2";
+	a4_3_name = "area4_3";
+	a4_4_name = "area4_4";
+	a4_5_name = "area4_5";
+	a4_6_name = "area4_6";
+	a4_7_name = "area4_7";
+	a4_8_name = "area4_8";
 
 
 	all_paths.push_back(a1_1_path);
@@ -60,6 +98,7 @@ MyGame::MyGame() : Game(597, 791) {
 	all_paths.push_back(a1_6_path);
 	all_paths.push_back(a1_7_path);
 	all_paths.push_back(a1_8_path);
+	
 	all_paths.push_back(a2_1_path);
 	all_paths.push_back(a2_2_path);
 	all_paths.push_back(a2_3_path);
@@ -69,7 +108,23 @@ MyGame::MyGame() : Game(597, 791) {
 	all_paths.push_back(a2_7_path);
 	all_paths.push_back(a2_8_path);
 
-	
+	all_paths.push_back(a3_1_path);
+	all_paths.push_back(a3_2_path);
+	all_paths.push_back(a3_3_path);
+	all_paths.push_back(a3_4_path);
+	all_paths.push_back(a3_5_path);
+	all_paths.push_back(a3_6_path);
+	all_paths.push_back(a3_7_path);
+	all_paths.push_back(a3_8_path);
+
+	all_paths.push_back(a4_1_path);
+	all_paths.push_back(a4_2_path);
+	all_paths.push_back(a4_3_path);
+	all_paths.push_back(a4_4_path);
+	all_paths.push_back(a4_5_path);
+	all_paths.push_back(a4_6_path);
+	all_paths.push_back(a4_7_path);
+	all_paths.push_back(a4_8_path);
 
 	all_names.push_back(a1_1_name);
 	all_names.push_back(a1_2_name);
@@ -79,6 +134,7 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a1_6_name);
 	all_names.push_back(a1_7_name);
 	all_names.push_back(a1_8_name);
+	
 	all_names.push_back(a2_1_name);
 	all_names.push_back(a2_2_name);
 	all_names.push_back(a2_3_name);
@@ -88,47 +144,26 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a2_7_name);
 	all_names.push_back(a2_8_name);
 
+	all_names.push_back(a3_1_name);
+	all_names.push_back(a3_2_name);
+	all_names.push_back(a3_3_name);
+	all_names.push_back(a3_4_name);
+	all_names.push_back(a3_5_name);
+	all_names.push_back(a3_6_name);
+	all_names.push_back(a3_7_name);
+	all_names.push_back(a3_8_name);
+
+	all_names.push_back(a4_1_name);
+	all_names.push_back(a4_2_name);
+	all_names.push_back(a4_3_name);
+	all_names.push_back(a4_4_name);
+	all_names.push_back(a4_5_name);
+	all_names.push_back(a4_6_name);
+	all_names.push_back(a4_7_name);
+	all_names.push_back(a4_8_name);
+
 	default_area = new Scene();
 	default_area->loadScene(a1_1_path);
-
-
-	/*
-	area1_2 = new Scene();
-	area1_3 = new Scene();
-	area1_4 = new Scene();
-	area1_5 = new Scene();
-	area1_6 = new Scene();
-	area1_7 = new Scene();
-	area1_8 = new Scene();
-
-	area2_1 = new Scene();
-	area2_2 = new Scene();
-	area2_3 = new Scene();
-	area2_4 = new Scene();
-	area2_5 = new Scene();
-	area2_6 = new Scene();
-	area2_7 = new Scene();
-	area2_8 = new Scene();
-	*/
-
-	
-	/*
-	area1_2->loadScene("./resources/Scenes/area1/level1-2.json");
-	area1_3->loadScene("./resources/Scenes/area1/level1-3.json");
-	area1_4->loadScene("./resources/Scenes/area1/level1-4.json");
-	area1_5->loadScene("./resources/Scenes/area1/level1-5.json");
-	area1_6->loadScene("./resources/Scenes/area1/level1-6.json");
-	area1_7->loadScene("./resources/Scenes/area1/level1-7.json");
-	area1_8->loadScene("./resources/Scenes/area1/level1-8.json");
-	area2_1->loadScene("./resources/Scenes/area2/level2-1.json");
-	area2_2->loadScene("./resources/Scenes/area2/level2-2.json");
-	area2_3->loadScene("./resources/Scenes/area2/level2-3.json");
-	area2_4->loadScene("./resources/Scenes/area2/level2-4.json");
-	area2_5->loadScene("./resources/Scenes/area2/level2-5.json");
-	area2_6->loadScene("./resources/Scenes/area2/level2-6.json");
-	area2_7->loadScene("./resources/Scenes/area2/level2-7.json");
-	area2_8->loadScene("./resources/Scenes/area2/level2-8.json");
-	*/
 
 	cout << "loaded!" << endl;
 
@@ -144,42 +179,10 @@ MyGame::MyGame() : Game(597, 791) {
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
 
-	/*
-	scene_manager->addTransitionPoint("transition to 1.2", 995, -25, 50, 2, area1_1, area1_2);
-	scene_manager->addTransitionPoint("transition to 1.3", 165, 45, 50, 2, area1_2, area1_3);
-	scene_manager->addTransitionPoint("transition to 1.4", 475, 1275, 50, 2, area1_3, area1_4);
-	scene_manager->addTransitionPoint("transition to 1.5", 1005, 950, 50, 2, area1_4, area1_5);
-	scene_manager->addTransitionPoint("transition to 1.6", 1010, 1430, 50, 2, area1_5, area1_6);
-
-	scene_manager->addTransitionPoint("transition to 1.7", 765, 330, 50, 2, area1_6, area1_7);
-	scene_manager->addTransitionPoint("transition to 1.8", 910, 710, 50, 2, area1_7, area1_8);
-	scene_manager->addTransitionPoint("transition to 2.1", 625, -30, 50, 2, area1_8, area2_1);
-	scene_manager->addTransitionPoint("transition to 2.2", -50, 1280, 50, 2, area2_1, area2_2);
-	scene_manager->addTransitionPoint("transition to 2.3", -20, 1280, 50, 2, area2_2, area2_3);
-	scene_manager->addTransitionPoint("transition to 2.4", 995, -50, 50, 2, area2_3, area2_4);
-	scene_manager->addTransitionPoint("transition to 2.5", 995, -50, 50, 2, area2_4, area2_5);
-	scene_manager->addTransitionPoint("transition to 2.6", 20, 35, 50, 2, area2_5, area2_6);
-	scene_manager->addTransitionPoint("transition to 2.7", 995, -50, 50, 2, area2_6, area2_7);
-	scene_manager->addTransitionPoint("transition to 2.8", 1015, 1275, 50, 2, area2_7, area2_8);
-
-	scene_manager->addTransitionPoint("transition to 1.7", 800, 50, 50, 2, area1_6, area1_7);
-	scene_manager->addTransitionPoint("transition to 1.8", 910, 85, 50, 2, area1_7, area1_8);
-	scene_manager->addTransitionPoint("transition to 2.1", 900, 0, 50, 2, area1_8, area2_1);
-	scene_manager->addTransitionPoint("transition to 2.2", -25, 1330, 50, 2, area2_1, area2_2);
-	scene_manager->addTransitionPoint("transition to 2.3", 30, 1350, 50, 2, area2_2, area2_3);
-	scene_manager->addTransitionPoint("transition to 2.4", 500, 275, 50, 2, area2_3, area2_4);
-	scene_manager->addTransitionPoint("transition to 2.5", 75, 1185, 50, 2, area2_4, area2_5);
-	scene_manager->addTransitionPoint("transition to 2.6", 70, 110, 50, 2, area2_5, area2_6);
-	scene_manager->addTransitionPoint("transition to 2.7", 875, 1075, 50, 2, area2_6, area2_7);
-	scene_manager->addTransitionPoint("transition to 2.8", 1040, 1325, 50, 2, area2_7, area2_8);
-	*/
-
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
-
 	//scene_manager->active_scene->addChild(UserInterface);	
 
-	//cs->watchForCollisions("player", "sprite18");
 
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
