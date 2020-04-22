@@ -63,14 +63,14 @@ void setDisplayObjectProperties(const Value &displayObjectInfo, DisplayObject *t
 	}
 
 	types::Type object_type;
-	if (displayObjectInfo.HasMember("object_type")) {
-		object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
+	if (path_to_texture.find("platform") != string::npos) {
+		object_type = types::Type::Platform;
 		the_obj->object_type = object_type;
-	} else {
-		if (path_to_texture.find("platform") != string::npos) {
-			object_type = types::Type::Platform;
+	} else {	
+		if (displayObjectInfo.HasMember("object_type")) {
+			object_type = static_cast<types::Type>(displayObjectInfo["object_type"].GetInt());
 			the_obj->object_type = object_type;
-		}	
+		} 
 	}
 
 	the_obj->sprite_type = spriteType;
