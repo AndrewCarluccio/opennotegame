@@ -64,7 +64,7 @@ public:
 	double oldScaleX = 1.0;
 	double oldScaleY = 1.0;
 	double oldRotation = 0.0;
-	bool collidable = false;
+	bool collidable = true;
 	bool isDynamic = false;
 	double hitboxScaleX = 1.0;
 	double hitboxScaleY = 1.0;
