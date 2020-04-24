@@ -459,7 +459,7 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
-					"transition_scene_name": "area2_8",
+					"transition_scene_name": "area3_8",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
