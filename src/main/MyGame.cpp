@@ -163,7 +163,7 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene(a1_1_path);
+	default_area->loadScene(a1_5_path);
 
 	cout << "loaded!" << endl;
 
@@ -188,10 +188,16 @@ MyGame::MyGame() : Game(597, 791) {
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Health);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PowerUp);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Item);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Cat);
 	//Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Eraser);
+
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::CloudPlatform);
+
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::TransitionPoint);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::PaintBrush);

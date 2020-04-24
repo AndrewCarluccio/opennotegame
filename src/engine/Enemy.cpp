@@ -19,6 +19,7 @@ Enemy::Enemy(string id, string path) : AnimatedSprite(id, path) {
 	this->type = "Enemy";
 }
 
+
 // careful to not do this in a loop, uses a lot of memory
 void Enemy::loadAnimations() {
 	
@@ -36,45 +37,72 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 // state 7 = stunned
 
 
+
+// THIS IS A JANK WAY OF DOING IT
+// IM SO SORRY
+
+if (this->sprite_type ==  "cat") {
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}
+}
+// need to do this from enemy side
+// but only understand onCollision for player :(
+if (this->sprite_type == "matrix") {
+	this->state = 0;
+}
+
 	if (this->state == 0) {
 		setPatrolRange();
 	}
 	else if (this->state == 1) {
 		patrol();
 	}
-
 	else if (this->state == 2) {
 		lunge();
 	}
-
 	else if (this->state == 3) {
 		bodySlam();
 	}
-
 	else if (this->state == 4) {
 		shield();
 	}
-
 	else if (this->state == 5) {
 		shoot();
 	}
-
 	else if (this->state == 6) {
 		// do something to move the target
  	}
-
  	else if (this->state == 7) {
 	 	// do something to show they are stunned
  	}
-}
 
+
+
+	if (this->state == 0) {
+		this->state = 1;
+		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
+		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
+		this->vel = 0;
+	}
+}
 
 void Enemy::onCollision(DisplayObject* other) {
 if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
 			_yVel = 0;
-			this->visible = false;
+			//this->visible = false;
 		int meY = this->getHitbox().y;
 		int meH = this->getHitbox().h;
 		int otherY = other->getHitbox().y;
@@ -113,14 +141,14 @@ void Enemy::draw(AffineTransform &at){
 }
 
 void Enemy::setPatrolRange() {
-	this->minPatX = this->position.x-120;
-	this->maxPatX = this->position.x+120;
-	this->minPatY = this->position.y-120;
-	this->maxPatY = this->position.y+120;
+	this->minPatX = this->position.x-20;
+	this->maxPatX = this->position.x+20;
+	this->minPatY = this->position.y-10;
+	this->maxPatY = this->position.y+10;
 }
 
 void Enemy::patrol() {
-	if (isTargetReached()) {
+	/*if (isTargetReached()) {
 		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
 		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
 		this->vel = 0;
@@ -129,6 +157,7 @@ void Enemy::patrol() {
 	else {
 		moveToTarget();
 	}
+	*/
 }
 
 void Enemy::moveToTarget() {

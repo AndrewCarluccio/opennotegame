@@ -259,6 +259,7 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if (other->type == "Enemy") { 
+			curEnemy = (Enemy*) other;
 			this->onEnemyCollision((Enemy*) other); 
 		}
 
@@ -268,17 +269,25 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if(other->object_type == types::Type::Item) {
-			if (!(other->collision)) {
-				curItem = other;
-				cout << curItem->sprite_type << endl;
-				other->visible = false;
-				other->collision = true;
-			}
-			else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
-			if (!(other->collision)) {
-				other->visible = false;
-				other->collision = true;		
+			if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
+				if (!(other->collision)) {
+					other->visible = false;
+					other->collision = true;		
+					}
 				}
+			else if (other->sprite_type == "corollary") { // CHANGE SPRITE ID 
+				if (!(other->collision)) {
+					other->visible = false;
+					other->collision = true;
+					count ++;		
+					}
+				if (count == 10) {
+					collectedAll = true;
+				}
+			}
+		
+			else if (other->sprite_type == "box") {
+				Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);	
 			}
 		}
 
@@ -303,13 +312,18 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if (other->object_type == types::Type::PowerUp) {
-			if (!(other->collision)) {
-				curPowerUp = other;
-				other->visible = false;
-				other->collision = true;
-			}
+			if (other->sprite_type == "eigenvector") {
+				if (!(other->collision)) {
+					curPowerUp = other;
+					this->scaleX = scaleX * 1.5;
+					this->scaleY = scaleY * 1.5;
+					other->visible = false;
+					other->collision = true;	
+
+				}
 			// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
 			// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
+			}
 		}
 
 		else if (other->object_type == types::Type::Weapon) {
@@ -368,7 +382,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	if (envObj->object_type == types::Type::CloudPlatform) {
 		// this is so player can stand on cloud
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
-		if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
+		envObj->visible = false;
+	/*	if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
 			this->isTouching = true; // true
 		}
 		else if (!Game::instance->collisionSystem.collidesWith(this, envObj)) // not colliding
@@ -379,6 +394,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 			else {
 				envObj->visible = true; 
 			}
+			*/
 		}	
 
 
@@ -416,6 +432,8 @@ void Player::onEnemyCollision(Enemy* enemy){
 		limbo = true;
 		alpha = 25;
 		curTicks = ticks;
+		enemy->state = 0;
+		
 	}
 
 

@@ -12,6 +12,7 @@
 #include "CollisionSystem.h"
 
 
+
 using namespace std;
 
 class Enemy : public AnimatedSprite{
@@ -39,6 +40,7 @@ public:
 	int maxHealth = 100;
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
+	int state; // how to control states
 
 	/* Jump variables */
 	int _jumpVel = -15;
@@ -47,6 +49,7 @@ public:
 	void incHealth(int hp);
 	void decHealth(int hp);
     void dead();
+
 	
 private:
 	int minPatX;
@@ -62,7 +65,7 @@ private:
 	double xComp;
 	double yComp;
 
-	int state = 0; // how to control states
+	int gd = 1;
 
 	int oldX = 0;
 	int oldY = 0;

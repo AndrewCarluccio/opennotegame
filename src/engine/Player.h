@@ -35,6 +35,8 @@ public:
 
 	int ticks = 0;
 	int curTicks = 0;
+	int count = 0; // using for corollaries 
+	bool collectedAll = false;
 
 	/* UI and Player variables */
 	int health = 100;

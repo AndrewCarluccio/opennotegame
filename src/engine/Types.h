@@ -20,6 +20,12 @@ namespace types {
         Car, // 13 ... this was an example (can be deleted)
         CloudPlatform, // 14
 		TransitionPoint, // 15
+        Boss, // 16
+        Corollary, // 17
+        Eigenvector, // 18
+        Projection, // 19
+        Matrix, // 20
+        Box, // 21
         // Add additional types above this line 
         COUNT
     };
