@@ -222,11 +222,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
 		if (player->godMode == true) {
-			//delete(scene_manager->active_scene);
+			delete(scene_manager->active_scene);
 			i++;
 			Scene* to_scene = new Scene();
 			to_scene->loadScene(all_paths.at(i));
-
+			Game::instance->collisionSystem.updateWithNewScene(to_scene->root);
 			scene_manager->active_scene = to_scene;
 			
 		}

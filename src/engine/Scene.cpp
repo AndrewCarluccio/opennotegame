@@ -165,6 +165,7 @@ Player* createPlayer(const Value& playerInfo) {
 	Player* the_obj = new Player(node_id, path_to_texture);
 
 	setDisplayObjectProperties(playerInfo, the_obj);
+	the_obj->object_type = types::Type::Player;
 
 	return the_obj;
 }
