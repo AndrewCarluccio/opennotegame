@@ -164,6 +164,7 @@ MyGame::MyGame() : Game(597, 791) {
 
 	default_area = new Scene();
 	default_area->loadScene(a1_1_path);
+	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
 	cout << "loaded!" << endl;
 
