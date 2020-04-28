@@ -52,6 +52,7 @@ public:
 
 	
 private:
+	int projMaxPatX;
 	int minPatX;
 	int maxPatX;
 	int minPatY;

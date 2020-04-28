@@ -56,10 +56,30 @@ if (this->sprite_type ==  "cat") {
 		gd = 1;
 	}
 }
+
+if (this->sprite_type == "projection") {
+	this->position.x += 5;
+	if (this->position.x >= projMaxPatX) {
+		this->position.x = this->old_position.x;
+	}
+}
 // need to do this from enemy side
 // but only understand onCollision for player :(
 if (this->sprite_type == "matrix") {
-	this->state = 0;
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}
+	
 }
 
 	if (this->state == 0) {
@@ -141,6 +161,7 @@ void Enemy::draw(AffineTransform &at){
 }
 
 void Enemy::setPatrolRange() {
+	this->projMaxPatX = this->position.x + 361;
 	this->minPatX = this->position.x-20;
 	this->maxPatX = this->position.x+20;
 	this->minPatY = this->position.y-10;

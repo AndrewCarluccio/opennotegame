@@ -162,7 +162,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 					}
 				}
 				if (megaJump) { // power up
-				this->_yVel = (_jumpVel * 2); 
+				this->_yVel = (_jumpVel * 1.5); 
 				}
 				if (lowHealth) {
 					if (_yVel < -10.0) {
@@ -324,6 +324,16 @@ void Player::onCollision(DisplayObject* other){
 			// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
 			// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
 			}
+			if (other->sprite_type == "boost") {
+				other->visible = false;
+				this->hasPowerUp = true;
+				if (hasPowerUp) {
+					this->megaJump = true;
+				}
+				else {
+					this->megaJump = false;
+				}
+			}
 		}
 
 		else if (other->object_type == types::Type::Weapon) {
@@ -455,6 +465,9 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	else if (enemy->sprite_type == "projection") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
