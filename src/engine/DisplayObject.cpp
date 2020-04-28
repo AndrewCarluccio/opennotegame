@@ -203,23 +203,33 @@ SDL_Rect DisplayObject::getHitbox() {
 	return hitbox;
 }
 
+// This function is identical to getHitBox, but uses the
+// AffineTransform from the camera so boxes will be drawn to scale
 void DisplayObject::drawHitbox(AffineTransform &at) {
-	SDL_Rect hitbox = getHitbox();
+	SDL_Point upperLeft = at.transformPoint(0, 0);
+	SDL_Point upperRight = at.transformPoint(width, 0);
+	SDL_Point lowerRight = at.transformPoint(width, height);
+	SDL_Point lowerLeft = at.transformPoint(0, height);
 
-	int original_w = hitbox.w / hitboxScaleX;
-	int original_h = hitbox.h / hitboxScaleY;
+	int x[] = {upperLeft.x, upperRight.x, lowerRight.x, lowerLeft.x};
+	int y[] = {upperLeft.y, upperRight.y, lowerRight.y, lowerLeft.y};
 
-	int hitbox_pivot_x = (original_w - hitbox.w) / 2;
-	int hitbox_pivot_y = (original_h - hitbox.h) / 2;
+	int min_x = *min_element(x, x + 4);
+	int min_y = *min_element(y, y + 4);
 
-	SDL_Point origin = at.transformPoint(hitbox_pivot_x, hitbox_pivot_y);
-	SDL_Point upperRight = at.transformPoint(hitbox.w + hitbox_pivot_x, hitbox_pivot_y);
-	SDL_Point lowerRight = at.transformPoint(hitbox.w + hitbox_pivot_x, hitbox.h + hitbox_pivot_y);
+	int max_x = *max_element(x, x + 4);
+	int max_y = *max_element(y, y + 4);
 
-	int w = (int)distance(origin, upperRight);
-	int h = (int)distance(upperRight, lowerRight);
+	int w = max_x - min_x;
+	int h = max_y - min_y;
 
-	SDL_Rect dstrect = {origin.x, origin.y, w, h};
+	int scaled_w = w * hitboxScaleX;
+	int scaled_h = h * hitboxScaleY;
+
+	min_x += (w - scaled_w) / 2;
+	min_y += (h - scaled_h) / 2;
+
+	SDL_Rect dstrect = {min_x, min_y, scaled_w, scaled_h};
 
 	SDL_SetRenderDrawColor(Game::renderer, 0xFF, 0, 0, 0xFF);
 	SDL_RenderDrawRect(Game::renderer, &dstrect);
@@ -240,5 +250,5 @@ DisplayObject* DisplayObject::getRoot() {
 }
 
 bool DisplayObject::compareByPosition(DisplayObject* a, DisplayObject* b) {
-	return (a->getHitbox().x < b->getHitbox().x);
+	return (a->getHitbox().y < b->getHitbox().y);
 }

@@ -165,6 +165,7 @@ Player* createPlayer(const Value& playerInfo) {
 	Player* the_obj = new Player(node_id, path_to_texture);
 
 	setDisplayObjectProperties(playerInfo, the_obj);
+	the_obj->object_type = types::Type::Player;
 
 	return the_obj;
 }
@@ -282,9 +283,10 @@ void Scene::loadScene(string sceneFilePath) {
 	d.ParseStream(json);
 	// cout << "IS OBJECT" << d.IsObject();
 	root = createDisplayObjectContainer(d);
+	createObject(d, root);
+	// Any objects added/removed in this display tree will be reflected in the collision system
 	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
 	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);
-	createObject(d, root);
 
 	queue<DisplayObject*> objQueue;
 	objQueue.push(root);

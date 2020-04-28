@@ -163,7 +163,8 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene(a1_5_path);
+	default_area->loadScene(a1_1_path);
+	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
 	cout << "loaded!" << endl;
 
@@ -227,11 +228,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
 		if (player->godMode == true) {
-			//delete(scene_manager->active_scene);
+			delete(scene_manager->active_scene);
 			i++;
 			Scene* to_scene = new Scene();
 			to_scene->loadScene(all_paths.at(i));
-
+			Game::instance->collisionSystem.updateWithNewScene(to_scene->root);
 			scene_manager->active_scene = to_scene;
 			
 		}
