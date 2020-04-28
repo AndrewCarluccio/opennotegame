@@ -229,9 +229,8 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	string node_id = attribute["node_id"].GetString();
 
 	DisplayObject* newChild;
-	if (node_id == "player") {
+	if (type_id == "Player") {
 		newChild = createPlayer(attribute);
-
 	}
 	else if (type_id == "DisplayObject") {
 		newChild = (createDisplayObject(attribute));
