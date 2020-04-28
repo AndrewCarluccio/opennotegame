@@ -163,7 +163,8 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/cp_ep_demo.json");
+	default_area->loadScene("./resources/Scenes/cp_ep_demo2.json");
+	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
 	cout << "loaded!" << endl;

@@ -55,7 +55,7 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 // THIS IS A JANK WAY OF DOING IT
 // IM SO SORRY
 
-if (this->sprite_type ==  "cat") {
+/*if (this->sprite_type ==  "cat") {
 	if (gd == 1) {
 		this->position.x +=1;
 	}
@@ -71,15 +71,33 @@ if (this->sprite_type ==  "cat") {
 	}
 }
 
+
+else if (this->sprite_type ==  "lamp") {
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}
+}
+*/
+
 if (this->sprite_type == "projection") {
 	this->position.x += 5;
-	if (this->position.x >= projMaxPatX) {
+	if (this->position.x > projMaxPatX) {
 		this->position.x = this->old_position.x;
 	}
 }
 // need to do this from enemy side
 // but only understand onCollision for player :(
-if (this->sprite_type == "matrix") {
+/*if (this->sprite_type == "matrix") {
 	if (gd == 1) {
 		this->position.x +=1;
 	}
@@ -92,9 +110,9 @@ if (this->sprite_type == "matrix") {
 
 	if (this->position.x <= minPatX) {
 		gd = 1;
-	}
-	
+	}	
 }
+*/
 
 	if (this->state == 0) {
 		setPatrolRange();
@@ -175,9 +193,9 @@ void Enemy::draw(AffineTransform &at){
 }
 
 void Enemy::setPatrolRange() {
-	this->projMaxPatX = this->position.x + 361;
-	this->minPatX = this->position.x-20;
-	this->maxPatX = this->position.x+20;
+	this->projMaxPatX = this->position.x + 350;
+	this->minPatX = this->position.x-6;
+	this->maxPatX = this->position.x+6;
 	this->minPatY = this->position.y-10;
 	this->maxPatY = this->position.y+10;
 }

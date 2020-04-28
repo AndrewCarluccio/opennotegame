@@ -342,10 +342,10 @@ void Player::onCollision(DisplayObject* other){
 			if (other->sprite_type == "boost") {
 				other->visible = false;
 				this->hasPowerUp = true;
-				if (hasPowerUp) {
+				if (this->hasPowerUp) {
 					this->megaJump = true;
 				}
-				else {
+				else if (!this->hasPowerUp) {
 					this->megaJump = false;
 				}
 			}
@@ -395,7 +395,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	// eraser
 	if (envObj->object_type == types::Type::Eraser) {
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
-		hasPowerUp = false;		
+		this->hasPowerUp = false;	
+		this->megaJump = false;
 	}
 
 	// paint brush
@@ -470,12 +471,31 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	else if (enemy->sprite_type == "lamp") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
 	/* LINEAR ALGEBRA */
-	else if (enemy->sprite_type == "matrix") {
+	else if (enemy->sprite_type == "matrix") { 
 		this->decHealth(10);
+		if (!(enemy->collision)) {
+			enemy->scaleX = enemy->scaleX * 1.1;
+			enemy->scaleY = enemy->scaleY * 1.1;
+			enemy->collision = true;	
+		}
+	}
+
+		else if (enemy->sprite_type == "at") { 
+		//this->decHealth(10);
+		if (!(enemy->collision)) {
+			enemy->scaleX = enemy->scaleX * 1.1;
+			enemy->scaleY = enemy->scaleY * 1.1;
+			this->scaleX = this->scaleX * 0.8;
+			this->scaleY = this->scaleY * 0.8;
+			enemy->collision = true;	
+		}
 	}
 
 	else if (enemy->sprite_type == "projection") {
