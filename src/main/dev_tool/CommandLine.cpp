@@ -32,7 +32,7 @@ void CommandLine::load() {
 	instance->activeScene->root->position.y = 200;
 	instance->selectedLayer = instance->activeScene->foreground;
 	instance->player = (Player*)instance->activeScene->getChild("player");
-	instance->player->devToolMode = true;
+	if (instance->player != NULL) { instance->player->devToolMode = true; }
 	instance->scene_lock.unlock();
 }
 
