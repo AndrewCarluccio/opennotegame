@@ -14,9 +14,11 @@ DevTool::DevTool() : Game(597, 891) {
 
 	scene = new Scene();
 
-	scene->loadScene("./resources/Scenes/area1/level1-1.json");
+	scene->loadScene("./resources/Scenes/empty.json");
 	player = (Player*)scene->getChild("player");
+	if (player != NULL) {
 	player->devToolMode = true;
+	}
 
 
 
