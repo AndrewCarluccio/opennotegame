@@ -35,7 +35,9 @@ void Text::init(string text, int width, int height, string font_path, int font_s
 }
 
 void Text::updateText(string text) {
-    // black    
+	if(image != NULL) SDL_FreeSurface(image);
+	if(texture != NULL) SDL_DestroyTexture(texture);	
+
     image = TTF_RenderText_Blended_Wrapped(font, text.c_str(), color, textWidth);
 	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
     position.y = -1 * textHeight;
