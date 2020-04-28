@@ -29,9 +29,9 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
 	addAnimation("resources/general_sprites/character/shield/", "shieldidle", 1, 1, false);
-	addAnimation("resources/general_sprites/character/shield/run/", "shieldrun", 8, 6, true);
+	//addAnimation("resources/general_sprites/character/shield/run/", "shieldrun", 8, 6, true);
 	addAnimation("resources/general_sprites/character/gun/", "gunidle", 1, 1, false);
-	addAnimation("resources/general_sprites/character/gun/run/", "gunrun", 8, 6, true);
+	//addAnimation("resources/general_sprites/character/gun/run/", "gunrun", 8, 6, true);
 }
 
 void Player::updateDevToolMode(set<SDL_Scancode> pressedKeys) {
@@ -138,8 +138,21 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if((_standing && !c.holdLeft && !c.holdRight) || (_gStanding && !c.holdLeft && !c.holdRight)) {
 		jumps = 0; 
-		//this->play("idle");
-		if(this->current != getAnimation("idle")) {
+		if (c.holdShield) {
+			if(this->current != getAnimation("shieldidle")) {
+				this->play("shieldidle");
+			}
+		c.holdShield = false;
+		}
+
+		else if (c.holdGun) {
+			if(this->current != getAnimation("gunidle")) {
+				this->play("gunidle");
+			}
+			c.holdGun = false;
+		}
+
+		else if (this->current != getAnimation("idle")) {
 			this->play("idle");
 		}
 	}

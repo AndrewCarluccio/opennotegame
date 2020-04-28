@@ -26,4 +26,14 @@ void Controls::update(set<SDL_Scancode> pressedKeys) {
 	if (pressedKeys.find(SDL_SCANCODE_RETURN) != pressedKeys.end()) { 
 		interact = true;
 	}
+
+	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) { 
+		holdShield = true;
+	}
+
+	if (pressedKeys.find(SDL_SCANCODE_X) != pressedKeys.end()) { 
+		holdGun = true;
+	}
+
 }
+

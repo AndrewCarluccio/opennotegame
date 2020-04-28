@@ -18,6 +18,8 @@ public:
   void update(set<SDL_Scancode> pressedKeys);
 
   bool holdLeft = false;
+  bool holdShield = false;
+  bool holdGun = false;
   bool holdRight = false;
   bool pressJump = false;
   bool interact = false;
