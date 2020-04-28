@@ -80,17 +80,16 @@ public:
 	virtual void onCollision(DisplayObject* other);
 	DisplayObject* getRoot();
 	static bool compareByPosition(DisplayObject* a, DisplayObject* b);
-
-private:
-	double distance(SDL_Point &p1, SDL_Point &p2);
-	double calculateRotation(SDL_Point &origin, SDL_Point &p);
-	
 	SDL_Texture* texture = NULL;
 	SDL_Surface* image = NULL;
 
 	/* Texture currently being drawn. Equal to texture for normal DO */
 	SDL_Texture* curTexture;
 
+
+private:
+	double distance(SDL_Point &p1, SDL_Point &p2);
+	double calculateRotation(SDL_Point &origin, SDL_Point &p);
 };
 
 #endif

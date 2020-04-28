@@ -159,35 +159,36 @@ bool SceneManager::processPosition() {
 		//This is inefficient, should store these TPs globally and just reference / update them as needed. Just a quick fix for today -AC
 		TransitionPoint* tp_in = (TransitionPoint*)active_scene->getChild("EntryPoint");
 		TransitionPoint* tp_out = (TransitionPoint*)active_scene->getChild("ExitPoint");
-
-		if (tp_in->collision) {
-			tp_in->collision = false;
-			string scene_name = tp_in->transition_scene_name;
-			for (int k = 0; k < scene_names.size(); k++) {
-				string name = scene_names.at(k);
-				if (name == scene_name) {
-					//transition_scene->loadScene(scene_paths.at(k));
-					target_path = scene_paths.at(k);
-					d = 2; //hard coded fade time
-					transitionOut(d / 2, active_scene);
-					cout << "Fired transition!" << endl;
-					return true;
+		if (tp_in != NULL && tp_out != NULL) {
+			if (tp_in->collision) {
+				tp_in->collision = false;
+				string scene_name = tp_in->transition_scene_name;
+				for (int k = 0; k < scene_names.size(); k++) {
+					string name = scene_names.at(k);
+					if (name == scene_name) {
+						//transition_scene->loadScene(scene_paths.at(k));
+						target_path = scene_paths.at(k);
+						d = 2; //hard coded fade time
+						transitionOut(d / 2, active_scene);
+						cout << "Fired transition!" << endl;
+						return true;
+					}
 				}
 			}
-		}
-		else if (tp_out->collision) {
-			tp_out->collision = false;
-			string scene_name = tp_out->transition_scene_name;
-			for (int k = 0; k < scene_names.size(); k++) {
-				string name = scene_names.at(k);
-				if (name == scene_name) {
-					//transition_scene->loadScene(scene_paths.at(k));
-					target_path = scene_paths.at(k);
-					d = 2; //hard coded fade time
-					transitionOut(d / 2, active_scene);
-					cout << "Fired transition!" << endl;
-					//active_scene = transition_scene;
-					return true;
+			else if (tp_out->collision) {
+				tp_out->collision = false;
+				string scene_name = tp_out->transition_scene_name;
+				for (int k = 0; k < scene_names.size(); k++) {
+					string name = scene_names.at(k);
+					if (name == scene_name) {
+						//transition_scene->loadScene(scene_paths.at(k));
+						target_path = scene_paths.at(k);
+						d = 2; //hard coded fade time
+						transitionOut(d / 2, active_scene);
+						cout << "Fired transition!" << endl;
+						//active_scene = transition_scene;
+						return true;
+					}
 				}
 			}
 		}

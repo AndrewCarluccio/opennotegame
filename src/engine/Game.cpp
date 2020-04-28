@@ -19,8 +19,8 @@ Game::Game(int windowWidth, int windowHeight) {
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
-	initSDL();
 	TTF_Init();
+	initSDL();
 }
 
 Game::~Game() {
@@ -31,9 +31,11 @@ void Game::quitSDL() {
 	cout << "Quitting sdl" << endl;
 	SDL_DestroyRenderer(Game::renderer);
 	SDL_DestroyWindow(window);
+	TTF_CloseFont(font);
 
 	IMG_Quit();
 	SDL_Quit();
+	TTF_Quit();
 }
 
 void Game::initSDL() {
@@ -44,6 +46,8 @@ void Game::initSDL() {
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->windowWidth, this->windowHeight, 0);
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+	font = TTF_OpenFont("./resources/Fonts/Roboto-Regular.ttf", 50);
+	const char *error = TTF_GetError();
 
 	Game::renderer = renderer;
 }

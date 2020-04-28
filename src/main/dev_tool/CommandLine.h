@@ -23,6 +23,7 @@ class CommandLine {
         void save();
         void updateId();
         void updateLayer();
+        void updateType();
 };
 
 #endif

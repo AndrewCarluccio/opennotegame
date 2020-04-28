@@ -22,6 +22,7 @@
 #include "../engine/Player.h"
 #include "../engine/TransitionPoint.h"
 #include "../engine/UI.h"
+#include "../engine/Text.h"
 
 using namespace std;
 
@@ -130,6 +131,7 @@ public:
 	TweenListener* flagTweenListen; 
 	Tween* flagExpandTween;
 	UI* UserInterface;
+	Text* text;
 	
 
 private:

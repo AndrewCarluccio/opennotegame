@@ -164,6 +164,7 @@ MyGame::MyGame() : Game(597, 791) {
 
 	default_area = new Scene();
 	default_area->loadScene(a1_1_path);
+	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
 	cout << "loaded!" << endl;
 
@@ -178,6 +179,11 @@ MyGame::MyGame() : Game(597, 791) {
 	scene_manager->active_scene = default_area;
 
 	player = (Player*)scene_manager->active_scene->getChild("player");
+	if (player != NULL) {
+	text = new Text("I have some dialogue that I would like to say! Please listen to my long, interesting, and worthwhile dialogue!");
+	text->visible = false;
+	player->addChild(text);
+	}
 
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
@@ -221,15 +227,22 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	}
 	if (pressedKeys.find(SDL_SCANCODE_C) != pressedKeys.end()) {
 		if (player->godMode == true) {
-			//delete(scene_manager->active_scene);
+			delete(scene_manager->active_scene);
 			i++;
 			Scene* to_scene = new Scene();
 			to_scene->loadScene(all_paths.at(i));
-
+			Game::instance->collisionSystem.updateWithNewScene(to_scene->root);
 			scene_manager->active_scene = to_scene;
 			
 		}
 
+	}
+
+	//remove for final build, just a text demonstration (hold t to display a dialogue)
+	if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end()) {
+		text->visible = true;
+	} else {
+		text->visible = false;
 	}
 		
 	/*
