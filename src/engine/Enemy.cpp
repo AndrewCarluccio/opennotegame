@@ -19,9 +19,24 @@ Enemy::Enemy(string id, string path) : AnimatedSprite(id, path) {
 	this->type = "Enemy";
 }
 
+
 // careful to not do this in a loop, uses a lot of memory
 void Enemy::loadAnimations() {
-	
+	if (this->sprite_type == "lamp") {
+		addAnimation("resources/area_2_sprites/lamp/", "lamp", 5, 6, true);
+	}	this->play("lamp");
+
+	if (this->sprite_type == "matrix") {
+		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
+		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
+		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 6, false);
+		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 6, false);
+	}
+
+	if (this->sprite_type == "adv_matrix") { // bc they only scale in size (maintaining aspect ratio) don't need H/V
+		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
+		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
+	}
 }
 
 void Enemy::update(set<SDL_Scancode> pressedKeys){
@@ -36,45 +51,110 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 // state 7 = stunned
 
 
+
+// THIS IS A JANK WAY OF DOING IT
+// IM SO SORRY
+
+/*if (this->sprite_type ==  "cat") {
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}
+}
+
+
+else if (this->sprite_type ==  "lamp") {
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}
+}
+*/
+
+if (this->sprite_type == "projection") {
+	this->position.x += 5;
+	if (this->position.x > projMaxPatX) {
+		this->position.x = this->old_position.x;
+	}
+}
+// need to do this from enemy side
+// but only understand onCollision for player :(
+/*if (this->sprite_type == "matrix") {
+	if (gd == 1) {
+		this->position.x +=1;
+	}
+	if (this->position.x >= maxPatX) {
+		gd = 2;
+	}
+	if (gd == 2) {
+		this->position.x -=1;
+	}
+
+	if (this->position.x <= minPatX) {
+		gd = 1;
+	}	
+}
+*/
+
 	if (this->state == 0) {
 		setPatrolRange();
 	}
 	else if (this->state == 1) {
 		patrol();
 	}
-
 	else if (this->state == 2) {
 		lunge();
 	}
-
 	else if (this->state == 3) {
 		bodySlam();
 	}
-
 	else if (this->state == 4) {
 		shield();
 	}
-
 	else if (this->state == 5) {
 		shoot();
 	}
-
 	else if (this->state == 6) {
 		// do something to move the target
  	}
-
  	else if (this->state == 7) {
 	 	// do something to show they are stunned
  	}
-}
 
+
+
+	if (this->state == 0) {
+		this->state = 1;
+		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
+		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
+		this->vel = 0;
+	}
+}
 
 void Enemy::onCollision(DisplayObject* other) {
 if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
 			_yVel = 0;
-			this->visible = false;
+			//this->visible = false;
 		int meY = this->getHitbox().y;
 		int meH = this->getHitbox().h;
 		int otherY = other->getHitbox().y;
@@ -113,14 +193,15 @@ void Enemy::draw(AffineTransform &at){
 }
 
 void Enemy::setPatrolRange() {
-	this->minPatX = this->position.x-120;
-	this->maxPatX = this->position.x+120;
-	this->minPatY = this->position.y-120;
-	this->maxPatY = this->position.y+120;
+	this->projMaxPatX = this->position.x + 350;
+	this->minPatX = this->position.x-6;
+	this->maxPatX = this->position.x+6;
+	this->minPatY = this->position.y-10;
+	this->maxPatY = this->position.y+10;
 }
 
 void Enemy::patrol() {
-	if (isTargetReached()) {
+	/*if (isTargetReached()) {
 		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
 		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
 		this->vel = 0;
@@ -129,6 +210,7 @@ void Enemy::patrol() {
 	else {
 		moveToTarget();
 	}
+	*/
 }
 
 void Enemy::moveToTarget() {

@@ -37,7 +37,6 @@ void CommandLine::load() {
 	if (instance->player != NULL) {
 	instance->player->devToolMode = true;
 	}
-
 	instance->scene_lock.unlock();
 }
 

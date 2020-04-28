@@ -289,8 +289,8 @@
                 },
                 {
                     "node_id": "sprite5",
-                    "type_id": "Enemy",
-                    "sprite_type": "cat",
+                    "type_id": "Character",
+                    "sprite_type": "",
                     "locationX": 525,
                     "locationY": 300,
                     "scaleX": 1.0,
@@ -313,7 +313,7 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite1",
+                    "node_id": "sprite0",
                     "type_id": "AnimatedSprite",
                     "sprite_type": "shin",
                     "locationX": 775,
@@ -327,7 +327,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 10,
+                    "object_type": 12,
                     "children": []
                 },
                 {

@@ -28,8 +28,10 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/jump_left/", "jump_l", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
-	//shoot
-	//shield
+	addAnimation("resources/general_sprites/character/shield/", "shieldidle", 1, 1, false);
+	//addAnimation("resources/general_sprites/character/shield/run/", "shieldrun", 8, 6, true);
+	addAnimation("resources/general_sprites/character/gun/", "gunidle", 1, 1, false);
+	//addAnimation("resources/general_sprites/character/gun/run/", "gunrun", 8, 6, true);
 }
 
 void Player::updateDevToolMode(set<SDL_Scancode> pressedKeys) {
@@ -136,8 +138,21 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	else if((_standing && !c.holdLeft && !c.holdRight) || (_gStanding && !c.holdLeft && !c.holdRight)) {
 		jumps = 0; 
-		//this->play("idle");
-		if(this->current != getAnimation("idle")) {
+		if (c.holdShield) {
+			if(this->current != getAnimation("shieldidle")) {
+				this->play("shieldidle");
+			}
+		c.holdShield = false;
+		}
+
+		else if (c.holdGun) {
+			if(this->current != getAnimation("gunidle")) {
+				this->play("gunidle");
+			}
+			c.holdGun = false;
+		}
+
+		else if (this->current != getAnimation("idle")) {
 			this->play("idle");
 		}
 	}
@@ -162,7 +177,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 					}
 				}
 				if (megaJump) { // power up
-				this->_yVel = (_jumpVel * 2); 
+				this->_yVel = (_jumpVel * 1.5); 
 				}
 				if (lowHealth) {
 					if (_yVel < -10.0) {
@@ -259,6 +274,7 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if (other->type == "Enemy") { 
+			curEnemy = (Enemy*) other;
 			this->onEnemyCollision((Enemy*) other); 
 		}
 
@@ -268,17 +284,25 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if(other->object_type == types::Type::Item) {
-			if (!(other->collision)) {
-				curItem = other;
-				cout << curItem->sprite_type << endl;
-				other->visible = false;
-				other->collision = true;
-			}
-			else if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
-			if (!(other->collision)) {
-				other->visible = false;
-				other->collision = true;		
+			if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
+				if (!(other->collision)) {
+					other->visible = false;
+					other->collision = true;		
+					}
 				}
+			else if (other->sprite_type == "corollary") { // CHANGE SPRITE ID 
+				if (!(other->collision)) {
+					other->visible = false;
+					other->collision = true;
+					count ++;		
+					}
+				if (count == 10) {
+					collectedAll = true;
+				}
+			}
+		
+			else if (other->sprite_type == "box") {
+				Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);	
 			}
 		}
 
@@ -303,13 +327,28 @@ void Player::onCollision(DisplayObject* other){
 		}
 
 		else if (other->object_type == types::Type::PowerUp) {
-			if (!(other->collision)) {
-				curPowerUp = other;
-				other->visible = false;
-				other->collision = true;
-			}
+			if (other->sprite_type == "eigenvector") {
+				if (!(other->collision)) {
+					curPowerUp = other;
+					this->scaleX = scaleX * 1.5;
+					this->scaleY = scaleY * 1.5;
+					other->visible = false;
+					other->collision = true;	
+
+				}
 			// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
 			// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
+			}
+			if (other->sprite_type == "boost") {
+				other->visible = false;
+				this->hasPowerUp = true;
+				if (this->hasPowerUp) {
+					this->megaJump = true;
+				}
+				else if (!this->hasPowerUp) {
+					this->megaJump = false;
+				}
+			}
 		}
 
 		else if (other->object_type == types::Type::Weapon) {
@@ -356,7 +395,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	// eraser
 	if (envObj->object_type == types::Type::Eraser) {
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
-		hasPowerUp = false;		
+		this->hasPowerUp = false;	
+		this->megaJump = false;
 	}
 
 	// paint brush
@@ -368,7 +408,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	if (envObj->object_type == types::Type::CloudPlatform) {
 		// this is so player can stand on cloud
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
-		if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
+		envObj->visible = false;
+	/*	if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
 			this->isTouching = true; // true
 		}
 		else if (!Game::instance->collisionSystem.collidesWith(this, envObj)) // not colliding
@@ -379,6 +420,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 			else {
 				envObj->visible = true; 
 			}
+			*/
 		}	
 
 
@@ -416,6 +458,8 @@ void Player::onEnemyCollision(Enemy* enemy){
 		limbo = true;
 		alpha = 25;
 		curTicks = ticks;
+		enemy->state = 0;
+		
 	}
 
 
@@ -427,16 +471,38 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	else if (enemy->sprite_type == "lamp") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
 	/* LINEAR ALGEBRA */
-	else if (enemy->sprite_type == "matrix") {
+	else if (enemy->sprite_type == "matrix") { 
 		this->decHealth(10);
+		if (!(enemy->collision)) {
+			enemy->scaleX = enemy->scaleX * 1.1;
+			enemy->scaleY = enemy->scaleY * 1.1;
+			enemy->collision = true;	
+		}
+	}
+
+		else if (enemy->sprite_type == "at") { 
+		//this->decHealth(10);
+		if (!(enemy->collision)) {
+			enemy->scaleX = enemy->scaleX * 1.1;
+			enemy->scaleY = enemy->scaleY * 1.1;
+			this->scaleX = this->scaleX * 0.8;
+			this->scaleY = this->scaleY * 0.8;
+			enemy->collision = true;	
+		}
 	}
 
 	else if (enemy->sprite_type == "projection") {
 		this->decHealth(10);
+		limbo = true;
+		alpha = 25;
+		curTicks = ticks;
 	}
 
 
