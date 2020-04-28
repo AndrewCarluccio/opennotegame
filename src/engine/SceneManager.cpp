@@ -159,7 +159,6 @@ bool SceneManager::processPosition() {
 		//This is inefficient, should store these TPs globally and just reference / update them as needed. Just a quick fix for today -AC
 		TransitionPoint* tp_in = (TransitionPoint*)active_scene->getChild("EntryPoint");
 		TransitionPoint* tp_out = (TransitionPoint*)active_scene->getChild("ExitPoint");
-
 		if (tp_in != NULL && tp_out != NULL) {
 			if (tp_in->collision) {
 				tp_in->collision = false;

@@ -7,6 +7,7 @@
 #include "DisplayObjectContainer.h"
 #include "Camera.h"
 #include "CollisionSystem.h"
+#include "GameState.h"
 #include <vector>
 #include <set>
 
@@ -24,6 +25,8 @@ public:
 
 	SDL_Window * window;
 	static SDL_Renderer* renderer;
+
+	TTF_Font *font;
 
 	//Global frame counter
 	static unsigned int frameCounter;
@@ -47,6 +50,7 @@ public:
 	//virtual void draw(AffineTransform &at, Camera* cam);
 
 	CollisionSystem collisionSystem;
+	GameState gameState;
 
 private:
 
