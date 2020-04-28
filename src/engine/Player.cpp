@@ -28,8 +28,10 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/jump_left/", "jump_l", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
-	//shoot
-	//shield
+	addAnimation("resources/general_sprites/character/shield/", "shieldidle", 1, 1, false);
+	addAnimation("resources/general_sprites/character/shield/run/", "shieldrun", 8, 6, true);
+	addAnimation("resources/general_sprites/character/gun/", "gunidle", 1, 1, false);
+	addAnimation("resources/general_sprites/character/gun/run/", "gunrun", 8, 6, true);
 }
 
 void Player::updateDevToolMode(set<SDL_Scancode> pressedKeys) {

@@ -22,7 +22,21 @@ Enemy::Enemy(string id, string path) : AnimatedSprite(id, path) {
 
 // careful to not do this in a loop, uses a lot of memory
 void Enemy::loadAnimations() {
-	
+	if (this->sprite_type == "lamp") {
+		addAnimation("resources/area_2_sprites/lamp/", "lamp", 5, 6, true);
+	}	this->play("lamp");
+
+	if (this->sprite_type == "matrix") {
+		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
+		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
+		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 6, false);
+		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 6, false);
+	}
+
+	if (this->sprite_type == "adv_matrix") { // bc they only scale in size (maintaining aspect ratio) don't need H/V
+		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
+		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
+	}
 }
 
 void Enemy::update(set<SDL_Scancode> pressedKeys){
