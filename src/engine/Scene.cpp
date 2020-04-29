@@ -229,7 +229,11 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	string node_id = attribute["node_id"].GetString();
 
 	DisplayObject* newChild;
-	if (type_id == "Player") {
+
+	// use node_id here for backward compatibility reasons. Previous versions
+	// of the json file did not have types and instead found the player with the id
+	// "player"
+	if (node_id == "player") {
 		newChild = createPlayer(attribute);
 	}
 	else if (type_id == "DisplayObject") {
