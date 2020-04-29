@@ -9,10 +9,11 @@
 #include "../engine/Enemy.h"
 #include "../engine/EnvironmentalObject.h"
 
+const bool ZOOMED_IN = false;// Set this to false to revert to original camera change the comment below
 
 using namespace std;
-
-MyGame::MyGame() : Game(597, 791) {
+MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
+// MyGame::MyGame() : Game(1340, 791) {	// comment this for zoom out
 
 	//yeah, I know. going to replace this with loading from disk durring transition, or maybe only from a particular level at a time
 	cout << "loading..." << endl;
@@ -171,7 +172,12 @@ MyGame::MyGame() : Game(597, 791) {
 
 	cam = new Camera(1195, 1583);
 	cam->setBounds(10000, 10000, 10000, 10000);
-	cam->setZoom(0.5);
+	if(ZOOMED_IN == true){
+		cam->setZoom(1.125);
+	}
+	else{
+		cam->setZoom(.5);
+	}
 
 	dispatch = new EventDispatcher();
 	tweenJuggler = new TweenJuggler(dispatch);
@@ -223,7 +229,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	player->oldScaleY = player->scaleY;
 	player->oldRotation = player->rotation;
 
-
+	if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player
+		cam->moveCameraTo(0, (400 - player->position.y));
+	}
 	if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
 		cout << player->position.x << " " << player->position.y << endl;
 	}
