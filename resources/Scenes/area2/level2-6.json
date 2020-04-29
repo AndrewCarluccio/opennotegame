@@ -286,8 +286,8 @@
                     "children": []
                 },
                 {
-                    "node_id": "player",
-                    "type_id": "AnimatedSprite",
+                                        "node_id": "player",
+                    "type_id": "Player",
                     "locationX": 175,
                     "locationY": 200,
                     "scaleX": 1.0,

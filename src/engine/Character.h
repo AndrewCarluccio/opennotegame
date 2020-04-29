@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include "Sprite.h"
+#include "Text.h"
 
 using namespace std;
 
@@ -28,9 +29,17 @@ public:
     string itemNeeded = "";
     string itemToGive = "";
     string itemPath = "";
+
+	Text* text;
     
     bool talkedWith = false;
     bool receivedItem = false;
+
+	bool collision = false;
+	bool prev_collision = false;
+
+	bool flipper = false;
+	bool prev_flipper = false;
 
     DisplayObject* dialogueGenerator(DisplayObject* item);
 	

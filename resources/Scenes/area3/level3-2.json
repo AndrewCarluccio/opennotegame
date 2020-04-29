@@ -358,8 +358,8 @@
                     "children": []
                 },
                 {
-                    "node_id": "player",
-                    "type_id": "AnimatedSprite",
+                                        "node_id": "player",
+                    "type_id": "Player",
                     "sprite_type": "default",
                     "locationX": 925,
                     "locationY": 150,

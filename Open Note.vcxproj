@@ -131,11 +131,13 @@
     <ClCompile Include="src\engine\Event.cpp" />
     <ClCompile Include="src\engine\EventDispatcher.cpp" />
     <ClCompile Include="src\engine\Game.cpp" />
+    <ClCompile Include="src\engine\GameState.cpp" />
     <ClCompile Include="src\engine\Player.cpp" />
     <ClCompile Include="src\engine\Scene.cpp" />
     <ClCompile Include="src\engine\SceneManager.cpp" />
     <ClCompile Include="src\engine\Sound.cpp" />
     <ClCompile Include="src\engine\Sprite.cpp" />
+    <ClCompile Include="src\engine\Text.cpp" />
     <ClCompile Include="src\engine\TransitionPoint.cpp" />
     <ClCompile Include="src\engine\Tween.cpp" />
     <ClCompile Include="src\engine\TweenableParams.cpp" />
@@ -168,11 +170,13 @@
     <ClInclude Include="src\engine\EventDispatcher.h" />
     <ClInclude Include="src\engine\EventListener.h" />
     <ClInclude Include="src\engine\Game.h" />
+    <ClInclude Include="src\engine\GameState.h" />
     <ClInclude Include="src\engine\Player.h" />
     <ClInclude Include="src\engine\Scene.h" />
     <ClInclude Include="src\engine\SceneManager.h" />
     <ClInclude Include="src\engine\Sound.h" />
     <ClInclude Include="src\engine\Sprite.h" />
+    <ClInclude Include="src\engine\Text.h" />
     <ClInclude Include="src\engine\TransitionPoint.h" />
     <ClInclude Include="src\engine\Tween.h" />
     <ClInclude Include="src\engine\TweenableParams.h" />
