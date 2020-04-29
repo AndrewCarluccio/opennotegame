@@ -163,7 +163,7 @@ MyGame::MyGame() : Game(597, 791) {
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/cp_ep_demo2.json");
+	default_area->loadScene("./resources/Scenes/area1/level1-1.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -179,6 +179,7 @@ MyGame::MyGame() : Game(597, 791) {
 
 	scene_manager->active_scene = default_area;
 
+	
 	player = (Player*)scene_manager->active_scene->getChild("player");
 	if (player != NULL) {
 	text = new Text("I have some dialogue that I would like to say! Please listen to my long, interesting, and worthwhile dialogue!");
