@@ -289,7 +289,7 @@
                 },
                 {
                     "node_id": "player",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Player",
                     "locationX": 175,
                     "locationY": 150,
                     "scaleX": 1.0,
