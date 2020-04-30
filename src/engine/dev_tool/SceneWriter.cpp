@@ -25,8 +25,11 @@ void SceneWriter::saveScene(std::string filepath) {
 
 void SceneWriter::saveObject(PrettyWriter<StringBuffer> *writer, DisplayObject *object) {
     writer->StartObject();
-    if (dynamic_cast<DisplayObjectContainer*>(object) != NULL) {
-
+    if (dynamic_cast<TransitionPoint *>(object) != NULL) {
+        saveTransitionPoint(writer, (TransitionPoint *)object);
+    }else if (dynamic_cast<Character*>(object) != NULL) {
+        saveCharacter(writer, (Character *)object);
+    }else if (dynamic_cast<DisplayObjectContainer*>(object) != NULL) {
         saveDisplayObjectContainer(writer, (DisplayObjectContainer *)object);
     } else {
         saveDisplayObject(writer, object);
@@ -75,5 +78,31 @@ void SceneWriter::saveDisplayObjectContainer(PrettyWriter<StringBuffer> *writer,
         saveObject(writer, child);
     }
     writer->EndArray();
+
+}
+
+void SceneWriter::saveTransitionPoint(PrettyWriter<StringBuffer> *writer, TransitionPoint *tp) {
+    saveDisplayObjectContainer(writer, tp);
+    writer->Key("transition_scene_name");
+    writer->String(tp->transition_scene_name.c_str());
+
+}
+
+void SceneWriter::saveCharacter(PrettyWriter<StringBuffer> *writer, Character *c) {
+    saveDisplayObjectContainer(writer, c);
+    writer->Key("first_dialogue");
+    writer->String(c->firstDialogue.c_str());
+    writer->Key("mid_dialogue");
+    writer->String(c->midDialogue.c_str());
+    writer->Key("item_dialogue");
+    writer->String(c->itemDialogue.c_str());
+    writer->Key("post_dialogue");
+    writer->String(c->postDialogue.c_str());
+    writer->Key("item_needed");
+    writer->String(c->itemNeeded.c_str());
+    writer->Key("item_to_give");
+    writer->String(c->itemToGive.c_str());
+    writer->Key("item_path");
+    writer->String(c->itemPath.c_str());
 
 }

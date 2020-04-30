@@ -138,7 +138,7 @@ TransitionPoint* createTransitionPoint(const Value& transitionPointInfo) {
 
 	TransitionPoint* the_obj = new TransitionPoint(node_id, path_to_texture);
 	the_obj->transition_scene_name = scene_name;
-	the_obj->type = types::Type::TransitionPoint;
+	the_obj->object_type = types::Type::TransitionPoint;
 
 	setDisplayObjectProperties(transitionPointInfo, the_obj);
 
