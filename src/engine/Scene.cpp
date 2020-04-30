@@ -248,7 +248,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	else if (type_id == "TransitionPoint") {
 		newChild = createTransitionPoint(attribute);
 	}
-	else if (type_id == "AnimatedSprite") {
+	else if (type_id == "AnimatedSprite" || type_id == "\u0003") {
 		newChild = createAnimatedSprite(attribute);
 	}
 	else if (type_id == "Layer") {

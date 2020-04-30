@@ -379,7 +379,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	/* PHYSICS ENVIRONMENTAL COLLISIONS */
 
 	// higgs boson collision 
-	if (envObj->object_type == types::Type::HiggsBoson) { 
+	if (envObj->sprite_type == "higgsboson") { 
 		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
 		_standing = false;
 		if (!_standing) {
@@ -393,14 +393,14 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
 	
 	// eraser
-	if (envObj->object_type == types::Type::Eraser) {
+	if (envObj->sprite_type == "eraser") {
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		this->hasPowerUp = false;	
 		this->megaJump = false;
 	}
 
 	// paint brush
-	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
+	if (envObj->sprite_type == "paintbrush") { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 	}
 

@@ -79,11 +79,13 @@ void CommandLine::updateType() {
 		cin >> newType;
 		types::Type type = static_cast<types::Type>(newType);
 		instance->clickedSprite->object_type = type;
+		/*
 		switch(type) {
 			case types::Type::HiggsBoson:
 				instance->clickedSprite->type = "EnvironmentalObject";
 				break;
 		}
+		*/
 	} else {
 		cout << "No sprite selected" << endl;
 	}

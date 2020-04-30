@@ -204,18 +204,11 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Health);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PowerUp);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Item);
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Cat);
-	//Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::HiggsBoson);
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Eraser);
-
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::CloudPlatform);
-
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::PaintBrush);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::TransitionPoint);
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::PaintBrush);
-	Game::instance->collisionSystem.watchForCollisions(types::Type::Item, types::Type::PaintBrush);
+	// removed collision btwn item and paintbrush, idk if this will affect anything
 }
 
 MyGame::~MyGame() {

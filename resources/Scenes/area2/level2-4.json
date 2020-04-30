@@ -239,7 +239,7 @@
                 },
                 {
                     "node_id": "sprite22",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Character",
                     "locationX": 100,
                     "locationY": 675,
                     "scaleX": 1.0,
@@ -247,10 +247,22 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/area_2_sprites/enemies/peter_pan.png",
+                    "collidable": true,
+                    "isDynamic": false,
+                    "hitboxScaleX": 1.5,
+                    "hitboxScaleY": 1.0,
+                    "object_type": 9,
+                    "first_dialogue": "I'm looking for my shadow. It's rather pesky. Could you help me find it?",
+                    "mid_dialogue": "Have you found it yet? I'm going to look rather strange until it's found.",
+                    "item_dialogue": "There you are! Get back here! ... Thanks for the help! Here's some pixie dust in exchange.",
+                    "post_dialogue": "Thanks again!",
+                    "item_needed": "shin",
+                    "item_to_give": "buldak",
+                    "item_path": "resources/general_sprites/buldak.png",
                     "children": []
                 },
                 {
-                                        "node_id": "player",
+                    "node_id": "player",
                     "type_id": "Player",
                     "locationX": 125,
                     "locationY": 225,
@@ -297,7 +309,7 @@
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
                     "children": []
                 },
-				{
+                {
                     "node_id": "ExitPoint",
                     "type_id": "TransitionPoint",
                     "sprite_type": "default",
@@ -308,7 +320,7 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
-					"transition_scene_name": "area2_5",
+                    "transition_scene_name": "area2_5",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
@@ -316,7 +328,7 @@
                     "object_type": 15,
                     "children": []
                 },
-				{
+                {
                     "node_id": "EntryPoint",
                     "type_id": "TransitionPoint",
                     "sprite_type": "default",
@@ -327,7 +339,7 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
-					"transition_scene_name": "area2_3",
+                    "transition_scene_name": "area2_3",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
