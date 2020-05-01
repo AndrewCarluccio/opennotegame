@@ -23,6 +23,7 @@ class Text: public DisplayObjectContainer {
         int textHeight;
         TTF_Font *font;
         SDL_Color color;
+        DisplayObjectContainer *bg;
 
         void init(string text, int width, int height, string font_path, int font_size, SDL_Color color);
 };

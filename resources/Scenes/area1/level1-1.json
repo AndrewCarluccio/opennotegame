@@ -304,7 +304,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 9,
                     "first_dialogue": "I'm looking for my shadow. It's rather pesky. Could you help me find it?",
-                    "mid_dialogue": "Have you found it yet? I'm going to look rather strange until it's found.",
+                    "mid_dialogue": "Have you found my shadow yet? I'm going to look rather strange until it's found.",
                     "item_dialogue": "There you are! Get back here! ... Thanks for the help! Here's some pixie dust in exchange.",
                     "post_dialogue": "Thanks again!",
                     "item_needed": "shin",

@@ -131,7 +131,6 @@ public:
 	TweenListener* flagTweenListen; 
 	Tween* flagExpandTween;
 	UI* UserInterface;
-	Text* text;
 	
 
 private:

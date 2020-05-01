@@ -187,11 +187,6 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 
 	
 	player = (Player*)scene_manager->active_scene->getChild("player");
-	if (player != NULL) {
-	text = new Text("I have some dialogue that I would like to say! Please listen to my long, interesting, and worthwhile dialogue!");
-	text->visible = false;
-	player->addChild(text);
-	}
 
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
@@ -254,12 +249,6 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 
 	}
 
-	//remove for final build, just a text demonstration (hold t to display a dialogue)
-	if (pressedKeys.find(SDL_SCANCODE_T) != pressedKeys.end()) {
-		text->visible = true;
-	} else {
-		text->visible = false;
-	}
 		
 	/*
 	else if (pressedKeys.find(SDL_SCANCODE_H) != pressedKeys.end()) {
