@@ -37,9 +37,9 @@ void Enemy::loadAnimations() {
 	if (this->sprite_type == "matrix") {
 		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
 		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
-		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 6, false);
-		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 6, false);
-		this->play("walk");
+		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 8, false);
+		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 8, false);
+		this->play("triggerH");
 	}
 
 	if (this->sprite_type == "adv_matrix") { // bc they only scale in size (maintaining aspect ratio) don't need H/V
@@ -61,69 +61,71 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 	// state 6 = post-attack movement
 	// state 7 = stunned
 
-	if (playerNearby) {
-		actionTriggered = true;
-	}
-
-	if (actionTriggered) {
-		this->state = 8;
-	}
-
-	if (this->sprite_type == "projection") {
-		this->position.x += 5;
-		if (this->position.x > projMaxPatX) {
-			this->position.x = this->old_position.x;
+	if (!devToolMode) {
+		if (playerNearby) {
+			actionTriggered = true;
 		}
-	}
 
-	if (this->state == 0) {
-		setPatrolRange();
-	}
-	else if (this->state == 1) {
-		if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
-			patrol();
+		if (actionTriggered) {
+			this->state = 8;
 		}
-	}
-	else if (this->state == 2) {
-		lunge();
-	}
-	else if (this->state == 3) {
-		bodySlam();
-	}
-	else if (this->state == 4) {
-		shield();
-	}
-	else if (this->state == 5) {
-		shoot();
-	}
-	else if (this->state == 6) {
-		// do something to move the target
- 	}
- 	else if (this->state == 7) {
-	 	// do something to show they are stunned
- 	}
-	else if (this->state == 8) {
-		if (sprite_type == "matrix") {
-			this->play("triggerH");
-		}
-	}
 
-	if (this->state == 0) {
-		this->state = 1;
-		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
-		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
-		this->vel = 0;
-	}
-
-	if (this->sprite_type == "cat") {
-		if (this->current == this->getAnimation("shook")) {
-			if (this->ticks == this->curTicks + 60) {
-				this->play("walk");
+		if (this->sprite_type == "projection") {
+			this->position.x += 5;
+			if (this->position.x > projMaxPatX) {
+				this->position.x = this->old_position.x;
 			}
 		}
+
+		if (this->state == 0) {
+			setPatrolRange();
+		}
+		else if (this->state == 1) {
+			if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
+				patrol();
+			}
+		}
+		else if (this->state == 2) {
+			lunge();
+		}
+		else if (this->state == 3) {
+			bodySlam();
+		}
+		else if (this->state == 4) {
+			shield();
+		}
+		else if (this->state == 5) {
+			shoot();
+		}
+		else if (this->state == 6) {
+			// do something to move the target
+		}
+		else if (this->state == 7) {
+			// do something to show they are stunned
+		}
+		else if (this->state == 8) {
+			if (sprite_type == "matrix") {
+				this->play("triggerH");
+			}
+		}
+
+		if (this->state == 0) {
+			this->state = 0;
+			this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
+			this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
+			this->vel = 0;
+		}
+
+		if (this->sprite_type == "cat") {
+			if (this->current == this->getAnimation("shook")) {
+				if (this->ticks == this->curTicks + 60) {
+					this->play("walk");
+				}
+			}
+		}
+		
+		ticks++;
 	}
-	
-	ticks++;
 }
 
 void Enemy::onCollision(DisplayObject* other) {

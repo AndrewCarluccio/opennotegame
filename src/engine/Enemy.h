@@ -58,6 +58,8 @@ public:
 
 	bool playerNearby = false;
 	bool actionTriggered = false;
+
+	bool devToolMode = false;
 	
 private:
 	int projMaxPatX;

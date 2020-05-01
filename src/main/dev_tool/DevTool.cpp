@@ -20,7 +20,14 @@ DevTool::DevTool() : Game(597, 891) {
 	player->devToolMode = true;
 	}
 
+	vector<DisplayObject*> curSceneEnemies = scene->getChildren("Enemy");
 
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			enemy->devToolMode = true;
+		}
+	}
 
 	CommandLine *cmdLine = new CommandLine(this);
 
