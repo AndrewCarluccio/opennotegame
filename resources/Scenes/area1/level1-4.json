@@ -124,24 +124,6 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite42",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
-                    "locationX": -325,
-                    "locationY": 975,
-                    "scaleX": 1.2799999713897706,
-                    "scaleY": 1.3799999952316285,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/objects/black_hole/swirly_thing.png",
-                    "collidable": true,
-                    "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
-                    "object_type": 0,
-                    "children": []
-                },
-                {
                     "node_id": "sprite29",
                     "type_id": "AnimatedSprite",
                     "sprite_type": "default",
@@ -179,7 +161,7 @@
                 },
                 {
                     "node_id": "EntryPoint",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "TransitionPoint",
                     "sprite_type": "default",
                     "locationX": 1000,
                     "locationY": 1450,
@@ -188,11 +170,12 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "transition_scene_name": "area1_3",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 15,
+                    "object_type": 3,
                     "children": []
                 },
                 {
@@ -269,8 +252,8 @@
                 },
                 {
                     "node_id": "sprite4",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "higgsboson",
                     "locationX": 800,
                     "locationY": 1200,
                     "scaleX": 0.8824999928474426,
@@ -282,7 +265,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -305,7 +288,7 @@
                 },
                 {
                     "node_id": "ExitPoint",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "TransitionPoint",
                     "sprite_type": "default",
                     "locationX": 1075,
                     "locationY": 125,
@@ -314,11 +297,12 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "transition_scene_name": "area1_5",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 15,
+                    "object_type": 3,
                     "children": []
                 },
                 {
@@ -359,8 +343,8 @@
                 },
                 {
                     "node_id": "sprite5",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "higgsboson",
                     "locationX": 200,
                     "locationY": 650,
                     "scaleX": 0.8799999952316284,
@@ -372,7 +356,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -395,8 +379,8 @@
                 },
                 {
                     "node_id": "sprite30",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "cat",
                     "locationX": 350,
                     "locationY": 475,
                     "scaleX": 0.20000000298023225,
@@ -408,7 +392,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
@@ -431,8 +415,8 @@
                 },
                 {
                     "node_id": "sprite6",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "blackhole",
                     "locationX": -200,
                     "locationY": 1050,
                     "scaleX": 1.0,
@@ -444,7 +428,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 }
             ]

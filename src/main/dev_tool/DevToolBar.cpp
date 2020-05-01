@@ -43,8 +43,8 @@ void DevToolBar::update(set<SDL_Scancode> pressedKeys) {
 	}
 
 	if(prevClicked && pressedKeys.find(SDL_SCANCODE_1) != pressedKeys.end()) {
-		if(current_pos - 12 >= 0) {
-			current_pos -= 12;
+		if(current_pos - 6 >= 0) {
+			current_pos -= 6;
 			updateChildren();
 		}
 		prevClicked = false;
@@ -52,8 +52,8 @@ void DevToolBar::update(set<SDL_Scancode> pressedKeys) {
 
 	
 	if(nextClicked && pressedKeys.find(SDL_SCANCODE_2) != pressedKeys.end()) {
-		if (current_pos + 12 < filenames.size()) {
-			current_pos += 12;
+		if (current_pos + 6 < filenames.size()) {
+			current_pos += 6;
 			updateChildren();
 		}
 		nextClicked = false;
