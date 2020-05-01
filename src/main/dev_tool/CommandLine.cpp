@@ -35,7 +35,15 @@ void CommandLine::load() {
 	instance->selectedLayer = instance->activeScene->foreground;
 	instance->player = (Player*)instance->activeScene->getChild("player");
 	if (instance->player != NULL) {
-	instance->player->devToolMode = true;
+		instance->player->devToolMode = true;
+	}
+	vector<DisplayObject*> curSceneEnemies = instance->activeScene->getChildren("Enemy");
+
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			enemy->devToolMode = true;
+		}
 	}
 	instance->scene_lock.unlock();
 }
@@ -55,7 +63,15 @@ void CommandLine::save() {
 	instance->player = (Player*)instance->activeScene->getChild("player");
 	if (instance->player != NULL) {
 		instance->player->devToolMode = true;
-}
+	}
+	vector<DisplayObject*> curSceneEnemies = instance->activeScene->getChildren("Enemy");
+
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			enemy->devToolMode = true;
+		}
+	}
 	SceneWriter sw2(instance->activeScene);
 	sw2.saveScene("./resources/Scenes/" + filename);
 	instance->scene_lock.unlock();

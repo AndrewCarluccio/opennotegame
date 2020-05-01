@@ -132,6 +132,7 @@ public:
 	Tween* flagExpandTween;
 	UI* UserInterface;
 	
+	vector<DisplayObject*> curSceneEnemies;
 
 private:
 

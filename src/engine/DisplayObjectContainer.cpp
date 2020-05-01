@@ -125,6 +125,26 @@ DisplayObject* DisplayObjectContainer::getChild(string id) {
     return NULL;
 }
 
+vector<DisplayObject*> DisplayObjectContainer::getChildren(string type) {
+    vector<DisplayObject*> objs;
+    for (int i = 0; i < children.size(); i++) {
+        if (children[i]->type.compare(type) == 0) {
+            objs.push_back(children[i]);
+        }
+        DisplayObjectContainer* child = static_cast<DisplayObjectContainer*>(children[i]);
+        if (child == NULL) {
+            return objs;
+        }
+        vector<DisplayObject*> foundChildren = child->getChildren(type);
+        if (!(foundChildren.empty())) {
+            for (int j = 0; j < foundChildren.size(); j++) {
+                objs.push_back(foundChildren[j]);
+            }
+        }
+    }
+    return objs;
+}
+
 void DisplayObjectContainer::update(set<SDL_Scancode> pressedKeys) {
     DisplayObject::update(pressedKeys);
     for (int i = 0; i < children.size(); i++) {
