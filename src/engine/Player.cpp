@@ -330,8 +330,8 @@ void Player::onCollision(DisplayObject* other){
 			if (other->sprite_type == "eigenvector") {
 				if (!(other->collision)) {
 					curPowerUp = other;
-					this->scaleX = scaleX * 1.5;
-					this->scaleY = scaleY * 1.5;
+					this->scaleX = scaleX * 0.5;
+					this->scaleY = scaleY * 0.5;
 					other->visible = false;
 					other->collision = true;	
 

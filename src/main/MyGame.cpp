@@ -222,6 +222,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	player->oldScaleY = player->scaleY;
 	player->oldRotation = player->rotation;
 
+	if ((scene_manager->target_path) == a1_2_path) {
+		player->_gravity = false;
+	}
+
 	if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player
 		cam->moveCameraTo(0, (400 - player->position.y));
 	}
