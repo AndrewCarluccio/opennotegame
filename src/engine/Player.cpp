@@ -366,7 +366,7 @@ void Player::onCollision(DisplayObject* other){
 		}
 	}
 
-	else if (other->type == "EnvironmentalObject") {
+	if (other->type == "EnvironmentalObject") {
 		this->onEnvObjCollision((EnvironmentalObject*) other);
 		}
 
