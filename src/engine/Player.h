@@ -54,7 +54,7 @@ public:
 	DisplayObject* curPowerUp = NULL;
 
 	/* Jump variables */
-	int _jumpVel = -15;
+	double _jumpVel = -15.5;
 	int jumps = 0;
 	bool doubleJump = false;
 	bool megaJump = false;

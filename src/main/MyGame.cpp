@@ -9,7 +9,7 @@
 #include "../engine/Enemy.h"
 #include "../engine/EnvironmentalObject.h"
 
-const bool ZOOMED_IN = false;// Set this to false to revert to original camera change the comment below
+bool ZOOMED_IN = false;// Set this to false to revert to original camera change the comment below
 
 using namespace std;
 MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
@@ -165,7 +165,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/area3/level3-7.json");
+	default_area->loadScene("./resources/Scenes/area1/level1-5.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -195,6 +195,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 
 
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::EnvironmentalObject);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::LongPlatform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
@@ -204,6 +205,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::CloudPlatform);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Coffee);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::TransitionPoint);
 	// removed collision btwn item and paintbrush, idk if this will affect anything
 }
@@ -222,6 +224,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if ((scene_manager->target_path) == a1_2_path) {
 		player->_gravity = false;
 	}
+
 
 	if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player
 		cam->moveCameraTo(0, (400 - player->position.y));

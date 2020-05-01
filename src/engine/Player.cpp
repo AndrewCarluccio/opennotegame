@@ -269,7 +269,7 @@ void Player::onCollision(DisplayObject* other){
 			int otherY = other->getHitbox().y;
 			if (meY + meH <= otherY)
 				_standing=true;
-				_gStanding = true;
+				//_gStanding = true;
 		}
 
 		else if (other->type == "EnvironmentalObject") {
@@ -305,7 +305,15 @@ void Player::onCollision(DisplayObject* other){
 			}
 		
 			else if (other->sprite_type == "box") {
-				Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);	
+				Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+				if(_yVel < 0)
+					_yVel = 0;
+				//this->visible = false;
+				int meY = this->getHitbox().y;
+				int meH = this->getHitbox().h;
+				int otherY = other->getHitbox().y;
+				if (meY + meH <= otherY)
+					_standing=true;
 			}
 		}
 
@@ -365,6 +373,14 @@ void Player::onCollision(DisplayObject* other){
 			other->collidable = false;
 			cout << "Detected Collision with Transition Point" << endl;
 		}
+
+		else if (other->object_type == types::Type::Coffee) {
+		state->setDying(true);
+		alpha = 75;
+		this->play("idle");
+		curTicks = ticks;
+		this->dead();
+		}
 	}
 }
 
@@ -399,7 +415,16 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		this->hasPowerUp = false;	
 		this->megaJump = false;
+		if(_yVel < 0)
+			_yVel = 0;
+				//this->visible = false;
+			int meY = this->getHitbox().y;
+			int meH = this->getHitbox().h;
+			int otherY = envObj->getHitbox().y;
+			if (meY + meH <= otherY)
+				_standing=true;
 	}
+
 
 	// paint brush
 	if (envObj->sprite_type == "paintbrush") { // if in contact with paint brush		
@@ -410,7 +435,16 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	if (envObj->object_type == types::Type::CloudPlatform) {
 		// this is so player can stand on cloud
 		envObj->_collision = true;
-		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
+		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
+			if(_yVel < 0)
+			_yVel = 0;
+				//this->visible = false;
+			int meY = this->getHitbox().y;
+			int meH = this->getHitbox().h;
+			int otherY = envObj->getHitbox().y;
+			if (meY + meH <= otherY)
+				_standing=true;
+	} 
 
 
 	/*	if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
@@ -426,7 +460,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 			}
 			*/
 	
-	}
+
 
 
 
@@ -441,17 +475,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 
 
 void Player::onEnemyCollision(Enemy* enemy){ 
-	if (enemy->sprite_type == "coffee") {
-		// dying = true;
-		state->setDying(true);
-		alpha = 75;
-		this->play("idle");
-		curTicks = ticks;
-		this->dead();
-	}
-
 	/* PHYSICS */
-	else if (enemy->sprite_type == "blackhole") {
+	if (enemy->sprite_type == "blackhole") {
 		// dying = true;
 		state->setDying(true);
 		
@@ -461,7 +486,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 	}
 
 	else if (enemy->sprite_type == "cat") {
-		this->decHealth(10);
+		this->decHealth(5);
 		limbo = true;
 		alpha = 25;
 		curTicks = ticks;
@@ -477,7 +502,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 	}
 
 	else if (enemy->sprite_type == "lamp") {
-		this->decHealth(10);
+		this->decHealth(5);
 		limbo = true;
 		alpha = 25;
 		curTicks = ticks;
@@ -486,7 +511,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	/* LINEAR ALGEBRA */
 	else if (enemy->sprite_type == "matrix") { 
-		this->decHealth(10);
+		this->decHealth(5);
 		if (!(enemy->collision)) {
 			enemy->scaleX = enemy->scaleX * 1.1;
 			enemy->scaleY = enemy->scaleY * 1.1;
@@ -506,8 +531,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 	}
 
 	else if (enemy->sprite_type == "projection") {
-		this->decHealth(10);
-		limbo = true;
+		this->decHealth(5);
 		alpha = 25;
 		curTicks = ticks;
 	}
@@ -515,7 +539,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	/* GAME DESIGN */
 	else if (enemy->sprite_type == "affine") {
-		this->decHealth(10);
+		this->decHealth(5);
 		// if hits shield
 	}
 	else if (enemy->sprite_type == "adv_glitch") {
