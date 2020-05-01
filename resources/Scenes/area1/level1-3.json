@@ -143,7 +143,7 @@
                 },
                 {
                     "node_id": "sprite21",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Enemy",
                     "sprite_type": "cat",
                     "locationX": 800,
                     "locationY": 200,
@@ -161,7 +161,7 @@
                 },
                 {
                     "node_id": "EntryPoint",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "TransitionPoint",
                     "sprite_type": "default",
                     "locationX": 1025,
                     "locationY": 1475,
@@ -170,6 +170,7 @@
                     "rotation": 0.0,
                     "alpha": 255,
                     "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "transition_scene_name": "area1_2",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
@@ -233,7 +234,7 @@
                 },
                 {
                     "node_id": "ExitPoint",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "TransitionPoint",
                     "sprite_type": "default",
                     "locationX": 100,
                     "locationY": 125,
@@ -247,7 +248,8 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
-                    "children": []
+                    "children": [],
+                    "transition_scene_name": "area1_4"
                 },
                 {
                     "node_id": "sprite2",
@@ -287,7 +289,7 @@
                 },
                 {
                     "node_id": "sprite4",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Enemy",
                     "sprite_type": "cat",
                     "locationX": 150,
                     "locationY": 1225,
@@ -323,7 +325,7 @@
                 },
                 {
                     "node_id": "sprite10",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "EnvironmentalObject",
                     "sprite_type": "higgsboson",
                     "locationX": 725,
                     "locationY": 750,
