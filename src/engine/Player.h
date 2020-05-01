@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "EnvironmentalObject.h"
 #include "Character.h"
+#include "GameState.h"
 
 using namespace std;
 
@@ -39,11 +40,12 @@ public:
 	bool collectedAll = false;
 
 	/* UI and Player variables */
-	int health = 100;
-	int maxHealth = 100;
-	int lowHealthThreshold = 30;
-	bool lowHealth = false;
-	bool dying = false;
+	// ** MOVED TO GAME STATE **
+	// int health = 100;
+	// int maxHealth = 100;
+	// int lowHealthThreshold = 30;
+	// bool lowHealth = false;
+	// bool dying = false;
 	bool limbo = false;
 
 	bool hasPowerUp = true; 
@@ -52,7 +54,7 @@ public:
 
 	/* Jump variables */
 	int _jumpVel = -15;
-	int jumps = 0; 
+	int jumps = 0;
 	bool doubleJump = false;
 	bool megaJump = false;
 	bool isTouching;
@@ -100,6 +102,7 @@ public:
 	
 private:
 
+	GameState *state;
 	Controls c;
 	EnvironmentalObject e;
 	int oldX = 0;

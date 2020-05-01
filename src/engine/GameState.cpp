@@ -1,35 +1,107 @@
 #include "GameState.h"
 
 GameState::GameState() {
-    currentScore = 0;
+    health = 100.0;
+    currentScore = 0.0;
+    curItem = "";
+    curWeapon = "";
+    dying = false;
 }
 
-void GameState::incrementScore(double amount) {
-    if (amount < 0) {
-        cout << "GameState::incrementScore: increment amount must be positive" << endl;
-        return;
-    }
-
+void GameState::addScore(double amount) {
     currentScore += amount;
-    if (currentScore > 100.0) {
-        currentScore = 100.0;
+
+    if (amount > 0) {
+        if (currentScore > 100.0) {
+            currentScore = 100.0;
+        }
+    } else {
+        if (currentScore < 0.0) {
+            currentScore = 0.0;
+        }
+
     }
 }
-void GameState::decrementScore(double amount) {
-    if (amount < 0) {
-        cout << "GameState::decrementScore: decrement amount must be positive" << endl;
-        return;
+
+void GameState::changeHealth(double amount) {
+    health += amount;
+
+    if (amount > 0) {
+        if (health > MAX_HEALTH) {
+            health = MAX_HEALTH;
+        }
+    } else {
+        if (health < 0.0) {
+            lowHealth = true;
+            health = 0.0;
+            cout << "Game over!" << endl;
+        } else if (health < LOW_THRESHOLD) {
+            lowHealth = true;
+        }
+
     }
 
-    currentScore -= amount;
-    if (currentScore < 0.0) {
-        currentScore = 0.0;
-    }
+}
+
+void GameState::setCurItem(string itemId) {
+    curItem = itemId;
+}
+
+void GameState::setCurWeapon(string weaponId) {
+    curWeapon = weaponId;
+}
+
+void GameState::collectItem(string itemId) {
+    collectedItems.push_back(itemId);
+}
+
+void GameState::defeatBoss(string bossId) {
+    defeatedBosses.push_back(bossId);
+}
+
+void GameState::setDying(bool val) {
+    dying = val;
 }
 
 double GameState::getScore() {
     return currentScore;
+}
 
+double GameState::getHealth() {
+    return health;
+}
+
+string GameState::getCurItem() {
+    return curItem;
+}
+
+string GameState::getCurWeapon() {
+    return curWeapon;
+}
+
+vector<string> GameState::getCollectedItems() {
+    return collectedItems;
+}
+
+vector<string> GameState::getDefeatedBosses() {
+    return defeatedBosses;
+}
+
+bool GameState::hasCollectedItem(string itemId) {
+    return find(collectedItems.begin(), collectedItems.end(), itemId) != collectedItems.end();
+
+}
+
+bool GameState::hasDefeatedBoss(string bossId) {
+    return find(defeatedBosses.begin(), defeatedBosses.end(), bossId) != defeatedBosses.end();
+}
+
+bool GameState::isDead() {
+    return dying;
+}
+
+bool GameState::isLowHealth() {
+    return lowHealth;
 }
 
 string GameState::calculateGrade() {

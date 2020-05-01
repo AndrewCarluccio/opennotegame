@@ -18,6 +18,7 @@ using namespace std;
 Player::Player(string id, string path) : AnimatedSprite(id, path){
 	this->type = "Player";
 	loadAnimations();
+	state = &Game::instance->gameState;
 }
 
 // careful to not do this in a loop, uses a lot of memory
@@ -73,7 +74,8 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
 
 	if (ticks == curTicks + 60) {
-		dying = false;
+		// dying = false;
+		state->setDying(false);
 		limbo = false;
 		alpha = 250;
 	}
@@ -99,13 +101,15 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	oldY = this->position.y;
 
 	/* Player controls */
-	if (!dying) {
+	if(!state->isDead()) {
+	// if (!dying) {
 	if(c.holdRight) {
 		this->facingRight = true;
 		if(this->current != getAnimation("run") && this->current != getAnimation("jump")){
 			this->play("run");
 		}
-		if (lowHealth) {
+		if(state->isLowHealth()) {
+		// if (lowHealth) {
 			this->position.x += 4; // limited controls when health is low
 		}
 		else {
@@ -127,7 +131,8 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 				this->play("run_l");
 			}
 		}
-		if (lowHealth) {
+		if(state->isLowHealth()) {
+		// if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
 		}
 		else {
@@ -179,7 +184,8 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 				if (megaJump) { // power up
 				this->_yVel = (_jumpVel * 1.5); 
 				}
-				if (lowHealth) {
+				if(state->isLowHealth()) {
+				// if (lowHealth) {
 					if (_yVel < -10.0) {
 						_yVel = -10.0;
 					}
@@ -256,7 +262,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	if (!dying && !limbo) {
+	if (!state->isDead() && !limbo) {
 		if (other->object_type == types::Type::Platform) {
 			Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 			if(_yVel < 0)
@@ -438,7 +444,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 
 void Player::onEnemyCollision(Enemy* enemy){ 
 	if (enemy->sprite_type == "coffee") {
-		dying = true;
+		// dying = true;
+		state->setDying(true);
 		alpha = 75;
 		this->play("idle");
 		curTicks = ticks;
@@ -447,7 +454,9 @@ void Player::onEnemyCollision(Enemy* enemy){
 
 	/* PHYSICS */
 	else if (enemy->sprite_type == "blackhole") {
-		dying = true;
+		// dying = true;
+		state->setDying(true);
+		
 		this->play("bh");
 		curTicks = ticks;
 		this->dead();
@@ -521,23 +530,12 @@ void Player::onEnemyCollision(Enemy* enemy){
 /* On Collision Supporting Methods */
 
 void Player::incHealth(int hp){
-	health += hp;
-	if (health > maxHealth){
-		health = maxHealth;
-	}
-	else if (health > lowHealthThreshold){ 
-		lowHealth = false;
-	}
+	state->changeHealth(hp);
+
 }
 
 void Player::decHealth(int hp){
-	health -= hp;
-	if (health <= 0){
-		this->dead();
-	}
-	else if (health < lowHealthThreshold){ 
-		lowHealth = true;
-	}
+	state->changeHealth(-hp);
 }
 
 void Player::dead(){
