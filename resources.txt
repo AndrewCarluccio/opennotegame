@@ -1,6 +1,10 @@
 resources/general_sprites/page_bg.png
 resources/general_sprites/character/idle.png
+resources/area_2_sprites/enemies/lamp/lamp_1.png
 Resources/area_3_sprites/matrix/idle_1.PNG
+Resources/area_3_sprites/enviObjs/button.png
+Resources/area_3_sprites/enviObjs/corollary.PNG
+Resources/area_3_sprites/enviObjs/eigenvector.PNG
 Resources/area_3_sprites/projection.PNG
 resources/area_1_sprites/enemies/black_hole/black_hole.png
 Resources/area_2_sprites/enemies/glitch.png
@@ -8,6 +12,7 @@ Resources/area_3_sprites/projection_shooter.PNG
 resources/platforms/short1.PNG
 resources/platforms/med1.PNG
 resources/platforms/long1.PNG
+resources/Sprites/objects/ortho.PNG
 resources/general_sprites/coffee_stains/coffeestain1.png
 resources/general_sprites/coffee_stains/coffeestain2.png
 resources/general_sprites/coffee_stains/coffeestain3.png
@@ -58,20 +63,6 @@ resources/area_2_sprites/objects/box.png
 resources/area_2_sprites/objects/catfood.png
 resources/area_2_sprites/objects/cloud.PNG
 resources/area_2_sprites/objects/sprite_can.PNG
-resources/Sprites/titles/area3/Algebra_3.1.PNG
-resources/Sprites/titles/area3/Algebra_3.2.PNG
-resources/Sprites/titles/area3/Algebra_3.3.PNG
-resources/Sprites/titles/area3/Algebra_3.4.PNG
-resources/Sprites/titles/area3/Algebra_3.5.PNG
-resources/Sprites/titles/area3/Algebra_3.6.PNG
-resources/Sprites/titles/area3/Algebra_3.7.PNG
-resources/Sprites/titles/area3/Algebra_3.8.PNG
-resources/Sprites/titles/physics_index.jpg
-resources/Sprites/titles/animation_index.jpg
-resources/Sprites/titles/Area_3_Title.jpg
-resources/Sprites/titles/Area_4_Title.jpg
-
-
 resources/Sprites/page_bg.png
 resources/Sprites/character/idle_1.png
 resources/Sprites/character/back_hole_animation/bh 1.png
@@ -233,3 +224,11 @@ resources/Sprites/titles/area4/gd_5.png
 resources/Sprites/titles/area4/gd_6.png
 resources/Sprites/titles/area4/gd_7.png
 resources/Sprites/titles/area4/gd_8.png
+Resources/Sprites/titles/area3/Algebra_3.1.png
+Resources/Sprites/titles/area3/Algebra_3.2.png
+Resources/Sprites/titles/area3/Algebra_3.3.png
+Resources/Sprites/titles/area3/Algebra_3.4.png
+Resources/Sprites/titles/area3/Algebra_3.5.png
+Resources/Sprites/titles/area3/Algebra_3.6.png
+Resources/Sprites/titles/area3/Algebra_3.7.png
+Resources/Sprites/titles/area3/Algebra_3.8.png

@@ -30,9 +30,7 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
 	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
 	addAnimation("resources/general_sprites/character/shield/", "shieldidle", 1, 1, false);
-	//addAnimation("resources/general_sprites/character/shield/run/", "shieldrun", 8, 6, true);
 	addAnimation("resources/general_sprites/character/gun/", "gunidle", 1, 1, false);
-	//addAnimation("resources/general_sprites/character/gun/run/", "gunrun", 8, 6, true);
 }
 
 void Player::updateDevToolMode(set<SDL_Scancode> pressedKeys) {
@@ -252,7 +250,6 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 	c.update(pressedKeys);
 
 	ticks++;
-	//cout << ticks << endl;
 }
 
 void Player::draw(AffineTransform &at){
@@ -329,6 +326,8 @@ void Player::onCollision(DisplayObject* other){
 
 			if (other->sprite_type == "oh") {
 				this->incHealth(15);
+				other->visible = false;
+				other->collision = true;
 			}
 		}
 
@@ -336,14 +335,11 @@ void Player::onCollision(DisplayObject* other){
 			if (other->sprite_type == "eigenvector") {
 				if (!(other->collision)) {
 					curPowerUp = other;
-					this->scaleX = scaleX * 1.5;
-					this->scaleY = scaleY * 1.5;
+					this->scaleX = scaleX * 0.5;
+					this->scaleY = scaleY * 0.5;
 					other->visible = false;
 					other->collision = true;	
-
 				}
-			// equip power up (ex. if powerup id starts with "jump" -> mega jump or sthn like this)
-			// or maybe have that ^ done somewhere else, check curPowerUp->id idrk
 			}
 			if (other->sprite_type == "boost") {
 				other->visible = false;
@@ -385,7 +381,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	/* PHYSICS ENVIRONMENTAL COLLISIONS */
 
 	// higgs boson collision 
-	if (envObj->object_type == types::Type::HiggsBoson) { 
+	if (envObj->sprite_type == "higgsboson") { 
 		_yVel = _jumpVel * 1.5; // shoots player up after touching higgs boson
 		_standing = false;
 		if (!_standing) {
@@ -399,22 +395,24 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 	/* ANIMATIONS ENVIRONMENTAL COLLISIONS */
 	
 	// eraser
-	if (envObj->object_type == types::Type::Eraser) {
+	if (envObj->sprite_type == "eraser") {
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		this->hasPowerUp = false;	
 		this->megaJump = false;
 	}
 
 	// paint brush
-	if (envObj->object_type == types::Type::PaintBrush) { // if in contact with paint brush		
+	if (envObj->sprite_type == "paintbrush") { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 	}
 
 	// cloud platform
 	if (envObj->object_type == types::Type::CloudPlatform) {
 		// this is so player can stand on cloud
+		envObj->_collision = true;
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0); 
-		envObj->visible = false;
+
+
 	/*	if (Game::instance->collisionSystem.collidesWith(this, envObj)) { // are colliding
 			this->isTouching = true; // true
 		}
@@ -427,8 +425,8 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 				envObj->visible = true; 
 			}
 			*/
-		}	
-
+	
+	}
 
 
 

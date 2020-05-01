@@ -186,9 +186,36 @@ Enemy* createEnemy(const Value& EnemyInfo) {
 	string node_id = EnemyInfo["node_id"].GetString();
 	string path_to_texture = EnemyInfo["sprite_file_path"].GetString();
 
+	int minX;
+	if (EnemyInfo.HasMember("minusX")) {
+		minX = EnemyInfo["minusX"].GetInt();
+	} else {
+		minX = 10;
+	}
+	
+	int maxX;
+	if (EnemyInfo.HasMember("minusX")) {
+		maxX = EnemyInfo["plusX"].GetInt();
+	} else {
+		maxX = 150;
+	}
+	 
+	bool right;
+	if(EnemyInfo.HasMember("facingRight")) {
+		right= EnemyInfo["facingRight"].GetBool();
+	} else {
+		right = true;
+	}
+
 	Enemy* the_obj = new Enemy(node_id, path_to_texture);
 
 	setDisplayObjectProperties(EnemyInfo, the_obj);
+
+	the_obj->minusX= minX;
+	the_obj->plusX = maxX;
+	the_obj->facingRight = right;
+
+	the_obj->loadAnimations();
 
 	return the_obj;
 }
@@ -248,7 +275,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	else if (type_id == "TransitionPoint") {
 		newChild = createTransitionPoint(attribute);
 	}
-	else if (type_id == "AnimatedSprite") {
+	else if (type_id == "AnimatedSprite" || type_id == "\u0003") {
 		newChild = createAnimatedSprite(attribute);
 	}
 	else if (type_id == "Layer") {

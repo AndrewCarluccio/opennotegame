@@ -4,28 +4,19 @@
 namespace types {
     // Maybe give this a better name
     enum Type {
-        Default,  // 0
-        Player,   // 1
-        Platform, // 2
-        Enemy,    // 3
-        HiggsBoson, // 4
-        PowerUp,  // 5 - automatically equipped upon impact
-        Eraser, // 6 <- not implemented yet
-        PaintBrush, // 7
-        Cat, // 8
-        Character, // 9
-        Item, // 10 - items that you use manually, or need to give to someone
-        Weapon, // 11 - automatically equiped upon impact, has a sprite 
-        Health, // 12 - things that boost health upon impact, has sprite -> disappears after collision (unless it's an office hour ball)
-        Car, // 13 ... this was an example (can be deleted)
-        CloudPlatform, // 14
-		TransitionPoint, // 15
-        Boss, // 16
-        Corollary, // 17
-        Eigenvector, // 18
-        Projection, // 19
-        Matrix, // 20
-        Box, // 21
+        Default,                // 0
+        Player,                 // 1
+        Platform,               // 2
+        TransitionPoint,        // 3
+        Enemy,                  // 4
+        Boss,                   // 5
+        EnvironmentalObject,    // 6
+        Character,              // 7
+        Item,                   // 8
+        Health,                 // 9
+        PowerUp,                // 10
+        Weapon,                 // 11
+        CloudPlatform,          // 12
         // Add additional types above this line 
         COUNT
     };

@@ -50,6 +50,7 @@ public:
 
 	bool hasPowerUp = true; 
 	bool collision;
+	bool _gravity = true;
 	DisplayObject* curPowerUp = NULL;
 
 	/* Jump variables */
@@ -109,7 +110,6 @@ private:
 	int oldY = 0;
 
 	/* Falling variables */ 
-	bool _gravity = true;
 	bool _standing = true;
 	bool _gStanding = true;
 	int _maxFall = 9;

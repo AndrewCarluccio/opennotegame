@@ -35,7 +35,7 @@ void EnvironmentalObject::onCollision(DisplayObject* other) {
 	// very specific to the paintbrush envObj
 	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
-		if (this->object_type == types::Type::PaintBrush) {
+		if (this->sprite_type == "paintbrush") {
 		if(_yVel < 0)
 		_yVel = 0;
 		this->visible = false;

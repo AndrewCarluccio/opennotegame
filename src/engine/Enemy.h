@@ -40,7 +40,7 @@ public:
 	int maxHealth = 100;
 	int lowHealthThreshold = 30;
 	bool lowHealth = false;
-	int state; // how to control states
+	int state = 0; // how to control states
 
 	/* Jump variables */
 	int _jumpVel = -15;
@@ -50,11 +50,16 @@ public:
 	void decHealth(int hp);
     void dead();
 
+	int plusX;
+	int minusX;
+
+	int ticks = 0;
+	int curTicks = 0;
 	
 private:
 	int projMaxPatX;
-	int minPatX;
 	int maxPatX;
+	int minPatX;
 	int minPatY;
 	int maxPatY;
 	int targX;
@@ -65,8 +70,6 @@ private:
 	double theta;
 	double xComp;
 	double yComp;
-
-	int gd = 1;
 
 	int oldX = 0;
 	int oldY = 0;

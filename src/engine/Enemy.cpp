@@ -22,20 +22,30 @@ Enemy::Enemy(string id, string path) : AnimatedSprite(id, path) {
 
 // careful to not do this in a loop, uses a lot of memory
 void Enemy::loadAnimations() {
+	if (this->sprite_type == "cat") {
+		addAnimation("resources/area_1_sprites/enemies/cat/", "idle", 1, 1, true);
+		addAnimation("resources/area_1_sprites/enemies/cat/", "walk", 2, 10, true);
+		addAnimation("resources/area_1_sprites/enemies/cat/", "shook", 1, 1, true);	
+		this->play("walk");
+	}
+
 	if (this->sprite_type == "lamp") {
-		addAnimation("resources/area_2_sprites/lamp/", "lamp", 5, 6, true);
-	}	this->play("lamp");
+		addAnimation("resources/area_2_sprites/enemies/lamp/", "lamp", 5, 6, true);
+		this->play("lamp");
+	}	
 
 	if (this->sprite_type == "matrix") {
 		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
 		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
 		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 6, false);
 		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 6, false);
+		this->play("walk");
 	}
 
 	if (this->sprite_type == "adv_matrix") { // bc they only scale in size (maintaining aspect ratio) don't need H/V
 		addAnimation("resources/area_3_sprites/matrix/", "idle", 1, 1, true);
 		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
+		this->play("walk");
 	}
 }
 
@@ -55,70 +65,20 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 // THIS IS A JANK WAY OF DOING IT
 // IM SO SORRY
 
-/*if (this->sprite_type ==  "cat") {
-	if (gd == 1) {
-		this->position.x +=1;
-	}
-	if (this->position.x >= maxPatX) {
-		gd = 2;
-	}
-	if (gd == 2) {
-		this->position.x -=1;
-	}
-
-	if (this->position.x <= minPatX) {
-		gd = 1;
-	}
-}
-
-
-else if (this->sprite_type ==  "lamp") {
-	if (gd == 1) {
-		this->position.x +=1;
-	}
-	if (this->position.x >= maxPatX) {
-		gd = 2;
-	}
-	if (gd == 2) {
-		this->position.x -=1;
-	}
-
-	if (this->position.x <= minPatX) {
-		gd = 1;
-	}
-}
-*/
-
 if (this->sprite_type == "projection") {
 	this->position.x += 5;
 	if (this->position.x > projMaxPatX) {
 		this->position.x = this->old_position.x;
 	}
 }
-// need to do this from enemy side
-// but only understand onCollision for player :(
-/*if (this->sprite_type == "matrix") {
-	if (gd == 1) {
-		this->position.x +=1;
-	}
-	if (this->position.x >= maxPatX) {
-		gd = 2;
-	}
-	if (gd == 2) {
-		this->position.x -=1;
-	}
-
-	if (this->position.x <= minPatX) {
-		gd = 1;
-	}	
-}
-*/
 
 	if (this->state == 0) {
 		setPatrolRange();
 	}
 	else if (this->state == 1) {
-		patrol();
+		if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
+			patrol();
+		}
 	}
 	else if (this->state == 2) {
 		lunge();
@@ -139,18 +99,26 @@ if (this->sprite_type == "projection") {
 	 	// do something to show they are stunned
  	}
 
-
-
 	if (this->state == 0) {
 		this->state = 1;
 		this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
 		this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
 		this->vel = 0;
 	}
+
+	if (this->sprite_type == "cat") {
+		if (this->current == this->getAnimation("shook")) {
+			if (this->ticks == this->curTicks + 60) {
+				this->play("walk");
+			}
+		}
+	}
+	
+	ticks++;
 }
 
 void Enemy::onCollision(DisplayObject* other) {
-if (other->object_type == types::Type::Platform) {
+	if (other->object_type == types::Type::Platform) {
 		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
 			_yVel = 0;
@@ -160,6 +128,23 @@ if (other->object_type == types::Type::Platform) {
 		int otherY = other->getHitbox().y;
 		if (meY + meH <= otherY)
 			_standing=true;
+	}
+
+	else if (other->object_type == types::Type::Player) {
+		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		if(_yVel < 0)
+			_yVel = 0;
+			//this->visible = false;
+		int meY = this->getHitbox().y;
+		int meH = this->getHitbox().h;
+		int otherY = other->getHitbox().y;
+		if (meY + meH <= otherY)
+			_standing=true;
+
+		if (this->sprite_type == "cat") {
+			this->play("shook");
+			this->curTicks = this->ticks;
+		}
 	}
 }
 
@@ -194,8 +179,8 @@ void Enemy::draw(AffineTransform &at){
 
 void Enemy::setPatrolRange() {
 	this->projMaxPatX = this->position.x + 350;
-	this->minPatX = this->position.x-6;
-	this->maxPatX = this->position.x+6;
+	this->minPatX = this->position.x-this->minusX;
+	this->maxPatX = this->position.x+this->plusX;
 	this->minPatY = this->position.y-10;
 	this->maxPatY = this->position.y+10;
 }
@@ -211,6 +196,19 @@ void Enemy::patrol() {
 		moveToTarget();
 	}
 	*/
+	if (facingRight) {
+		this->position.x +=5;
+	}
+	if (this->position.x >= maxPatX) {
+		facingRight = false;
+	}
+	if (!facingRight) {
+		this->position.x -=5;
+	}
+
+	if (this->position.x <= minPatX) {
+		facingRight = true;
+	}
 }
 
 void Enemy::moveToTarget() {

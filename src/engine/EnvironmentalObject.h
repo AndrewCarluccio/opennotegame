@@ -28,6 +28,8 @@ public:
 	//int jumps = 0; 
 	//bool doubleJump = false;
 	//bool megaJump = false;
+	bool _limbo = false;
+	bool _collision = false;
 
 	bool paintBrushTouched = false;
 private:
@@ -36,6 +38,7 @@ private:
 	int oldY = 0;
 
 	/* Falling variables */ 
+
 	bool _gravity = true;
 	bool _standing = true;
 	int _maxFall = 9;
