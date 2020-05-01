@@ -154,8 +154,8 @@
                     "sprite_file_path": "resources/general_sprites/power_up.PNG",
                     "collidable": true,
                     "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
+                    "hitboxScaleX": 0.4,
+                    "hitboxScaleY": 0.4,
                     "object_type": 10,
                     "children": []
                 },
@@ -174,7 +174,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 2,
+                    "object_type": 14,
                     "children": []
                 },
                 {
@@ -199,7 +199,7 @@
                 {
                     "node_id": "sprite13",
                     "type_id": "AnimatedSprite",
-                    "sprite_type": "transparency",
+                    "sprite_type": "boost",
                     "locationX": 100,
                     "locationY": 1200,
                     "scaleX": 0.18000000715255738,
@@ -209,8 +209,8 @@
                     "sprite_file_path": "resources/general_sprites/power_up.PNG",
                     "collidable": true,
                     "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
+                    "hitboxScaleX": 0.4,
+                    "hitboxScaleY": 0.4,
                     "object_type": 10,
                     "children": []
                 },
@@ -318,15 +318,15 @@
                     "sprite_file_path": "resources/general_sprites/power_up.PNG",
                     "collidable": true,
                     "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
+                    "hitboxScaleX": 0.4,
+                    "hitboxScaleY": 0.4,
                     "object_type": 10,
                     "children": []
                 },
                 {
                     "node_id": "box",
                     "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "sprite_type": "box",
                     "locationX": 700,
                     "locationY": 500,
                     "scaleX": 1.0,
@@ -338,7 +338,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 8,
                     "children": []
                 },
                 {

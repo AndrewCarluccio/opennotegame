@@ -17,6 +17,8 @@ namespace types {
         PowerUp,                // 10
         Weapon,                 // 11
         CloudPlatform,          // 12
+        Coffee,                 // 13
+        LongPlatform,           // 14
         // Add additional types above this line 
         COUNT
     };

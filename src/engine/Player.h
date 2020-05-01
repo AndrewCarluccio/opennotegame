@@ -52,7 +52,7 @@ public:
 	bool _gravity = true;
 
 	/* Jump variables */
-	int _jumpVel = -15;
+	double _jumpVel = -15.5;
 	int jumps = 0;
 	bool isTouching;
 

@@ -144,7 +144,7 @@ void Enemy::onCollision(DisplayObject* other) {
 	}
 
 	else if (other->object_type == types::Type::Player) {
-		Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
+	/*	Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 		if(_yVel < 0)
 			_yVel = 0;
 			//this->visible = false;
@@ -153,6 +153,7 @@ void Enemy::onCollision(DisplayObject* other) {
 		int otherY = other->getHitbox().y;
 		if (meY + meH <= otherY)
 			_standing=true;
+			*/
 
 		if (this->sprite_type == "cat") {
 			this->play("shook");
@@ -177,7 +178,7 @@ void Enemy::decHealth(int hp){
 	if (health <= 0){
 //		this->dead();
 	}
-	else if (health < lowHealthThreshold){ 
+	else if (health <= lowHealthThreshold){ 
 		lowHealth = true;
 	}
 }

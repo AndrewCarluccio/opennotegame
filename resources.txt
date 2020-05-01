@@ -6,7 +6,7 @@ Resources/area_3_sprites/enviObjs/button.png
 Resources/area_3_sprites/enviObjs/corollary.PNG
 Resources/area_3_sprites/enviObjs/eigenvector.PNG
 Resources/area_3_sprites/projection.PNG
-resources/area_1_sprites/enemies/black_hole/black_hole.png
+resources/area_1_sprites/enemies/black_hole/swirly_thing.png
 Resources/area_2_sprites/enemies/glitch.png
 Resources/area_3_sprites/projection_shooter.PNG
 resources/platforms/short1.PNG
