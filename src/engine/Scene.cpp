@@ -186,9 +186,26 @@ Enemy* createEnemy(const Value& EnemyInfo) {
 	string node_id = EnemyInfo["node_id"].GetString();
 	string path_to_texture = EnemyInfo["sprite_file_path"].GetString();
 
-	int minX = EnemyInfo["minusX"].GetInt();
-	int maxX = EnemyInfo["plusX"].GetInt();
-	bool right = EnemyInfo["facingRight"].GetBool();
+	int minX;
+	if (EnemyInfo.HasMember("minusX")) {
+		minX = EnemyInfo["minusX"].GetInt();
+	} else {
+		minX = 10;
+	}
+	
+	int maxX;
+	if (EnemyInfo.HasMember("minusX")) {
+		maxX = EnemyInfo["plusX"].GetInt();
+	} else {
+		maxX = 150;
+	}
+	 
+	bool right;
+	if(EnemyInfo.HasMember("facingRight")) {
+		right= EnemyInfo["facingRight"].GetBool();
+	} else {
+		right = true;
+	}
 
 	Enemy* the_obj = new Enemy(node_id, path_to_texture);
 

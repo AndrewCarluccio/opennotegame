@@ -76,7 +76,9 @@ if (this->sprite_type == "projection") {
 		setPatrolRange();
 	}
 	else if (this->state == 1) {
-		patrol();
+		if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
+			patrol();
+		}
 	}
 	else if (this->state == 2) {
 		lunge();
