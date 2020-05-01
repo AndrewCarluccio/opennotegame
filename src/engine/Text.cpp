@@ -32,6 +32,11 @@ void Text::init(string text, int width, int height, string font_path, int font_s
 	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
     position.y = -1 * textHeight;
     setTexture(texture);
+
+    bg = new DisplayObjectContainer(id + "-bg", 255, 255, 255);
+    bg->position = this->position;
+    bg->height = this->height;
+    bg->width = this->width;
 }
 
 void Text::updateText(string text) {
@@ -42,12 +47,17 @@ void Text::updateText(string text) {
 	texture = SDL_CreateTextureFromSurface(Game::renderer, image);
     position.y = -1 * textHeight;
     setTexture(texture);
+    bg->position = this->position;
+    bg->height = this->height;
+    bg->width = this->width;
 }
 
 void Text::update(set<SDL_Scancode> pressedKeys) {
     DisplayObjectContainer::update(pressedKeys);
+    bg->visible = this->visible;
 }
 
 void Text::draw(AffineTransform &at) {
+    bg->draw(at);
     DisplayObjectContainer::draw(at);
 }

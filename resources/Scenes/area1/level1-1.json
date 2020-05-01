@@ -247,6 +247,22 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
+                    "object_type": 9,
+                    "first_dialogue": "I'm looking for my shadow. It's rather pesky. Could you help me find it?",
+                    "mid_dialogue": "Have you found my shadow yet? I'm going to look rather strange until it's found.",
+                    "item_dialogue": "There you are! Get back here! ... Thanks for the help! Here's some pixie dust in exchange.",
+                    "post_dialogue": "Thanks again!",
+                    "item_needed": "shin",
+                    "item_to_give": "buldak",
+                    "item_path": "resources/general_sprites/buldak.png",
+                    "children": []
+                },
+                {
+                    "node_id": "health1",
+                    "type_id": "AnimatedSprite",
+                    "sprite_type": "shin",
+                    "locationX": 775,
+                    "locationY": 275,
                     "object_type": 2,
                     "children": []
                 },

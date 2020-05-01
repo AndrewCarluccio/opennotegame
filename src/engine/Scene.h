@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "GameState.h"
 
 using namespace std;
 
