@@ -39,7 +39,6 @@ void Enemy::loadAnimations() {
 		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
 		addAnimation("resources/area_3_sprites/matrix/triggerH/", "triggerH", 7, 8, false);
 		addAnimation("resources/area_3_sprites/matrix/triggerV/", "triggerV", 7, 8, false);
-		this->play("triggerH");
 	}
 
 	if (this->sprite_type == "adv_matrix") { // bc they only scale in size (maintaining aspect ratio) don't need H/V
@@ -83,6 +82,9 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 		else if (this->state == 1) {
 			if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
 				patrol();
+				if (sprite_type == "matrix") {
+					this->play("walk");
+				}
 			}
 		}
 		else if (this->state == 2) {
@@ -110,7 +112,7 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 		}
 
 		if (this->state == 0) {
-			this->state = 0;
+			this->state = 1;
 			this->targX = std::rand()%(this->maxPatX-this->minPatX) + this->minPatX;
 			this->targY = std::rand()%(this->maxPatY-this->minPatY) + this->minPatY;
 			this->vel = 0;
