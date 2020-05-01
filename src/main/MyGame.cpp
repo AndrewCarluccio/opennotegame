@@ -165,7 +165,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/enemy_demo.json");
+	default_area->loadScene("./resources/Scenes/area2/level2-2.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
