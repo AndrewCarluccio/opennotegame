@@ -34,6 +34,7 @@ public:
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);
+	void processTitlePage(Scene *scene);
 	
 	Scene* scene;
 
@@ -43,6 +44,7 @@ public:
 
 	Scene* default_area;
 
+	string a1_title_name;
 	string a1_1_name;
 	string a1_2_name;
 	string a1_3_name;
@@ -52,6 +54,7 @@ public:
 	string a1_7_name;
 	string a1_8_name;
 
+	string a2_title_name;
 	string a2_1_name;
 	string a2_2_name;
 	string a2_3_name;
@@ -61,6 +64,7 @@ public:
 	string a2_7_name;
 	string a2_8_name;
 
+	string a3_title_name;
 	string a3_1_name;
 	string a3_2_name;
 	string a3_3_name;
@@ -70,6 +74,7 @@ public:
 	string a3_7_name;
 	string a3_8_name;
 
+	string a4_title_name;
 	string a4_1_name;
 	string a4_2_name;
 	string a4_3_name;
@@ -79,6 +84,7 @@ public:
 	string a4_7_name;
 	string a4_8_name;
 
+	string a1_title_path;
 	string a1_1_path;
 	string a1_2_path;
 	string a1_3_path;
@@ -88,6 +94,7 @@ public:
 	string a1_7_path;
 	string a1_8_path;
 
+	string a2_title_path;
 	string a2_1_path;
 	string a2_2_path;
 	string a2_3_path;
@@ -97,6 +104,7 @@ public:
 	string a2_7_path;
 	string a2_8_path;
 
+	string a3_title_path;
 	string a3_1_path;
 	string a3_2_path;
 	string a3_3_path;
@@ -106,6 +114,7 @@ public:
 	string a3_7_path;
 	string a3_8_path;
 
+	string a4_title_path;
 	string a4_1_path;
 	string a4_2_path;
 	string a4_3_path;
@@ -134,6 +143,7 @@ public:
 	
 
 private:
+	bool mouseWithinBounds(DisplayObject * sprite, int mouseX, int mouseY);
 
 };
 

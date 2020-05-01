@@ -11,15 +11,18 @@ Controls::Controls() {
 }
 	 
 void Controls::update(set<SDL_Scancode> pressedKeys) {
-	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end()) { // or controller dpad left
+	if (pressedKeys.find(SDL_SCANCODE_LEFT) != pressedKeys.end() 
+		|| pressedKeys.find(SDL_SCANCODE_A) != pressedKeys.end()) { // or controller dpad left
 		holdLeft = true; 
 	}
 		
-	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()) {  // or controller dpad right
+	if (pressedKeys.find(SDL_SCANCODE_RIGHT) != pressedKeys.end()   // or controller dpad right
+		|| pressedKeys.find(SDL_SCANCODE_D) != pressedKeys.end()) { 
 		holdRight = true;
 	}
 
-	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end()) { // or controller key a
+	if (pressedKeys.find(SDL_SCANCODE_UP) != pressedKeys.end() // or controller key a
+		|| pressedKeys.find(SDL_SCANCODE_W) != pressedKeys.end()) { 
 		pressJump = true;
 	}
 
@@ -27,7 +30,7 @@ void Controls::update(set<SDL_Scancode> pressedKeys) {
 		interact = true;
 	}
 
-	if (pressedKeys.find(SDL_SCANCODE_S) != pressedKeys.end()) { 
+	if (pressedKeys.find(SDL_SCANCODE_LSHIFT) != pressedKeys.end()) { 
 		holdShield = true;
 	}
 

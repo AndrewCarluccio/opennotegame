@@ -212,7 +212,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area4_7"
+                    "transition_scene_name": "area4_title_page"
                 },
                 {
                     "node_id": "sprite74",
@@ -249,7 +249,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area1_8"
+                    "transition_scene_name": "area4_title_page"
                 },
                 {
                     "node_id": "player",

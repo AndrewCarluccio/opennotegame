@@ -500,7 +500,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area2_3"
+                    "transition_scene_name": "area2_6"
                 },
                 {
                     "node_id": "player",
@@ -555,7 +555,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area2_4"
+                    "transition_scene_name": "area2_title_page"
                 },
                 {
                     "node_id": "sprite10",

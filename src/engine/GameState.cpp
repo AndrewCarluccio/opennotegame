@@ -6,6 +6,8 @@ GameState::GameState() {
     curItem = "";
     curWeapon = "";
     dying = false;
+    isReset = false;
+    firstTitle = true;
 }
 
 void GameState::addScore(double amount) {
@@ -63,6 +65,25 @@ void GameState::setDying(bool val) {
     dying = val;
 }
 
+void GameState::reset() {
+    health = 100.0;
+    dying = false;
+    currentScore = 0.0;
+    isReset = true;
+}
+
+bool GameState::wasReset() {
+    return isReset;
+}
+
+void GameState::clearReset() {
+    isReset = false;
+}
+
+void GameState::visitFirstTitle() {
+    firstTitle = false;
+}
+
 double GameState::getScore() {
     return currentScore;
 }
@@ -102,6 +123,10 @@ bool GameState::isDead() {
 
 bool GameState::isLowHealth() {
     return lowHealth;
+}
+
+bool GameState::isFirstTitle() {
+    return firstTitle;
 }
 
 string GameState::calculateGrade() {
