@@ -46,6 +46,11 @@ void Enemy::loadAnimations() {
 		addAnimation("resources/area_3_sprites/matrix/walk/", "walk", 2, 6, true);
 		this->play("walk");
 	}
+
+	if (this->sprite_type == "blackhole") {
+		addAnimation("resources/area_1_sprites/enemies/black_hole/", "bh", 4, 7, true);
+		this->play("bh");
+	}
 }
 
 void Enemy::update(set<SDL_Scancode> pressedKeys){
@@ -68,7 +73,7 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 		if (actionTriggered) {
 			this->state = 8;
 		}
-
+		
 		if (this->sprite_type == "projection") {
 			this->position.x += 5;
 			if (this->position.x > projMaxPatX) {

@@ -165,11 +165,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-<<<<<<< HEAD
-	default_area->loadScene("./resources/Scenes/area1/level1-5.json");
-=======
-	default_area->loadScene("./resources/Scenes/enemy_demo.json");
->>>>>>> 792572df80b8ed66f57790259773c3e92fd0b32c
+	default_area->loadScene("./resources/Scenes/area1/level1-4.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -230,6 +226,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if ((scene_manager->target_path) == a1_2_path) {
 		player->_gravity = false;
 	}
+
+	if ((scene_manager->target_path) == a1_4_path) {
+		player->alpha = 50;
+	}
+
 
 
 	if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player

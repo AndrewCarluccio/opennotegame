@@ -224,7 +224,7 @@
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/swirly_thing.png",
+                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/bh_1.png",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 0.800000011920929,

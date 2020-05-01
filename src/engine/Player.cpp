@@ -479,8 +479,6 @@ void Player::onEnemyCollision(Enemy* enemy){
 	if (enemy->sprite_type == "blackhole") {
 		// dying = true;
 		state->setDying(true);
-		
-		this->play("bh");
 		curTicks = ticks;
 		this->dead();
 	}
