@@ -197,8 +197,8 @@
                 },
                 {
                     "node_id": "sprite21",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "projection",
                     "locationX": 63,
                     "locationY": 1022,
                     "scaleX": 0.7850000262260437,
@@ -210,7 +210,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
@@ -251,8 +251,8 @@
                 },
                 {
                     "node_id": "sprite23",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "projection",
                     "locationX": 25,
                     "locationY": 1325,
                     "scaleX": 0.7774999737739563,
@@ -264,7 +264,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
@@ -359,8 +359,8 @@
                 },
                 {
                     "node_id": "sprite19",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "matrix",
                     "locationX": 325,
                     "locationY": 775,
                     "scaleX": 0.20499998331069947,
@@ -372,13 +372,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
                     "node_id": "sprite27",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "coffee",
                     "locationX": -50,
                     "locationY": -125,
                     "scaleX": 0.47749999165534975,
@@ -486,8 +486,8 @@
                 },
                 {
                     "node_id": "sprite26",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "coffee",
                     "locationX": 950,
                     "locationY": 725,
                     "scaleX": 0.19499999284744264,
@@ -504,8 +504,8 @@
                 },
                 {
                     "node_id": "sprite25",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "projection",
                     "locationX": 1075,
                     "locationY": 650,
                     "scaleX": 0.7350000143051148,
@@ -517,7 +517,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
@@ -558,8 +558,8 @@
                 },
                 {
                     "node_id": "sprite18",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "matrix",
                     "locationX": 950,
                     "locationY": 400,
                     "scaleX": 0.19499999284744264,
@@ -571,7 +571,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
@@ -594,8 +594,8 @@
                 },
                 {
                     "node_id": "sprite0",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "blackhole",
                     "locationX": 450,
                     "locationY": 250,
                     "scaleX": 0.11999999731779099,
@@ -607,13 +607,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
                     "node_id": "sprite1",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "cat",
                     "locationX": 675,
                     "locationY": 1000,
                     "scaleX": 0.14499999582767487,
@@ -625,7 +625,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 }
             ]
