@@ -259,7 +259,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	if (!state->isDead() && !limbo) {
+	if (!state->isDead() && !limbo && !transparency) {
 		if (other->object_type == types::Type::Platform) {
 			Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 			if(_yVel < 0)
@@ -351,6 +351,18 @@ void Player::onCollision(DisplayObject* other){
 					this->megaJump = false;
 				}
 			}
+
+			if (other->sprite_type == "transparency") {
+				if (!(other->collision)) {
+					other->visible = false;
+					if (!this->hasPowerUp) {
+						this->hasPowerUp = true;
+						this->transparency = true;
+						this->alpha = alpha / 2;
+					}
+					other->collision = true;
+				}
+			}
 		}
 
 		else if (other->object_type == types::Type::Weapon) {
@@ -358,13 +370,14 @@ void Player::onCollision(DisplayObject* other){
 			// add sprite as child of player but only for shooting animation
 			// for simplicity... ig uess we won't have them carry the weapon all the time :")
 		}
+	}
 
-		else if (other->object_type == types::Type::TransitionPoint) {
+	if (other->object_type == types::Type::TransitionPoint) {
 			//toss a transition event later
 			other->collision = true;
 			other->collidable = false;
 			cout << "Detected Collision with Transition Point" << endl;
-		}
+			transparency, megaJump, doubleJump = false;
 	}
 }
 

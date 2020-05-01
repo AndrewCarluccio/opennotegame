@@ -54,12 +54,15 @@ public:
 	/* Jump variables */
 	int _jumpVel = -15;
 	int jumps = 0;
-	bool doubleJump = false;
-	bool megaJump = false;
 	bool isTouching;
 
+	/* Power Ups */
 	bool hasPowerUp = false; 
 	DisplayObject* curPowerUp = NULL;
+	bool doubleJump = false;
+	bool megaJump = false;
+	bool transparency = false;
+
 	DisplayObject* curItem = NULL;
 	DisplayObject* curWeapon = NULL;
 	//DisplayObject* curShield;
