@@ -133,6 +133,7 @@ public:
 	UI* UserInterface;
 	Text* text;
 	
+	vector<DisplayObject*> curSceneEnemies;
 
 private:
 

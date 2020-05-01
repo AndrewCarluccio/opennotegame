@@ -51,26 +51,30 @@ void Enemy::loadAnimations() {
 
 void Enemy::update(set<SDL_Scancode> pressedKeys){
 	AnimatedSprite::update(pressedKeys);
-// state 0 = one time state to kick things off
-// state 1 = patrolling
-// state 2 = lunging
-// state 3 = body slamming
-// state 4 = shielding
-// state 5 = shooting
-// state 6 = post-attack movement
-// state 7 = stunned
 
+	// state 0 = one time state to kick things off
+	// state 1 = patrolling
+	// state 2 = lunging
+	// state 3 = body slamming
+	// state 4 = shielding
+	// state 5 = shooting
+	// state 6 = post-attack movement
+	// state 7 = stunned
 
-
-// THIS IS A JANK WAY OF DOING IT
-// IM SO SORRY
-
-if (this->sprite_type == "projection") {
-	this->position.x += 5;
-	if (this->position.x > projMaxPatX) {
-		this->position.x = this->old_position.x;
+	if (playerNearby) {
+		actionTriggered = true;
 	}
-}
+
+	if (actionTriggered) {
+		this->state = 8;
+	}
+
+	if (this->sprite_type == "projection") {
+		this->position.x += 5;
+		if (this->position.x > projMaxPatX) {
+			this->position.x = this->old_position.x;
+		}
+	}
 
 	if (this->state == 0) {
 		setPatrolRange();
@@ -98,6 +102,11 @@ if (this->sprite_type == "projection") {
  	else if (this->state == 7) {
 	 	// do something to show they are stunned
  	}
+	else if (this->state == 8) {
+		if (sprite_type == "matrix") {
+			this->play("triggerH");
+		}
+	}
 
 	if (this->state == 0) {
 		this->state = 1;

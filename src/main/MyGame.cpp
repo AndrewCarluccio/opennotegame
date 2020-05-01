@@ -165,7 +165,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/area3/level3-7.json");
+	default_area->loadScene("./resources/Scenes/enemy_demo.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -194,6 +194,8 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	player->addChild(text);
 	}
 
+	curSceneEnemies = scene_manager->active_scene->getChildren("Enemy");
+	
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
@@ -270,6 +272,19 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	//scene_manager->processPosition(player->position.x, player->position.y);
 	scene_manager->processPosition();
+
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			if(abs((player->position.x)-(enemy->position.x)) < 200 && abs((player->position.y)-(enemy->position.y)) < 200) {
+				enemy->playerNearby = true;
+			}
+			else {
+				enemy->playerNearby = false;
+			}
+		}
+	}
+	
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);

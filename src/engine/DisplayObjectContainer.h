@@ -32,6 +32,7 @@ public:
 	virtual int numChildren();
 	virtual DisplayObject* getChild(int index);
 	virtual DisplayObject* getChild(string id);
+	virtual vector<DisplayObject*> getChildren(string type);
 
 	virtual void update(set<SDL_Scancode> pressedKeys);
 	virtual void draw(AffineTransform &at);

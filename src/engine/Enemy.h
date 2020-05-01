@@ -55,6 +55,9 @@ public:
 
 	int ticks = 0;
 	int curTicks = 0;
+
+	bool playerNearby = false;
+	bool actionTriggered = false;
 	
 private:
 	int projMaxPatX;
