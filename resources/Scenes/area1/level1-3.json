@@ -415,8 +415,8 @@
                 },
                 {
                     "node_id": "sprite0",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "blackhole",
                     "locationX": 25,
                     "locationY": 650,
                     "scaleX": 0.26750001311302187,
@@ -428,13 +428,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 },
                 {
                     "node_id": "sprite1",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Enemy",
+                    "sprite_type": "blackhole",
                     "locationX": 1000,
                     "locationY": 950,
                     "scaleX": 0.2849999964237213,
@@ -446,7 +446,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 4,
                     "children": []
                 }
             ]
