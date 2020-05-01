@@ -313,7 +313,7 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite0",
+                    "node_id": "health1",
                     "type_id": "AnimatedSprite",
                     "sprite_type": "shin",
                     "locationX": 775,

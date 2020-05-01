@@ -264,6 +264,12 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 		newChild = createCharacter(attribute);
 	}
 
+	GameState *state = &Game::instance->gameState;
+	if (state->hasCollectedItem(node_id) || state->hasDefeatedBoss(node_id)) {
+		newChild->visible = false;
+		newChild->collision = true;
+	}
+
 	node->addChild(newChild);
 
 	const rapidjson::Value& children = attribute["children"];
