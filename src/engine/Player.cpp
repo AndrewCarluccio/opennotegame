@@ -259,7 +259,7 @@ void Player::draw(AffineTransform &at){
 /* Collision Methods */
 
 void Player::onCollision(DisplayObject* other){
-	if (!state->isDead() && !limbo) {
+	if (!state->isDead() && !limbo && !transparency) {
 		if (other->object_type == types::Type::Platform) {
 			Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
 			if(_yVel < 0)
@@ -270,20 +270,6 @@ void Player::onCollision(DisplayObject* other){
 			if (meY + meH <= otherY)
 				_standing=true;
 				//_gStanding = true;
-		}
-
-		else if (other->type == "EnvironmentalObject") {
-			this->onEnvObjCollision((EnvironmentalObject*) other);
-		}
-
-		else if (other->type == "Enemy") { 
-			curEnemy = (Enemy*) other;
-			this->onEnemyCollision((Enemy*) other); 
-		}
-
-		else if  (other->object_type == types::Type::Character) {
-			curCharacter = (Character*) other; 
-			// i think a speech bubble should appear near the character to show you can talk to them, this is a UI thing
 		}
 
 		else if(other->object_type == types::Type::Item) {
@@ -359,6 +345,18 @@ void Player::onCollision(DisplayObject* other){
 					this->megaJump = false;
 				}
 			}
+
+			if (other->sprite_type == "transparency") {
+				if (!(other->collision)) {
+					other->visible = false;
+					if (!this->hasPowerUp) {
+						this->hasPowerUp = true;
+						this->transparency = true;
+						this->alpha = alpha / 2;
+					}
+					other->collision = true;
+				}
+			}
 		}
 
 		else if (other->object_type == types::Type::Weapon) {
@@ -366,21 +364,35 @@ void Player::onCollision(DisplayObject* other){
 			// add sprite as child of player but only for shooting animation
 			// for simplicity... ig uess we won't have them carry the weapon all the time :")
 		}
+	}
 
-		else if (other->object_type == types::Type::TransitionPoint) {
-			//toss a transition event later
-			other->collision = true;
-			other->collidable = false;
-			cout << "Detected Collision with Transition Point" << endl;
+	else if (other->type == "EnvironmentalObject") {
+		this->onEnvObjCollision((EnvironmentalObject*) other);
 		}
 
-		else if (other->object_type == types::Type::Coffee) {
+	else if (other->type == "Enemy") { 
+		curEnemy = (Enemy*) other;
+		this->onEnemyCollision((Enemy*) other); 
+	}
+
+	else if (other->object_type == types::Type::Character) { // change this to be "in the vicinity of" rather than collision 
+		curCharacter = (Character*) other; 
+	}
+
+	else if (other->object_type == types::Type::TransitionPoint) {
+		//toss a transition event later
+		other->collision = true;
+		other->collidable = false;
+		cout << "Detected Collision with Transition Point" << endl;
+		transparency, megaJump, doubleJump = false;
+	}
+
+	else if (other->object_type == types::Type::Coffee) {
 		state->setDying(true);
 		alpha = 75;
 		this->play("idle");
 		curTicks = ticks;
 		this->dead();
-		}
 	}
 }
 

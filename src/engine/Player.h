@@ -48,17 +48,20 @@ public:
 	// bool dying = false;
 	bool limbo = false;
 
-	bool hasPowerUp = true; 
 	bool collision;
 	bool _gravity = true;
-	DisplayObject* curPowerUp = NULL;
 
 	/* Jump variables */
 	double _jumpVel = -15.5;
 	int jumps = 0;
+	bool isTouching;
+
+	/* Power Ups */
+	bool hasPowerUp = false; 
+	DisplayObject* curPowerUp = NULL;
 	bool doubleJump = false;
 	bool megaJump = false;
-	bool isTouching;
+	bool transparency = false;
 
 	DisplayObject* curItem = NULL;
 	DisplayObject* curWeapon = NULL;
