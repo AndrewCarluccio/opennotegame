@@ -158,7 +158,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area4_4"
+                    "transition_scene_name": "area4_title_page"
                 },
                 {
                     "node_id": "sprite32",

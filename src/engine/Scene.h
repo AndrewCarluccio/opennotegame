@@ -44,6 +44,8 @@ public:
 	//float backgroundScrollRate;
 	//float midgroundScrollRate;
 	//float foregroundScrollRate;
+	string name;
+	string area;
 
 private:
 	//TODO --> change this from vector type string to vector type JSON args list, however you want to do that

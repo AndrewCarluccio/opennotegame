@@ -18,6 +18,10 @@ class GameState {
         void collectItem(string itemId);
         void defeatBoss(string bossId);
         void setDying(bool val);
+        void visitFirstTitle();
+        void reset();
+        void clearReset();
+        void startDeathTransition();
 
         double getScore();
         double getHealth();
@@ -25,10 +29,13 @@ class GameState {
         string getCurWeapon();
         vector<string> getCollectedItems();
         vector<string> getDefeatedBosses();
+        bool wasReset();
         bool hasCollectedItem(string itemId);
         bool hasDefeatedBoss(string bossId);
         bool isDead();
+        bool isTransitioning();
         bool isLowHealth();
+        bool isFirstTitle();
 
         string calculateGrade();
     private:
@@ -37,6 +44,9 @@ class GameState {
         double health;
         bool dying;
         bool lowHealth;
+        bool firstTitle;
+        bool isReset;
+        bool transitioning;
         double currentScore;
         string curItem;
         string curWeapon;

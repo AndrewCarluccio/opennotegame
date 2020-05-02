@@ -149,11 +149,19 @@ TransitionPoint* createTransitionPoint(const Value& transitionPointInfo) {
 
 AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	string node_id = animatedSpriteInfo["node_id"].GetString();
-	string path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
+	string path_to_texture;
+	if(animatedSpriteInfo.HasMember("sprite_file_path")) {
+		path_to_texture = animatedSpriteInfo["sprite_file_path"].GetString();
+	} else {
+		path_to_texture = "";
+	}
 
 	AnimatedSprite* the_obj = new AnimatedSprite(node_id, path_to_texture);
 
-	setDisplayObjectProperties(animatedSpriteInfo, the_obj);
+
+	if (path_to_texture != "") {
+		setDisplayObjectProperties(animatedSpriteInfo, the_obj);
+	}
 
 	return the_obj;
 }
@@ -311,6 +319,9 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 
 void Scene::loadScene(string sceneFilePath) {
 	//sceneFilePath = "example_Kenny.json";
+	string prefix = "./resources/Scenes/areaX/";
+	area = sceneFilePath.substr(prefix.length() - 2, 1);
+	name = sceneFilePath.substr(prefix.length());
 	FILE* fp = fopen(sceneFilePath.c_str(), "r");
 	char readBuffer[65536];
 	if (fp != NULL) {

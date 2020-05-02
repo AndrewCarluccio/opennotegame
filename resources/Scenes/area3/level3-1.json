@@ -140,7 +140,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area2_7"
+                    "transition_scene_name": "area3_title_page"
                 },
                 {
                     "node_id": "sprite24",

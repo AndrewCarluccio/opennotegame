@@ -73,7 +73,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 
 	if (ticks == curTicks + 60) {
 		// dying = false;
-		state->setDying(false);
+		// state->setDying(false);
 		limbo = false;
 		alpha = 250;
 	}
