@@ -501,7 +501,10 @@
                     "hitboxScaleX": 0.7,
                     "hitboxScaleY": 1.0,
                     "object_type": 4,
-                    "children": []
+                    "children": [],
+                    "minusX": 0,
+                    "plusX": 250,
+                    "facingRight": true
                 },
                 {
                     "node_id": "sprite68",

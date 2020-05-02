@@ -194,7 +194,10 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 4,
-                    "children": []
+                    "children": [],
+                    "facingRight": false,
+                    "minusX": 300,
+                    "plusX": 0
                 },
                 {
                     "node_id": "player",
@@ -320,7 +323,10 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 4,
-                    "children": []
+                    "children": [],
+                    "facingRight": true,
+                    "minusX": 0,
+                    "plusX": 300
                 },
                 {
                     "node_id": "sprite7",
