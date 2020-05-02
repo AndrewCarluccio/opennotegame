@@ -18,7 +18,8 @@ class GameState {
         void collectItem(string itemId);
         void defeatBoss(string bossId);
         void setDying(bool val);
-        void visitFirstTitle();
+        void visitFirstTitle(bool val);
+		void visitFirstTitle();
         void reset();
         void clearReset();
         void startDeathTransition();
@@ -37,6 +38,8 @@ class GameState {
         bool isLowHealth();
         bool isFirstTitle();
 
+
+
         string calculateGrade();
     private:
         double MAX_HEALTH = 100.0;
@@ -44,7 +47,7 @@ class GameState {
         double health;
         bool dying;
         bool lowHealth;
-        bool firstTitle;
+		bool firstTitle;
         bool isReset;
         bool transitioning;
         double currentScore;

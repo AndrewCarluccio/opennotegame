@@ -83,6 +83,7 @@ bool SceneManager::processPosition(int x, int y) {
 			transitionIn(d / 2, active_scene);
 			primed = true;
 			cout << "Swapped pointer" << endl;
+			Game::instance->gameState.visitFirstTitle(true);
 		}
 		else if (listen->ended && primed) {
 			cout << "Ended final fade" << endl;

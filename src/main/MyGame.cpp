@@ -340,17 +340,33 @@ bool MyGame::mouseWithinBounds(DisplayObject *sprite, int mouseX, int mouseY) {
 }
 void MyGame::processTitlePage(Scene *scene) {
 	if (scene != NULL) {
-		if(Game::instance->gameState.isFirstTitle()) {
+		bool first = Game::instance->gameState.isFirstTitle();
+		if(first) {
 			Text *text = new Text("Click on a level to begin!");
 			text->position.x = 300;
 			text->position.y = 50;
 			scene->foreground->addChild(text);
-			Game::instance->gameState.visitFirstTitle();
+			
 		}
 		vector<DisplayObject *>levels;
 		for (int i = 1; i <= 8; i++) {
 			levels.push_back(scene->foreground->getChild(i));
+			//cout << "Running this" << endl;
 		}
+
+		for (int k = 0; k < levels.size() && Game::instance->gameState.isFirstTitle(); k++) {
+			SDL_Point pos = levels.at(k)->position;
+			string prefix = "Level ";
+			int j = k + 1;
+			string suffix = to_string(j);
+			string res = prefix + suffix;
+			Text* text = new Text(res);
+			text->position = pos;
+			scene->foreground->addChild(text);
+			
+		}
+
+		Game::instance->gameState.visitFirstTitle();
 
 		if (mousePressedDown && initialClick) {	
 			while (!levels.empty()) {

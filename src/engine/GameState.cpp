@@ -95,6 +95,10 @@ void GameState::visitFirstTitle() {
     firstTitle = false;
 }
 
+void GameState::visitFirstTitle(bool val) {
+	firstTitle = val;
+}
+
 double GameState::getScore() {
     return currentScore;
 }
