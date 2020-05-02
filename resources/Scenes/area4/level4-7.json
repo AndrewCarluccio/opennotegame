@@ -179,7 +179,7 @@
                 },
                 {
                     "node_id": "sprite64",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Character",
                     "sprite_type": "default",
                     "locationX": 1100,
                     "locationY": 425,
@@ -193,11 +193,18 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 0,
-                    "children": []
+                    "children": [],
+                    "first_dialogue": "1/5",
+                    "mid_dialogue": "3/5",
+                    "item_dialogue": "5/5 [You received: Minecraft]",
+                    "post_dialogue": "I derped up and forgot about office hours... I'll post the zoom link when I'm up.",
+                    "item_needed": "debug",
+                    "item_to_give": "not_a_game",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite65",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "Character",
                     "sprite_type": "default",
                     "locationX": 25,
                     "locationY": 925,
@@ -211,7 +218,14 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 0,
-                    "children": []
+                    "children": [],
+                    "first_dialogue": "Gamers! *waits for everyone to quiet down*",
+                    "mid_dialogue": "I'm at Stacks table C, wearing a red shirt and a green hat. I've been told I look like a bottle of sriracha.",
+                    "item_dialogue": "We didn't need to spend much money on assets this semester, so maybe we can get Milan! [You received: food from Milan]",
+                    "post_dialogue": "I'm in Stacks, sitting at one of the long tables. I'm the only one in a five mile radius wearing a Kansas City Royals shirt.",
+                    "item_needed": "debug",
+                    "item_to_give": "milan",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "EntryPoint",
@@ -447,24 +461,6 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 2,
-                    "children": []
-                },
-                {
-                    "node_id": "sprite63",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
-                    "locationX": 50,
-                    "locationY": 125,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/Sprites/npcs/carrington.png",
-                    "collidable": true,
-                    "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
-                    "object_type": 0,
                     "children": []
                 }
             ]

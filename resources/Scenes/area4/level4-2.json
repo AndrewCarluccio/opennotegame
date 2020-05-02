@@ -139,7 +139,14 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 0,
-                    "children": []
+                    "children": [],
+                    "first_dialogue": "*walks in late* good thing I can't get poisoned anymore",
+                    "mid_dialogue": "Ask me if you need any help with sfx/level!",
+                    "item_dialogue": "SFX/Level grading should be done! [You received: Dark Souls]",
+                    "post_dialogue": "https://virginia.zoom.us/j/9145157925",
+                    "item_needed": "level",
+                    "item_to_give": "game",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite23",
@@ -175,7 +182,14 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 0,
-                    "children": []
+                    "children": [],
+                    "first_dialogue": "ahoy me mateys. me office hours be happenin' 'til the hour o' half past 6.",
+                    "mid_dialogue": "ooh, big spicy office hours comin' at ya",
+                    "item_dialogue": "good work, instructors. i mean, students! here's a meme.",
+                    "post_dialogue": "some positively epic office hours goin down rn.",
+                    "item_needed": "engine",
+                    "item_to_give": "meme",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite29",
@@ -197,8 +211,8 @@
                 },
                 {
                     "node_id": "sprite37",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Character",
+                    "sprite_type": "andy",
                     "locationX": 1100,
                     "locationY": 925,
                     "scaleX": 1.0,
@@ -210,8 +224,15 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
-                    "children": []
+                    "object_type": 7,
+                    "children": [],
+                    "first_dialogue": "Hello gamers and gamettes.",
+                    "mid_dialogue": "I have my office hours from now until 12. Stop by if you need anything or just want to chat!",
+                    "item_dialogue": "Good morrow, folks! You got a 2/2 for Area Design I. [You received: spritesheets]",
+                    "post_dialogue": "Come see me in Thornton stacks, esp. you design kiddos.",
+                    "item_needed": "design",
+                    "item_to_give": "spritesheets",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite18",

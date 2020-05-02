@@ -375,10 +375,11 @@ void Player::onCollision(DisplayObject* other){
 		this->onEnemyCollision((Enemy*) other); 
 	}
 
+/*
 	else if (other->object_type == types::Type::Character) { // change this to be "in the vicinity of" rather than collision 
 		curCharacter = (Character*) other; 
 	}
-
+*/
 	else if (other->object_type == types::Type::TransitionPoint) {
 		//toss a transition event later
 		other->collision = true;

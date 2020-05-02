@@ -305,11 +305,11 @@
                     ],
                     "first_dialogue": "Oh, hello. I'm a little busy at the moment, my cats are quite hungry.",
                     "mid_dialogue": "While you're here, please be careful around my cats. They're sensitive.",
-                    "item_dialogue": "You have cat food? Just what I needed!",
+                    "item_dialogue": "You have cat food? Just what I needed! I'm not sure what this is, but I feel like you might need it... A 'VSCode'?",
                     "post_dialogue": "Thank you, they've been rather fussy.",
                     "item_needed": "catfood",
-                    "item_to_give": "idkyetlolbuldak",
-                    "item_path": "resources/general_sprites/buldak.png"
+                    "item_to_give": "VSCode",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite13",

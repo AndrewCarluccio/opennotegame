@@ -28,9 +28,12 @@ public:
 
     string itemNeeded = "";
     string itemToGive = "";
-    string itemPath = "";
+    string itemPath = "/resources/general_sprites/power_up.png";
 
 	Text* text;
+    Text* thinking = new Text("...", 100, 100, "./resources/Fonts/Roboto-Regular.ttf", 50, {0, 0, 0});
+
+    bool playerNearby = false;
     
     bool talkedWith = false;
     bool receivedItem = false;

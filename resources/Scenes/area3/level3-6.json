@@ -288,8 +288,8 @@
                 },
                 {
                     "node_id": "sprite19",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "Character",
+                    "sprite_type": "mathematician",
                     "locationX": -25,
                     "locationY": 300,
                     "scaleX": 0.14249999821186067,
@@ -301,8 +301,15 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
-                    "children": []
+                    "object_type": 7,
+                    "children": [],
+                    "first_dialogue": "I was doing research, but lost all my notes!",
+                    "mid_dialogue": "I have to unify them...",
+                    "item_dialogue": "My corollaries! Thank you! In exchange, here are my calculations for the distance equation.",
+                    "post_dialogue": "Unified once more!",
+                    "item_needed": "theorem",
+                    "item_to_give": "formula",
+                    "item_path": "resources/general_sprites/power_up.png"
                 },
                 {
                     "node_id": "sprite7",
