@@ -284,7 +284,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area3_8"
+                    "transition_scene_name": "area3_7"
                 },
                 {
                     "node_id": "ExitPoint",

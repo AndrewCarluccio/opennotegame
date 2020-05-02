@@ -73,7 +73,7 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 		if (actionTriggered) {
 			this->state = 8;
 		}
-		
+
 		if (this->sprite_type == "projection") {
 			this->position.x += 5;
 			if (this->position.x > projMaxPatX) {
@@ -88,7 +88,9 @@ void Enemy::update(set<SDL_Scancode> pressedKeys){
 			if (sprite_type == "cat" || sprite_type == "lamp" || sprite_type == "matrix" || sprite_type == "adv_matrix") {
 				patrol();
 				if (sprite_type == "matrix") {
-					this->play("walk");
+					if(this->current != getAnimation("walk")) {
+						this->play("walk");
+					}
 				}
 			}
 		}
@@ -197,7 +199,7 @@ void Enemy::draw(AffineTransform &at){
 }
 
 void Enemy::setPatrolRange() {
-	this->projMaxPatX = this->position.x + 350;
+	this->projMaxPatX = this->position.x + 1000;
 	this->minPatX = this->position.x-this->minusX;
 	this->maxPatX = this->position.x+this->plusX;
 	this->minPatY = this->position.y-10;

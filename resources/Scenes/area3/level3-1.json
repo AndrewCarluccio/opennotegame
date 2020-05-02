@@ -140,7 +140,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area3_8"
+                    "transition_scene_name": "area2_7"
                 },
                 {
                     "node_id": "sprite24",
@@ -176,24 +176,6 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 2,
-                    "children": []
-                },
-                {
-                    "node_id": "arrow",
-                    "type_id": "Enemy",
-                    "sprite_type": "projection",
-                    "locationX": 810,
-                    "locationY": 675,
-                    "scaleX": 0.9100000262260437,
-                    "scaleY": 0.9100000262260437,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/Sprites/enemies/projection.PNG",
-                    "collidable": true,
-                    "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
-                    "object_type": 0,
                     "children": []
                 },
                 {
@@ -249,7 +231,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area3_2"
+                    "transition_scene_name": "area3_3"
                 },
                 {
                     "node_id": "sprite1",
@@ -483,6 +465,24 @@
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
                     "object_type": 8,
+                    "children": []
+                },
+                {
+                    "node_id": "arrow",
+                    "type_id": "Enemy",
+                    "sprite_type": "projection",
+                    "locationX": 25,
+                    "locationY": 675,
+                    "scaleX": 0.9100000262260437,
+                    "scaleY": 0.9100000262260437,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/enemies/projection.PNG",
+                    "collidable": true,
+                    "isDynamic": false,
+                    "hitboxScaleX": 1.0,
+                    "hitboxScaleY": 1.0,
+                    "object_type": 4,
                     "children": []
                 }
             ]
