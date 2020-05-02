@@ -129,6 +129,7 @@ public:
 	Camera* cam;
 
 	int i = 0;
+	int goalCounter = 0;
 	vector<string> all_paths;
 	vector<string> all_names;
 

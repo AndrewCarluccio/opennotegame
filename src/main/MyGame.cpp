@@ -228,6 +228,29 @@ MyGame::~MyGame() {
 
 
 void MyGame::update(set<SDL_Scancode> pressedKeys) {
+	if(Game::instance->gameState.isDead()) {
+		if(Game::instance->gameState.isTransitioning()) {
+			if(Game::frameCounter == goalCounter) {
+				string area = scene_manager->active_scene->area;
+				string prefix ="./resources/Scenes/area";
+				string postfix = "_title_page.json"; 
+				string path = prefix + area +"/area" + area + postfix;
+
+				delete(scene_manager->active_scene);
+				Scene* to_scene = new Scene();
+				to_scene->loadScene(path);
+				Game::instance->collisionSystem.updateWithNewScene(to_scene->root);
+				scene_manager->active_scene = to_scene;
+				Game::instance->gameState.reset();
+			}
+		} else {
+			goalCounter = Game::frameCounter + 60;
+			Game::instance->gameState.startDeathTransition();
+		}
+		scene_manager->active_scene->update(pressedKeys);
+		Game::update(pressedKeys);
+		return;
+	}
 
 	if (player != NULL) {
 		player->old_position.x = player->position.x;
@@ -302,6 +325,8 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	} else {
 		Game::instance->collisionSystem.update();
 	}
+
+
 
 }
 

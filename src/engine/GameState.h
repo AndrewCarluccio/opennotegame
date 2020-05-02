@@ -21,6 +21,7 @@ class GameState {
         void visitFirstTitle();
         void reset();
         void clearReset();
+        void startDeathTransition();
 
         double getScore();
         double getHealth();
@@ -32,6 +33,7 @@ class GameState {
         bool hasCollectedItem(string itemId);
         bool hasDefeatedBoss(string bossId);
         bool isDead();
+        bool isTransitioning();
         bool isLowHealth();
         bool isFirstTitle();
 
@@ -44,6 +46,7 @@ class GameState {
         bool lowHealth;
         bool firstTitle;
         bool isReset;
+        bool transitioning;
         double currentScore;
         string curItem;
         string curWeapon;

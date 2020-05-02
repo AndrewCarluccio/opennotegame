@@ -6,6 +6,7 @@ GameState::GameState() {
     curItem = "";
     curWeapon = "";
     dying = false;
+    transitioning = false;
     isReset = false;
     firstTitle = true;
 }
@@ -36,6 +37,7 @@ void GameState::changeHealth(double amount) {
         if (health < 0.0) {
             lowHealth = true;
             health = 0.0;
+            dying = true;
             cout << "Game over!" << endl;
         } else if (health < LOW_THRESHOLD) {
             lowHealth = true;
@@ -65,15 +67,24 @@ void GameState::setDying(bool val) {
     dying = val;
 }
 
+void GameState::startDeathTransition() {
+    transitioning = true;
+}
+
 void GameState::reset() {
     health = 100.0;
     dying = false;
+    transitioning = false;
     currentScore = 0.0;
-    isReset = true;
+    // isReset = true;
 }
 
 bool GameState::wasReset() {
     return isReset;
+}
+
+bool GameState::isTransitioning() {
+    return transitioning;
 }
 
 void GameState::clearReset() {
