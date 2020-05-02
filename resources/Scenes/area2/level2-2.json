@@ -325,7 +325,7 @@
                 },
                 {
                     "node_id": "box",
-                    "type_id": "AnimatedSprite",
+                    "type_id": "EnvironmentalObject",
                     "sprite_type": "box",
                     "locationX": 700,
                     "locationY": 500,
@@ -338,7 +338,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 8,
+                    "object_type": 6,
                     "children": []
                 },
                 {

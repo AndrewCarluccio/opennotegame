@@ -122,7 +122,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area1_8"
+                    "transition_scene_name": "area1_7"
                 },
                 {
                     "node_id": "sprite1",
@@ -177,7 +177,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area2_2"
+                    "transition_scene_name": "area2_3"
                 },
                 {
                     "node_id": "sprite3",
@@ -272,7 +272,7 @@
                 {
                     "node_id": "sprite7",
                     "type_id": "AnimatedSprite",
-                    "sprite_type": "Item",
+                    "sprite_type": "catfood",
                     "locationX": 75,
                     "locationY": 600,
                     "scaleX": 0.41999998688697817,

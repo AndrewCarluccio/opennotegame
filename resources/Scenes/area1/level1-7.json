@@ -302,7 +302,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area1_8"
+                    "transition_scene_name": "area2_1"
                 },
                 {
                     "node_id": "sprite70",
@@ -621,7 +621,7 @@
                     "scaleY": 0.4375,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/swirly_thing.png",
+                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/bh_1.png",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 0.7,
@@ -639,7 +639,7 @@
                     "scaleY": 0.5249999761581421,
                     "rotation": 0.0,
                     "alpha": 255,
-                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/swirly_thing.png",
+                    "sprite_file_path": "resources/area_1_sprites/enemies/black_hole/bh_1.png",
                     "collidable": true,
                     "isDynamic": false,
                     "hitboxScaleX": 0.7,

@@ -37,6 +37,7 @@ public:
 	int ticks = 0;
 	int curTicks = 0;
 	int count = 0; // using for corollaries 
+	int sCount = 0;
 	bool collectedAll = false;
 
 	/* UI and Player variables */
@@ -47,6 +48,7 @@ public:
 	// bool lowHealth = false;
 	// bool dying = false;
 	bool limbo = false;
+	bool flippedControls = false;
 
 	bool collision;
 	bool _gravity = true;

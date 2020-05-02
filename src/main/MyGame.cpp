@@ -165,7 +165,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_8_name);
 
 	default_area = new Scene();
-	default_area->loadScene("./resources/Scenes/area1/level1-4.json");
+	default_area->loadScene("./resources/Scenes/area1/level1-1.json");
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -227,11 +227,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 		player->_gravity = false;
 	}
 
-	if ((scene_manager->target_path) == a1_4_path) {
-		player->alpha = 50;
+	if (((scene_manager->target_path) == a1_7_path) || ((scene_manager->target_path) == a3_7_path)) {
+		player->flippedControls = true; 
 	}
-
-
 
 	if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player
 		cam->moveCameraTo(0, (400 - player->position.y));
@@ -269,7 +267,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	//scene_manager->processPosition(player->position.x, player->position.y);
 	scene_manager->processPosition();
-
+/*
 	if (!(curSceneEnemies.empty())) {
 		for(int i = 0; i < curSceneEnemies.size(); i++) {
 			Enemy* enemy = (Enemy*) curSceneEnemies[i];
@@ -281,6 +279,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			}
 		}
 	}
+	*/
 	
 
 	tweenJuggler->nextFrame();

@@ -28,7 +28,7 @@ void Player::loadAnimations() {
 	addAnimation("resources/general_sprites/character/jump/", "jump", 8, 10, false);
 	addAnimation("resources/general_sprites/character/jump_left/", "jump_l", 8, 10, false);
 	addAnimation("resources/general_sprites/character/", "idle", 1, 1, true);
-	addAnimation("resources/general_sprites/character/blackhole/", "bh", 4, 8, false);
+	addAnimation("resources/general_sprites/character/blackhole/", "b", 4, 8, false);
 	addAnimation("resources/general_sprites/character/shield/", "shieldidle", 1, 1, false);
 	addAnimation("resources/general_sprites/character/gun/", "gunidle", 1, 1, false);
 }
@@ -110,9 +110,14 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		// if (lowHealth) {
 			this->position.x += 4; // limited controls when health is low
 		}
+		else if (flippedControls) {
+			this->position.x -=10;
+			this->facingRight = false;
+			}
 		else {
 			this->position.x += 10; // move to the right
 		}
+		
 
 		c.holdRight = false;
 	}
@@ -132,6 +137,10 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		if(state->isLowHealth()) {
 		// if (lowHealth) {
 			this->position.x -= 4; // limited controls when health is low
+		}
+		else if (flippedControls) {
+			this->position.x +=10;
+			this->facingRight = true;
 		}
 		else {
 			this->position.x -= 10; // move to left
@@ -244,7 +253,7 @@ void Player::update(set<SDL_Scancode> pressedKeys){
 		}
 		cout << "ENTER was pressed" << endl;
 		c.interact = false;
-	}
+		}
 	}
 
 	c.update(pressedKeys);
@@ -276,9 +285,11 @@ void Player::onCollision(DisplayObject* other){
 			if (other->sprite_type == "sprite") { // CHANGE SPRITE ID 
 				if (!(other->collision)) {
 					other->visible = false;
-					other->collision = true;		
+					other->collision = true;	
+					sCount++;	
 					}
 				}
+
 			else if (other->sprite_type == "corollary") { // CHANGE SPRITE ID 
 				if (!(other->collision)) {
 					other->visible = false;
@@ -289,20 +300,14 @@ void Player::onCollision(DisplayObject* other){
 					collectedAll = true;
 				}
 			}
-		
-			else if (other->sprite_type == "box") {
-				Game::instance->collisionSystem.resolveCollision(this, other, this->position.x - oldX, this->position.y - oldY, 0, 0);
-				if(_yVel < 0)
-					_yVel = 0;
-				//this->visible = false;
-				int meY = this->getHitbox().y;
-				int meH = this->getHitbox().h;
-				int otherY = other->getHitbox().y;
-				if (meY + meH <= otherY)
-					_standing=true;
+			else if (other->sprite_type == "catfood") {
+				if (!(other->collision)) {
+					other->visible = false;
+					other->collision = true;	
+					this->curItem = other;	
+					}
+				}
 			}
-		}
-
 		else if (other->object_type == types::Type::Health) {
 			if (!(other->collision)) {
 				if (other->sprite_type == "shin") {
@@ -365,7 +370,6 @@ void Player::onCollision(DisplayObject* other){
 			// for simplicity... ig uess we won't have them carry the weapon all the time :")
 		}
 	}
-
 	if (other->type == "EnvironmentalObject") {
 		this->onEnvObjCollision((EnvironmentalObject*) other);
 		}
@@ -437,11 +441,37 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 				_standing=true;
 	}
 
+	 if (envObj->sprite_type == "cover") {
+		if (!(envObj->collision)) {
+			envObj->visible = false;
+			envObj->collision = true;
+			}
+		}
+
+	if (envObj->sprite_type == "ortho") {
+		if (!envObj->_limbo) {
+			Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
+		}
+		
+	}
 
 	// paint brush
 	if (envObj->sprite_type == "paintbrush") { // if in contact with paint brush		
 		envObj->position.y += _yVel; // fall with the player
 	}
+
+	if (envObj->sprite_type == "box") {
+		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, envObj->position.x, envObj->position.y);
+		if(_yVel < 0)
+			_yVel = 0;
+			//this->visible = false;
+			int meY = this->getHitbox().y;
+			int meH = this->getHitbox().h;
+			int otherY = envObj->getHitbox().y;
+			if (meY + meH <= otherY)
+				_standing=true;
+			}
+	
 
 	// cloud platform
 	if (envObj->object_type == types::Type::CloudPlatform) {
@@ -450,7 +480,7 @@ void Player::onEnvObjCollision(EnvironmentalObject* envObj){
 		Game::instance->collisionSystem.resolveCollision(this, envObj, this->position.x - oldX, this->position.y - oldY, 0, 0);
 			if(_yVel < 0)
 			_yVel = 0;
-				//this->visible = false;
+			envObj->visible= false;
 			int meY = this->getHitbox().y;
 			int meH = this->getHitbox().h;
 			int otherY = envObj->getHitbox().y;
@@ -490,6 +520,7 @@ void Player::onEnemyCollision(Enemy* enemy){
 	/* PHYSICS */
 	if (enemy->sprite_type == "blackhole") {
 		// dying = true;
+		this->play("b");
 		state->setDying(true);
 		curTicks = ticks;
 		this->dead();
