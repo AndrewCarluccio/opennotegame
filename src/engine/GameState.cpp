@@ -74,6 +74,7 @@ void GameState::startDeathTransition() {
 void GameState::reset() {
     health = 100.0;
     dying = false;
+    lowHealth = false;
     transitioning = false;
     currentScore = 0.0;
     // isReset = true;

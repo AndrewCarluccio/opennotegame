@@ -212,7 +212,7 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 3,
                     "children": [],
-                    "transition_scene_name": "area4_title_page"
+                    "transition_scene_name": "winscreen"
                 },
                 {
                     "node_id": "sprite74",

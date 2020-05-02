@@ -124,6 +124,9 @@ public:
 	string a4_7_path;
 	string a4_8_path;
 
+	string winscreen_name;
+	string winscreen_path;
+
 	TweenJuggler* tweenJuggler;
 	SceneManager* scene_manager;
 	Camera* cam;

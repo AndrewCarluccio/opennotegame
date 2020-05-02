@@ -166,7 +166,7 @@ AnimatedSprite* createAnimatedSprite(const Value& animatedSpriteInfo) {
 	return the_obj;
 }
 
-Player* createPlayer(const Value& playerInfo) {
+Player* createPlayer(const Value& playerInfo, string name) {
 	string node_id = playerInfo["node_id"].GetString();
 	string path_to_texture = playerInfo["sprite_file_path"].GetString();
 
@@ -174,6 +174,12 @@ Player* createPlayer(const Value& playerInfo) {
 
 	setDisplayObjectProperties(playerInfo, the_obj);
 	the_obj->object_type = types::Type::Player;
+	if(name == "level1-2.json") {
+		the_obj->_gravity = false;
+
+	} else if (name == "level1-7.json" || name == "level3-7.json") {
+		the_obj->flippedControls = true;
+	}
 
 	return the_obj;
 }
@@ -258,7 +264,7 @@ Character* createCharacter(const Value& CharacterInfo) {
 }
 
 // Recursion happens here
-void createObject(const Value& attribute, DisplayObjectContainer* node) {
+void createObject(const Value& attribute, DisplayObjectContainer* node, string name) {
 
 	string type_id = attribute["type_id"].GetString();
 	string node_id = attribute["node_id"].GetString();
@@ -269,7 +275,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	// of the json file did not have types and instead found the player with the id
 	// "player"
 	if (node_id == "player") {
-		newChild = createPlayer(attribute);
+		newChild = createPlayer(attribute, name);
 	}
 	else if (type_id == "DisplayObject") {
 		newChild = (createDisplayObject(attribute));
@@ -312,7 +318,7 @@ void createObject(const Value& attribute, DisplayObjectContainer* node) {
 	for (rapidjson::Value::ConstValueIterator itr = children.Begin(); itr != children.End(); ++itr) {
 		const rapidjson::Value& child = *itr;
 		assert(child.IsObject());
-		createObject(child, static_cast<DisplayObjectContainer*>(newChild));
+		createObject(child, static_cast<DisplayObjectContainer*>(newChild), name);
 	}
 
 }
@@ -330,7 +336,7 @@ void Scene::loadScene(string sceneFilePath) {
 	d.ParseStream(json);
 	// cout << "IS OBJECT" << d.IsObject();
 	root = createDisplayObjectContainer(d);
-	createObject(d, root);
+	createObject(d, root, name);
 	// Any objects added/removed in this display tree will be reflected in the collision system
 	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_ADDED_EVENT);
 	root->addEventListener(&Game::instance->collisionSystem, DisplayObjectEvent::DISPLAY_OBJECT_REMOVED_EVENT);

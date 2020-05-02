@@ -1,4 +1,5 @@
 resources/general_sprites/page_bg.png
+resources/Sprites/winscreen.png
 resources/general_sprites/character/idle.png
 resources/area_2_sprites/enemies/lamp/lamp_1.png
 Resources/area_3_sprites/matrix/idle_1.PNG

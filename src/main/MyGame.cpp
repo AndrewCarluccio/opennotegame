@@ -57,6 +57,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	a4_6_path = "./resources/Scenes/area4/level4-6.json";
 	a4_7_path = "./resources/Scenes/area4/level4-7.json";
 	a4_8_path = "./resources/Scenes/area4/level4-8.json";
+	winscreen_path="./resources/Scenes/winscreen.json";
 
 	a1_title_name = "area1_title_page";
 	a1_1_name = "area1_1";
@@ -97,6 +98,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	a4_6_name = "area4_6";
 	a4_7_name = "area4_7";
 	a4_8_name = "area4_8";
+	winscreen_name = "winscreen";
 
 	all_paths.push_back(a1_title_path);
 	all_paths.push_back(a1_1_path);
@@ -137,6 +139,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_paths.push_back(a4_6_path);
 	all_paths.push_back(a4_7_path);
 	all_paths.push_back(a4_8_path);
+	all_paths.push_back(winscreen_path);
 
 	all_names.push_back(a1_title_name);
 	all_names.push_back(a1_1_name);
@@ -178,9 +181,10 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	all_names.push_back(a4_6_name);
 	all_names.push_back(a4_7_name);
 	all_names.push_back(a4_8_name);
+	all_names.push_back(winscreen_name);
 
 	default_area = new Scene();
-	default_area->loadScene(a1_title_path);
+	default_area->loadScene(a4_8_path);
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -252,8 +256,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			goalCounter = Game::frameCounter + 60;
 			Game::instance->gameState.startDeathTransition();
 		}
-		scene_manager->active_scene->update(pressedKeys);
 		Game::update(pressedKeys);
+		scene_manager->active_scene->update(pressedKeys);
+		player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
+		scene_manager->processPosition();
 		return;
 	}
 
@@ -265,11 +271,11 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 		player->oldRotation = player->rotation;
 	}
 
-	if ((scene_manager->target_path) == a1_2_path) {
-		player->_gravity = false;
-	}
 
 	if (player != NULL) {
+		if ((scene_manager->target_path) == a1_2_path) {
+			player->_gravity = false;
+		}
 		if (((scene_manager->target_path) == a1_7_path) || ((scene_manager->target_path) == a3_7_path)) {
 			player->flippedControls = true; 
 		}
@@ -319,9 +325,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	*/
 	
 	
-	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	//scene_manager->processPosition(player->position.x, player->position.y);
-	scene_manager->processPosition();
 /*
 	if (!(curSceneEnemies.empty())) {
 		for(int i = 0; i < curSceneEnemies.size(); i++) {
@@ -355,6 +359,10 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
 	scene_manager->active_scene->update(pressedKeys);
+	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
+	scene_manager->processPosition();
+
+
 
 	// if we are in a title page, look for mouse clicks rather than sprite collisions
 	if (scene_manager->active_scene->name.find("title") != string::npos) {
