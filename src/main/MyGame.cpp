@@ -294,8 +294,9 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 			}
 		}
 	}
-	
+
 	*/
+
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
