@@ -28,6 +28,7 @@ public:
 	void loadScene(string sceneFilePath);
 
 	virtual DisplayObject* getChild(string id);
+	virtual vector<DisplayObject*> getChildren(string type);
 
 	//DisplayObjectContainer* createLayer(const Value& layerInfo);
 

@@ -232,25 +232,6 @@
                     "children": []
                 },
                 {
-                    "node_id": "ExitPoint",
-                    "type_id": "TransitionPoint",
-                    "sprite_type": "default",
-                    "locationX": 1100,
-                    "locationY": 1150,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/general_sprites/flag.PNG",
-                    "collidable": true,
-                    "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
-                    "object_type": 3,
-                    "children": [],
-                    "transition_scene_name": "area3_1"
-                },
-                {
                     "node_id": "EntryPoint",
                     "type_id": "TransitionPoint",
                     "sprite_type": "default",
@@ -271,8 +252,8 @@
                 },
                 {
                     "node_id": "sprite16",
-                    "type_id": "Enemy",
-                    "sprite_type": "coffee",
+                    "type_id": "AnimatedSprite",
+                    "sprite_type": "default",
                     "locationX": -250,
                     "locationY": -50,
                     "scaleX": 0.4699999988079071,
@@ -284,7 +265,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 13,
                     "children": []
                 },
                 {
@@ -451,8 +432,8 @@
                 },
                 {
                     "node_id": "sprite13",
-                    "type_id": "Enemy",
-                    "sprite_type": "coffee",
+                    "type_id": "AnimatedSprite",
+                    "sprite_type": "default",
                     "locationX": -100,
                     "locationY": 1175,
                     "scaleX": 0.46000000834465029,
@@ -464,13 +445,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 13,
                     "children": []
                 },
                 {
                     "node_id": "sprite15",
-                    "type_id": "Enemy",
-                    "sprite_type": "coffee",
+                    "type_id": "AnimatedSprite",
+                    "sprite_type": "default",
                     "locationX": 850,
                     "locationY": 725,
                     "scaleX": 0.5099999904632568,
@@ -482,7 +463,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 13,
                     "children": []
                 },
                 {
@@ -502,6 +483,25 @@
                     "hitboxScaleY": 1.0,
                     "object_type": 6,
                     "children": []
+                },
+                {
+                    "node_id": "ExitPoint",
+                    "type_id": "TransitionPoint",
+                    "sprite_type": "default",
+                    "locationX": 1000,
+                    "locationY": 1400,
+                    "scaleX": 1.0,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/general_sprites/flag.PNG",
+                    "collidable": true,
+                    "isDynamic": false,
+                    "hitboxScaleX": 1.0,
+                    "hitboxScaleY": 1.0,
+                    "object_type": 3,
+                    "children": [],
+                    "transition_scene_name": "area3_1"
                 }
             ]
         }

@@ -24,6 +24,20 @@ void EnvironmentalObject::loadAnimations() {
 }
 
 void EnvironmentalObject::update(set<SDL_Scancode> pressedKeys){
+	ticks++;
+
+	if (this->sprite_type == "ortho") {
+		if (ticks > 60) {
+			this->_limbo = true;
+			this->visible = false;
+			if (ticks > 95) {
+				ticks = 0;
+				this->_limbo = false;
+				this->visible = true;
+			}
+		}
+	}
+
 	AnimatedSprite::update(pressedKeys);
 }
 
@@ -54,4 +68,5 @@ void EnvironmentalObject::onCollision(DisplayObject* other) {
 			other->visible = true;
 		}
 	}
-}
+	
+	}

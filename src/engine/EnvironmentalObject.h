@@ -31,6 +31,9 @@ public:
 	bool _limbo = false;
 	bool _collision = false;
 
+
+	int ticks = 0;
+	int curTicks = 0;
 	bool paintBrushTouched = false;
 private:
 
@@ -45,6 +48,8 @@ private:
 	int _yAcc = 2; 
 	int _yAccCount = 0;
 	int _yVel = 0;
+
+	
 
 	
 

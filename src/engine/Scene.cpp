@@ -350,6 +350,10 @@ DisplayObject* Scene::getChild(string id) {
 	return root->getChild(id);
 }
 
+vector<DisplayObject*> Scene::getChildren(string type) {
+	return root->getChildren(type);
+}
+
 void Scene::update(set<SDL_Scancode> pressedKeys) {
 	//background->update(pressedKeys);
 	//midground->update(pressedKeys);

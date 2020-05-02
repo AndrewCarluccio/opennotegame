@@ -197,24 +197,6 @@
                     "children": []
                 },
                 {
-                    "node_id": "sprite7",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
-                    "locationX": 800,
-                    "locationY": 1000,
-                    "scaleX": 1.0,
-                    "scaleY": 1.0,
-                    "rotation": 0.0,
-                    "alpha": 255,
-                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
-                    "collidable": true,
-                    "isDynamic": false,
-                    "hitboxScaleX": 1.0,
-                    "hitboxScaleY": 1.0,
-                    "object_type": 2,
-                    "children": []
-                },
-                {
                     "node_id": "sprite0",
                     "type_id": "AnimatedSprite",
                     "sprite_type": "default",
@@ -343,8 +325,8 @@
                 },
                 {
                     "node_id": "sprite1",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 675,
                     "locationY": 1300,
                     "scaleX": 1.0,
@@ -356,7 +338,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -379,8 +361,8 @@
                 },
                 {
                     "node_id": "sprite2",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 400,
                     "locationY": 950,
                     "scaleX": 1.0,
@@ -392,7 +374,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -415,8 +397,8 @@
                 },
                 {
                     "node_id": "sprite3",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 725,
                     "locationY": 650,
                     "scaleX": 0.9649999737739563,
@@ -428,13 +410,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
                     "node_id": "sprite4",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 275,
                     "locationY": 100,
                     "scaleX": 1.0,
@@ -446,7 +428,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -469,8 +451,8 @@
                 },
                 {
                     "node_id": "sprite5",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 350,
                     "locationY": 425,
                     "scaleX": 1.0,
@@ -482,13 +464,13 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
                     "node_id": "sprite6",
-                    "type_id": "AnimatedSprite",
-                    "sprite_type": "default",
+                    "type_id": "EnvironmentalObject",
+                    "sprite_type": "ortho",
                     "locationX": 650,
                     "locationY": 200,
                     "scaleX": 1.0,
@@ -500,7 +482,7 @@
                     "isDynamic": false,
                     "hitboxScaleX": 1.0,
                     "hitboxScaleY": 1.0,
-                    "object_type": 0,
+                    "object_type": 6,
                     "children": []
                 },
                 {
@@ -510,6 +492,24 @@
                     "locationX": 0,
                     "locationY": 1075,
                     "scaleX": 0.8849999904632568,
+                    "scaleY": 1.0,
+                    "rotation": 0.0,
+                    "alpha": 255,
+                    "sprite_file_path": "resources/Sprites/platforms/short1.PNG",
+                    "collidable": true,
+                    "isDynamic": false,
+                    "hitboxScaleX": 1.0,
+                    "hitboxScaleY": 1.0,
+                    "object_type": 2,
+                    "children": []
+                },
+                {
+                    "node_id": "sprite7",
+                    "type_id": "AnimatedSprite",
+                    "sprite_type": "default",
+                    "locationX": 800,
+                    "locationY": 1025,
+                    "scaleX": 1.0,
                     "scaleY": 1.0,
                     "rotation": 0.0,
                     "alpha": 255,

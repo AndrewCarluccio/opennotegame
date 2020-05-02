@@ -142,6 +142,7 @@ public:
 	Tween* flagExpandTween;
 	UI* UserInterface;
 	
+	vector<DisplayObject*> curSceneEnemies;
 
 private:
 	bool mouseWithinBounds(DisplayObject * sprite, int mouseX, int mouseY);

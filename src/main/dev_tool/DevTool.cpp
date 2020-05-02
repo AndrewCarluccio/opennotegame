@@ -14,13 +14,20 @@ DevTool::DevTool() : Game(597, 891) {
 
 	scene = new Scene();
 
-	scene->loadScene("./resources/Scenes/empty.json");
+	scene->loadScene("./resources/Scenes/area2/level2-2.json");
 	player = (Player*)scene->getChild("player");
 	if (player != NULL) {
 	player->devToolMode = true;
 	}
 
+	vector<DisplayObject*> curSceneEnemies = scene->getChildren("Enemy");
 
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			enemy->devToolMode = true;
+		}
+	}
 
 	CommandLine *cmdLine = new CommandLine(this);
 

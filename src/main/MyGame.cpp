@@ -9,7 +9,7 @@
 #include "../engine/Enemy.h"
 #include "../engine/EnvironmentalObject.h"
 
-const bool ZOOMED_IN = false;// Set this to false to revert to original camera change the comment below
+bool ZOOMED_IN = false;// Set this to false to revert to original camera change the comment below
 
 using namespace std;
 MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
@@ -181,6 +181,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 
 	default_area = new Scene();
 	default_area->loadScene(a1_title_path);
+
 	//"./resources/Scenes/cp_ep_demo2.json"
 	Game::instance->collisionSystem.updateWithNewScene((DisplayObjectContainer *)default_area->getChild("Root"));
 
@@ -204,12 +205,15 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	
 	player = (Player*)scene_manager->active_scene->getChild("player");
 
+	curSceneEnemies = scene_manager->active_scene->getChildren("Enemy");
+	
 	//UserInterface = new UI();
 	//UserInterface->loadInterface("./resources/UI/interface.json");
 	//scene_manager->active_scene->addChild(UserInterface);	
 
 
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::EnvironmentalObject);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::LongPlatform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Player);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Platform, types::Type::Enemy);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Enemy);
@@ -219,6 +223,7 @@ MyGame::MyGame() : Game(597, 791) {  // Comment this for zoom in  == true
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::EnvironmentalObject);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Character);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::CloudPlatform);
+	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::Coffee);
 	Game::instance->collisionSystem.watchForCollisions(types::Type::Player, types::Type::TransitionPoint);
 	// removed collision btwn item and paintbrush, idk if this will affect anything
 }
@@ -263,14 +268,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	if ((scene_manager->target_path) == a1_2_path) {
 		player->_gravity = false;
 	}
-
-	if (player != NULL) {
-		if(ZOOMED_IN == true && player->position.y > 400) { // have the camera follow the player
-			cam->moveCameraTo(0, (400 - player->position.y));
-		}
-		if (pressedKeys.find(SDL_SCANCODE_P) != pressedKeys.end()) {
-			cout << player->position.x << " " << player->position.y << endl;
-		}
+	
 
 		if (pressedKeys.find(SDL_SCANCODE_G) != pressedKeys.end()) {
 			player->godMode = true;
@@ -278,7 +276,7 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 		if (pressedKeys.find(SDL_SCANCODE_F) != pressedKeys.end()) {
 			player->godMode = false;
 		}
-	}
+	
 
 		if(pressedKeys.find(SDL_SCANCODE_V) != pressedKeys.end()) {
 				string area = scene_manager->active_scene->area;
@@ -314,6 +312,20 @@ void MyGame::update(set<SDL_Scancode> pressedKeys) {
 	player = (Player*)scene_manager->active_scene->getChild("player"); //need to update this pointer if scene changes
 	//scene_manager->processPosition(player->position.x, player->position.y);
 	scene_manager->processPosition();
+/*
+	if (!(curSceneEnemies.empty())) {
+		for(int i = 0; i < curSceneEnemies.size(); i++) {
+			Enemy* enemy = (Enemy*) curSceneEnemies[i];
+			if(abs((player->position.x)-(enemy->position.x)) < 200 && abs((player->position.y)-(enemy->position.y)) < 200) {
+				enemy->playerNearby = true;
+			}
+			else {
+				enemy->playerNearby = false;
+			}
+		}
+	}
+	*/
+	
 
 	tweenJuggler->nextFrame();
 	Game::update(pressedKeys);
